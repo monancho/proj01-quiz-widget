@@ -1,4 +1,5 @@
 import React from 'react';
+import RichText from '../common/RichText.jsx';
 
 export default function FeedbackBox({ selectedPosition, answerPosition, correctAnswer, explanation }) {
   if (!selectedPosition) {
@@ -9,9 +10,11 @@ export default function FeedbackBox({ selectedPosition, answerPosition, correctA
 
   return (
     <section className={`feedback-box ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}`}>
-      <p className="feedback-title">{isCorrect ? '정답입니다' : '오답입니다'}</p>
-      <p className="feedback-answer">정답: {correctAnswer}</p>
-      <p className="feedback-explanation">{explanation}</p>
+      <p className="feedback-title">{isCorrect ? '정답입니다.' : '오답입니다.'}</p>
+      <p className="feedback-answer">
+        정답: <RichText source={correctAnswer} inline />
+      </p>
+      <RichText source={explanation} className="feedback-explanation" />
     </section>
   );
 }

@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-29 |
 | Base branch | `develop` |
-| Current branch | `feature/admin-mvp` |
-| Active scope | Phase 6 |
-| Status | Phase 6 admin frontend pushed; draft PR #4 open |
+| Current branch | `feature/rendering-security` |
+| Active scope | Phase 7 |
+| Status | Phase 7 rendering/security pushed; stacked draft PR #5 open |
 
 ## Completed
 
@@ -59,6 +59,14 @@
 - Phase 6 human checkpoint report added under `docs/human/reports/`.
 - `feature/admin-mvp` pushed to origin.
 - Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- `feature/rendering-security` branch created for Phase 7 planning.
+- Phase 7 TODO file added under `docs/todos/`.
+- Phase 7 shared Markdown/LaTeX renderer implemented.
+- Public iframe quiz question, choices, answer, and explanation now use safe rich text rendering.
+- Admin quiz table and quiz preview now use the same safe rich text rendering.
+- App routes lazy-load admin and embed pages to keep the initial bundle smaller.
+- `feature/rendering-security` pushed to origin.
+- Stacked draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
 
 ## Phase 0 TODO
 
@@ -122,6 +130,13 @@
 - Admin QA created and deleted a throwaway Slug Group.
 - Phase 6 implementation commit: `cc82950 phase6: implement admin frontend mvp`.
 - Draft PR #4: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- Phase 7 TODO commit: `c497ea1 docs: prepare phase 7 rendering security todo`.
+- `npm.cmd install react-markdown remark-gfm remark-math rehype-katex katex`: completed with 0 vulnerabilities.
+- `npm.cmd run build` after Phase 7 implementation: passed.
+- Public iframe Phase 7 QA: Markdown and KaTeX rendered; quiz content had no script tags, no `onerror`, no `javascript:` URL, and no mobile horizontal overflow at 390px.
+- Admin Phase 7 QA: quiz table rendered Markdown and KaTeX through the shared renderer and had no unsafe script/link content.
+- Phase 7 implementation commit: `e83b86e phase7: add safe markdown math rendering`.
+- Stacked draft PR #5: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
 
 ## Remote Sync Status
 
@@ -133,8 +148,11 @@
 - PR #3 is merged into `origin/develop`.
 - `feature/admin-mvp` is pushed and tracks `origin/feature/admin-mvp`.
 - Draft PR #4 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- `feature/rendering-security` is pushed and tracks `origin/feature/rendering-security`.
+- Stacked draft PR #5 targets `feature/admin-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
 
 ## Next
 
-- Prepare Phase 7 TODO before Markdown/LaTeX rendering and sanitizing work.
 - After PR #4 review/merge, fast-forward local `develop` from `origin/develop`.
+- After PR #4 merge, retarget PR #5 from `feature/admin-mvp` to `develop`.
+- Prepare Phase 8 TODO before Docker/deployment work.

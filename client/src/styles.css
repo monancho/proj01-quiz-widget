@@ -80,7 +80,7 @@ a {
   padding: 5px 10px;
 }
 
-.quiz-header h1,
+.quiz-question,
 .result-summary h1,
 .state-message h1 {
   margin: 0;
@@ -731,6 +731,66 @@ a {
 
 .detail-title-line h2 {
   overflow-wrap: anywhere;
+}
+
+.rich-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.rich-text > * {
+  margin: 0;
+}
+
+.rich-text > * + * {
+  margin-top: 0.55em;
+}
+
+.rich-text ul,
+.rich-text ol {
+  padding-left: 1.35em;
+}
+
+.rich-text code {
+  border-radius: 4px;
+  background: #eef2f7;
+  color: #0f172a;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.92em;
+  padding: 1px 4px;
+}
+
+.rich-text pre {
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 6px;
+  background: #111827;
+  color: #f8fafc;
+  padding: 10px;
+}
+
+.rich-text pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.rich-text a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rich-text .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
+.rich-text-inline,
+.rich-text-inline > * {
+  display: inline;
 }
 
 .table-wrap {
