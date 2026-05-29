@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/admin-mvp` |
 | Active scope | Phase 6 |
-| Status | Phase 6 admin frontend TODO prepared |
+| Status | Phase 6 admin frontend implemented and verified |
 
 ## Completed
 
@@ -53,6 +53,10 @@
 - Local `develop` fast-forwarded to `origin/develop`.
 - `feature/admin-mvp` branch created from updated `develop`.
 - Phase 6 TODO file added under `docs/todos/`.
+- Phase 6 admin API client added.
+- Admin route `/admin` implemented.
+- Admin Slug Group list, filters, stats, create/edit/delete, quiz table, quiz create/edit/delete, preview, and iframe copy fallback implemented.
+- Phase 6 human checkpoint report added under `docs/human/reports/`.
 
 ## Phase 0 TODO
 
@@ -109,6 +113,11 @@
 - Browser automation could not complete because the in-app browser node runtime failed to start in this sandbox.
 - Headless Chrome CDP mobile QA: `innerWidth = 390`, `scrollWidth = 390`, `overflow = false`.
 - Headless Chrome CDP interaction QA: incorrect feedback, answer display, next flow, result summary, and retry reset verified.
+- Phase 6 TODO commit: `b0b72d9 docs: prepare phase 6 admin todo`.
+- `npm.cmd run build` after Phase 6 implementation: passed.
+- Admin QA created Slug Group `phase-6-admin-759869`, added 3 quizzes, published it, verified iframe preview URL, and verified iframe copy fallback.
+- Admin QA updated quiz 1, deleted and recreated quiz 3, and verified final `3/3` state.
+- Admin QA created and deleted a throwaway Slug Group.
 
 ## Remote Sync Status
 
@@ -126,5 +135,5 @@
 - Phase 3 implementation is committed.
 - Phase 4 implementation is committed.
 - API MVP human checkpoint report is updated.
-- Implement Phase 6 admin frontend MVP.
-- Verify admin CRUD flows against local API.
+- Push `feature/admin-mvp` and open a draft PR into `develop`.
+- Prepare Phase 7 TODO before Markdown/LaTeX rendering and sanitizing work.

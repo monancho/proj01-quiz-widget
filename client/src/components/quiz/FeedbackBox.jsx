@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function FeedbackBox({ selectedPosition, answerPosition, correctAnswer, explanation }) {
   if (!selectedPosition) {
     return null;

@@ -32,61 +32,73 @@ Implement Phase 6 from `docs/03-task-breakdown.md`: local admin frontend MVP for
 
 ## Implementation Checklist
 
-- [ ] T6-01: Add admin route handling for `/admin`.
-- [ ] T6-02: Implement admin Slug Group list view.
-- [ ] T6-03: Implement post_slug search and status filter UI.
-- [ ] T6-04: Implement summary stats cards.
-- [ ] T6-05: Implement Slug Group create modal.
-- [ ] T6-06: Implement Slug Group edit modal with slug-change warning and duplicate check.
-- [ ] T6-07: Implement Slug Group delete confirmation.
-- [ ] T6-08: Implement quiz table for each Slug Group.
-- [ ] T6-09: Implement quiz create form/page with read-only post_slug context and four choices.
-- [ ] T6-10: Implement quiz edit form/page with existing value loading and save.
-- [ ] T6-11: Implement input-based quiz preview.
-- [ ] T6-12: Implement iframe preview link/open action.
-- [ ] T6-13: Implement iframe code copy with clipboard fallback.
+- [x] T6-01: Add admin route handling for `/admin`.
+- [x] T6-02: Implement admin Slug Group list view.
+- [x] T6-03: Implement post_slug search and status filter UI.
+- [x] T6-04: Implement summary stats cards.
+- [x] T6-05: Implement Slug Group create modal.
+- [x] T6-06: Implement Slug Group edit modal with slug-change warning and duplicate check.
+- [x] T6-07: Implement Slug Group delete confirmation.
+- [x] T6-08: Implement quiz table for each Slug Group.
+- [x] T6-09: Implement quiz create form/page with read-only post_slug context and four choices.
+- [x] T6-10: Implement quiz edit form/page with existing value loading and save.
+- [x] T6-11: Implement input-based quiz preview.
+- [x] T6-12: Implement iframe preview link/open action.
+- [x] T6-13: Implement iframe code copy with clipboard fallback.
 
 ## Admin API Checklist
 
-- [ ] `GET /api/admin/quiz-sets` is consumed with query/status filters.
-- [ ] `POST /api/admin/quiz-sets` is consumed for create.
-- [ ] `PATCH /api/admin/quiz-sets/:id` is consumed for edit/status changes.
-- [ ] `DELETE /api/admin/quiz-sets/:id` is consumed for delete.
-- [ ] `GET /api/admin/quiz-sets/check-slug` is consumed for duplicate checks.
-- [ ] `GET /api/admin/quiz-sets/:setId/quizzes` is consumed for quiz list.
-- [ ] `POST /api/admin/quiz-sets/:setId/quizzes` is consumed for quiz create.
-- [ ] `GET /api/admin/quizzes/:id` is consumed for quiz edit loading.
-- [ ] `PATCH /api/admin/quizzes/:id` is consumed for quiz update.
-- [ ] `DELETE /api/admin/quizzes/:id` is consumed for quiz delete.
+- [x] `GET /api/admin/quiz-sets` is consumed with query/status filters.
+- [x] `POST /api/admin/quiz-sets` is consumed for create.
+- [x] `PATCH /api/admin/quiz-sets/:id` is consumed for edit/status changes.
+- [x] `DELETE /api/admin/quiz-sets/:id` is consumed for delete.
+- [x] `GET /api/admin/quiz-sets/check-slug` is consumed for duplicate checks.
+- [x] `GET /api/admin/quiz-sets/:setId/quizzes` is consumed for quiz list.
+- [x] `POST /api/admin/quiz-sets/:setId/quizzes` is consumed for quiz create.
+- [x] `GET /api/admin/quizzes/:id` is consumed for quiz edit loading.
+- [x] `PATCH /api/admin/quizzes/:id` is consumed for quiz update.
+- [x] `DELETE /api/admin/quizzes/:id` is consumed for quiz delete.
 
 ## Frontend Checklist
 
-- [ ] Admin UI is quiet, work-focused, and suitable for repeated CRUD tasks.
-- [ ] Dense information is scannable without nested cards inside cards.
-- [ ] Form validation messages are visible before invalid API requests where practical.
-- [ ] Publish attempt for incomplete Slug Group surfaces the API error clearly.
-- [ ] Slug Group cards show completion state, status, and basic actions.
-- [ ] Quiz form does not accept or submit `postSlug`.
-- [ ] Iframe copy action provides a fallback when clipboard API is unavailable.
-- [ ] Admin screens are usable on desktop and narrow widths.
+- [x] Admin UI is quiet, work-focused, and suitable for repeated CRUD tasks.
+- [x] Dense information is scannable without nested cards inside cards.
+- [x] Form validation messages are visible before invalid API requests where practical.
+- [x] Publish attempt for incomplete Slug Group surfaces the API error clearly.
+- [x] Slug Group cards show completion state, status, and basic actions.
+- [x] Quiz form does not accept or submit `postSlug`.
+- [x] Iframe copy action provides a fallback when clipboard API is unavailable.
+- [x] Admin screens are usable on desktop and narrow widths.
 
 ## Verification Checklist
 
-- [ ] Run `npm.cmd run build` in `client/`.
-- [ ] Run server migration.
-- [ ] Start API server.
-- [ ] Start Vite dev server.
-- [ ] Create a Slug Group from admin UI.
-- [ ] Create 3 quizzes from admin UI.
-- [ ] Publish the Slug Group from admin UI.
-- [ ] Verify iframe preview/open action reaches `/embed/:postSlug`.
-- [ ] Verify iframe code copy/fallback.
-- [ ] Verify edit and delete flows.
-- [ ] Run `git diff --check`.
-- [ ] Update `docs/00-project-status.md`.
-- [ ] Update latest worklog.
-- [ ] Add human checkpoint report if Phase 6 reaches verified milestone.
-- [ ] Commit Phase 6 changes.
+- [x] Run `npm.cmd run build` in `client/`.
+- [x] Run server migration.
+- [x] Start API server.
+- [x] Start Vite dev server.
+- [x] Create a Slug Group from admin UI.
+- [x] Create 3 quizzes from admin UI.
+- [x] Publish the Slug Group from admin UI.
+- [x] Verify iframe preview/open action reaches `/embed/:postSlug`.
+- [x] Verify iframe code copy/fallback.
+- [x] Verify edit and delete flows.
+- [x] Run `git diff --check`.
+- [x] Update `docs/00-project-status.md`.
+- [x] Update latest worklog.
+- [x] Add human checkpoint report if Phase 6 reaches verified milestone.
+- [x] Commit Phase 6 changes.
+
+## Verification Results
+
+- `npm.cmd run build` in `client/`: passed.
+- `npm.cmd run db:migrate` in `server/`: completed with 0 pending migrations.
+- Verification API server: `/health` returned `200`.
+- Verification Vite route: `/admin` returned `200`.
+- Headless Chrome CDP admin QA created Slug Group `phase-6-admin-759869`.
+- Headless Chrome CDP admin QA created 3 quizzes, published the group, verified iframe preview URL and copy fallback.
+- Headless Chrome CDP edit/delete QA updated quiz 1, deleted and recreated quiz 3, and verified final `3/3` state.
+- Headless Chrome CDP Slug Group delete QA created and deleted a throwaway group.
+- Desktop and mobile QA reported no horizontal overflow.
 
 ## Handoff Notes
 

@@ -1,5 +1,5 @@
 import { ArrowRight, LoaderCircle, RefreshCw } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { fetchEmbedQuizzes } from '../api/embedApi.js';
 import QuizCard from '../components/quiz/QuizCard.jsx';
 import ResultSummary from '../components/quiz/ResultSummary.jsx';

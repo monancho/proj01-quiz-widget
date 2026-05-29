@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase 6 Admin Frontend Checkpoint</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #d8dee9;
+      --accent: #0f766e;
+      --accent-soft: #e9fbf7;
+      --ok: #047857;
+      --warn: #b45309;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 42px 24px 56px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .summary {
+      border-color: #99d8cb;
+      background: var(--accent-soft);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f4fa;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    .ok {
+      color: var(--ok);
+      font-weight: 700;
+    }
+
+    .warn {
+      color: var(--warn);
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 30px 16px 42px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Phase 6 Admin Frontend Checkpoint</h1>
+      <p>Admin CRUD milestone summary for the Tistory quiz widget.</p>
+      <div class="meta">
+        <span class="pill">Date: 2026-05-29</span>
+        <span class="pill">Branch: feature/admin-mvp</span>
+        <span class="pill">Status: verified</span>
+      </div>
+    </header>
+
+    <section class="summary">
+      <h2>Conclusion</h2>
+      <p class="ok">Phase 6 admin frontend is implemented and verified against the local API.</p>
+      <p>The admin MVP can manage Slug Groups, manage quizzes, publish complete groups, open iframe previews, and provide iframe copy fallback.</p>
+    </section>
+
+    <section>
+      <h2>Completed Scope</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Admin route</td>
+            <td><code>/admin</code> renders the admin management screen.</td>
+          </tr>
+          <tr>
+            <td>Slug Groups</td>
+            <td>List, search, status filter, stats, create, edit, publish, and delete flows are implemented.</td>
+          </tr>
+          <tr>
+            <td>Quizzes</td>
+            <td>Per-group quiz table, create, edit, delete, form preview, sort order, choices, correct answer, and explanation are implemented.</td>
+          </tr>
+          <tr>
+            <td>Iframe tools</td>
+            <td>Preview link and iframe code copy are available, with inline fallback when clipboard access is unavailable.</td>
+          </tr>
+          <tr>
+            <td>Responsive admin</td>
+            <td>Desktop and narrow-width checks reported no horizontal overflow.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Verification</h2>
+      <ul>
+        <li><code>npm.cmd run build</code> in <code>client/</code>: passed.</li>
+        <li><code>npm.cmd run db:migrate</code> in <code>server/</code>: completed with 0 pending migrations.</li>
+        <li>Admin route <code>/admin</code>: returned <code>200</code>.</li>
+        <li>Headless Chrome CDP created Slug Group <code>phase-6-admin-759869</code>.</li>
+        <li>Headless Chrome CDP created 3 quizzes, published the group, verified iframe preview URL, and verified iframe copy fallback.</li>
+        <li>Headless Chrome CDP updated quiz 1, deleted and recreated quiz 3, and verified final <code>3/3</code> state.</li>
+        <li>Headless Chrome CDP created and deleted a throwaway Slug Group to verify delete flow.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <ul>
+        <li>Authentication is still out of application scope and should be handled later by Cloudflare Access.</li>
+        <li>Markdown/LaTeX rendering and sanitizing remain Phase 7 work.</li>
+        <li>The local dev runtime required explicit React imports for JSX files.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Next Action</h2>
+      <p>Push <code>feature/admin-mvp</code> and open a draft PR into <code>develop</code>. After that, prepare Phase 7 TODO before Markdown/LaTeX rendering and sanitizing work.</p>
+    </section>
+  </main>
+</body>
+</html>

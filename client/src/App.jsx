@@ -1,4 +1,6 @@
+import React from 'react';
 import EmbedQuizPage from './pages/EmbedQuizPage.jsx';
+import AdminQuizManagerPage from './pages/AdminQuizManagerPage.jsx';
 
 function getEmbedSlug(pathname) {
   const marker = '/embed/';
@@ -12,6 +14,10 @@ function getEmbedSlug(pathname) {
 }
 
 export default function App() {
+  if (window.location.pathname.startsWith('/admin')) {
+    return <AdminQuizManagerPage />;
+  }
+
   const postSlug = getEmbedSlug(window.location.pathname);
 
   return <EmbedQuizPage postSlug={postSlug} />;
