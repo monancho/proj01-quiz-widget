@@ -50,7 +50,7 @@
 - `npm.cmd run db:migrate`: applied `0001_init_quiz_sets_and_quizzes.sql`.
 - `/health` smoke test: returned `200`.
 - Implementation commit: `6a62601 phase0-1: scaffold backend foundation`.
-- Agent guide commit: pending.
+- Agent guide commit: `45a44d2 docs: add agent operating guide`.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
 ## Next After Phase 0 + 1
