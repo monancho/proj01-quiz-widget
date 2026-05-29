@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Pre-deployment admin UX refinement |
-| Status | Admin UX refinement implemented and locally verified |
+| Status | Admin UX refinement pushed; direct draft PR #6 open |
 
 ## Completed
 
@@ -73,6 +73,9 @@
 - iframe preview and iframe code copy now open in modals.
 - Quiz order is now creation-order based and can be changed by drag-and-drop.
 - Added admin quiz reorder API.
+- PR #4 merged into `develop`.
+- PR #5 merged into `feature/admin-mvp`.
+- Direct draft PR #6 opened into `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
 
 ## Phase 0 TODO
 
@@ -148,6 +151,8 @@
 - `npm.cmd run smoke:phase4`: passed after admin UX refinement.
 - `npm.cmd run build` after admin UX refinement: passed.
 - Headless Chrome admin UX QA verified modal flows, iframe preview/code modals, drag reorder, and draft-only incomplete status behavior.
+- Admin UX refinement commit: `2c384f6 admin: refine predeploy quiz management ux`.
+- Direct draft PR #6: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
 
 ## Remote Sync Status
 
@@ -158,13 +163,13 @@
 - PR #2 is merged into `origin/feature/server-api-mvp`.
 - PR #3 is merged into `origin/develop`.
 - `feature/admin-mvp` is pushed and tracks `origin/feature/admin-mvp`.
-- Draft PR #4 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- PR #4 is merged into `origin/develop`: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
 - `feature/rendering-security` is pushed and tracks `origin/feature/rendering-security`.
-- Stacked draft PR #5 targets `feature/admin-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- PR #5 is merged into `origin/feature/admin-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- Direct draft PR #6 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
 
 ## Next
 
-- After PR #4 review/merge, fast-forward local `develop` from `origin/develop`.
-- After PR #4 merge, retarget PR #5 from `feature/admin-mvp` to `develop`.
-- Commit and push admin UX refinement to update PR #5.
+- Review and merge PR #6 into `develop`.
+- After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.
