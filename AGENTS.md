@@ -39,6 +39,9 @@ Do not update human-facing reports every session; update them only when the user
 - Work from `develop` using feature branches.
 - Keep changes small, phase-based, and verifiable.
 - Follow the phase order in `docs/03-task-breakdown.md`.
+- Before starting implementation for a new phase, check whether a phase TODO file exists under `docs/todos/`.
+- If the phase TODO file does not exist, create it before editing application code.
+- A phase TODO file must include source docs, scope, out-of-scope items, implementation checklist, verification checklist, and handoff notes.
 - Update `docs/00-project-status.md` when phase status changes.
 - Update the latest `docs/worklog/YYYY-MM-DD.md` during meaningful progress.
 - Keep human-facing HTML documents categorized under `docs/human/`; do not put all human-readable content into one file.

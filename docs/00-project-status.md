@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-29 |
 | Base branch | `develop` |
-| Current branch | `feature/project-scaffold` |
-| Active scope | Phase 0 + Phase 1 |
-| Status | Human-facing docs categorized under `docs/human/` |
+| Current branch | `feature/server-api-mvp` |
+| Active scope | Phase 2 kickoff |
+| Status | Phase TODO rule added; Phase 2 TODO prepared |
 
 ## Completed
 
@@ -19,6 +19,10 @@
 - Phase 0 + Phase 1 implementation committed.
 - Agent operating guide added in `AGENTS.md`.
 - Human-facing docs categorized under `docs/human/index.html`, `guides/`, `reports/`, and `decisions/`.
+- Phase 0 + Phase 1 branch fast-forwarded into local `develop`.
+- `feature/server-api-mvp` branch created for Phase 2+ backend API work.
+- Phase TODO convention added to `AGENTS.md`.
+- Phase 2 TODO file added under `docs/todos/`.
 
 ## Phase 0 TODO
 
@@ -53,10 +57,11 @@
 - Agent guide commit: `45a44d2 docs: add agent operating guide`.
 - Human docs restructure commit: `f5fb96f docs: separate human-facing reports`.
 - Human docs category commit: `9d0ddda docs: categorize human documentation`.
+- Phase TODO rule commit: pending.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
-## Next After Phase 0 + 1
+## Next
 
-- Start Phase 2: Slug Group API.
+- Implement Phase 2: Slug Group API.
+- Start from `docs/todos/phase-2-slug-group-api.md`.
 - Implement `post_slug` normalization and validation first.
-- Add admin `quiz-sets` CRUD endpoints.
