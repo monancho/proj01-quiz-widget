@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/client-embed-mvp` |
 | Active scope | Phase 5 |
-| Status | Phase 5 iframe frontend pushed and draft PR opened; visual browser QA remains |
+| Status | Phase 5 iframe frontend verified and draft PR opened |
 
 ## Completed
 
@@ -44,6 +44,8 @@
 - Frontend README commands documented.
 - `feature/client-embed-mvp` pushed to origin.
 - Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
+- Phase 5 desktop and mobile iframe QA completed with headless Chrome CDP fallback.
+- Phase 5 human checkpoint report added under `docs/human/reports/`.
 
 ## Phase 0 TODO
 
@@ -98,6 +100,8 @@
 - Verification API server on port `3100`: `/health` returned `200`.
 - Verification Vite page: `/embed/phase-5-check-175528` returned `200`.
 - Browser automation could not complete because the in-app browser node runtime failed to start in this sandbox.
+- Headless Chrome CDP mobile QA: `innerWidth = 390`, `scrollWidth = 390`, `overflow = false`.
+- Headless Chrome CDP interaction QA: incorrect feedback, answer display, next flow, result summary, and retry reset verified.
 
 ## Remote Sync Status
 
@@ -116,5 +120,5 @@
 - API MVP human checkpoint report is updated.
 - Review draft PR #1.
 - Review draft PR #2 after PR #1 is merged or retargeted.
-- Complete browser/mobile visual QA for Phase 5.
 - Retarget or refresh PR #2 against `develop` after PR #1 lands.
+- Prepare Phase 6 TODO before starting admin frontend work.
