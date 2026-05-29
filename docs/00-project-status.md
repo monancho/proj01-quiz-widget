@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Pre-deployment admin UX refinement |
-| Status | Design/theme polish pushed; direct draft PR #6 open |
+| Status | Design/theme polish implemented locally; direct draft PR #6 open |
 
 ## Completed
 
@@ -173,7 +173,6 @@
 - Admin UX polish commit: `1cfc53c admin: polish predeploy ux controls`.
 - `npm.cmd run build` after design/theme polish: passed.
 - Headless Chrome design/theme QA verified admin sidebar layout, compact stat/topbar styling, theme mode buttons, preview/code URL updates, copied `theme=dark` iframe code, transparent embed shell, and no mobile overflow for `light`, `dark`, and `system`.
-- Design/theme polish commit: `4297f2d admin: apply compact design and embed themes`.
 
 ## Remote Sync Status
 
@@ -191,6 +190,7 @@
 
 ## Next
 
+- Commit and push the design/theme polish follow-up to PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.
