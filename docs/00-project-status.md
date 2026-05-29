@@ -7,8 +7,8 @@
 | Date | 2026-05-29 |
 | Base branch | `develop` |
 | Current branch | `feature/server-api-mvp` |
-| Active scope | Phase 2 |
-| Status | Phase 2 complete locally; human-doc timing rule added |
+| Active scope | Phase 3 |
+| Status | Phase 3 TODO prepared; Quiz API implementation starting |
 
 ## Completed
 
@@ -26,6 +26,7 @@
 - Phase 2 Slug Group API implemented.
 - Push and PR strategy added to `AGENTS.md`.
 - Human-facing docs update timing added to `AGENTS.md`.
+- Phase 3 TODO file added under `docs/todos/`.
 
 ## Phase 0 TODO
 
@@ -64,6 +65,7 @@
 - Phase 2 implementation commit: `a78aa57 phase2: implement slug group api`.
 - Push strategy commit: `9fa4daa docs: add push and pr strategy`.
 - Human docs timing commit: `d6e17b2 docs: define human docs update timing`.
+- Phase 3 TODO commit: pending.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
@@ -77,5 +79,4 @@
 
 - Phase 2 implementation is committed.
 - Push local `develop` and `feature/server-api-mvp` when ready.
-- Prepare Phase 3 TODO before starting Quiz API.
-- Start Phase 3: Quiz API.
+- Implement Phase 3: Quiz API.
