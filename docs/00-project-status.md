@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-29 |
 | Base branch | `develop` |
-| Current branch | `feature/server-api-mvp` |
-| Active scope | Phase 4 |
-| Status | API MVP pushed and draft PR opened |
+| Current branch | `feature/client-embed-mvp` |
+| Active scope | Phase 5 |
+| Status | Phase 5 TODO prepared after API MVP PR |
 
 ## Completed
 
@@ -35,6 +35,9 @@
 - Local `develop` pushed to `origin/develop`.
 - `feature/server-api-mvp` pushed to origin.
 - Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
+- PR handoff status pushed to `feature/server-api-mvp`: `f6560ca docs: record github pr handoff`.
+- `feature/client-embed-mvp` branch created locally.
+- Phase 5 TODO file added under `docs/todos/`.
 
 ## Phase 0 TODO
 
@@ -89,6 +92,7 @@
 - `develop` is pushed to `origin/develop`.
 - `feature/server-api-mvp` is pushed and tracks `origin/feature/server-api-mvp`.
 - Draft PR: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
+- `feature/client-embed-mvp` exists locally and has not been pushed.
 
 ## Next
 
@@ -98,4 +102,4 @@
 - Phase 4 implementation is committed.
 - API MVP human checkpoint report is updated.
 - Review draft PR #1.
-- Prepare Phase 5 TODO before starting iframe frontend.
+- Implement Phase 5 iframe frontend after deciding whether to wait for PR #1 merge or continue as a stacked local branch.
