@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import RichText from '../components/common/RichText.jsx';
+import QuizCard from '../components/quiz/QuizCard.jsx';
 import {
   checkPostSlug,
   createQuiz,
@@ -345,19 +346,8 @@ export default function AdminQuizManagerPage() {
     }
   }
 
-  function openPreviewModal(quizSet) {
+  function openEmbedToolsModal(quizSet) {
     setUtilityModal({
-      type: 'preview',
-      quizSet,
-      embedUrl: buildEmbedUrl(quizSet.postSlug),
-      iframeCode: buildIframeCode(quizSet.postSlug),
-      copyMessage: '',
-    });
-  }
-
-  function openIframeModal(quizSet) {
-    setUtilityModal({
-      type: 'iframe',
       quizSet,
       embedUrl: buildEmbedUrl(quizSet.postSlug),
       iframeCode: buildIframeCode(quizSet.postSlug),
@@ -486,8 +476,7 @@ export default function AdminQuizManagerPage() {
               onNewQuiz={() => openCreateQuizModal(selectedSet)}
               onEditQuiz={(quiz) => openEditQuizModal(quiz, selectedSet)}
               onDeleteQuiz={(quiz) => handleDeleteQuiz(quiz, selectedSet.id)}
-              onPreview={() => openPreviewModal(selectedSet)}
-              onIframe={() => openIframeModal(selectedSet)}
+              onEmbedTools={() => openEmbedToolsModal(selectedSet)}
             />
           )}
         </div>
@@ -570,8 +559,7 @@ function SetDetail({
   onNewQuiz,
   onEditQuiz,
   onDeleteQuiz,
-  onPreview,
-  onIframe,
+  onEmbedTools,
 }) {
   return (
     <>
@@ -585,11 +573,8 @@ function SetDetail({
           <p>{quizSet.postTitle}</p>
         </div>
         <div className="detail-actions">
-          <button type="button" className="icon-action" onClick={onPreview} title="iframe 미리보기">
+          <button type="button" className="icon-action" onClick={onEmbedTools} title="iframe 미리보기 및 코드 복사">
             <Eye size={17} />
-          </button>
-          <button type="button" className="icon-action" onClick={onIframe} title="iframe 코드 보기">
-            <Copy size={17} />
           </button>
           <button type="button" className="icon-action" onClick={onEditSet} title="Slug Group 수정">
             <Edit3 size={17} />
@@ -750,7 +735,6 @@ function SetModal({ modal, setModal, onSubmit, onCancel, onCheckSlug, busy }) {
 
 function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
   const form = quizModal.form;
-  const answerPreview = form.choices[Number(form.correctPosition) - 1] || '';
 
   function updateForm(patch) {
     setQuizModal((current) => ({
@@ -806,21 +790,7 @@ function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
           <span>explanation</span>
           <textarea required rows="4" value={form.explanation} onChange={(event) => updateForm({ explanation: event.target.value })} />
         </label>
-        <div className="quiz-preview">
-          <strong>미리보기</strong>
-          <RichText source={form.question} fallback="문제 본문이 여기에 표시됩니다." />
-          <ol>
-            {form.choices.map((choice, index) => (
-              <li key={index} className={index + 1 === Number(form.correctPosition) ? 'preview-answer' : ''}>
-                <RichText source={choice} fallback={`보기 ${index + 1}`} inline />
-              </li>
-            ))}
-          </ol>
-          <p>
-            정답: <RichText source={answerPreview} fallback="정답 보기를 입력하세요." inline />
-          </p>
-          <RichText source={form.explanation} fallback="해설이 여기에 표시됩니다." />
-        </div>
+        <WidgetQuestionPreview form={form} />
         <div className="modal-actions">
           <button type="button" className="admin-button secondary" onClick={onCancel}>
             취소
@@ -835,15 +805,51 @@ function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
   );
 }
 
-function UtilityModal({ modal, onClose, onCopy }) {
-  const isPreview = modal.type === 'preview';
+function WidgetQuestionPreview({ form }) {
+  const [selectedPosition, setSelectedPosition] = useState(null);
+  const answerPosition = Number(form.correctPosition) || 1;
+  const choices = form.choices.map((choice, index) => ({
+    position: index + 1,
+    text: choice || `보기 ${index + 1}`,
+  }));
+  const previewQuiz = {
+    question: form.question || '문제 본문이 여기에 표시됩니다.',
+    choices,
+    answerPosition,
+    correctAnswer: choices[answerPosition - 1]?.text || '',
+    explanation: form.explanation || '해설이 여기에 표시됩니다.',
+  };
 
+  useEffect(() => {
+    setSelectedPosition(null);
+  }, [form.question, form.choices, form.correctPosition, form.explanation]);
+
+  return (
+    <section className="quiz-preview widget-preview">
+      <div className="widget-preview-heading">
+        <strong>위젯 미리보기</strong>
+        <span>iframe 사용자에게 보이는 현재 문제 완성본</span>
+      </div>
+      <div className="admin-widget-preview">
+        <QuizCard
+          quiz={previewQuiz}
+          quizNumber={1}
+          totalCount={1}
+          selectedPosition={selectedPosition}
+          onSelect={setSelectedPosition}
+        />
+      </div>
+    </section>
+  );
+}
+
+function UtilityModal({ modal, onClose, onCopy }) {
   return (
     <div className="modal-backdrop">
       <section className="admin-modal utility-modal">
         <div className="modal-heading">
           <div>
-            <h2>{isPreview ? 'iframe 미리보기' : 'iframe 코드'}</h2>
+            <h2>iframe 미리보기 / 코드 복사</h2>
             <p><code>{modal.quizSet.postSlug}</code></p>
           </div>
           <button type="button" className="icon-action" onClick={onClose} title="닫기">
@@ -859,11 +865,9 @@ function UtilityModal({ modal, onClose, onCopy }) {
           <textarea readOnly rows="4" value={modal.iframeCode} />
         </label>
         {modal.copyMessage ? <p className="form-ok">{modal.copyMessage}</p> : null}
-        {isPreview ? (
-          <div className="iframe-preview-box">
-            <iframe title={`${modal.quizSet.postSlug} preview`} src={modal.embedUrl} />
-          </div>
-        ) : null}
+        <div className="iframe-preview-box">
+          <iframe title={`${modal.quizSet.postSlug} preview`} src={modal.embedUrl} />
+        </div>
         <div className="modal-actions">
           <a className="admin-button secondary" href={modal.embedUrl} target="_blank" rel="noreferrer">
             <ExternalLink size={17} />

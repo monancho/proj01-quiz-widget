@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Pre-deployment admin UX refinement |
-| Status | Admin UX refinement pushed; direct draft PR #6 open |
+| Status | Admin UX follow-up implemented locally; direct draft PR #6 open |
 
 ## Completed
 
@@ -71,6 +71,8 @@
 - Added `draft` Slug Group status for incomplete groups.
 - Quiz create/edit now opens in a modal.
 - iframe preview and iframe code copy now open in modals.
+- iframe preview and iframe code copy are now combined in one utility modal.
+- Quiz create/edit modal now shows the current question as a finished widget-style preview with selectable feedback.
 - Quiz order is now creation-order based and can be changed by drag-and-drop.
 - Added admin quiz reorder API.
 - PR #4 merged into `develop`.
@@ -153,6 +155,8 @@
 - Headless Chrome admin UX QA verified modal flows, iframe preview/code modals, drag reorder, and draft-only incomplete status behavior.
 - Admin UX refinement commit: `2c384f6 admin: refine predeploy quiz management ux`.
 - Direct draft PR #6: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
+- `npm.cmd run build` after unified iframe/widget preview follow-up: passed.
+- Headless Chrome admin follow-up QA verified the combined iframe modal, iframe code textarea, live iframe preview, widget-style quiz preview, selectable feedback, and no horizontal overflow.
 
 ## Remote Sync Status
 
@@ -170,6 +174,7 @@
 
 ## Next
 
+- Commit and push the admin UX follow-up to PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.

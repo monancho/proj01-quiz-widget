@@ -22,6 +22,8 @@ Refine admin UX before deployment based on local testing feedback.
 - [x] Show quiz create/edit in a modal instead of an inline lower panel.
 - [x] Show iframe preview in a modal.
 - [x] Show iframe code in a modal textarea/input with a copy action.
+- [x] Combine iframe preview and iframe code copy into one utility modal.
+- [x] Show the current quiz form as a finished widget-style preview inside the quiz modal.
 - [x] Remove manual sort order selection from quiz create/edit.
 - [x] Create new quizzes in creation order.
 - [x] Support drag-and-drop quiz reordering.
@@ -55,6 +57,8 @@ Refine admin UX before deployment based on local testing feedback.
 - `npm.cmd run build` in `client/`: passed.
 - Headless Chrome QA verified iframe code modal, iframe preview modal, quiz edit modal, no `sort_order` control in quiz modal, and drag reorder.
 - Headless Chrome QA verified incomplete Slug Groups show the draft-only warning and disable `private`/`published` options.
+- Follow-up `npm.cmd run build` after unified preview changes: passed.
+- Follow-up headless Chrome QA verified one combined iframe modal contains both iframe code and live preview, and the quiz modal preview uses the actual widget card with selectable feedback.
 
 ## Handoff Notes
 
