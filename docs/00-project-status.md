@@ -52,7 +52,7 @@
 - Implementation commit: `6a62601 phase0-1: scaffold backend foundation`.
 - Agent guide commit: `45a44d2 docs: add agent operating guide`.
 - Human docs restructure commit: `f5fb96f docs: separate human-facing reports`.
-- Human docs category commit: pending.
+- Human docs category commit: `9d0ddda docs: categorize human documentation`.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
 ## Next After Phase 0 + 1
