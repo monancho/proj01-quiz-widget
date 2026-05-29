@@ -31,6 +31,7 @@
 - Phase 4 TODO file added under `docs/todos/`.
 - Phase 4 Public Embed API implemented.
 - API MVP human checkpoint report added under `docs/human/reports/`.
+- Human docs index expanded into a development documentation portal.
 
 ## Phase 0 TODO
 
@@ -74,6 +75,7 @@
 - Phase 4 TODO commit: `b79532a docs: prepare phase 4 public embed api todo`.
 - Phase 4 implementation commit: `079b8a6 phase4: implement public embed api`.
 - API MVP human report commit: included in `079b8a6 phase4: implement public embed api`.
+- Human docs portal commit: pending.
 - `npm.cmd run smoke:phase4`: passed.
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
