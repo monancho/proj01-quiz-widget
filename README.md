@@ -8,7 +8,8 @@ The project is being built from the planning documents in `docs/`.
 
 - Phase 0: project baseline
 - Phase 1: backend foundation
-- Phase 2+: Slug Group and Quiz APIs
+- Phase 2~4: Slug Group, Quiz, and Public Embed APIs
+- Phase 5: public iframe frontend
 
 ## Repository Layout
 
@@ -36,6 +37,22 @@ Health check:
 curl http://localhost:3000/health
 ```
 
+## Frontend Commands
+
+Run these commands from `client/`.
+
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+Local iframe URL:
+
+```bash
+http://localhost:5173/embed/{postSlug}
+```
+
 ## Environment
 
 Copy `server/.env.example` to `server/.env` for local overrides.
@@ -47,6 +64,15 @@ Copy `server/.env.example` to `server/.env` for local overrides.
 | `DATABASE_PATH` | `../data/proj01-quiz.sqlite` | SQLite database path when running from `server/` |
 | `CORS_ALLOWED_ORIGINS` | `http://localhost:5173` | Frontend origins allowed later by CORS |
 | `TISTORY_HOME_URL` | `https://your-blog.tistory.com` | Result CTA target |
+
+Client-side optional variables:
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `VITE_API_BASE_URL` | same origin | API base URL for the iframe frontend |
+| `VITE_BANNER_TEXT` | `관련 글 더 보기` | Static banner text |
+| `VITE_BANNER_URL` | empty | Static banner link URL |
+| `VITE_BANNER_CTA` | `열기` | Static banner CTA label |
 
 ## Work Tracking
 

@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/client-embed-mvp` |
 | Active scope | Phase 5 |
-| Status | Phase 5 TODO prepared after API MVP PR |
+| Status | Phase 5 iframe frontend implemented; visual browser QA remains |
 
 ## Completed
 
@@ -38,6 +38,10 @@
 - PR handoff status pushed to `feature/server-api-mvp`: `f6560ca docs: record github pr handoff`.
 - `feature/client-embed-mvp` branch created locally.
 - Phase 5 TODO file added under `docs/todos/`.
+- Phase 5 React/Vite/Tailwind client scaffold implemented.
+- Public iframe route `/embed/:postSlug` implemented.
+- Immediate client-side quiz grading, feedback, result summary, retry, and static banner implemented.
+- Frontend README commands documented.
 
 ## Phase 0 TODO
 
@@ -86,6 +90,12 @@
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
+- Phase 5 TODO commit: `be405e3 docs: prepare phase 5 embed todo`.
+- `npm.cmd install` in `client/`: completed, 0 vulnerabilities.
+- `npm.cmd run build` in `client/`: passed.
+- Verification API server on port `3100`: `/health` returned `200`.
+- Verification Vite page: `/embed/phase-5-check-175528` returned `200`.
+- Browser automation could not complete because the in-app browser node runtime failed to start in this sandbox.
 
 ## Remote Sync Status
 
@@ -102,4 +112,5 @@
 - Phase 4 implementation is committed.
 - API MVP human checkpoint report is updated.
 - Review draft PR #1.
-- Implement Phase 5 iframe frontend after deciding whether to wait for PR #1 merge or continue as a stacked local branch.
+- Complete browser/mobile visual QA for Phase 5.
+- Decide whether to push `feature/client-embed-mvp` as a stacked branch or wait for PR #1 to merge.
