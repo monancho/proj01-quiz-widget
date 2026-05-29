@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Pre-deployment admin UX refinement |
-| Status | Admin UX polish implemented locally; direct draft PR #6 open |
+| Status | Admin UX polish pushed; direct draft PR #6 open |
 
 ## Completed
 
@@ -165,6 +165,7 @@
 - Admin UX follow-up commit: `59c9695 admin: unify embed and widget previews`.
 - `npm.cmd run build` after admin UX polish: passed.
 - Headless Chrome admin UX polish QA verified 4 status categories, automatic readonly preparing state, handle drag reorder, click-to-copy iframe code, no copy success banner, and transparent public embed background.
+- Admin UX polish commit: `1cfc53c admin: polish predeploy ux controls`.
 
 ## Remote Sync Status
 
@@ -182,7 +183,6 @@
 
 ## Next
 
-- Commit and push the admin UX polish follow-up to PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.
