@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-29 |
 | Base branch | `develop` |
-| Current branch | `feature/admin-mvp` |
-| Active scope | Phase 6 |
-| Status | Phase 6 admin frontend pushed; draft PR #4 open |
+| Current branch | `feature/rendering-security` |
+| Active scope | Phase 7 |
+| Status | Phase 7 TODO prepared; implementation not started |
 
 ## Completed
 
@@ -59,6 +59,8 @@
 - Phase 6 human checkpoint report added under `docs/human/reports/`.
 - `feature/admin-mvp` pushed to origin.
 - Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- `feature/rendering-security` branch created for Phase 7 planning.
+- Phase 7 TODO file added under `docs/todos/`.
 
 ## Phase 0 TODO
 
@@ -137,4 +139,5 @@
 ## Next
 
 - Prepare Phase 7 TODO before Markdown/LaTeX rendering and sanitizing work.
+- Start Phase 7 implementation after confirming the dependency approach for Markdown, LaTeX, and sanitizing.
 - After PR #4 review/merge, fast-forward local `develop` from `origin/develop`.
