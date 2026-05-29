@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/client-embed-mvp` |
 | Active scope | Phase 5 |
-| Status | Phase 5 iframe frontend implemented; visual browser QA remains |
+| Status | Phase 5 iframe frontend pushed and draft PR opened; visual browser QA remains |
 
 ## Completed
 
@@ -42,6 +42,8 @@
 - Public iframe route `/embed/:postSlug` implemented.
 - Immediate client-side quiz grading, feedback, result summary, retry, and static banner implemented.
 - Frontend README commands documented.
+- `feature/client-embed-mvp` pushed to origin.
+- Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
 
 ## Phase 0 TODO
 
@@ -102,7 +104,8 @@
 - `develop` is pushed to `origin/develop`.
 - `feature/server-api-mvp` is pushed and tracks `origin/feature/server-api-mvp`.
 - Draft PR: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
-- `feature/client-embed-mvp` exists locally and has not been pushed.
+- `feature/client-embed-mvp` is pushed and tracks `origin/feature/client-embed-mvp`.
+- Draft PR #2 is stacked on `feature/server-api-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
 
 ## Next
 
@@ -112,5 +115,6 @@
 - Phase 4 implementation is committed.
 - API MVP human checkpoint report is updated.
 - Review draft PR #1.
+- Review draft PR #2 after PR #1 is merged or retargeted.
 - Complete browser/mobile visual QA for Phase 5.
-- Decide whether to push `feature/client-embed-mvp` as a stacked branch or wait for PR #1 to merge.
+- Retarget or refresh PR #2 against `develop` after PR #1 lands.
