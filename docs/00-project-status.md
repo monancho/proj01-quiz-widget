@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/server-api-mvp` |
 | Active scope | Phase 4 |
-| Status | Phase 4 Public Embed API implemented and verified |
+| Status | API MVP pushed and draft PR opened |
 
 ## Completed
 
@@ -32,6 +32,9 @@
 - Phase 4 Public Embed API implemented.
 - API MVP human checkpoint report added under `docs/human/reports/`.
 - Human docs index expanded into a development documentation portal.
+- Local `develop` pushed to `origin/develop`.
+- `feature/server-api-mvp` pushed to origin.
+- Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
 
 ## Phase 0 TODO
 
@@ -83,9 +86,9 @@
 
 ## Remote Sync Status
 
-- Local `develop` is ahead of `origin/develop`.
-- `feature/server-api-mvp` exists locally and has not been pushed yet.
-- Recommended next push order: `develop`, then `feature/server-api-mvp`.
+- `develop` is pushed to `origin/develop`.
+- `feature/server-api-mvp` is pushed and tracks `origin/feature/server-api-mvp`.
+- Draft PR: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
 
 ## Next
 
@@ -94,5 +97,5 @@
 - Phase 3 implementation is committed.
 - Phase 4 implementation is committed.
 - API MVP human checkpoint report is updated.
-- Push local `develop` and `feature/server-api-mvp` when ready.
+- Review draft PR #1.
 - Prepare Phase 5 TODO before starting iframe frontend.
