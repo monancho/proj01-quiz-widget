@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/client-embed-mvp` |
 | Active scope | Phase 5 |
-| Status | Phase 5 iframe frontend verified and draft PR opened |
+| Status | Phase 5 iframe frontend verified; direct develop PR opened |
 
 ## Completed
 
@@ -46,6 +46,9 @@
 - Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
 - Phase 5 desktop and mobile iframe QA completed with headless Chrome CDP fallback.
 - Phase 5 human checkpoint report added under `docs/human/reports/`.
+- PR #1 merged into `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
+- PR #2 merged into `feature/server-api-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
+- Direct Phase 5 draft PR opened against `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/3`.
 
 ## Phase 0 TODO
 
@@ -107,9 +110,10 @@
 
 - `develop` is pushed to `origin/develop`.
 - `feature/server-api-mvp` is pushed and tracks `origin/feature/server-api-mvp`.
-- Draft PR: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
+- PR #1 is merged into `origin/develop`.
 - `feature/client-embed-mvp` is pushed and tracks `origin/feature/client-embed-mvp`.
-- Draft PR #2 is stacked on `feature/server-api-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
+- PR #2 is merged into `origin/feature/server-api-mvp`.
+- Draft PR #3 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/3`.
 
 ## Next
 
@@ -118,7 +122,5 @@
 - Phase 3 implementation is committed.
 - Phase 4 implementation is committed.
 - API MVP human checkpoint report is updated.
-- Review draft PR #1.
-- Review draft PR #2 after PR #1 is merged or retargeted.
-- Retarget or refresh PR #2 against `develop` after PR #1 lands.
+- Review draft PR #3 for Phase 5 integration into `develop`.
 - Prepare Phase 6 TODO before starting admin frontend work.

@@ -147,7 +147,7 @@
       <div class="meta">
         <span class="pill">Date: 2026-05-29</span>
         <span class="pill">Branch: feature/client-embed-mvp</span>
-        <span class="pill">PR: #2 draft</span>
+        <span class="pill">PR: #3 draft</span>
         <span class="pill">Status: verified</span>
       </div>
     </header>
@@ -155,7 +155,7 @@
     <section class="summary">
       <h2>Conclusion</h2>
       <p class="ok">Phase 5 iframe frontend is implemented, built, pushed, and verified with headless Chrome CDP fallback.</p>
-      <p>Draft PR #2 is stacked on top of PR #1. After PR #1 lands, PR #2 should be retargeted or refreshed against <code>develop</code>.</p>
+      <p>PR #1 has landed in <code>develop</code>. PR #3 is the direct Phase 5 draft PR into <code>develop</code>.</p>
     </section>
 
     <section>
@@ -208,14 +208,14 @@
       <h2>Notes</h2>
       <ul>
         <li>The in-app Browser plugin could not start in this sandbox, so headless Chrome CDP was used as the fallback browser QA path.</li>
-        <li>PR #2 currently targets <code>feature/server-api-mvp</code> because PR #1 is still open.</li>
+        <li>PR #2 was merged into <code>feature/server-api-mvp</code>; PR #3 now targets <code>develop</code>.</li>
         <li>The frontend intentionally performs client-side grading for MVP because the public API exposes answer data.</li>
       </ul>
     </section>
 
     <section>
       <h2>Next Action</h2>
-      <p>Merge or land PR #1 first, then retarget or refresh PR #2 against <code>develop</code>. After that, prepare Phase 6 TODO before admin frontend implementation.</p>
+      <p>Review PR #3 for Phase 5 integration into <code>develop</code>. After that, prepare Phase 6 TODO before admin frontend implementation.</p>
     </section>
   </main>
 </body>
