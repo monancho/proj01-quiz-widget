@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-29 |
 | Base branch | `develop` |
-| Current branch | `feature/project-scaffold` |
-| Active scope | Phase 0 + Phase 1 |
-| Status | Human-facing docs categorized under `docs/human/` |
+| Current branch | `feature/server-api-mvp` |
+| Active scope | Phase 4 |
+| Status | API MVP pushed and draft PR opened |
 
 ## Completed
 
@@ -19,6 +19,22 @@
 - Phase 0 + Phase 1 implementation committed.
 - Agent operating guide added in `AGENTS.md`.
 - Human-facing docs categorized under `docs/human/index.html`, `guides/`, `reports/`, and `decisions/`.
+- Phase 0 + Phase 1 branch fast-forwarded into local `develop`.
+- `feature/server-api-mvp` branch created for Phase 2+ backend API work.
+- Phase TODO convention added to `AGENTS.md`.
+- Phase 2 TODO file added under `docs/todos/`.
+- Phase 2 Slug Group API implemented.
+- Push and PR strategy added to `AGENTS.md`.
+- Human-facing docs update timing added to `AGENTS.md`.
+- Phase 3 TODO file added under `docs/todos/`.
+- Phase 3 Quiz API implemented.
+- Phase 4 TODO file added under `docs/todos/`.
+- Phase 4 Public Embed API implemented.
+- API MVP human checkpoint report added under `docs/human/reports/`.
+- Human docs index expanded into a development documentation portal.
+- Local `develop` pushed to `origin/develop`.
+- `feature/server-api-mvp` pushed to origin.
+- Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
 
 ## Phase 0 TODO
 
@@ -53,10 +69,33 @@
 - Agent guide commit: `45a44d2 docs: add agent operating guide`.
 - Human docs restructure commit: `f5fb96f docs: separate human-facing reports`.
 - Human docs category commit: `9d0ddda docs: categorize human documentation`.
+- Phase TODO rule commit: `c5e79da docs: require phase todo before implementation`.
+- Phase 2 implementation commit: `a78aa57 phase2: implement slug group api`.
+- Push strategy commit: `9fa4daa docs: add push and pr strategy`.
+- Human docs timing commit: `d6e17b2 docs: define human docs update timing`.
+- Phase 3 TODO commit: `e194a8e docs: prepare phase 3 quiz api todo`.
+- Phase 3 implementation commit: `ebef1cc phase3: implement admin quiz api`.
+- Phase 4 TODO commit: `b79532a docs: prepare phase 4 public embed api todo`.
+- Phase 4 implementation commit: `079b8a6 phase4: implement public embed api`.
+- API MVP human report commit: included in `079b8a6 phase4: implement public embed api`.
+- Human docs portal commit: `5c843af docs: expand human docs portal`.
+- `npm.cmd run smoke:phase4`: passed.
+- `npm.cmd run smoke:phase3`: passed.
+- `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
-## Next After Phase 0 + 1
+## Remote Sync Status
 
-- Start Phase 2: Slug Group API.
-- Implement `post_slug` normalization and validation first.
-- Add admin `quiz-sets` CRUD endpoints.
+- `develop` is pushed to `origin/develop`.
+- `feature/server-api-mvp` is pushed and tracks `origin/feature/server-api-mvp`.
+- Draft PR: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
+
+## Next
+
+- Phase 2 implementation is committed.
+- Push local `develop` and `feature/server-api-mvp` when ready.
+- Phase 3 implementation is committed.
+- Phase 4 implementation is committed.
+- API MVP human checkpoint report is updated.
+- Review draft PR #1.
+- Prepare Phase 5 TODO before starting iframe frontend.

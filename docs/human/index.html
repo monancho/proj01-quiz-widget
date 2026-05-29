@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Human Docs Index</title>
+  <title>proj01 Human Docs</title>
   <style>
     :root {
-      --bg: #f7f8fb;
+      --bg: #f6f7fa;
       --panel: #ffffff;
       --ink: #1f2937;
       --muted: #6b7280;
       --line: #d8dee9;
       --accent: #2563eb;
       --accent-soft: #eaf1ff;
+      --ok: #047857;
+      --warn: #b45309;
     }
 
     * {
@@ -28,26 +30,32 @@
     }
 
     main {
-      max-width: 1040px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 42px 24px 56px;
     }
 
     h1 {
       margin: 0 0 8px;
-      font-size: 34px;
+      font-size: 36px;
       line-height: 1.2;
       letter-spacing: 0;
     }
 
     h2 {
-      margin: 0 0 10px;
-      font-size: 21px;
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
       letter-spacing: 0;
     }
 
     p {
-      margin: 0;
+      margin: 0 0 12px;
       color: var(--muted);
     }
 
@@ -69,11 +77,22 @@
       font-size: 0.94em;
     }
 
-    .hero {
-      margin-bottom: 22px;
+    section {
+      margin-top: 18px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
     }
 
-    .meta {
+    .hero {
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .meta,
+    .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -92,18 +111,34 @@
       font-size: 13px;
     }
 
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid #b8c9ff;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
     .grid {
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid.two {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 18px;
     }
 
     .card {
-      padding: 22px;
+      padding: 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: var(--panel);
+      background: #fbfcfe;
     }
 
     .card.featured {
@@ -111,18 +146,54 @@
       background: var(--accent-soft);
     }
 
-    .card ul {
-      margin: 14px 0 0;
+    .card p {
+      font-size: 14px;
+    }
+
+    ul,
+    ol {
+      margin: 0;
       padding-left: 20px;
       color: var(--muted);
     }
 
-    .card li + li {
+    li + li {
       margin-top: 6px;
     }
 
-    .wide {
-      grid-column: 1 / -1;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f4fa;
+    }
+
+    .ok {
+      color: var(--ok);
+      font-weight: 700;
+    }
+
+    .warn {
+      color: var(--warn);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .grid.two {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 760px) {
@@ -133,63 +204,152 @@
       h1 {
         font-size: 28px;
       }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
     }
   </style>
 </head>
 <body>
   <main>
     <section class="hero">
-      <h1>Human Docs</h1>
-      <p>사람이 체크포인트에서 확인할 문서만 모아둔 입구입니다. 매 세션 로그가 아니라 보고, 안내, 결정 기록을 분리해서 관리합니다.</p>
+      <h1>proj01 Human Docs</h1>
+      <p>사람이 프로젝트 진행 상황, 운영 규칙, 중간 보고, 결정 기록을 빠르게 확인하기 위한 개발 문서 포털입니다.</p>
       <div class="meta">
         <span class="pill">Project: proj01-quiz-widget</span>
         <span class="pill">Updated: 2026-05-29</span>
-        <span class="pill">Entry point</span>
+        <span class="pill">Branch: feature/server-api-mvp</span>
+        <span class="pill">API MVP: verified</span>
+      </div>
+      <div class="actions">
+        <a class="button" href="./reports/2026-05-29-api-mvp-checkpoint.html">API MVP 보고서 보기</a>
+        <a class="button" href="./guides/agent-operation-guide.html">Agent 운영 가이드 보기</a>
+        <a class="button" href="./decisions/index.html">결정 기록 보기</a>
       </div>
     </section>
 
-    <section class="grid">
-      <article class="card featured">
-        <h2>Guides</h2>
-        <p>프로젝트 운영 방식처럼 오래 유지되는 안내 문서입니다.</p>
-        <ul>
-          <li><a href="./guides/agent-operation-guide.html">Agent Operation Guide</a></li>
-        </ul>
-      </article>
+    <section>
+      <h2>현재 한눈에 보기</h2>
+      <div class="grid">
+        <article class="card featured">
+          <h3>현재 완료</h3>
+          <p class="ok">Phase 2~4 API MVP 구현과 검증이 완료되었습니다.</p>
+          <ul>
+            <li>Slug Group API</li>
+            <li>Quiz API</li>
+            <li>Public Embed API</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>다음 작업</h3>
+          <p>다음 단계는 원격 push/PR 또는 Phase 5 iframe frontend입니다.</p>
+          <ul>
+            <li><code>develop</code> push</li>
+            <li><code>feature/server-api-mvp</code> push</li>
+            <li>Phase 5 TODO 작성</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>주의</h3>
+          <p class="warn">아직 GitHub 원격에는 최신 feature 브랜치가 push되지 않았습니다.</p>
+          <p>원격 동기화 전에 <code>git status</code>와 브랜치 상태를 확인해야 합니다.</p>
+        </article>
+      </div>
+    </section>
 
-      <article class="card">
-        <h2>Reports</h2>
-        <p>Phase 완료, 중간 점검, 사용자 확인이 필요한 시점의 보고서입니다.</p>
-        <ul>
-          <li><a href="./reports/2026-05-29-phase-0-1-checkpoint.html">Phase 0~1 Checkpoint</a></li>
-        </ul>
-      </article>
+    <section>
+      <h2>문서 카탈로그</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Guides</h3>
+          <p>자주 바뀌지 않는 운영 안내 문서입니다.</p>
+          <ul>
+            <li><a href="./guides/agent-operation-guide.html">Agent Operation Guide</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Reports</h3>
+          <p>마일스톤, 중간 점검, PR 전 확인용 보고서입니다.</p>
+          <ul>
+            <li><a href="./reports/2026-05-29-phase-0-1-checkpoint.html">Phase 0~1 Checkpoint</a></li>
+            <li><a href="./reports/2026-05-29-api-mvp-checkpoint.html">API MVP Checkpoint</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Decisions</h3>
+          <p>사용자 판단이 필요했던 결정과 이유를 기록합니다.</p>
+          <ul>
+            <li><a href="./decisions/index.html">Decision Notes Index</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-      <article class="card">
-        <h2>Decisions</h2>
-        <p>사람의 판단이 필요했던 선택지와 결정 이유를 기록합니다.</p>
-        <ul>
-          <li><a href="./decisions/index.html">Decision Notes Index</a></li>
-        </ul>
-      </article>
+    <section>
+      <h2>개발 진행 지도</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>상태</th>
+            <th>확인 문서</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Phase 0~1 Foundation</td>
+            <td class="ok">완료</td>
+            <td><a href="./reports/2026-05-29-phase-0-1-checkpoint.html">Phase 0~1 Checkpoint</a></td>
+          </tr>
+          <tr>
+            <td>Phase 2~4 API MVP</td>
+            <td class="ok">완료</td>
+            <td><a href="./reports/2026-05-29-api-mvp-checkpoint.html">API MVP Checkpoint</a></td>
+          </tr>
+          <tr>
+            <td>Phase 5 iframe Frontend</td>
+            <td>대기</td>
+            <td><code>docs/todos/phase-5-*.md</code> 작성 예정</td>
+          </tr>
+          <tr>
+            <td>Phase 6 Admin Frontend</td>
+            <td>대기</td>
+            <td><code>docs/todos/phase-6-*.md</code> 작성 예정</td>
+          </tr>
+          <tr>
+            <td>Deployment</td>
+            <td>대기</td>
+            <td>배포 준비 시 별도 report 작성</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-      <article class="card">
-        <h2>Live Tracking</h2>
-        <p>실시간 작업 상태는 HTML 보고서가 아니라 아래 Markdown 문서를 기준으로 봅니다.</p>
-        <ul>
-          <li><code>docs/00-project-status.md</code></li>
-          <li><code>docs/worklog/YYYY-MM-DD.md</code></li>
-        </ul>
-      </article>
+    <section>
+      <h2>라이브 상태 문서</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3>현재 상태판</h3>
+          <p>브랜치, Phase, 최근 검증, 다음 작업은 Markdown 상태판이 가장 정확합니다.</p>
+          <ul>
+            <li><code>docs/00-project-status.md</code></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>작업 로그</h3>
+          <p>작업 중 실제로 무엇을 했는지는 날짜별 worklog를 봅니다.</p>
+          <ul>
+            <li><code>docs/worklog/2026-05-29.md</code></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-      <article class="card wide">
-        <h2>문서 분류 원칙</h2>
-        <p><code>docs/human/</code>에는 사람이 확인해야 할 정리본만 둡니다. 작업 로그, 전체 요구사항, API 세부 명세를 한 HTML에 몰아넣지 않습니다.</p>
-      </article>
+    <section>
+      <h2>인간용 문서 분류 원칙</h2>
+      <ul>
+        <li><code>guides/</code>: 오래 유지되는 운영 방법과 설명</li>
+        <li><code>reports/</code>: 마일스톤, PR 전 점검, 중간 보고</li>
+        <li><code>decisions/</code>: 선택지, 추천안, 최종 결정 기록</li>
+        <li><code>index.html</code>: 이 포털의 입구와 문서 지도</li>
+      </ul>
     </section>
   </main>
 </body>
