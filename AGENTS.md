@@ -34,6 +34,24 @@ Use this structure:
 
 Do not update human-facing reports every session; update them only when the user asks for a checkpoint/report or when a meaningful milestone needs a human-readable summary.
 
+Update human-facing docs at these times:
+
+- When the user explicitly asks for a human-readable report, checkpoint, summary, or review artifact.
+- After a milestone is completed and verified, such as Phase 0~1 foundation, Phase 2~4 API MVP, Phase 5 iframe UI, Phase 6 admin UI, or deployment readiness.
+- Before a user decision is needed, add or update a decision note under `docs/human/decisions/` with options, recommendation, and tradeoffs.
+- After a user makes a durable decision that affects architecture, workflow, scope, deployment, or branch strategy.
+- Before handing off work across sessions when the current state is too complex for `docs/00-project-status.md` and the worklog alone.
+- Before pushing or opening a PR when the user needs a non-technical checkpoint of what changed and what should be reviewed.
+
+Do not update human-facing docs for routine code edits, small bug fixes, normal worklog entries, minor TODO checkbox updates, or commits that do not require human review.
+
+Use the right category:
+
+- `docs/human/guides/`: stable how-to or operating guidance.
+- `docs/human/reports/`: milestone, checkpoint, PR-readiness, or review summaries.
+- `docs/human/decisions/`: options, recommendations, and final decisions.
+- `docs/human/index.html`: navigation only; update it when adding or moving human-facing documents.
+
 ## Workflow
 
 - Work from `develop` using feature branches.

@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/server-api-mvp` |
 | Active scope | Phase 2 |
-| Status | Phase 2 complete locally; push strategy added |
+| Status | Phase 2 complete locally; human-doc timing rule added |
 
 ## Completed
 
@@ -25,6 +25,7 @@
 - Phase 2 TODO file added under `docs/todos/`.
 - Phase 2 Slug Group API implemented.
 - Push and PR strategy added to `AGENTS.md`.
+- Human-facing docs update timing added to `AGENTS.md`.
 
 ## Phase 0 TODO
 
@@ -62,6 +63,7 @@
 - Phase TODO rule commit: `c5e79da docs: require phase todo before implementation`.
 - Phase 2 implementation commit: `a78aa57 phase2: implement slug group api`.
 - Push strategy commit: `9fa4daa docs: add push and pr strategy`.
+- Human docs timing commit: pending.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
