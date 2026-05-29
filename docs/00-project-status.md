@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/project-scaffold` |
 | Active scope | Phase 0 + Phase 1 |
-| Status | Implementation complete, ready for commit |
+| Status | Phase 0 + Phase 1 committed |
 
 ## Completed
 
@@ -38,14 +38,15 @@
 - [x] Run migration script.
 - [x] Start API server.
 - [x] Verify `GET /health` returns `200`.
-- [ ] Run final `git status`.
-- [ ] Commit Phase 0 + Phase 1 implementation.
+- [x] Run final `git status`.
+- [x] Commit Phase 0 + Phase 1 implementation.
 
 ## Last Verification
 
 - `npm.cmd install`: completed, 0 vulnerabilities.
 - `npm.cmd run db:migrate`: applied `0001_init_quiz_sets_and_quizzes.sql`.
 - `/health` smoke test: returned `200`.
+- Implementation commit: `6a62601 phase0-1: scaffold backend foundation`.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
 ## Next After Phase 0 + 1
