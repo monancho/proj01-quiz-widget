@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Pre-deployment admin UX refinement |
-| Status | Design/theme polish implemented locally; direct draft PR #6 open |
+| Status | Admin UX polish pushed; direct draft PR #6 open |
 
 ## Completed
 
@@ -78,11 +78,6 @@
 - Quiz reorder now uses a dedicated drag handle.
 - iframe code textarea now copies the code on click/focus without showing a routine success banner.
 - Public iframe embed background is transparent while admin preview remains visually framed.
-- Checkpoint tag before design/theme work pushed: `checkpoint-before-design-theme-20260529`.
-- Admin page now uses a compact functional layout with dark sidebar, dense toolbar, stats, and table panels.
-- Public iframe widget now has a compact blog-embed frame style.
-- iframe utility modal now supports `시스템`, `화이트`, and `다크` theme modes.
-- Generated iframe code now includes the selected `theme=system|light|dark` query parameter.
 - Quiz order is now creation-order based and can be changed by drag-and-drop.
 - Added admin quiz reorder API.
 - PR #4 merged into `develop`.
@@ -171,8 +166,6 @@
 - `npm.cmd run build` after admin UX polish: passed.
 - Headless Chrome admin UX polish QA verified 4 status categories, automatic readonly preparing state, handle drag reorder, click-to-copy iframe code, no copy success banner, and transparent public embed background.
 - Admin UX polish commit: `1cfc53c admin: polish predeploy ux controls`.
-- `npm.cmd run build` after design/theme polish: passed.
-- Headless Chrome design/theme QA verified admin sidebar layout, compact stat/topbar styling, theme mode buttons, preview/code URL updates, copied `theme=dark` iframe code, transparent embed shell, and no mobile overflow for `light`, `dark`, and `system`.
 
 ## Remote Sync Status
 
@@ -190,7 +183,6 @@
 
 ## Next
 
-- Commit and push the design/theme polish follow-up to PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.

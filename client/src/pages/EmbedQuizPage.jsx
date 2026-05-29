@@ -6,7 +6,6 @@ import ResultSummary from '../components/quiz/ResultSummary.jsx';
 import StaticBanner from '../components/quiz/StaticBanner.jsx';
 
 export default function EmbedQuizPage({ postSlug }) {
-  const themeMode = getEmbedThemeMode();
   const [quizzes, setQuizzes] = useState([]);
   const [status, setStatus] = useState('loading');
   const [errorMessage, setErrorMessage] = useState('');
@@ -81,12 +80,8 @@ export default function EmbedQuizPage({ postSlug }) {
   }
 
   return (
-    <main className={`embed-shell embed-theme-${themeMode} antialiased`}>
+    <main className="embed-shell antialiased">
       <div className="embed-panel">
-        <div className="embed-widget-heading">
-          <strong>퀴즈로 확인하기</strong>
-          {quizzes.length > 0 ? <span>{status === 'ready' ? `${currentIndex + 1} / ${quizzes.length}` : `${quizzes.length}문제`}</span> : null}
-        </div>
         {status === 'loading' ? <StateMessage icon={<LoaderCircle className="spin" />} title="불러오는 중" /> : null}
         {status === 'empty' ? <StateMessage title="공개된 문제가 없습니다" /> : null}
         {status === 'error' ? (
@@ -122,11 +117,6 @@ export default function EmbedQuizPage({ postSlug }) {
       <StaticBanner />
     </main>
   );
-}
-
-function getEmbedThemeMode() {
-  const value = new URLSearchParams(window.location.search).get('theme');
-  return ['light', 'dark', 'system'].includes(value) ? value : 'system';
 }
 
 function StateMessage({ icon, title, actionLabel, onAction }) {

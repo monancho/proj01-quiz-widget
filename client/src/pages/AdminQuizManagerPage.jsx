@@ -1,21 +1,15 @@
 import {
-  BarChart3,
-  Bell,
-  BookOpen,
   Check,
   Code2,
   Copy,
   Edit3,
   ExternalLink,
   Filter,
-  FileText,
   GripVertical,
-  LayoutDashboard,
   LoaderCircle,
   Plus,
   RefreshCw,
   Search,
-  Settings,
   Trash2,
   X,
 } from 'lucide-react';
@@ -40,12 +34,6 @@ const statusOptions = [
   { value: 'draft', label: '준비중' },
   { value: 'published', label: '공개' },
   { value: 'private', label: '비공개' },
-];
-
-const embedThemeOptions = [
-  { value: 'system', label: '시스템' },
-  { value: 'light', label: '화이트' },
-  { value: 'dark', label: '다크' },
 ];
 
 const emptySetForm = {
@@ -357,21 +345,18 @@ export default function AdminQuizManagerPage() {
   function openEmbedToolsModal(quizSet) {
     setUtilityModal({
       quizSet,
-      themeMode: 'system',
+      embedUrl: buildEmbedUrl(quizSet.postSlug),
+      iframeCode: buildIframeCode(quizSet.postSlug),
     });
   }
 
-  function handleChangeEmbedTheme(themeMode) {
-    setUtilityModal((current) => (current ? { ...current, themeMode } : current));
-  }
-
-  async function handleCopyIframeCode(iframeCode) {
-    if (!iframeCode) {
+  async function handleCopyIframeCode() {
+    if (!utilityModal?.iframeCode) {
       return;
     }
 
     try {
-      await navigator.clipboard.writeText(iframeCode);
+      await navigator.clipboard.writeText(utilityModal.iframeCode);
     } catch {
       // The code field is selected by the caller so manual copy remains available.
     }
@@ -392,109 +377,103 @@ export default function AdminQuizManagerPage() {
 
   return (
     <main className="admin-shell">
-      <AdminSidebar />
-      <section className="admin-main">
-        <header className="admin-topbar">
-          <div>
-            <p className="admin-kicker">퀴즈 관리 &gt; 퀴즈 목록</p>
-            <h1>Slug Group Manager</h1>
-          </div>
-          <div className="admin-topbar-actions">
-            <button type="button" className="icon-action" title="알림">
-              <Bell size={17} />
-            </button>
-            <button type="button" className="admin-button secondary" onClick={loadQuizSets}>
-              <RefreshCw size={17} />
-              새로고침
-            </button>
-            <button type="button" className="admin-button primary" onClick={openCreateSetModal}>
-              <Plus size={17} />
-              새 퀴즈 만들기
-            </button>
-          </div>
-        </header>
+      <header className="admin-topbar">
+        <div>
+          <p className="admin-kicker">Quiz Widget Admin</p>
+          <h1>Slug Group Manager</h1>
+        </div>
+        <div className="admin-topbar-actions">
+          <button type="button" className="admin-button secondary" onClick={loadQuizSets}>
+            <RefreshCw size={17} />
+            새로고침
+          </button>
+          <button type="button" className="admin-button primary" onClick={openCreateSetModal}>
+            <Plus size={17} />
+            Slug Group
+          </button>
+        </div>
+      </header>
 
-        <StatusStrip message={message} error={error} busy={busy || loading} />
+      <StatusStrip message={message} error={error} busy={busy || loading} />
 
-        <section className="admin-toolbar">
-          <form className="admin-filter-form" onSubmit={handleFilterSubmit}>
-            <label>
-              <span>검색</span>
-              <div className="admin-input-with-icon">
-                <Search size={16} />
-                <input
-                  value={draftFilters.query}
-                  onChange={(event) => setDraftFilters((current) => ({ ...current, query: event.target.value }))}
-                  placeholder="post_slug 또는 제목"
-                />
-              </div>
-            </label>
-            <label>
-              <span>상태</span>
-              <select
-                value={draftFilters.status}
-                onChange={(event) => setDraftFilters((current) => ({ ...current, status: event.target.value }))}
-              >
-                <option value="">전체</option>
-                {statusOptions.map((option) => (
-                  <option key={option.value} value={option.value}>{option.label}</option>
-                ))}
-              </select>
-            </label>
-            <button type="submit" className="admin-button secondary">
-              <Filter size={17} />
-              검색
-            </button>
-          </form>
-        </section>
-
-        <StatsBar summary={summary} />
-
-        <section className="admin-workspace">
-          <div className="admin-list-panel">
-            <div className="panel-heading">
-              <h2>퀴즈 목록</h2>
-              <span>{quizSets.length}개</span>
-            </div>
-            {loading ? <LoadingRows /> : null}
-            {!loading && quizSets.length === 0 ? <p className="admin-empty">조건에 맞는 Slug Group이 없습니다.</p> : null}
-            {!loading && quizSets.map((quizSet) => (
-              <button
-                type="button"
-                key={quizSet.id}
-                className={`slug-row ${expandedSetId === quizSet.id ? 'active' : ''}`}
-                onClick={() => handleExpand(quizSet.id)}
-              >
-                <span>
-                  <strong>{quizSet.postSlug}</strong>
-                  <small>{quizSet.postTitle}</small>
-                </span>
-                <StatusBadge status={quizSet.status} />
-                <CompletionBadge quizSet={quizSet} />
-              </button>
-            ))}
-          </div>
-
-          <div className="admin-detail-panel">
-            {!selectedSet ? (
-              <p className="admin-empty">Slug Group을 선택하세요.</p>
-            ) : (
-              <SetDetail
-                quizSet={selectedSet}
-                quizzes={quizzesBySetId[selectedSet.id] || []}
-                draggedQuizId={draggedQuizId}
-                onDragStart={handleDragStartQuiz}
-                onDropQuiz={handleDropQuiz}
-                onEditSet={() => openEditSetModal(selectedSet)}
-                onDeleteSet={() => handleDeleteSet(selectedSet)}
-                onNewQuiz={() => openCreateQuizModal(selectedSet)}
-                onEditQuiz={(quiz) => openEditQuizModal(quiz, selectedSet)}
-                onDeleteQuiz={(quiz) => handleDeleteQuiz(quiz, selectedSet.id)}
-                onEmbedTools={() => openEmbedToolsModal(selectedSet)}
+      <section className="admin-toolbar">
+        <form className="admin-filter-form" onSubmit={handleFilterSubmit}>
+          <label>
+            <span>검색</span>
+            <div className="admin-input-with-icon">
+              <Search size={16} />
+              <input
+                value={draftFilters.query}
+                onChange={(event) => setDraftFilters((current) => ({ ...current, query: event.target.value }))}
+                placeholder="post_slug 또는 제목"
               />
-            )}
+            </div>
+          </label>
+          <label>
+            <span>상태</span>
+            <select
+              value={draftFilters.status}
+              onChange={(event) => setDraftFilters((current) => ({ ...current, status: event.target.value }))}
+            >
+              <option value="">전체</option>
+              {statusOptions.map((option) => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          </label>
+          <button type="submit" className="admin-button secondary">
+            <Filter size={17} />
+            적용
+          </button>
+        </form>
+      </section>
+
+      <StatsBar summary={summary} />
+
+      <section className="admin-workspace">
+        <div className="admin-list-panel">
+          <div className="panel-heading">
+            <h2>Slug Groups</h2>
+            <span>{quizSets.length}개</span>
           </div>
-        </section>
+          {loading ? <LoadingRows /> : null}
+          {!loading && quizSets.length === 0 ? <p className="admin-empty">조건에 맞는 Slug Group이 없습니다.</p> : null}
+          {!loading && quizSets.map((quizSet) => (
+            <button
+              type="button"
+              key={quizSet.id}
+              className={`slug-row ${expandedSetId === quizSet.id ? 'active' : ''}`}
+              onClick={() => handleExpand(quizSet.id)}
+            >
+              <span>
+                <strong>{quizSet.postSlug}</strong>
+                <small>{quizSet.postTitle}</small>
+              </span>
+              <StatusBadge status={quizSet.status} />
+              <CompletionBadge quizSet={quizSet} />
+            </button>
+          ))}
+        </div>
+
+        <div className="admin-detail-panel">
+          {!selectedSet ? (
+            <p className="admin-empty">Slug Group을 선택하세요.</p>
+          ) : (
+            <SetDetail
+              quizSet={selectedSet}
+              quizzes={quizzesBySetId[selectedSet.id] || []}
+              draggedQuizId={draggedQuizId}
+              onDragStart={handleDragStartQuiz}
+              onDropQuiz={handleDropQuiz}
+              onEditSet={() => openEditSetModal(selectedSet)}
+              onDeleteSet={() => handleDeleteSet(selectedSet)}
+              onNewQuiz={() => openCreateQuizModal(selectedSet)}
+              onEditQuiz={(quiz) => openEditQuizModal(quiz, selectedSet)}
+              onDeleteQuiz={(quiz) => handleDeleteQuiz(quiz, selectedSet.id)}
+              onEmbedTools={() => openEmbedToolsModal(selectedSet)}
+            />
+          )}
+        </div>
       </section>
 
       {setModal ? (
@@ -522,46 +501,10 @@ export default function AdminQuizManagerPage() {
         <UtilityModal
           modal={utilityModal}
           onClose={() => setUtilityModal(null)}
-          onThemeChange={handleChangeEmbedTheme}
           onCopy={handleCopyIframeCode}
         />
       ) : null}
     </main>
-  );
-}
-
-function AdminSidebar() {
-  const navItems = [
-    { label: '대시보드', icon: LayoutDashboard },
-    { label: '콘텐츠 관리', icon: BookOpen },
-    { label: '글 관리', icon: FileText },
-    { label: '퀴즈 관리', icon: Code2, active: true },
-    { label: '통계', icon: BarChart3 },
-    { label: '설정', icon: Settings },
-  ];
-
-  return (
-    <aside className="admin-sidebar">
-      <div className="admin-sidebar-brand">
-        <strong>TISTORY ADMIN</strong>
-        <span>Quiz Widget</span>
-      </div>
-      <nav className="admin-sidebar-nav" aria-label="Admin navigation">
-        {navItems.map(({ label, icon: Icon, active }) => (
-          <button key={label} type="button" className={active ? 'active' : ''}>
-            <Icon size={16} />
-            <span>{label}</span>
-          </button>
-        ))}
-      </nav>
-      <div className="admin-sidebar-user">
-        <span className="admin-avatar">M</span>
-        <span>
-          <strong>manager</strong>
-          <small>관리자</small>
-        </span>
-      </div>
-    </aside>
   );
 }
 
@@ -909,14 +852,10 @@ function WidgetQuestionPreview({ form }) {
   );
 }
 
-function UtilityModal({ modal, onClose, onThemeChange, onCopy }) {
-  const themeMode = modal.themeMode || 'system';
-  const embedUrl = buildEmbedUrl(modal.quizSet.postSlug, themeMode);
-  const iframeCode = buildIframeCode(modal.quizSet.postSlug, themeMode);
-
+function UtilityModal({ modal, onClose, onCopy }) {
   function handleCodeInteraction(event) {
     event.currentTarget.select();
-    onCopy(iframeCode);
+    onCopy();
   }
 
   return (
@@ -933,43 +872,28 @@ function UtilityModal({ modal, onClose, onThemeChange, onCopy }) {
         </div>
         <label>
           <span>preview_url</span>
-          <input readOnly value={embedUrl} />
+          <input readOnly value={modal.embedUrl} />
         </label>
-        <fieldset className="theme-mode-field">
-          <legend>theme</legend>
-          <div className="theme-mode-control">
-            {embedThemeOptions.map((option) => (
-              <button
-                key={option.value}
-                type="button"
-                className={themeMode === option.value ? 'active' : ''}
-                onClick={() => onThemeChange(option.value)}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-        </fieldset>
         <label>
           <span>iframe_code</span>
           <textarea
             readOnly
             rows="4"
-            value={iframeCode}
+            value={modal.iframeCode}
             title="클릭하면 iframe 코드가 복사됩니다."
             onClick={handleCodeInteraction}
             onFocus={handleCodeInteraction}
           />
         </label>
         <div className="iframe-preview-box">
-          <iframe title={`${modal.quizSet.postSlug} preview`} src={embedUrl} />
+          <iframe title={`${modal.quizSet.postSlug} preview`} src={modal.embedUrl} />
         </div>
         <div className="modal-actions">
-          <a className="admin-button secondary" href={embedUrl} target="_blank" rel="noreferrer">
+          <a className="admin-button secondary" href={modal.embedUrl} target="_blank" rel="noreferrer">
             <ExternalLink size={17} />
             새 창
           </a>
-          <button type="button" className="admin-button primary" onClick={() => onCopy(iframeCode)}>
+          <button type="button" className="admin-button primary" onClick={onCopy}>
             <Copy size={17} />
             복사
           </button>
@@ -1001,11 +925,10 @@ function CompletionBadge({ quizSet }) {
   );
 }
 
-function buildEmbedUrl(postSlug, themeMode = 'system') {
-  const theme = embedThemeOptions.some((option) => option.value === themeMode) ? themeMode : 'system';
-  return `${window.location.origin}/embed/${encodeURIComponent(postSlug)}?theme=${theme}`;
+function buildEmbedUrl(postSlug) {
+  return `${window.location.origin}/embed/${encodeURIComponent(postSlug)}`;
 }
 
-function buildIframeCode(postSlug, themeMode = 'system') {
-  return `<iframe src="${buildEmbedUrl(postSlug, themeMode)}" width="100%" height="720" loading="lazy" allowtransparency="true" style="border:0;max-width:100%;background:transparent;"></iframe>`;
+function buildIframeCode(postSlug) {
+  return `<iframe src="${buildEmbedUrl(postSlug)}" width="100%" height="720" loading="lazy" allowtransparency="true" style="border:0;max-width:100%;background:transparent;"></iframe>`;
 }
