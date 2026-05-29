@@ -61,7 +61,7 @@
 - Human docs category commit: `9d0ddda docs: categorize human documentation`.
 - Phase TODO rule commit: `c5e79da docs: require phase todo before implementation`.
 - Phase 2 implementation commit: `a78aa57 phase2: implement slug group api`.
-- Push strategy commit: pending.
+- Push strategy commit: `9fa4daa docs: add push and pr strategy`.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
