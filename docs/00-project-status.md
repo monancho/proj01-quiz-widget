@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-29 |
 | Base branch | `develop` |
-| Current branch | `feature/client-embed-mvp` |
-| Active scope | Phase 5 |
-| Status | Phase 5 iframe frontend verified; direct develop PR opened |
+| Current branch | `feature/admin-mvp` |
+| Active scope | Phase 6 |
+| Status | Phase 6 admin frontend TODO prepared |
 
 ## Completed
 
@@ -49,6 +49,10 @@
 - PR #1 merged into `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
 - PR #2 merged into `feature/server-api-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
 - Direct Phase 5 draft PR opened against `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/3`.
+- PR #3 merged into `develop`.
+- Local `develop` fast-forwarded to `origin/develop`.
+- `feature/admin-mvp` branch created from updated `develop`.
+- Phase 6 TODO file added under `docs/todos/`.
 
 ## Phase 0 TODO
 
@@ -122,5 +126,5 @@
 - Phase 3 implementation is committed.
 - Phase 4 implementation is committed.
 - API MVP human checkpoint report is updated.
-- Review draft PR #3 for Phase 5 integration into `develop`.
-- Prepare Phase 6 TODO before starting admin frontend work.
+- Implement Phase 6 admin frontend MVP.
+- Verify admin CRUD flows against local API.
