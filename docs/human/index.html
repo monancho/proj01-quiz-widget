@@ -6,15 +6,15 @@
   <title>proj01 Human Docs</title>
   <style>
     :root {
-      --bg: #f6f7fa;
+      --bg: #f6f7fb;
       --panel: #ffffff;
       --ink: #1f2937;
-      --muted: #6b7280;
+      --muted: #667085;
       --line: #d8dee9;
       --accent: #2563eb;
-      --accent-soft: #eaf1ff;
+      --accent-soft: #eef4ff;
       --ok: #047857;
-      --warn: #b45309;
+      --wait: #92400e;
     }
 
     * {
@@ -30,39 +30,45 @@
     }
 
     main {
-      max-width: 1180px;
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 42px 24px 56px;
+      padding: 42px 0 56px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
     }
 
     h1 {
-      margin: 0 0 8px;
+      margin-bottom: 8px;
       font-size: 36px;
       line-height: 1.2;
       letter-spacing: 0;
     }
 
     h2 {
-      margin: 0 0 12px;
+      margin-bottom: 14px;
       font-size: 22px;
       letter-spacing: 0;
     }
 
     h3 {
-      margin: 0 0 8px;
+      margin-bottom: 8px;
       font-size: 16px;
       letter-spacing: 0;
     }
 
     p {
-      margin: 0 0 12px;
       color: var(--muted);
     }
 
     a {
       color: var(--accent);
-      text-decoration: none;
       font-weight: 700;
+      text-decoration: none;
     }
 
     a:hover {
@@ -146,10 +152,6 @@
       background: var(--accent-soft);
     }
 
-    .card p {
-      font-size: 14px;
-    }
-
     ul,
     ol {
       margin: 0;
@@ -165,6 +167,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
+      overflow-wrap: anywhere;
     }
 
     th,
@@ -184,8 +187,8 @@
       font-weight: 700;
     }
 
-    .warn {
-      color: var(--warn);
+    .wait {
+      color: var(--wait);
       font-weight: 700;
     }
 
@@ -198,7 +201,8 @@
 
     @media (max-width: 760px) {
       main {
-        padding: 30px 16px 42px;
+        width: min(100% - 24px, 1180px);
+        padding: 30px 0 42px;
       }
 
       h1 {
@@ -211,72 +215,78 @@
   <main>
     <section class="hero">
       <h1>proj01 Human Docs</h1>
-      <p>사람이 프로젝트 진행 상황, 운영 규칙, 중간 보고, 결정 기록을 빠르게 확인하기 위한 개발 문서 포털입니다.</p>
+      <p>사람이 프로젝트 진행 상황, 운영 규칙, 체크포인트 보고서, 결정 기록을 빠르게 확인하기 위한 개발 문서 포털입니다.</p>
       <div class="meta">
         <span class="pill">Project: proj01-quiz-widget</span>
         <span class="pill">Updated: 2026-05-29</span>
-        <span class="pill">Branch: feature/client-embed-mvp</span>
-        <span class="pill">Phase 5: verified</span>
+        <span class="pill">Branch: feature/admin-mvp</span>
+        <span class="pill">Phase 6: verified</span>
       </div>
       <div class="actions">
-        <a class="button" href="./reports/2026-05-29-api-mvp-checkpoint.html">API MVP 보고서 보기</a>
+        <a class="button" href="./reports/2026-05-29-phase-6-admin-checkpoint.html">Phase 6 Report</a>
         <a class="button" href="./reports/2026-05-29-phase-5-iframe-checkpoint.html">Phase 5 Report</a>
-        <a class="button" href="./guides/agent-operation-guide.html">Agent 운영 가이드 보기</a>
-        <a class="button" href="./decisions/index.html">결정 기록 보기</a>
+        <a class="button" href="./reports/2026-05-29-api-mvp-checkpoint.html">API MVP Report</a>
+        <a class="button" href="./guides/agent-operation-guide.html">Agent Guide</a>
+        <a class="button" href="./decisions/index.html">Decision Notes</a>
       </div>
     </section>
 
     <section>
-      <h2>현재 한눈에 보기</h2>
+      <h2>Current Snapshot</h2>
       <div class="grid">
         <article class="card featured">
-          <h3>현재 완료</h3>
-          <p class="ok">Phase 2~4 API MVP 구현과 검증이 완료되었습니다.</p>
+          <h3>Completed</h3>
+          <p class="ok">Phase 2~6 MVP implementation and local verification are complete.</p>
           <ul>
-            <li>Slug Group API</li>
-            <li>Quiz API</li>
-            <li>Public Embed API</li>
+            <li>Admin Slug Group CRUD</li>
+            <li>Admin Quiz CRUD</li>
+            <li>Public iframe quiz flow</li>
           </ul>
         </article>
         <article class="card">
-          <h3>다음 작업</h3>
-          <p>다음 단계는 원격 push/PR 또는 Phase 5 iframe frontend입니다.</p>
+          <h3>Next Work</h3>
+          <p>Publish the Phase 6 branch, open a draft PR into <code>develop</code>, then prepare the next phase TODO.</p>
           <ul>
-            <li><code>develop</code> push</li>
-            <li><code>feature/server-api-mvp</code> push</li>
-            <li>Phase 5 TODO 작성</li>
+            <li>Push <code>feature/admin-mvp</code></li>
+            <li>Open Phase 6 draft PR</li>
+            <li>Prepare Phase 7 rendering/security TODO</li>
           </ul>
         </article>
         <article class="card">
-          <h3>주의</h3>
-          <p class="warn">아직 GitHub 원격에는 최신 feature 브랜치가 push되지 않았습니다.</p>
-          <p>원격 동기화 전에 <code>git status</code>와 브랜치 상태를 확인해야 합니다.</p>
+          <h3>Review Focus</h3>
+          <p>Human review should focus on whether the admin workflow is understandable enough before Markdown/LaTeX and deployment work starts.</p>
+          <ul>
+            <li>Slug Group create/edit/delete</li>
+            <li>Quiz create/edit/delete</li>
+            <li>iframe preview and copy flow</li>
+          </ul>
         </article>
       </div>
     </section>
 
     <section>
-      <h2>문서 카탈로그</h2>
+      <h2>Document Catalog</h2>
       <div class="grid">
         <article class="card">
           <h3>Guides</h3>
-          <p>자주 바뀌지 않는 운영 안내 문서입니다.</p>
+          <p>Durable operating guidance that should not change every session.</p>
           <ul>
             <li><a href="./guides/agent-operation-guide.html">Agent Operation Guide</a></li>
           </ul>
         </article>
         <article class="card">
           <h3>Reports</h3>
-          <p>마일스톤, 중간 점검, PR 전 확인용 보고서입니다.</p>
+          <p>Milestone and checkpoint reports for human review.</p>
           <ul>
-            <li><a href="./reports/2026-05-29-phase-0-1-checkpoint.html">Phase 0~1 Checkpoint</a></li>
-            <li><a href="./reports/2026-05-29-api-mvp-checkpoint.html">API MVP Checkpoint</a></li>
+            <li><a href="./reports/2026-05-29-phase-0-1-checkpoint.html">Phase 0~1 Foundation Checkpoint</a></li>
+            <li><a href="./reports/2026-05-29-api-mvp-checkpoint.html">Phase 2~4 API MVP Checkpoint</a></li>
             <li><a href="./reports/2026-05-29-phase-5-iframe-checkpoint.html">Phase 5 Iframe Frontend Checkpoint</a></li>
+            <li><a href="./reports/2026-05-29-phase-6-admin-checkpoint.html">Phase 6 Admin Frontend Checkpoint</a></li>
           </ul>
         </article>
         <article class="card">
           <h3>Decisions</h3>
-          <p>사용자 판단이 필요했던 결정과 이유를 기록합니다.</p>
+          <p>Decision notes, options, recommendations, and tradeoffs.</p>
           <ul>
             <li><a href="./decisions/index.html">Decision Notes Index</a></li>
           </ul>
@@ -285,75 +295,64 @@
     </section>
 
     <section>
-      <h2>개발 진행 지도</h2>
+      <h2>Development Progress</h2>
       <table>
         <thead>
           <tr>
-            <th>구분</th>
-            <th>상태</th>
-            <th>확인 문서</th>
+            <th>Area</th>
+            <th>Status</th>
+            <th>Human Document</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Phase 0~1 Foundation</td>
-            <td class="ok">완료</td>
+            <td class="ok">Complete</td>
             <td><a href="./reports/2026-05-29-phase-0-1-checkpoint.html">Phase 0~1 Checkpoint</a></td>
           </tr>
           <tr>
             <td>Phase 2~4 API MVP</td>
-            <td class="ok">완료</td>
+            <td class="ok">Complete</td>
             <td><a href="./reports/2026-05-29-api-mvp-checkpoint.html">API MVP Checkpoint</a></td>
           </tr>
           <tr>
-            <td>Phase 5 iframe Frontend</td>
+            <td>Phase 5 Iframe Frontend</td>
             <td class="ok">Verified</td>
             <td><a href="./reports/2026-05-29-phase-5-iframe-checkpoint.html">Phase 5 Iframe Frontend Checkpoint</a></td>
           </tr>
           <tr>
             <td>Phase 6 Admin Frontend</td>
-            <td>대기</td>
-            <td><code>docs/todos/phase-6-*.md</code> 작성 예정</td>
+            <td class="ok">Verified</td>
+            <td><a href="./reports/2026-05-29-phase-6-admin-checkpoint.html">Phase 6 Admin Frontend Checkpoint</a></td>
           </tr>
           <tr>
-            <td>Deployment</td>
-            <td>대기</td>
-            <td>배포 준비 시 별도 report 작성</td>
+            <td>Phase 7 Rendering/Security</td>
+            <td class="wait">Pending</td>
+            <td><code>docs/todos/phase-7-*.md</code> to be prepared before implementation</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>라이브 상태 문서</h2>
+      <h2>Live Status Documents</h2>
       <div class="grid two">
         <article class="card">
-          <h3>현재 상태판</h3>
-          <p>브랜치, Phase, 최근 검증, 다음 작업은 Markdown 상태판이 가장 정확합니다.</p>
+          <h3>Project Status</h3>
+          <p>Use this for the latest branch, phase, verification, and handoff status.</p>
           <ul>
             <li><code>docs/00-project-status.md</code></li>
           </ul>
         </article>
         <article class="card">
-          <h3>작업 로그</h3>
-          <p>작업 중 실제로 무엇을 했는지는 날짜별 worklog를 봅니다.</p>
+          <h3>Worklog</h3>
+          <p>Use this to understand what actually changed during the latest work sessions.</p>
           <ul>
             <li><code>docs/worklog/2026-05-29.md</code></li>
           </ul>
         </article>
       </div>
     </section>
-
-    <section>
-      <h2>인간용 문서 분류 원칙</h2>
-      <ul>
-        <li><code>guides/</code>: 오래 유지되는 운영 방법과 설명</li>
-        <li><code>reports/</code>: 마일스톤, PR 전 점검, 중간 보고</li>
-        <li><code>decisions/</code>: 선택지, 추천안, 최종 결정 기록</li>
-        <li><code>index.html</code>: 이 포털의 입구와 문서 지도</li>
-      </ul>
-    </section>
   </main>
 </body>
 </html>
-

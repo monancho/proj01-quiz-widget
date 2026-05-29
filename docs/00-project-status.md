@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-29 |
 | Base branch | `develop` |
-| Current branch | `feature/client-embed-mvp` |
-| Active scope | Phase 5 |
-| Status | Phase 5 iframe frontend verified; direct develop PR opened |
+| Current branch | `feature/admin-mvp` |
+| Active scope | Phase 6 |
+| Status | Phase 6 admin frontend pushed; draft PR #4 open |
 
 ## Completed
 
@@ -49,6 +49,16 @@
 - PR #1 merged into `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
 - PR #2 merged into `feature/server-api-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
 - Direct Phase 5 draft PR opened against `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/3`.
+- PR #3 merged into `develop`.
+- Local `develop` fast-forwarded to `origin/develop`.
+- `feature/admin-mvp` branch created from updated `develop`.
+- Phase 6 TODO file added under `docs/todos/`.
+- Phase 6 admin API client added.
+- Admin route `/admin` implemented.
+- Admin Slug Group list, filters, stats, create/edit/delete, quiz table, quiz create/edit/delete, preview, and iframe copy fallback implemented.
+- Phase 6 human checkpoint report added under `docs/human/reports/`.
+- `feature/admin-mvp` pushed to origin.
+- Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
 
 ## Phase 0 TODO
 
@@ -105,6 +115,13 @@
 - Browser automation could not complete because the in-app browser node runtime failed to start in this sandbox.
 - Headless Chrome CDP mobile QA: `innerWidth = 390`, `scrollWidth = 390`, `overflow = false`.
 - Headless Chrome CDP interaction QA: incorrect feedback, answer display, next flow, result summary, and retry reset verified.
+- Phase 6 TODO commit: `b0b72d9 docs: prepare phase 6 admin todo`.
+- `npm.cmd run build` after Phase 6 implementation: passed.
+- Admin QA created Slug Group `phase-6-admin-759869`, added 3 quizzes, published it, verified iframe preview URL, and verified iframe copy fallback.
+- Admin QA updated quiz 1, deleted and recreated quiz 3, and verified final `3/3` state.
+- Admin QA created and deleted a throwaway Slug Group.
+- Phase 6 implementation commit: `cc82950 phase6: implement admin frontend mvp`.
+- Draft PR #4: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
 
 ## Remote Sync Status
 
@@ -113,14 +130,11 @@
 - PR #1 is merged into `origin/develop`.
 - `feature/client-embed-mvp` is pushed and tracks `origin/feature/client-embed-mvp`.
 - PR #2 is merged into `origin/feature/server-api-mvp`.
-- Draft PR #3 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/3`.
+- PR #3 is merged into `origin/develop`.
+- `feature/admin-mvp` is pushed and tracks `origin/feature/admin-mvp`.
+- Draft PR #4 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
 
 ## Next
 
-- Phase 2 implementation is committed.
-- Push local `develop` and `feature/server-api-mvp` when ready.
-- Phase 3 implementation is committed.
-- Phase 4 implementation is committed.
-- API MVP human checkpoint report is updated.
-- Review draft PR #3 for Phase 5 integration into `develop`.
-- Prepare Phase 6 TODO before starting admin frontend work.
+- Prepare Phase 7 TODO before Markdown/LaTeX rendering and sanitizing work.
+- After PR #4 review/merge, fast-forward local `develop` from `origin/develop`.

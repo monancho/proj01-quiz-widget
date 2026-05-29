@@ -1,4 +1,5 @@
 import { Check, X } from 'lucide-react';
+import React from 'react';
 
 const labelByIndex = ['A', 'B', 'C', 'D'];
 

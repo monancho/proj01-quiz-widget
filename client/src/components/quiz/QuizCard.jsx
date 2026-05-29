@@ -1,3 +1,4 @@
+import React from 'react';
 import ChoiceButton from './ChoiceButton.jsx';
 import FeedbackBox from './FeedbackBox.jsx';
 

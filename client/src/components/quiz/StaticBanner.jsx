@@ -1,4 +1,5 @@
 import { ExternalLink } from 'lucide-react';
+import React from 'react';
 
 const bannerText = import.meta.env.VITE_BANNER_TEXT || '관련 글 더 보기';
 const bannerUrl = import.meta.env.VITE_BANNER_URL || '';
