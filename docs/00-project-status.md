@@ -7,8 +7,8 @@
 | Date | 2026-05-29 |
 | Base branch | `develop` |
 | Current branch | `feature/server-api-mvp` |
-| Active scope | Phase 3 |
-| Status | Phase 3 Quiz API implemented and verified |
+| Active scope | Phase 4 |
+| Status | Phase 4 TODO prepared; Public Embed API implementation starting |
 
 ## Completed
 
@@ -28,6 +28,7 @@
 - Human-facing docs update timing added to `AGENTS.md`.
 - Phase 3 TODO file added under `docs/todos/`.
 - Phase 3 Quiz API implemented.
+- Phase 4 TODO file added under `docs/todos/`.
 
 ## Phase 0 TODO
 
@@ -68,6 +69,7 @@
 - Human docs timing commit: `d6e17b2 docs: define human docs update timing`.
 - Phase 3 TODO commit: `e194a8e docs: prepare phase 3 quiz api todo`.
 - Phase 3 implementation commit: `ebef1cc phase3: implement admin quiz api`.
+- Phase 4 TODO commit: pending.
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
@@ -83,5 +85,4 @@
 - Phase 2 implementation is committed.
 - Push local `develop` and `feature/server-api-mvp` when ready.
 - Phase 3 implementation is committed.
-- Prepare Phase 4 TODO before starting Public Embed API.
-- Start Phase 4: Public Embed API.
+- Implement Phase 4: Public Embed API.
