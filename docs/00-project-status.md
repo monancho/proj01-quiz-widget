@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/server-api-mvp` |
 | Active scope | Phase 2 |
-| Status | Phase 2 Slug Group API implemented and verified |
+| Status | Phase 2 complete locally; push strategy added |
 
 ## Completed
 
@@ -24,6 +24,7 @@
 - Phase TODO convention added to `AGENTS.md`.
 - Phase 2 TODO file added under `docs/todos/`.
 - Phase 2 Slug Group API implemented.
+- Push and PR strategy added to `AGENTS.md`.
 
 ## Phase 0 TODO
 
@@ -60,11 +61,19 @@
 - Human docs category commit: `9d0ddda docs: categorize human documentation`.
 - Phase TODO rule commit: `c5e79da docs: require phase todo before implementation`.
 - Phase 2 implementation commit: `a78aa57 phase2: implement slug group api`.
+- Push strategy commit: pending.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
+
+## Remote Sync Status
+
+- Local `develop` is ahead of `origin/develop`.
+- `feature/server-api-mvp` exists locally and has not been pushed yet.
+- Recommended next push order: `develop`, then `feature/server-api-mvp`.
 
 ## Next
 
 - Phase 2 implementation is committed.
+- Push local `develop` and `feature/server-api-mvp` when ready.
 - Prepare Phase 3 TODO before starting Quiz API.
 - Start Phase 3: Quiz API.

@@ -57,6 +57,19 @@ Do not update human-facing reports every session; update them only when the user
 - `feature/admin-mvp`: Phase 6
 - `feature/docker-deploy`: Phase 8
 
+## Push and PR Strategy
+
+- Commit locally after each completed phase or coherent task group.
+- Push after a phase is implemented, verified, and committed, or when the user explicitly asks for remote backup.
+- Before pushing, run `git status`, confirm the branch, and make sure the worktree is clean.
+- Keep `origin/develop` close to local `develop` after integration milestones.
+- Push feature branches with upstream tracking, for example `git push -u origin feature/server-api-mvp`.
+- Prefer PRs from feature branches into `develop`.
+- Do not push directly to `main`.
+- Do not force-push unless the user explicitly asks and the risk is explained.
+- If `develop` has local integration commits that the feature branch depends on, push `develop` before pushing the feature branch.
+- After pushing, report the pushed branches, latest commit hashes, and PR URL or PR creation link when available.
+
 ## Implementation Rules
 
 - Preserve MVP scope from `docs/01-requirements.md`.
