@@ -63,13 +63,14 @@ Implement Phase 3 from `docs/03-task-breakdown.md`: Admin Quiz API.
 - [x] Run `git diff --check`.
 - [x] Update `docs/00-project-status.md`.
 - [x] Update latest worklog.
-- [ ] Commit Phase 3 changes.
+- [x] Commit Phase 3 changes.
 
 ## Verification Results
 
 - `npm.cmd run db:migrate`: completed, no pending migrations.
 - `npm.cmd run smoke:phase2`: passed.
 - `npm.cmd run smoke:phase3`: passed.
+- Phase 3 implementation commit: `ebef1cc phase3: implement admin quiz api`.
 - Note: smoke tests create temporary SQLite runtime files, so they may need elevated execution in this sandbox.
 
 ## Handoff Notes

@@ -67,7 +67,7 @@
 - Push strategy commit: `9fa4daa docs: add push and pr strategy`.
 - Human docs timing commit: `d6e17b2 docs: define human docs update timing`.
 - Phase 3 TODO commit: `e194a8e docs: prepare phase 3 quiz api todo`.
-- Phase 3 implementation commit: pending.
+- Phase 3 implementation commit: `ebef1cc phase3: implement admin quiz api`.
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
@@ -82,6 +82,6 @@
 
 - Phase 2 implementation is committed.
 - Push local `develop` and `feature/server-api-mvp` when ready.
-- Commit Phase 3 implementation.
+- Phase 3 implementation is committed.
 - Prepare Phase 4 TODO before starting Public Embed API.
 - Start Phase 4: Public Embed API.
