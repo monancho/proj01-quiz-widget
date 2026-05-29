@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Human Docs Index</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #d8dee9;
+      --accent: #2563eb;
+      --accent-soft: #eaf1ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 42px 24px 56px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    .hero {
+      margin-bottom: 22px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .card.featured {
+      border-color: #adc3ff;
+      background: var(--accent-soft);
+    }
+
+    .card ul {
+      margin: 14px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .card li + li {
+      margin-top: 6px;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 30px 16px 42px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Human Docs</h1>
+      <p>사람이 체크포인트에서 확인할 문서만 모아둔 입구입니다. 매 세션 로그가 아니라 보고, 안내, 결정 기록을 분리해서 관리합니다.</p>
+      <div class="meta">
+        <span class="pill">Project: proj01-quiz-widget</span>
+        <span class="pill">Updated: 2026-05-29</span>
+        <span class="pill">Entry point</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card featured">
+        <h2>Guides</h2>
+        <p>프로젝트 운영 방식처럼 오래 유지되는 안내 문서입니다.</p>
+        <ul>
+          <li><a href="./guides/agent-operation-guide.html">Agent Operation Guide</a></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Reports</h2>
+        <p>Phase 완료, 중간 점검, 사용자 확인이 필요한 시점의 보고서입니다.</p>
+        <ul>
+          <li><a href="./reports/2026-05-29-phase-0-1-checkpoint.html">Phase 0~1 Checkpoint</a></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Decisions</h2>
+        <p>사람의 판단이 필요했던 선택지와 결정 이유를 기록합니다.</p>
+        <ul>
+          <li><a href="./decisions/index.html">Decision Notes Index</a></li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Live Tracking</h2>
+        <p>실시간 작업 상태는 HTML 보고서가 아니라 아래 Markdown 문서를 기준으로 봅니다.</p>
+        <ul>
+          <li><code>docs/00-project-status.md</code></li>
+          <li><code>docs/worklog/YYYY-MM-DD.md</code></li>
+        </ul>
+      </article>
+
+      <article class="card wide">
+        <h2>문서 분류 원칙</h2>
+        <p><code>docs/human/</code>에는 사람이 확인해야 할 정리본만 둡니다. 작업 로그, 전체 요구사항, API 세부 명세를 한 HTML에 몰아넣지 않습니다.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
+

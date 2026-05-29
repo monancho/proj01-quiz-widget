@@ -24,7 +24,14 @@ At the start of every session, read these files in order:
 4. `docs/01-requirements.md` when product behavior is unclear
 5. `docs/02-implementation-plan.md` when implementation shape is unclear
 
-Human-facing checkpoint reports live under `docs/human/`.
+Human-facing checkpoint documents live under `docs/human/`.
+Use this structure:
+
+- `docs/human/index.html`: entry point for human-facing documents
+- `docs/human/guides/`: durable guides and operating explanations
+- `docs/human/reports/`: checkpoint and milestone reports
+- `docs/human/decisions/`: human decision notes and tradeoff records
+
 Do not update human-facing reports every session; update them only when the user asks for a checkpoint/report or when a meaningful milestone needs a human-readable summary.
 
 ## Workflow
@@ -34,7 +41,7 @@ Do not update human-facing reports every session; update them only when the user
 - Follow the phase order in `docs/03-task-breakdown.md`.
 - Update `docs/00-project-status.md` when phase status changes.
 - Update the latest `docs/worklog/YYYY-MM-DD.md` during meaningful progress.
-- Keep human-facing HTML reports under `docs/human/` for checkpoint reviews, not routine work logging.
+- Keep human-facing HTML documents categorized under `docs/human/`; do not put all human-readable content into one file.
 - Commit after each completed phase or coherent task group.
 - Do not skip verification before committing.
 

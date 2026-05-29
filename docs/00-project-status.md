@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/project-scaffold` |
 | Active scope | Phase 0 + Phase 1 |
-| Status | Human-facing docs separated under `docs/human/` |
+| Status | Human-facing docs categorized under `docs/human/` |
 
 ## Completed
 
@@ -18,7 +18,7 @@
 - Planning documents committed under `docs/`.
 - Phase 0 + Phase 1 implementation committed.
 - Agent operating guide added in `AGENTS.md`.
-- Human-facing agent workflow guide moved to `docs/human/agent-operation-guide.html`.
+- Human-facing docs categorized under `docs/human/index.html`, `guides/`, `reports/`, and `decisions/`.
 
 ## Phase 0 TODO
 
@@ -52,6 +52,7 @@
 - Implementation commit: `6a62601 phase0-1: scaffold backend foundation`.
 - Agent guide commit: `45a44d2 docs: add agent operating guide`.
 - Human docs restructure commit: `f5fb96f docs: separate human-facing reports`.
+- Human docs category commit: pending.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
 ## Next After Phase 0 + 1
