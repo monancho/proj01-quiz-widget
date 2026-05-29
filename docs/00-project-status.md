@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/admin-mvp` |
 | Active scope | Phase 6 |
-| Status | Phase 6 admin frontend implemented and verified |
+| Status | Phase 6 admin frontend pushed; draft PR #4 open |
 
 ## Completed
 
@@ -57,6 +57,8 @@
 - Admin route `/admin` implemented.
 - Admin Slug Group list, filters, stats, create/edit/delete, quiz table, quiz create/edit/delete, preview, and iframe copy fallback implemented.
 - Phase 6 human checkpoint report added under `docs/human/reports/`.
+- `feature/admin-mvp` pushed to origin.
+- Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
 
 ## Phase 0 TODO
 
@@ -118,6 +120,8 @@
 - Admin QA created Slug Group `phase-6-admin-759869`, added 3 quizzes, published it, verified iframe preview URL, and verified iframe copy fallback.
 - Admin QA updated quiz 1, deleted and recreated quiz 3, and verified final `3/3` state.
 - Admin QA created and deleted a throwaway Slug Group.
+- Phase 6 implementation commit: `cc82950 phase6: implement admin frontend mvp`.
+- Draft PR #4: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
 
 ## Remote Sync Status
 
@@ -126,14 +130,11 @@
 - PR #1 is merged into `origin/develop`.
 - `feature/client-embed-mvp` is pushed and tracks `origin/feature/client-embed-mvp`.
 - PR #2 is merged into `origin/feature/server-api-mvp`.
-- Draft PR #3 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/3`.
+- PR #3 is merged into `origin/develop`.
+- `feature/admin-mvp` is pushed and tracks `origin/feature/admin-mvp`.
+- Draft PR #4 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
 
 ## Next
 
-- Phase 2 implementation is committed.
-- Push local `develop` and `feature/server-api-mvp` when ready.
-- Phase 3 implementation is committed.
-- Phase 4 implementation is committed.
-- API MVP human checkpoint report is updated.
-- Push `feature/admin-mvp` and open a draft PR into `develop`.
 - Prepare Phase 7 TODO before Markdown/LaTeX rendering and sanitizing work.
+- After PR #4 review/merge, fast-forward local `develop` from `origin/develop`.
