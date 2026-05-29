@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/project-scaffold` |
 | Active scope | Phase 0 + Phase 1 |
-| Status | Phase 0 + Phase 1 committed |
+| Status | Agent operating guide added after Phase 0 + Phase 1 |
 
 ## Completed
 
@@ -16,6 +16,9 @@
 - GitHub remote connected: `https://github.com/monancho/proj01-quiz-widget.git`.
 - `develop` branch pushed to `origin/develop`.
 - Planning documents committed under `docs/`.
+- Phase 0 + Phase 1 implementation committed.
+- Agent operating guide added in `AGENTS.md`.
+- Human-readable agent workflow guide added in `docs/05-agent-operation-guide.md`.
 
 ## Phase 0 TODO
 
@@ -47,6 +50,7 @@
 - `npm.cmd run db:migrate`: applied `0001_init_quiz_sets_and_quizzes.sql`.
 - `/health` smoke test: returned `200`.
 - Implementation commit: `6a62601 phase0-1: scaffold backend foundation`.
+- Agent guide commit: pending.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
 ## Next After Phase 0 + 1
