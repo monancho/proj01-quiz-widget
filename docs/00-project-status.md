@@ -69,7 +69,7 @@
 - Human docs timing commit: `d6e17b2 docs: define human docs update timing`.
 - Phase 3 TODO commit: `e194a8e docs: prepare phase 3 quiz api todo`.
 - Phase 3 implementation commit: `ebef1cc phase3: implement admin quiz api`.
-- Phase 4 TODO commit: pending.
+- Phase 4 TODO commit: `b79532a docs: prepare phase 4 public embed api todo`.
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
