@@ -1,5 +1,6 @@
 import express from 'express';
 import { openDatabase } from './db/connection.js';
+import { createAdminQuizzesRouter } from './routes/adminQuizzes.routes.js';
 import { createAdminQuizSetsRouter } from './routes/adminQuizSets.routes.js';
 
 export function createApp({ db = openDatabase() } = {}) {
@@ -17,6 +18,7 @@ export function createApp({ db = openDatabase() } = {}) {
   });
 
   app.use('/api/admin/quiz-sets', createAdminQuizSetsRouter(db));
+  app.use('/api/admin/quizzes', createAdminQuizzesRouter(db));
 
   app.use((req, res) => {
     res.status(404).json({

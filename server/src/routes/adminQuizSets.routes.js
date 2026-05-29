@@ -1,10 +1,17 @@
 import { Router } from 'express';
+import { createQuizRepository } from '../repositories/quizRepository.js';
 import { createQuizSetRepository } from '../repositories/quizSetRepository.js';
+import { createQuizService } from '../services/quizService.js';
 import { createQuizSetService } from '../services/quizSetService.js';
 
 export function createAdminQuizSetsRouter(db) {
   const router = Router();
-  const service = createQuizSetService(createQuizSetRepository(db));
+  const quizSetRepository = createQuizSetRepository(db);
+  const service = createQuizSetService(quizSetRepository);
+  const quizService = createQuizService({
+    quizRepository: createQuizRepository(db),
+    quizSetRepository
+  });
 
   router.get('/check-slug', (req, res, next) => {
     try {
@@ -25,6 +32,22 @@ export function createAdminQuizSetsRouter(db) {
   router.post('/', (req, res, next) => {
     try {
       res.status(201).json(service.create(req.body));
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.get('/:setId/quizzes', (req, res, next) => {
+    try {
+      res.status(200).json(quizService.listBySetId(req.params.setId));
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post('/:setId/quizzes', (req, res, next) => {
+    try {
+      res.status(201).json(quizService.create(req.params.setId, req.body));
     } catch (error) {
       next(error);
     }
@@ -56,4 +79,3 @@ export function createAdminQuizSetsRouter(db) {
 
   return router;
 }
-

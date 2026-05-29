@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/server-api-mvp` |
 | Active scope | Phase 3 |
-| Status | Phase 3 TODO prepared; Quiz API implementation starting |
+| Status | Phase 3 Quiz API implemented and verified |
 
 ## Completed
 
@@ -27,6 +27,7 @@
 - Push and PR strategy added to `AGENTS.md`.
 - Human-facing docs update timing added to `AGENTS.md`.
 - Phase 3 TODO file added under `docs/todos/`.
+- Phase 3 Quiz API implemented.
 
 ## Phase 0 TODO
 
@@ -66,6 +67,8 @@
 - Push strategy commit: `9fa4daa docs: add push and pr strategy`.
 - Human docs timing commit: `d6e17b2 docs: define human docs update timing`.
 - Phase 3 TODO commit: `e194a8e docs: prepare phase 3 quiz api todo`.
+- Phase 3 implementation commit: pending.
+- `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
@@ -79,4 +82,6 @@
 
 - Phase 2 implementation is committed.
 - Push local `develop` and `feature/server-api-mvp` when ready.
-- Implement Phase 3: Quiz API.
+- Commit Phase 3 implementation.
+- Prepare Phase 4 TODO before starting Public Embed API.
+- Start Phase 4: Public Embed API.
