@@ -75,7 +75,7 @@
 - Phase 4 TODO commit: `b79532a docs: prepare phase 4 public embed api todo`.
 - Phase 4 implementation commit: `079b8a6 phase4: implement public embed api`.
 - API MVP human report commit: included in `079b8a6 phase4: implement public embed api`.
-- Human docs portal commit: pending.
+- Human docs portal commit: `5c843af docs: expand human docs portal`.
 - `npm.cmd run smoke:phase4`: passed.
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
