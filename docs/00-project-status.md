@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-29 |
 | Base branch | `develop` |
-| Current branch | `feature/server-api-mvp` |
-| Active scope | Phase 4 |
-| Status | API MVP pushed and draft PR opened |
+| Current branch | `feature/client-embed-mvp` |
+| Active scope | Phase 5 |
+| Status | Phase 5 iframe frontend pushed and draft PR opened; visual browser QA remains |
 
 ## Completed
 
@@ -35,6 +35,15 @@
 - Local `develop` pushed to `origin/develop`.
 - `feature/server-api-mvp` pushed to origin.
 - Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
+- PR handoff status pushed to `feature/server-api-mvp`: `f6560ca docs: record github pr handoff`.
+- `feature/client-embed-mvp` branch created locally.
+- Phase 5 TODO file added under `docs/todos/`.
+- Phase 5 React/Vite/Tailwind client scaffold implemented.
+- Public iframe route `/embed/:postSlug` implemented.
+- Immediate client-side quiz grading, feedback, result summary, retry, and static banner implemented.
+- Frontend README commands documented.
+- `feature/client-embed-mvp` pushed to origin.
+- Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
 
 ## Phase 0 TODO
 
@@ -83,12 +92,20 @@
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
+- Phase 5 TODO commit: `be405e3 docs: prepare phase 5 embed todo`.
+- `npm.cmd install` in `client/`: completed, 0 vulnerabilities.
+- `npm.cmd run build` in `client/`: passed.
+- Verification API server on port `3100`: `/health` returned `200`.
+- Verification Vite page: `/embed/phase-5-check-175528` returned `200`.
+- Browser automation could not complete because the in-app browser node runtime failed to start in this sandbox.
 
 ## Remote Sync Status
 
 - `develop` is pushed to `origin/develop`.
 - `feature/server-api-mvp` is pushed and tracks `origin/feature/server-api-mvp`.
 - Draft PR: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
+- `feature/client-embed-mvp` is pushed and tracks `origin/feature/client-embed-mvp`.
+- Draft PR #2 is stacked on `feature/server-api-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
 
 ## Next
 
@@ -98,4 +115,6 @@
 - Phase 4 implementation is committed.
 - API MVP human checkpoint report is updated.
 - Review draft PR #1.
-- Prepare Phase 5 TODO before starting iframe frontend.
+- Review draft PR #2 after PR #1 is merged or retargeted.
+- Complete browser/mobile visual QA for Phase 5.
+- Retarget or refresh PR #2 against `develop` after PR #1 lands.
