@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Pre-deployment admin UX refinement |
-| Status | Admin UX follow-up implemented locally; direct draft PR #6 open |
+| Status | Admin UX follow-up pushed; direct draft PR #6 open |
 
 ## Completed
 
@@ -157,6 +157,7 @@
 - Direct draft PR #6: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
 - `npm.cmd run build` after unified iframe/widget preview follow-up: passed.
 - Headless Chrome admin follow-up QA verified the combined iframe modal, iframe code textarea, live iframe preview, widget-style quiz preview, selectable feedback, and no horizontal overflow.
+- Admin UX follow-up commit: `59c9695 admin: unify embed and widget previews`.
 
 ## Remote Sync Status
 
@@ -174,7 +175,6 @@
 
 ## Next
 
-- Commit and push the admin UX follow-up to PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.
