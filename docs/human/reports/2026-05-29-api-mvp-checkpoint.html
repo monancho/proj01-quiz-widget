@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>API MVP Checkpoint</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #d8dee9;
+      --accent: #2563eb;
+      --accent-soft: #eaf1ff;
+      --ok: #047857;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 42px 24px 56px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .summary {
+      border-color: #adc3ff;
+      background: var(--accent-soft);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f4fa;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    .ok {
+      color: var(--ok);
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 30px 16px 42px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>API MVP Checkpoint</h1>
+      <p>Phase 2~4 백엔드 API MVP 완료 시점의 사람용 중간 보고서입니다.</p>
+      <div class="meta">
+        <span class="pill">Date: 2026-05-29</span>
+        <span class="pill">Branch: feature/server-api-mvp</span>
+        <span class="pill">Status: verified</span>
+      </div>
+    </header>
+
+    <section class="summary">
+      <h2>결론</h2>
+      <p class="ok">Slug Group API, Quiz API, Public Embed API가 모두 구현되고 smoke test를 통과했습니다.</p>
+      <p>다음 단계는 GitHub push/PR 또는 Phase 5 iframe frontend 시작입니다.</p>
+    </section>
+
+    <section>
+      <h2>완료된 API 범위</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>완료 내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Phase 2</td>
+            <td>Slug Group 목록, 생성, 상세, 수정, 삭제, slug 중복 확인</td>
+          </tr>
+          <tr>
+            <td>Phase 3</td>
+            <td>그룹별 Quiz 목록/생성, Quiz 상세/수정/삭제, 3문제 제한, sortOrder 중복 방어</td>
+          </tr>
+          <tr>
+            <td>Phase 4</td>
+            <td>공개 iframe용 <code>GET /api/embed/:slug/quizzes</code>, 공개 조건 처리, CORS</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>공개 API 정책</h2>
+      <ul>
+        <li>응답은 문제 객체 배열만 반환합니다.</li>
+        <li>배너 정보와 메타데이터 wrapper는 포함하지 않습니다.</li>
+        <li>Slug Group이 없거나 비공개이거나 3문제 미만이면 <code>200 OK</code>와 <code>[]</code>를 반환합니다.</li>
+        <li>공개 완료된 Slug Group은 <code>sortOrder</code> 순서의 문제 3개를 반환합니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>검증 결과</h2>
+      <ul>
+        <li><code>npm.cmd run db:migrate</code>: 성공, pending migration 없음</li>
+        <li><code>npm.cmd run smoke:phase2</code>: 통과</li>
+        <li><code>npm.cmd run smoke:phase3</code>: 통과</li>
+        <li><code>npm.cmd run smoke:phase4</code>: 통과</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>주의사항</h2>
+      <ul>
+        <li>Node 24의 <code>node:sqlite</code>는 동작하지만 experimental warning을 출력합니다.</li>
+        <li>Smoke test는 임시 SQLite 파일을 만들기 때문에 현재 샌드박스에서는 elevated execution이 필요했습니다.</li>
+        <li>아직 GitHub 원격 push는 하지 않았습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>다음 액션</h2>
+      <p>권장 순서는 <code>develop</code> push, <code>feature/server-api-mvp</code> push, PR 생성 또는 Phase 5 TODO 작성입니다.</p>
+    </section>
+  </main>
+</body>
+</html>
+

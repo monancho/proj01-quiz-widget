@@ -30,42 +30,49 @@ Implement Phase 4 from `docs/03-task-breakdown.md`: Public Embed API.
 
 ## Implementation Checklist
 
-- [ ] T4-01: Implement `GET /api/embed/:slug/quizzes`.
-- [ ] T4-02: Return `200 OK` and `[]` for missing, private, or incomplete Slug Groups.
-- [ ] T4-03: Convert quiz rows into public response shape with `choices`, `answerPosition`, and `correctAnswer`.
-- [ ] T4-04: Add CORS configuration from `CORS_ALLOWED_ORIGINS`.
+- [x] T4-01: Implement `GET /api/embed/:slug/quizzes`.
+- [x] T4-02: Return `200 OK` and `[]` for missing, private, or incomplete Slug Groups.
+- [x] T4-03: Convert quiz rows into public response shape with `choices`, `answerPosition`, and `correctAnswer`.
+- [x] T4-04: Add CORS configuration from `CORS_ALLOWED_ORIGINS`.
 
 ## API Checklist
 
-- [ ] Public response is a quiz object array only.
-- [ ] Public response does not include banner data.
-- [ ] Public response does not include metadata wrapper objects.
-- [ ] Missing Slug Group returns `200` with `[]`.
-- [ ] Private Slug Group returns `200` with `[]`.
-- [ ] Published but incomplete Slug Group returns `200` with `[]`.
-- [ ] Published complete Slug Group returns exactly 3 quizzes sorted by `sortOrder`.
-- [ ] Each quiz includes `id`, `question`, `choices`, `answerPosition`, `correctAnswer`, and `explanation`.
+- [x] Public response is a quiz object array only.
+- [x] Public response does not include banner data.
+- [x] Public response does not include metadata wrapper objects.
+- [x] Missing Slug Group returns `200` with `[]`.
+- [x] Private Slug Group returns `200` with `[]`.
+- [x] Published but incomplete Slug Group returns `200` with `[]`.
+- [x] Published complete Slug Group returns exactly 3 quizzes sorted by `sortOrder`.
+- [x] Each quiz includes `id`, `question`, `choices`, `answerPosition`, `correctAnswer`, and `explanation`.
 
 ## Verification Checklist
 
-- [ ] Run migration with `npm.cmd run db:migrate`.
-- [ ] Smoke test `GET /health`.
-- [ ] Smoke test Phase 2 admin APIs.
-- [ ] Smoke test Phase 3 quiz APIs.
-- [ ] Smoke test missing slug returns `[]`.
-- [ ] Smoke test private Slug Group returns `[]`.
-- [ ] Smoke test incomplete published Slug Group returns `[]`.
-- [ ] Smoke test complete published Slug Group returns 3 quizzes.
-- [ ] Smoke test public response has no metadata wrapper.
-- [ ] Smoke test CORS allowed origin header.
-- [ ] Run `git diff --check`.
-- [ ] Update `docs/00-project-status.md`.
-- [ ] Update latest worklog.
+- [x] Run migration with `npm.cmd run db:migrate`.
+- [x] Smoke test `GET /health`.
+- [x] Smoke test Phase 2 admin APIs.
+- [x] Smoke test Phase 3 quiz APIs.
+- [x] Smoke test missing slug returns `[]`.
+- [x] Smoke test private Slug Group returns `[]`.
+- [x] Smoke test incomplete published Slug Group returns `[]`.
+- [x] Smoke test complete published Slug Group returns 3 quizzes.
+- [x] Smoke test public response has no metadata wrapper.
+- [x] Smoke test CORS allowed origin header.
+- [x] Run `git diff --check`.
+- [x] Update `docs/00-project-status.md`.
+- [x] Update latest worklog.
 - [ ] Commit Phase 4 changes.
+
+## Verification Results
+
+- `npm.cmd run db:migrate`: completed, no pending migrations.
+- `npm.cmd run smoke:phase2`: passed.
+- `npm.cmd run smoke:phase3`: passed.
+- `npm.cmd run smoke:phase4`: passed.
+- Note: smoke tests create temporary SQLite runtime files, so they may need elevated execution in this sandbox.
 
 ## Handoff Notes
 
 - Phase 5 iframe frontend should call this API from `/embed/:postSlug`.
 - MVP intentionally exposes answer position and explanation to the frontend.
 - Do not add answer-checking POST endpoints in this phase.
-

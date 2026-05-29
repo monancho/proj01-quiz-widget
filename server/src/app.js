@@ -1,12 +1,16 @@
 import express from 'express';
+import { getEnv } from './config/env.js';
 import { openDatabase } from './db/connection.js';
 import { createAdminQuizzesRouter } from './routes/adminQuizzes.routes.js';
 import { createAdminQuizSetsRouter } from './routes/adminQuizSets.routes.js';
+import { createPublicEmbedRouter } from './routes/publicEmbed.routes.js';
+import { createCorsMiddleware } from './utils/cors.js';
 
-export function createApp({ db = openDatabase() } = {}) {
+export function createApp({ db = openDatabase(), env = getEnv() } = {}) {
   const app = express();
 
   app.disable('x-powered-by');
+  app.use(createCorsMiddleware(env.corsAllowedOrigins));
   app.use(express.json());
 
   app.get('/health', (_req, res) => {
@@ -17,6 +21,7 @@ export function createApp({ db = openDatabase() } = {}) {
     });
   });
 
+  app.use('/api/embed', createPublicEmbedRouter(db));
   app.use('/api/admin/quiz-sets', createAdminQuizSetsRouter(db));
   app.use('/api/admin/quizzes', createAdminQuizzesRouter(db));
 

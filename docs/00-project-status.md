@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/server-api-mvp` |
 | Active scope | Phase 4 |
-| Status | Phase 4 TODO prepared; Public Embed API implementation starting |
+| Status | Phase 4 Public Embed API implemented and verified |
 
 ## Completed
 
@@ -29,6 +29,8 @@
 - Phase 3 TODO file added under `docs/todos/`.
 - Phase 3 Quiz API implemented.
 - Phase 4 TODO file added under `docs/todos/`.
+- Phase 4 Public Embed API implemented.
+- API MVP human checkpoint report added under `docs/human/reports/`.
 
 ## Phase 0 TODO
 
@@ -70,6 +72,9 @@
 - Phase 3 TODO commit: `e194a8e docs: prepare phase 3 quiz api todo`.
 - Phase 3 implementation commit: `ebef1cc phase3: implement admin quiz api`.
 - Phase 4 TODO commit: `b79532a docs: prepare phase 4 public embed api todo`.
+- Phase 4 implementation commit: pending.
+- API MVP human report commit: pending.
+- `npm.cmd run smoke:phase4`: passed.
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
@@ -85,4 +90,7 @@
 - Phase 2 implementation is committed.
 - Push local `develop` and `feature/server-api-mvp` when ready.
 - Phase 3 implementation is committed.
-- Implement Phase 4: Public Embed API.
+- Commit Phase 4 implementation.
+- Update human-facing API MVP checkpoint report.
+- Push local `develop` and `feature/server-api-mvp` when ready.
+- Prepare Phase 5 TODO before starting iframe frontend.
