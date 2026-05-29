@@ -59,12 +59,12 @@
 - Human docs restructure commit: `f5fb96f docs: separate human-facing reports`.
 - Human docs category commit: `9d0ddda docs: categorize human documentation`.
 - Phase TODO rule commit: `c5e79da docs: require phase todo before implementation`.
-- Phase 2 implementation commit: pending.
+- Phase 2 implementation commit: `a78aa57 phase2: implement slug group api`.
 - `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
 ## Next
 
-- Commit Phase 2 implementation.
+- Phase 2 implementation is committed.
 - Prepare Phase 3 TODO before starting Quiz API.
 - Start Phase 3: Quiz API.

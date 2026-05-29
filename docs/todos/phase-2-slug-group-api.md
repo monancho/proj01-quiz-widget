@@ -59,13 +59,14 @@ Implement Phase 2 from `docs/03-task-breakdown.md`: Slug Group API.
 - [x] Run `git diff --check`.
 - [x] Update `docs/00-project-status.md`.
 - [x] Update latest worklog.
-- [ ] Commit Phase 2 changes.
+- [x] Commit Phase 2 changes.
 
 ## Verification Results
 
 - `npm.cmd run db:migrate`: completed, no pending migrations.
 - `GET /health`: returned `200`.
 - `npm.cmd run smoke:phase2`: passed.
+- Phase 2 implementation commit: `a78aa57 phase2: implement slug group api`.
 - Note: smoke test requires runtime SQLite temp files, so it may need elevated execution in this sandbox.
 
 ## Handoff Notes
