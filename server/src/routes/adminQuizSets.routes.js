@@ -53,6 +53,14 @@ export function createAdminQuizSetsRouter(db) {
     }
   });
 
+  router.patch('/:setId/quizzes/reorder', (req, res, next) => {
+    try {
+      res.status(200).json(quizService.reorder(req.params.setId, req.body));
+    } catch (error) {
+      next(error);
+    }
+  });
+
   router.get('/:id', (req, res, next) => {
     try {
       res.status(200).json(service.get(req.params.id));

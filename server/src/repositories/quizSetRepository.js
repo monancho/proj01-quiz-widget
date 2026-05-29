@@ -64,6 +64,7 @@ export function createQuizSetRepository(db) {
       return db.prepare(`
         SELECT
           COUNT(*) AS total_sets,
+          COALESCE(SUM(CASE WHEN status = 'draft' THEN 1 ELSE 0 END), 0) AS draft_sets,
           COALESCE(SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END), 0) AS published_sets,
           COALESCE(SUM(CASE WHEN status = 'private' THEN 1 ELSE 0 END), 0) AS private_sets,
           COALESCE(SUM(CASE WHEN quiz_count = 3 THEN 1 ELSE 0 END), 0) AS completed_sets
@@ -126,6 +127,16 @@ export function createQuizSetRepository(db) {
         SET post_slug = ?, post_title = ?, status = ?, updated_at = ?
         WHERE id = ?
       `).run(postSlug, postTitle, status, updatedAt, id);
+
+      return result.changes;
+    },
+
+    updateStatus(id, { status, updatedAt }) {
+      const result = db.prepare(`
+        UPDATE quiz_sets
+        SET status = ?, updated_at = ?
+        WHERE id = ?
+      `).run(status, updatedAt, id);
 
       return result.changes;
     },

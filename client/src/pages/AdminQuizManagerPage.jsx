@@ -3,7 +3,9 @@ import {
   Copy,
   Edit3,
   ExternalLink,
+  Eye,
   Filter,
+  GripVertical,
   LoaderCircle,
   Plus,
   RefreshCw,
@@ -11,7 +13,7 @@ import {
   Trash2,
   X,
 } from 'lucide-react';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import RichText from '../components/common/RichText.jsx';
 import {
   checkPostSlug,
@@ -22,21 +24,27 @@ import {
   getQuiz,
   listQuizSets,
   listQuizzes,
+  reorderQuizzes,
   updateQuiz,
   updateQuizSet,
 } from '../api/adminApi.js';
+
+const statusOptions = [
+  { value: 'draft', label: '작성 중' },
+  { value: 'private', label: '비공개' },
+  { value: 'published', label: '공개' },
+];
 
 const emptySetForm = {
   id: null,
   postSlug: '',
   postTitle: '',
-  status: 'private',
+  status: 'draft',
 };
 
 const emptyQuizForm = {
   id: null,
   setId: null,
-  sortOrder: 1,
   question: '',
   choices: ['', '', '', ''],
   correctPosition: 1,
@@ -51,13 +59,14 @@ export default function AdminQuizManagerPage() {
   const [expandedSetId, setExpandedSetId] = useState(null);
   const [quizzesBySetId, setQuizzesBySetId] = useState({});
   const [setModal, setSetModal] = useState(null);
-  const [quizForm, setQuizForm] = useState(null);
+  const [quizModal, setQuizModal] = useState(null);
+  const [utilityModal, setUtilityModal] = useState(null);
+  const [draggedQuizId, setDraggedQuizId] = useState(null);
+  const draggedQuizIdRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [copyState, setCopyState] = useState('');
-  const [copyFallbackCode, setCopyFallbackCode] = useState('');
 
   useEffect(() => {
     loadQuizSets();
@@ -71,9 +80,16 @@ export default function AdminQuizManagerPage() {
       const data = await listQuizSets(filters);
       setSummary(data.summary);
       setQuizSets(data.items);
-      if (!expandedSetId && data.items[0]) {
-        setExpandedSetId(data.items[0].id);
-        await loadQuizzes(data.items[0].id);
+
+      const nextSelectedId = expandedSetId && data.items.some((item) => item.id === expandedSetId)
+        ? expandedSetId
+        : data.items[0]?.id;
+
+      if (nextSelectedId) {
+        setExpandedSetId(nextSelectedId);
+        await loadQuizzes(nextSelectedId);
+      } else {
+        setExpandedSetId(null);
       }
     } catch (apiError) {
       setError(apiError.message);
@@ -108,6 +124,7 @@ export default function AdminQuizManagerPage() {
     setSetModal({
       mode: 'create',
       form: { ...emptySetForm },
+      quizCount: 0,
       slugCheck: null,
       error: '',
     });
@@ -122,6 +139,7 @@ export default function AdminQuizManagerPage() {
         postTitle: quizSet.postTitle,
         status: quizSet.status,
       },
+      quizCount: quizSet.quizCount,
       originalSlug: quizSet.postSlug,
       slugCheck: null,
       error: '',
@@ -191,36 +209,30 @@ export default function AdminQuizManagerPage() {
     }
   }
 
-  function openCreateQuizForm(quizSet) {
-    const existing = quizzesBySetId[quizSet.id] || [];
-    const used = new Set(existing.map((quiz) => quiz.sortOrder));
-    const nextSortOrder = [1, 2, 3].find((order) => !used.has(order)) || 1;
-
-    setQuizForm({
+  function openCreateQuizModal(quizSet) {
+    setQuizModal({
       mode: 'create',
       postSlug: quizSet.postSlug,
       form: {
         ...emptyQuizForm,
         setId: quizSet.id,
-        sortOrder: nextSortOrder,
       },
       error: '',
     });
   }
 
-  async function openEditQuizForm(quiz, quizSet) {
+  async function openEditQuizModal(quiz, quizSet) {
     setBusy(true);
     setError('');
 
     try {
       const detail = await getQuiz(quiz.id);
-      setQuizForm({
+      setQuizModal({
         mode: 'edit',
         postSlug: quizSet.postSlug,
         form: {
           id: detail.id,
           setId: detail.quizSetId,
-          sortOrder: detail.sortOrder,
           question: detail.question,
           choices: detail.choices,
           correctPosition: detail.correctPosition,
@@ -241,23 +253,22 @@ export default function AdminQuizManagerPage() {
 
     try {
       const payload = {
-        sortOrder: Number(quizForm.form.sortOrder),
-        question: quizForm.form.question,
-        choices: quizForm.form.choices,
-        correctPosition: Number(quizForm.form.correctPosition),
-        explanation: quizForm.form.explanation,
+        question: quizModal.form.question,
+        choices: quizModal.form.choices,
+        correctPosition: Number(quizModal.form.correctPosition),
+        explanation: quizModal.form.explanation,
       };
 
-      const saved = quizForm.mode === 'create'
-        ? await createQuiz(quizForm.form.setId, payload)
-        : await updateQuiz(quizForm.form.id, payload);
+      const saved = quizModal.mode === 'create'
+        ? await createQuiz(quizModal.form.setId, payload)
+        : await updateQuiz(quizModal.form.id, payload);
 
-      setQuizForm(null);
-      setMessage(quizForm.mode === 'create' ? '문제가 생성되었습니다.' : '문제가 저장되었습니다.');
+      setQuizModal(null);
+      setMessage(quizModal.mode === 'create' ? '문제가 생성되었습니다.' : '문제가 저장되었습니다.');
       await loadQuizzes(saved.quizSetId);
       await loadQuizSets();
     } catch (apiError) {
-      setQuizForm((current) => ({ ...current, error: apiError.message }));
+      setQuizModal((current) => ({ ...current, error: apiError.message }));
     } finally {
       setBusy(false);
     }
@@ -273,7 +284,7 @@ export default function AdminQuizManagerPage() {
 
     try {
       await deleteQuiz(quiz.id);
-      setMessage('문제가 삭제되었습니다.');
+      setMessage('문제가 삭제되었습니다. 미완성 Slug Group은 작성 중 상태로 전환됩니다.');
       await loadQuizzes(setId);
       await loadQuizSets();
     } catch (apiError) {
@@ -283,17 +294,87 @@ export default function AdminQuizManagerPage() {
     }
   }
 
-  async function handleCopyIframe(quizSet) {
-    const code = buildIframeCode(quizSet.postSlug);
-    setCopyState('');
-    setCopyFallbackCode('');
+  function handleDragStartQuiz(quizId) {
+    draggedQuizIdRef.current = quizId;
+    setDraggedQuizId(quizId);
+  }
+
+  async function handleDropQuiz(quizSet, targetQuizId) {
+    const sourceQuizId = draggedQuizIdRef.current;
+
+    if (!sourceQuizId || sourceQuizId === targetQuizId) {
+      draggedQuizIdRef.current = null;
+      setDraggedQuizId(null);
+      return;
+    }
+
+    const currentQuizzes = quizzesBySetId[quizSet.id] || [];
+    const sourceIndex = currentQuizzes.findIndex((quiz) => quiz.id === sourceQuizId);
+    const targetIndex = currentQuizzes.findIndex((quiz) => quiz.id === targetQuizId);
+
+    if (sourceIndex === -1 || targetIndex === -1) {
+      setDraggedQuizId(null);
+      return;
+    }
+
+    const nextQuizzes = [...currentQuizzes];
+    const [moved] = nextQuizzes.splice(sourceIndex, 1);
+    nextQuizzes.splice(targetIndex, 0, moved);
+
+    setQuizzesBySetId((current) => ({
+      ...current,
+      [quizSet.id]: nextQuizzes.map((quiz, index) => ({ ...quiz, sortOrder: index + 1 })),
+    }));
+
+    draggedQuizIdRef.current = null;
+    setDraggedQuizId(null);
+    setBusy(true);
 
     try {
-      await navigator.clipboard.writeText(code);
-      setCopyState(`${quizSet.postSlug} iframe 코드가 복사되었습니다.`);
+      const result = await reorderQuizzes(quizSet.id, nextQuizzes.map((quiz) => quiz.id));
+      setQuizzesBySetId((current) => ({
+        ...current,
+        [quizSet.id]: result.items,
+      }));
+      setMessage('문제 순서가 변경되었습니다.');
+    } catch (apiError) {
+      setError(apiError.message);
+      await loadQuizzes(quizSet.id);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function openPreviewModal(quizSet) {
+    setUtilityModal({
+      type: 'preview',
+      quizSet,
+      embedUrl: buildEmbedUrl(quizSet.postSlug),
+      iframeCode: buildIframeCode(quizSet.postSlug),
+      copyMessage: '',
+    });
+  }
+
+  function openIframeModal(quizSet) {
+    setUtilityModal({
+      type: 'iframe',
+      quizSet,
+      embedUrl: buildEmbedUrl(quizSet.postSlug),
+      iframeCode: buildIframeCode(quizSet.postSlug),
+      copyMessage: '',
+    });
+  }
+
+  async function handleCopyIframeCode() {
+    if (!utilityModal?.iframeCode) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(utilityModal.iframeCode);
+      setUtilityModal((current) => ({ ...current, copyMessage: 'iframe 코드가 복사되었습니다.' }));
     } catch {
-      setCopyFallbackCode(code);
-      setCopyState('브라우저 clipboard 권한이 없어 복사용 코드를 표시했습니다.');
+      setUtilityModal((current) => ({ ...current, copyMessage: '자동 복사가 막혔습니다. 아래 코드를 직접 선택해서 복사하세요.' }));
     }
   }
 
@@ -329,19 +410,7 @@ export default function AdminQuizManagerPage() {
         </div>
       </header>
 
-      <StatusStrip message={message || copyState} error={error} busy={busy || loading} />
-      {copyFallbackCode ? (
-        <section className="copy-fallback">
-          <div>
-            <strong>iframe 코드</strong>
-            <p>아래 코드를 직접 선택해서 복사하세요.</p>
-          </div>
-          <textarea readOnly rows="3" value={copyFallbackCode} />
-          <button type="button" className="icon-action" onClick={() => setCopyFallbackCode('')} title="복사 fallback 닫기">
-            <X size={17} />
-          </button>
-        </section>
-      ) : null}
+      <StatusStrip message={message} error={error} busy={busy || loading} />
 
       <section className="admin-toolbar">
         <form className="admin-filter-form" onSubmit={handleFilterSubmit}>
@@ -363,8 +432,9 @@ export default function AdminQuizManagerPage() {
               onChange={(event) => setDraftFilters((current) => ({ ...current, status: event.target.value }))}
             >
               <option value="">전체</option>
-              <option value="private">비공개</option>
-              <option value="published">공개</option>
+              {statusOptions.map((option) => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
             </select>
           </label>
           <button type="submit" className="admin-button secondary">
@@ -408,26 +478,20 @@ export default function AdminQuizManagerPage() {
             <SetDetail
               quizSet={selectedSet}
               quizzes={quizzesBySetId[selectedSet.id] || []}
+              draggedQuizId={draggedQuizId}
+              onDragStart={handleDragStartQuiz}
+              onDropQuiz={handleDropQuiz}
               onEditSet={() => openEditSetModal(selectedSet)}
               onDeleteSet={() => handleDeleteSet(selectedSet)}
-              onNewQuiz={() => openCreateQuizForm(selectedSet)}
-              onEditQuiz={(quiz) => openEditQuizForm(quiz, selectedSet)}
+              onNewQuiz={() => openCreateQuizModal(selectedSet)}
+              onEditQuiz={(quiz) => openEditQuizModal(quiz, selectedSet)}
               onDeleteQuiz={(quiz) => handleDeleteQuiz(quiz, selectedSet.id)}
-              onCopyIframe={() => handleCopyIframe(selectedSet)}
+              onPreview={() => openPreviewModal(selectedSet)}
+              onIframe={() => openIframeModal(selectedSet)}
             />
           )}
         </div>
       </section>
-
-      {quizForm ? (
-        <QuizEditor
-          quizForm={quizForm}
-          setQuizForm={setQuizForm}
-          onSubmit={handleSaveQuiz}
-          onCancel={() => setQuizForm(null)}
-          busy={busy}
-        />
-      ) : null}
 
       {setModal ? (
         <SetModal
@@ -437,6 +501,24 @@ export default function AdminQuizManagerPage() {
           onCancel={() => setSetModal(null)}
           onCheckSlug={handleCheckSlug}
           busy={busy}
+        />
+      ) : null}
+
+      {quizModal ? (
+        <QuizModal
+          quizModal={quizModal}
+          setQuizModal={setQuizModal}
+          onSubmit={handleSaveQuiz}
+          onCancel={() => setQuizModal(null)}
+          busy={busy}
+        />
+      ) : null}
+
+      {utilityModal ? (
+        <UtilityModal
+          modal={utilityModal}
+          onClose={() => setUtilityModal(null)}
+          onCopy={handleCopyIframeCode}
         />
       ) : null}
     </main>
@@ -459,8 +541,9 @@ function StatusStrip({ message, error, busy }) {
 function StatsBar({ summary }) {
   const items = [
     ['전체', summary?.totalSets || 0],
-    ['공개', summary?.publishedSets || 0],
+    ['작성 중', summary?.draftSets || 0],
     ['비공개', summary?.privateSets || 0],
+    ['공개', summary?.publishedSets || 0],
     ['완료', summary?.completedSets || 0],
   ];
 
@@ -479,15 +562,17 @@ function StatsBar({ summary }) {
 function SetDetail({
   quizSet,
   quizzes,
+  draggedQuizId,
+  onDragStart,
+  onDropQuiz,
   onEditSet,
   onDeleteSet,
   onNewQuiz,
   onEditQuiz,
   onDeleteQuiz,
-  onCopyIframe,
+  onPreview,
+  onIframe,
 }) {
-  const embedUrl = buildEmbedUrl(quizSet.postSlug);
-
   return (
     <>
       <div className="detail-heading">
@@ -500,10 +585,10 @@ function SetDetail({
           <p>{quizSet.postTitle}</p>
         </div>
         <div className="detail-actions">
-          <a className="icon-action" href={embedUrl} target="_blank" rel="noreferrer" title="iframe 미리보기">
-            <ExternalLink size={17} />
-          </a>
-          <button type="button" className="icon-action" onClick={onCopyIframe} title="iframe 코드 복사">
+          <button type="button" className="icon-action" onClick={onPreview} title="iframe 미리보기">
+            <Eye size={17} />
+          </button>
+          <button type="button" className="icon-action" onClick={onIframe} title="iframe 코드 보기">
             <Copy size={17} />
           </button>
           <button type="button" className="icon-action" onClick={onEditSet} title="Slug Group 수정">
@@ -527,6 +612,7 @@ function SetDetail({
         <table className="quiz-table">
           <thead>
             <tr>
+              <th>이동</th>
               <th>순서</th>
               <th>문제</th>
               <th>정답</th>
@@ -536,10 +622,21 @@ function SetDetail({
           <tbody>
             {quizzes.length === 0 ? (
               <tr>
-                <td colSpan="4">등록된 문제가 없습니다.</td>
+                <td colSpan="5">등록된 문제가 없습니다.</td>
               </tr>
             ) : quizzes.map((quiz) => (
-              <tr key={quiz.id}>
+              <tr
+                key={quiz.id}
+                draggable
+                className={draggedQuizId === quiz.id ? 'dragging-row' : ''}
+                onDragStart={() => onDragStart(quiz.id)}
+                onDragOver={(event) => event.preventDefault()}
+                onDrop={() => onDropQuiz(quizSet, quiz.id)}
+                onDragEnd={() => onDragStart(null)}
+              >
+                <td className="drag-cell" title="드래그해서 순서 변경">
+                  <GripVertical size={17} />
+                </td>
                 <td>{quiz.sortOrder}</td>
                 <td>
                   <RichText source={quiz.question} inline />
@@ -567,6 +664,7 @@ function SetDetail({
 }
 
 function SetModal({ modal, setModal, onSubmit, onCancel, onCheckSlug, busy }) {
+  const isComplete = modal.quizCount === 3;
   const slugChanged = modal.mode === 'edit' && modal.originalSlug !== modal.form.postSlug;
 
   return (
@@ -579,6 +677,7 @@ function SetModal({ modal, setModal, onSubmit, onCancel, onCheckSlug, busy }) {
           </button>
         </div>
         {slugChanged ? <p className="form-warning">post_slug 변경 시 기존 iframe URL이 달라집니다.</p> : null}
+        {!isComplete ? <p className="form-warning">문제 3개가 모두 등록되기 전에는 작성 중 상태만 사용할 수 있습니다.</p> : null}
         {modal.error ? <p className="form-error">{modal.error}</p> : null}
         <label>
           <span>post_slug</span>
@@ -624,8 +723,15 @@ function SetModal({ modal, setModal, onSubmit, onCancel, onCheckSlug, busy }) {
               form: { ...current.form, status: event.target.value },
             }))}
           >
-            <option value="private">private</option>
-            <option value="published">published</option>
+            {statusOptions.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+                disabled={!isComplete && option.value !== 'draft'}
+              >
+                {option.label}
+              </option>
+            ))}
           </select>
         </label>
         <div className="modal-actions">
@@ -642,12 +748,12 @@ function SetModal({ modal, setModal, onSubmit, onCancel, onCheckSlug, busy }) {
   );
 }
 
-function QuizEditor({ quizForm, setQuizForm, onSubmit, onCancel, busy }) {
-  const form = quizForm.form;
+function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
+  const form = quizModal.form;
   const answerPreview = form.choices[Number(form.correctPosition) - 1] || '';
 
   function updateForm(patch) {
-    setQuizForm((current) => ({
+    setQuizModal((current) => ({
       ...current,
       form: {
         ...current.form,
@@ -663,37 +769,18 @@ function QuizEditor({ quizForm, setQuizForm, onSubmit, onCancel, busy }) {
   }
 
   return (
-    <section className="quiz-editor">
-      <form className="quiz-form" onSubmit={onSubmit}>
-        <div className="panel-heading">
+    <div className="modal-backdrop">
+      <form className="admin-modal quiz-modal" onSubmit={onSubmit}>
+        <div className="modal-heading">
           <div>
-            <h2>{quizForm.mode === 'create' ? '문제 등록' : '문제 수정'}</h2>
-            <p>post_slug: <code>{quizForm.postSlug}</code></p>
+            <h2>{quizModal.mode === 'create' ? '문제 추가' : '문제 수정'}</h2>
+            <p>post_slug: <code>{quizModal.postSlug}</code></p>
           </div>
           <button type="button" className="icon-action" onClick={onCancel} title="닫기">
             <X size={18} />
           </button>
         </div>
-        {quizForm.error ? <p className="form-error">{quizForm.error}</p> : null}
-        <div className="form-grid">
-          <label>
-            <span>sort_order</span>
-            <select value={form.sortOrder} onChange={(event) => updateForm({ sortOrder: event.target.value })}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </label>
-          <label>
-            <span>correct_position</span>
-            <select value={form.correctPosition} onChange={(event) => updateForm({ correctPosition: event.target.value })}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </label>
-        </div>
+        {quizModal.error ? <p className="form-error">{quizModal.error}</p> : null}
         <label>
           <span>question</span>
           <textarea required rows="3" value={form.question} onChange={(event) => updateForm({ question: event.target.value })} />
@@ -706,6 +793,15 @@ function QuizEditor({ quizForm, setQuizForm, onSubmit, onCancel, busy }) {
             </label>
           ))}
         </div>
+        <label>
+          <span>correct_position</span>
+          <select value={form.correctPosition} onChange={(event) => updateForm({ correctPosition: event.target.value })}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </label>
         <label>
           <span>explanation</span>
           <textarea required rows="4" value={form.explanation} onChange={(event) => updateForm({ explanation: event.target.value })} />
@@ -735,7 +831,51 @@ function QuizEditor({ quizForm, setQuizForm, onSubmit, onCancel, busy }) {
           </button>
         </div>
       </form>
-    </section>
+    </div>
+  );
+}
+
+function UtilityModal({ modal, onClose, onCopy }) {
+  const isPreview = modal.type === 'preview';
+
+  return (
+    <div className="modal-backdrop">
+      <section className="admin-modal utility-modal">
+        <div className="modal-heading">
+          <div>
+            <h2>{isPreview ? 'iframe 미리보기' : 'iframe 코드'}</h2>
+            <p><code>{modal.quizSet.postSlug}</code></p>
+          </div>
+          <button type="button" className="icon-action" onClick={onClose} title="닫기">
+            <X size={18} />
+          </button>
+        </div>
+        <label>
+          <span>preview_url</span>
+          <input readOnly value={modal.embedUrl} />
+        </label>
+        <label>
+          <span>iframe_code</span>
+          <textarea readOnly rows="4" value={modal.iframeCode} />
+        </label>
+        {modal.copyMessage ? <p className="form-ok">{modal.copyMessage}</p> : null}
+        {isPreview ? (
+          <div className="iframe-preview-box">
+            <iframe title={`${modal.quizSet.postSlug} preview`} src={modal.embedUrl} />
+          </div>
+        ) : null}
+        <div className="modal-actions">
+          <a className="admin-button secondary" href={modal.embedUrl} target="_blank" rel="noreferrer">
+            <ExternalLink size={17} />
+            새 창
+          </a>
+          <button type="button" className="admin-button primary" onClick={onCopy}>
+            <Copy size={17} />
+            복사
+          </button>
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -749,7 +889,8 @@ function LoadingRows() {
 }
 
 function StatusBadge({ status }) {
-  return <span className={`status-badge ${status}`}>{status}</span>;
+  const option = statusOptions.find((item) => item.value === status);
+  return <span className={`status-badge ${status}`}>{option?.label || status}</span>;
 }
 
 function CompletionBadge({ quizSet }) {

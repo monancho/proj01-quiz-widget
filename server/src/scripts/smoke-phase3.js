@@ -68,7 +68,7 @@ try {
     body: {
       postSlug: 'quiz-api-test',
       postTitle: 'Quiz API Test',
-      status: 'private'
+      status: 'draft'
     }
   });
   assert(response.status === 201, 'quiz set create should return 201');
@@ -131,12 +131,14 @@ try {
     body: quizPayload(2)
   });
   assert(response.status === 201, 'second quiz create should return 201');
+  const secondQuizId = response.body.id;
 
   response = await request(`/api/admin/quiz-sets/${quizSetId}/quizzes`, {
     method: 'POST',
     body: quizPayload(3)
   });
   assert(response.status === 201, 'third quiz create should return 201');
+  const thirdQuizId = response.body.id;
 
   response = await request(`/api/admin/quiz-sets/${quizSetId}/quizzes`, {
     method: 'POST',
@@ -167,6 +169,16 @@ try {
     }
   });
   assert(response.status === 400, 'update duplicate sortOrder should return 400');
+
+  response = await request(`/api/admin/quiz-sets/${quizSetId}/quizzes/reorder`, {
+    method: 'PATCH',
+    body: {
+      orderedQuizIds: [thirdQuizId, quizId, secondQuizId]
+    }
+  });
+  assert(response.status === 200, 'quiz reorder should return 200');
+  assert(response.body.items[0].id === thirdQuizId, 'reordered first quiz should be the requested quiz');
+  assert(response.body.items[0].sortOrder === 1, 'reordered first quiz should have sortOrder 1');
 
   response = await request(`/api/admin/quizzes/${quizId}`, {
     method: 'DELETE'

@@ -21,6 +21,14 @@ function validateSortOrder(value) {
   return sortOrder;
 }
 
+function validateOptionalSortOrder(value, fallback) {
+  if (value === undefined || value === null || value === '') {
+    return fallback;
+  }
+
+  return validateSortOrder(value);
+}
+
 function validateCorrectPosition(value) {
   const correctPosition = Number.parseInt(value, 10);
 
@@ -77,6 +85,32 @@ function handleUniqueConstraint(error) {
   throw error;
 }
 
+function validateOrderedQuizIds(value, currentQuizzes) {
+  if (!Array.isArray(value)) {
+    throw badRequest('INVALID_QUIZ_ORDER', 'orderedQuizIds must be an array');
+  }
+
+  if (value.length !== currentQuizzes.length) {
+    throw badRequest('INVALID_QUIZ_ORDER', 'orderedQuizIds must include every quiz in this Slug Group');
+  }
+
+  const ids = value.map((idValue) => parseId(idValue, 'quizId'));
+  const expectedIds = new Set(currentQuizzes.map((quiz) => quiz.id));
+  const uniqueIds = new Set(ids);
+
+  if (uniqueIds.size !== ids.length) {
+    throw badRequest('INVALID_QUIZ_ORDER', 'orderedQuizIds cannot contain duplicates');
+  }
+
+  for (const id of ids) {
+    if (!expectedIds.has(id)) {
+      throw badRequest('INVALID_QUIZ_ORDER', 'orderedQuizIds must include only quizzes in this Slug Group');
+    }
+  }
+
+  return ids;
+}
+
 export function createQuizService({ quizRepository, quizSetRepository }) {
   return {
     listBySetId(setIdValue) {
@@ -109,7 +143,10 @@ export function createQuizService({ quizRepository, quizSetRepository }) {
         throw badRequest('QUIZ_LIMIT_EXCEEDED', 'A Slug Group can contain at most 3 quizzes');
       }
 
-      const sortOrder = validateSortOrder(payload?.sortOrder);
+      const sortOrder = validateOptionalSortOrder(
+        payload?.sortOrder,
+        quizRepository.nextSortOrder(quizSetId)
+      );
 
       if (quizRepository.sortOrderExists(quizSetId, sortOrder)) {
         throw badRequest('DUPLICATE_SORT_ORDER', 'sortOrder already exists in this Slug Group');
@@ -178,14 +215,40 @@ export function createQuizService({ quizRepository, quizSetRepository }) {
 
     delete(idValue) {
       const id = parseId(idValue);
+      const current = this.get(id);
       const changes = quizRepository.delete(id);
 
       if (!changes) {
         throw notFound('QUIZ_NOT_FOUND', 'Quiz not found');
       }
 
+      const timestamp = nowIso();
+      quizRepository.normalizeSortOrders(current.quizSetId, timestamp);
+      const quizSet = quizSetRepository.findById(current.quizSetId);
+
+      if (quizSet?.status !== 'draft' && quizSet?.quizCount < 3) {
+        quizSetRepository.updateStatus(current.quizSetId, {
+          status: 'draft',
+          updatedAt: timestamp
+        });
+      }
+
       return {
         deleted: true
+      };
+    },
+
+    reorder(setIdValue, payload) {
+      const quizSetId = parseId(setIdValue, 'setId');
+      assertQuizSetExists(quizSetRepository, quizSetId);
+
+      const currentQuizzes = quizRepository.listBySetId(quizSetId);
+      const orderedIds = validateOrderedQuizIds(payload?.orderedQuizIds, currentQuizzes);
+
+      quizRepository.updateSortOrders(quizSetId, orderedIds, nowIso());
+
+      return {
+        items: quizRepository.listBySetId(quizSetId)
       };
     }
   };

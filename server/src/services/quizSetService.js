@@ -2,10 +2,10 @@ import { badRequest, conflict, notFound } from '../utils/errors.js';
 import { validatePostSlug } from '../utils/slug.js';
 import { nowIso } from '../utils/time.js';
 
-const VALID_STATUSES = new Set(['private', 'published']);
+const VALID_STATUSES = new Set(['draft', 'private', 'published']);
 
 function normalizeStatus(value) {
-  return value || 'private';
+  return value || 'draft';
 }
 
 function validatePostTitle(value) {
@@ -26,7 +26,7 @@ function validateStatus(value) {
   const status = normalizeStatus(value);
 
   if (!VALID_STATUSES.has(status)) {
-    throw badRequest('INVALID_STATUS', 'status must be private or published');
+    throw badRequest('INVALID_STATUS', 'status must be draft, private, or published');
   }
 
   return status;
@@ -45,6 +45,7 @@ function parseId(value, name = 'id') {
 function mapSummary(row) {
   return {
     totalSets: row?.total_sets || 0,
+    draftSets: row?.draft_sets || 0,
     publishedSets: row?.published_sets || 0,
     privateSets: row?.private_sets || 0,
     completedSets: row?.completed_sets || 0
@@ -56,7 +57,7 @@ function normalizeFilters({ query, status } = {}) {
   const normalizedStatus = typeof status === 'string' ? status.trim() : '';
 
   if (normalizedStatus && !VALID_STATUSES.has(normalizedStatus)) {
-    throw badRequest('INVALID_STATUS', 'status must be private or published');
+    throw badRequest('INVALID_STATUS', 'status must be draft, private, or published');
   }
 
   return {
@@ -75,11 +76,11 @@ function validateSlugInput(value) {
   return result.postSlug;
 }
 
-function assertPublishable(status, quizCount) {
-  if (status === 'published' && quizCount !== 3) {
+function assertStatusAllowed(status, quizCount) {
+  if ((status === 'private' || status === 'published') && quizCount !== 3) {
     throw badRequest(
       'INCOMPLETE_QUIZ_SET',
-      'Slug Group must have exactly 3 quizzes before publishing'
+      'Slug Group must have exactly 3 quizzes before using private or published status'
     );
   }
 }
@@ -130,7 +131,7 @@ export function createQuizSetService(repository) {
       const postTitle = validatePostTitle(payload?.postTitle);
       const status = validateStatus(payload?.status);
 
-      assertPublishable(status, 0);
+      assertStatusAllowed(status, 0);
 
       if (repository.findBySlug(postSlug)) {
         throw conflict('DUPLICATE_POST_SLUG', 'postSlug is already in use');
@@ -166,7 +167,7 @@ export function createQuizSetService(repository) {
         ? current.status
         : validateStatus(payload.status);
 
-      assertPublishable(status, current.quizCount);
+      assertStatusAllowed(status, current.quizCount);
 
       if (repository.findBySlug(postSlug, id)) {
         throw conflict('DUPLICATE_POST_SLUG', 'postSlug is already in use');

@@ -65,7 +65,7 @@ function quizPayload(sortOrder) {
   };
 }
 
-async function createSet({ postSlug, postTitle, status = 'private' }) {
+async function createSet({ postSlug, postTitle, status = 'draft' }) {
   const response = await request('/api/admin/quiz-sets', {
     method: 'POST',
     body: {
@@ -103,6 +103,16 @@ try {
   await createQuiz(privateSet.id, 1);
   await createQuiz(privateSet.id, 2);
   await createQuiz(privateSet.id, 3);
+
+  response = await request(`/api/admin/quiz-sets/${privateSet.id}`, {
+    method: 'PATCH',
+    body: {
+      postSlug: 'private-set',
+      postTitle: 'Private Set',
+      status: 'private'
+    }
+  });
+  assert(response.status === 200, 'complete private set update should return 200');
 
   response = await request('/api/embed/private-set/quizzes');
   assert(response.status === 200, 'private set should return 200');

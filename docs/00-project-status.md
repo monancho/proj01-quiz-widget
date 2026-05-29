@@ -7,8 +7,8 @@
 | Date | 2026-05-29 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Phase 7 |
-| Status | Phase 7 rendering/security pushed; stacked draft PR #5 open |
+| Active scope | Pre-deployment admin UX refinement |
+| Status | Admin UX refinement implemented and locally verified |
 
 ## Completed
 
@@ -67,6 +67,12 @@
 - App routes lazy-load admin and embed pages to keep the initial bundle smaller.
 - `feature/rendering-security` pushed to origin.
 - Stacked draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- Pre-deployment admin UX TODO file added under `docs/todos/`.
+- Added `draft` Slug Group status for incomplete groups.
+- Quiz create/edit now opens in a modal.
+- iframe preview and iframe code copy now open in modals.
+- Quiz order is now creation-order based and can be changed by drag-and-drop.
+- Added admin quiz reorder API.
 
 ## Phase 0 TODO
 
@@ -137,6 +143,11 @@
 - Admin Phase 7 QA: quiz table rendered Markdown and KaTeX through the shared renderer and had no unsafe script/link content.
 - Phase 7 implementation commit: `e83b86e phase7: add safe markdown math rendering`.
 - Stacked draft PR #5: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- `npm.cmd run smoke:phase2`: passed after admin UX refinement.
+- `npm.cmd run smoke:phase3`: passed after admin UX refinement, including reorder API coverage.
+- `npm.cmd run smoke:phase4`: passed after admin UX refinement.
+- `npm.cmd run build` after admin UX refinement: passed.
+- Headless Chrome admin UX QA verified modal flows, iframe preview/code modals, drag reorder, and draft-only incomplete status behavior.
 
 ## Remote Sync Status
 
@@ -155,4 +166,5 @@
 
 - After PR #4 review/merge, fast-forward local `develop` from `origin/develop`.
 - After PR #4 merge, retarget PR #5 from `feature/admin-mvp` to `develop`.
+- Commit and push admin UX refinement to update PR #5.
 - Prepare Phase 8 TODO before Docker/deployment work.

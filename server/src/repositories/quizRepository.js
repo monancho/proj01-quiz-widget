@@ -94,6 +94,16 @@ export function createQuizRepository(db) {
       `).get(quizSetId, sortOrder));
     },
 
+    nextSortOrder(quizSetId) {
+      const row = db.prepare(`
+        SELECT COUNT(*) + 1 AS next_sort_order
+        FROM quizzes
+        WHERE quiz_set_id = ?
+      `).get(quizSetId);
+
+      return row?.next_sort_order || 1;
+    },
+
     create({
       quizSetId,
       sortOrder,
@@ -176,6 +186,29 @@ export function createQuizRepository(db) {
     delete(id) {
       const result = db.prepare('DELETE FROM quizzes WHERE id = ?').run(id);
       return result.changes;
+    },
+
+    updateSortOrders(quizSetId, orderedIds, updatedAt) {
+      const update = db.prepare(`
+        UPDATE quizzes
+        SET sort_order = ?, updated_at = ?
+        WHERE id = ? AND quiz_set_id = ?
+      `);
+
+      for (const [index, id] of orderedIds.entries()) {
+        update.run(index + 1, updatedAt, id, quizSetId);
+      }
+    },
+
+    normalizeSortOrders(quizSetId, updatedAt) {
+      const rows = db.prepare(`
+        SELECT id
+        FROM quizzes
+        WHERE quiz_set_id = ?
+        ORDER BY sort_order ASC, id ASC
+      `).all(quizSetId);
+
+      this.updateSortOrders(quizSetId, rows.map((row) => row.id), updatedAt);
     }
   };
 }

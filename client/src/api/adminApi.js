@@ -95,3 +95,10 @@ export function deleteQuiz(id) {
     method: 'DELETE',
   });
 }
+
+export function reorderQuizzes(setId, orderedQuizIds) {
+  return request(`/api/admin/quiz-sets/${setId}/quizzes/reorder`, {
+    method: 'PATCH',
+    body: JSON.stringify({ orderedQuizIds }),
+  });
+}
