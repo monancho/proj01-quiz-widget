@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Pre-deployment admin UX refinement |
-| Status | Unsupported compact design experiment reverted; iframe theme-only change verified for PR #6 |
+| Status | Admin dashboard layout refinement verified for PR #6 |
 
 ## Completed
 
@@ -87,6 +87,8 @@
 - Reverted unsupported compact functional UI experiment via `caec970` and `d4e13c1`.
 - Added iframe utility modal theme selection only: `시스템`, `화이트`, `다크`.
 - Public iframe route now supports `theme=light|dark|system` while preserving transparent iframe backgrounds.
+- Added a left admin navigation rail with only one current item: `대시보드`.
+- Changed the admin main area to stack status/filter/stats, Slug Groups, and Quizzes vertically.
 
 ## Phase 0 TODO
 
@@ -172,6 +174,9 @@
 - Admin UX polish commit: `1cfc53c admin: polish predeploy ux controls`.
 - `npm.cmd run build` after reverting unsupported compact design and applying theme-only behavior: passed.
 - Headless Chrome theme-only QA verified the original admin wireframe markers, no fake sidebar/notification UI, iframe modal theme options, `theme=dark` URL/code/clipboard behavior, light/dark/system embed rendering, no horizontal overflow, and transparent public embed backgrounds.
+- `npm.cmd run build` after admin dashboard layout refinement: passed.
+- Headless Chrome admin layout QA verified one `대시보드` nav item, vertical status/Slug Groups/Quizzes stacking, Slug Group selection, 3-row quiz table rendering, iframe utility modal behavior, public embed rendering, and no horizontal overflow.
+- Headless Chrome wide viewport QA verified the 224px left sidebar and main dashboard column render side by side without horizontal overflow.
 
 ## Remote Sync Status
 

@@ -6,6 +6,7 @@ import {
   ExternalLink,
   Filter,
   GripVertical,
+  LayoutDashboard,
   LoaderCircle,
   Plus,
   RefreshCw,
@@ -386,6 +387,19 @@ export default function AdminQuizManagerPage() {
 
   return (
     <main className="admin-shell">
+      <aside className="admin-sidebar" aria-label="Admin navigation">
+        <div className="admin-sidebar-brand">
+          <span>Quiz Admin</span>
+        </div>
+        <nav className="admin-sidebar-nav">
+          <button type="button" className="admin-nav-item active" aria-current="page">
+            <LayoutDashboard size={18} />
+            대시보드
+          </button>
+        </nav>
+      </aside>
+
+      <div className="admin-main">
       <header className="admin-topbar">
         <div>
           <p className="admin-kicker">Quiz Widget Admin</p>
@@ -484,6 +498,8 @@ export default function AdminQuizManagerPage() {
           )}
         </div>
       </section>
+
+      </div>
 
       {setModal ? (
         <SetModal
