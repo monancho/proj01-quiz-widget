@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
-    "db:migrate": "node src/db/migrate.js"
+    "db:migrate": "node src/db/migrate.js",
+    "smoke:phase2": "node src/scripts/smoke-phase2.js"
   },
   "dependencies": {
     "dotenv": "^17.2.3",

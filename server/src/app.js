@@ -1,6 +1,8 @@
 import express from 'express';
+import { openDatabase } from './db/connection.js';
+import { createAdminQuizSetsRouter } from './routes/adminQuizSets.routes.js';
 
-export function createApp() {
+export function createApp({ db = openDatabase() } = {}) {
   const app = express();
 
   app.disable('x-powered-by');
@@ -14,6 +16,8 @@ export function createApp() {
     });
   });
 
+  app.use('/api/admin/quiz-sets', createAdminQuizSetsRouter(db));
+
   app.use((req, res) => {
     res.status(404).json({
       error: {
@@ -24,6 +28,16 @@ export function createApp() {
   });
 
   app.use((err, _req, res, _next) => {
+    if (err.statusCode && err.code) {
+      res.status(err.statusCode).json({
+        error: {
+          code: err.code,
+          message: err.message
+        }
+      });
+      return;
+    }
+
     console.error(err);
     res.status(500).json({
       error: {

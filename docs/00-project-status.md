@@ -7,8 +7,8 @@
 | Date | 2026-05-29 |
 | Base branch | `develop` |
 | Current branch | `feature/server-api-mvp` |
-| Active scope | Phase 2 kickoff |
-| Status | Phase TODO rule added; Phase 2 TODO prepared |
+| Active scope | Phase 2 |
+| Status | Phase 2 Slug Group API implemented and verified |
 
 ## Completed
 
@@ -23,6 +23,7 @@
 - `feature/server-api-mvp` branch created for Phase 2+ backend API work.
 - Phase TODO convention added to `AGENTS.md`.
 - Phase 2 TODO file added under `docs/todos/`.
+- Phase 2 Slug Group API implemented.
 
 ## Phase 0 TODO
 
@@ -58,10 +59,12 @@
 - Human docs restructure commit: `f5fb96f docs: separate human-facing reports`.
 - Human docs category commit: `9d0ddda docs: categorize human documentation`.
 - Phase TODO rule commit: `c5e79da docs: require phase todo before implementation`.
+- Phase 2 implementation commit: pending.
+- `npm.cmd run smoke:phase2`: passed.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
 ## Next
 
-- Implement Phase 2: Slug Group API.
-- Start from `docs/todos/phase-2-slug-group-api.md`.
-- Implement `post_slug` normalization and validation first.
+- Commit Phase 2 implementation.
+- Prepare Phase 3 TODO before starting Quiz API.
+- Start Phase 3: Quiz API.
