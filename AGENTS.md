@@ -24,7 +24,8 @@ At the start of every session, read these files in order:
 4. `docs/01-requirements.md` when product behavior is unclear
 5. `docs/02-implementation-plan.md` when implementation shape is unclear
 
-Also read `docs/05-agent-operation-guide.md` if you need a Korean human-readable explanation of this workflow.
+Human-facing checkpoint reports live under `docs/human/`.
+Do not update human-facing reports every session; update them only when the user asks for a checkpoint/report or when a meaningful milestone needs a human-readable summary.
 
 ## Workflow
 
@@ -33,6 +34,7 @@ Also read `docs/05-agent-operation-guide.md` if you need a Korean human-readable
 - Follow the phase order in `docs/03-task-breakdown.md`.
 - Update `docs/00-project-status.md` when phase status changes.
 - Update the latest `docs/worklog/YYYY-MM-DD.md` during meaningful progress.
+- Keep human-facing HTML reports under `docs/human/` for checkpoint reviews, not routine work logging.
 - Commit after each completed phase or coherent task group.
 - Do not skip verification before committing.
 
@@ -72,4 +74,3 @@ Every meaningful implementation session should leave the repository in a state w
 1. `AGENTS.md`
 2. `docs/00-project-status.md`
 3. the latest `docs/worklog/YYYY-MM-DD.md`
-

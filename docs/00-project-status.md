@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/project-scaffold` |
 | Active scope | Phase 0 + Phase 1 |
-| Status | Agent operating guide added after Phase 0 + Phase 1 |
+| Status | Human-facing docs separated under `docs/human/` |
 
 ## Completed
 
@@ -18,7 +18,7 @@
 - Planning documents committed under `docs/`.
 - Phase 0 + Phase 1 implementation committed.
 - Agent operating guide added in `AGENTS.md`.
-- Human-readable agent workflow guide added in `docs/05-agent-operation-guide.md`.
+- Human-facing agent workflow guide moved to `docs/human/agent-operation-guide.html`.
 
 ## Phase 0 TODO
 
@@ -51,6 +51,7 @@
 - `/health` smoke test: returned `200`.
 - Implementation commit: `6a62601 phase0-1: scaffold backend foundation`.
 - Agent guide commit: `45a44d2 docs: add agent operating guide`.
+- Human docs restructure commit: pending.
 - Note: Node 24 reports `node:sqlite` as experimental.
 
 ## Next After Phase 0 + 1

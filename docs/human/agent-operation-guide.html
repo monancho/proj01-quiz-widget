@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Operation Guide</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #d9dee7;
+      --brand: #2563eb;
+      --brand-soft: #e8f0ff;
+      --good: #047857;
+      --warn: #b45309;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 40px 24px 56px;
+    }
+
+    header {
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 100%;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfe;
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f4fa;
+      font-weight: 700;
+    }
+
+    ol,
+    ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    .callout {
+      border-color: #b7c9ff;
+      background: var(--brand-soft);
+    }
+
+    .callout strong {
+      color: var(--brand);
+    }
+
+    .success {
+      color: var(--good);
+      font-weight: 700;
+    }
+
+    .warning {
+      color: var(--warn);
+      font-weight: 700;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 12px 0 0;
+      padding: 14px;
+      border-radius: 8px;
+      background: #111827;
+      color: #f9fafb;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 28px 16px 40px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      section {
+        padding: 18px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Agent Operation Guide</h1>
+      <p class="subtitle">Codex 작업 규칙을 사람이 확인하기 쉽게 정리한 중간 점검용 문서입니다.</p>
+      <div class="meta">
+        <span class="pill">Project: proj01-quiz-widget</span>
+        <span class="pill">Updated: 2026-05-29</span>
+        <span class="pill">Human checkpoint document</span>
+      </div>
+    </header>
+
+    <section class="callout">
+      <h2>핵심 요약</h2>
+      <p><strong>AGENTS.md</strong>는 AI가 매 세션 참고하는 고정 지도입니다.</p>
+      <p><strong>docs/00-project-status.md</strong>와 <strong>docs/worklog/</strong>는 계속 바뀌는 상태 기록입니다.</p>
+      <p>이 HTML 문서는 사람이 확인해야 할 때 보는 보고서이며, 매번 자동으로 만들거나 갱신할 필요는 없습니다.</p>
+    </section>
+
+    <section>
+      <h2>문서 역할 분리</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>문서</th>
+            <th>대상</th>
+            <th>역할</th>
+            <th>갱신 시점</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>AGENTS.md</code></td>
+            <td>AI / Codex</td>
+            <td>매 세션 따라야 할 고정 작업 규칙</td>
+            <td>운영 방식이 바뀔 때만</td>
+          </tr>
+          <tr>
+            <td><code>docs/00-project-status.md</code></td>
+            <td>사람 + AI</td>
+            <td>현재 브랜치, Phase, 완료/다음 작업 상태판</td>
+            <td>작업 상태가 바뀔 때</td>
+          </tr>
+          <tr>
+            <td><code>docs/worklog/YYYY-MM-DD.md</code></td>
+            <td>사람 + AI</td>
+            <td>날짜별 작업 로그와 검증 기록</td>
+            <td>의미 있는 작업 진행 중</td>
+          </tr>
+          <tr>
+            <td><code>docs/human/*.html</code></td>
+            <td>사람</td>
+            <td>체크포인트, 중간 보고, 의사결정용 문서</td>
+            <td>요청 또는 마일스톤 때만</td>
+          </tr>
+          <tr>
+            <td><code>docs/03-task-breakdown.md</code></td>
+            <td>사람 + AI</td>
+            <td>전체 Phase 기준 작업 목록</td>
+            <td>계획이 바뀔 때</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>새 세션 시작 순서</h2>
+      <div class="grid">
+        <div class="card">
+          <strong>AI가 먼저 읽을 것</strong>
+          <ol>
+            <li><code>AGENTS.md</code></li>
+            <li><code>docs/00-project-status.md</code></li>
+            <li>최신 <code>docs/worklog/YYYY-MM-DD.md</code></li>
+            <li><code>docs/03-task-breakdown.md</code></li>
+          </ol>
+        </div>
+        <div class="card">
+          <strong>사람이 확인할 것</strong>
+          <ul>
+            <li>현재 Phase가 무엇인지</li>
+            <li>최근 커밋과 검증 결과</li>
+            <li>다음 작업이 명세와 맞는지</li>
+            <li>체크포인트 보고가 필요한지</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>고정 운영 규칙</h2>
+      <ul>
+        <li><code>develop</code>에서 기능 브랜치를 만들어 작업합니다.</li>
+        <li><code>docs/03-task-breakdown.md</code>의 Phase 순서를 따릅니다.</li>
+        <li>작업 상태가 바뀌면 <code>docs/00-project-status.md</code>를 갱신합니다.</li>
+        <li>의미 있는 작업 진행은 최신 worklog에 기록합니다.</li>
+        <li>사람용 HTML 문서는 매번 만들지 않고, 중간 보고나 체크포인트에만 갱신합니다.</li>
+        <li>검증 없이 커밋하지 않습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>현재 브랜치 전략</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>브랜치</th>
+            <th>역할</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>develop</code></td>
+            <td>통합 브랜치</td>
+          </tr>
+          <tr>
+            <td><code>feature/project-scaffold</code></td>
+            <td>Phase 0 + Phase 1</td>
+          </tr>
+          <tr>
+            <td><code>feature/server-api-mvp</code></td>
+            <td>Phase 2 + Phase 3 + Phase 4</td>
+          </tr>
+          <tr>
+            <td><code>feature/client-embed-mvp</code></td>
+            <td>Phase 5</td>
+          </tr>
+          <tr>
+            <td><code>feature/admin-mvp</code></td>
+            <td>Phase 6</td>
+          </tr>
+          <tr>
+            <td><code>feature/docker-deploy</code></td>
+            <td>Phase 8</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Codex에게 줄 시작 문장</h2>
+      <p>새 세션에서 이어서 작업할 때는 아래 문장을 사용하면 됩니다.</p>
+      <pre>AGENTS.md를 먼저 읽고,
+docs/00-project-status.md와 최신 worklog를 확인한 뒤,
+현재 작업 상태를 요약하고 다음 Phase부터 이어서 진행해줘.</pre>
+    </section>
+
+    <section>
+      <h2>운영 원칙 한 줄 정리</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th><code>AGENTS.md</code></th>
+            <td>변하지 않는 작업 규칙</td>
+          </tr>
+          <tr>
+            <th><code>docs/00-project-status.md</code></th>
+            <td>현재 위치</td>
+          </tr>
+          <tr>
+            <th><code>docs/worklog/</code></th>
+            <td>지나온 길</td>
+          </tr>
+          <tr>
+            <th><code>docs/human/</code></th>
+            <td>사람이 확인할 중간 보고</td>
+          </tr>
+          <tr>
+            <th><code>docs/03-task-breakdown.md</code></th>
+            <td>앞으로 갈 길</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
+
