@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Pre-deployment admin UX refinement |
-| Status | Admin UX follow-up pushed; direct draft PR #6 open |
+| Status | Admin UX polish implemented locally; direct draft PR #6 open |
 
 ## Completed
 
@@ -73,6 +73,11 @@
 - iframe preview and iframe code copy now open in modals.
 - iframe preview and iframe code copy are now combined in one utility modal.
 - Quiz create/edit modal now shows the current question as a finished widget-style preview with selectable feedback.
+- Admin status summary/filter now uses 4 visible categories: total, preparing, public, private.
+- Incomplete Slug Groups now show automatic readonly `준비중` status in the admin modal.
+- Quiz reorder now uses a dedicated drag handle.
+- iframe code textarea now copies the code on click/focus without showing a routine success banner.
+- Public iframe embed background is transparent while admin preview remains visually framed.
 - Quiz order is now creation-order based and can be changed by drag-and-drop.
 - Added admin quiz reorder API.
 - PR #4 merged into `develop`.
@@ -158,6 +163,8 @@
 - `npm.cmd run build` after unified iframe/widget preview follow-up: passed.
 - Headless Chrome admin follow-up QA verified the combined iframe modal, iframe code textarea, live iframe preview, widget-style quiz preview, selectable feedback, and no horizontal overflow.
 - Admin UX follow-up commit: `59c9695 admin: unify embed and widget previews`.
+- `npm.cmd run build` after admin UX polish: passed.
+- Headless Chrome admin UX polish QA verified 4 status categories, automatic readonly preparing state, handle drag reorder, click-to-copy iframe code, no copy success banner, and transparent public embed background.
 
 ## Remote Sync Status
 
@@ -175,6 +182,7 @@
 
 ## Next
 
+- Commit and push the admin UX polish follow-up to PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.

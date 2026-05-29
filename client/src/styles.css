@@ -4,7 +4,7 @@
 
 :root {
   color: #14213d;
-  background: #f7f9fb;
+  background: transparent;
   font-family: Inter, Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -37,10 +37,7 @@ a {
   justify-content: space-between;
   gap: 14px;
   padding: 18px;
-  background:
-    linear-gradient(135deg, rgba(34, 197, 94, 0.08), transparent 34%),
-    linear-gradient(315deg, rgba(244, 63, 94, 0.08), transparent 35%),
-    #f7f9fb;
+  background: transparent;
 }
 
 .embed-panel {
@@ -596,7 +593,7 @@ a {
 
 .admin-stats {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   margin-top: 16px;
 }
@@ -821,10 +818,6 @@ a {
   vertical-align: top;
 }
 
-.quiz-table tr[draggable="true"] {
-  cursor: grab;
-}
-
 .dragging-row {
   opacity: 0.48;
 }
@@ -832,6 +825,28 @@ a {
 .drag-cell {
   width: 44px;
   color: #64748b;
+}
+
+.drag-handle {
+  display: inline-grid;
+  width: 32px;
+  min-height: 32px;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  cursor: grab;
+}
+
+.drag-handle:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  color: #334155;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
 }
 
 .quiz-table th {
@@ -926,6 +941,29 @@ a {
   color: #047857;
 }
 
+.readonly-status {
+  display: grid;
+  gap: 6px;
+}
+
+.readonly-status span {
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.readonly-status strong {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 32px;
+  align-items: center;
+  border-radius: 999px;
+  background: #fef3c7;
+  color: #92400e;
+  padding: 5px 10px;
+  font-size: 0.82rem;
+}
+
 .modal-actions {
   justify-content: flex-end;
 }
@@ -1012,7 +1050,10 @@ a {
   overflow: hidden;
   border: 1px solid #d8e0ea;
   border-radius: 8px;
-  background: #ffffff;
+  background:
+    linear-gradient(135deg, rgba(34, 197, 94, 0.08), transparent 34%),
+    linear-gradient(315deg, rgba(244, 63, 94, 0.08), transparent 35%),
+    #f7f9fb;
 }
 
 .iframe-preview-box iframe {
