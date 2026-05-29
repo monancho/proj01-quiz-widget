@@ -52,6 +52,108 @@ a {
   box-shadow: 0 16px 40px rgba(20, 33, 61, 0.12);
 }
 
+.embed-theme-dark .embed-panel {
+  border-color: #334155;
+  background: rgba(15, 23, 42, 0.96);
+  color: #f8fafc;
+  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.28);
+}
+
+.embed-theme-dark .quiz-question,
+.embed-theme-dark .result-summary h1,
+.embed-theme-dark .state-message h1 {
+  color: #f8fafc;
+}
+
+.embed-theme-dark .quiz-count,
+.embed-theme-dark .result-kicker,
+.embed-theme-dark .choice-letter {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+
+.embed-theme-dark .choice-button {
+  border-color: #334155;
+  background: #111827;
+  color: #f8fafc;
+}
+
+.embed-theme-dark .choice-button:not(:disabled):hover,
+.embed-theme-dark .choice-muted {
+  background: #1e293b;
+}
+
+.embed-theme-dark .feedback-answer {
+  color: #f8fafc;
+}
+
+.embed-theme-dark .feedback-explanation,
+.embed-theme-dark .result-summary p {
+  color: #cbd5e1;
+}
+
+.embed-theme-dark .static-banner {
+  border-color: #334155;
+  background: #111827;
+  color: #e2e8f0;
+}
+
+.embed-theme-dark .banner-cta {
+  color: #cbd5e1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .embed-theme-system .embed-panel {
+    border-color: #334155;
+    background: rgba(15, 23, 42, 0.96);
+    color: #f8fafc;
+    box-shadow: 0 16px 40px rgba(2, 6, 23, 0.28);
+  }
+
+  .embed-theme-system .quiz-question,
+  .embed-theme-system .result-summary h1,
+  .embed-theme-system .state-message h1 {
+    color: #f8fafc;
+  }
+
+  .embed-theme-system .quiz-count,
+  .embed-theme-system .result-kicker,
+  .embed-theme-system .choice-letter {
+    background: #1e293b;
+    color: #cbd5e1;
+  }
+
+  .embed-theme-system .choice-button {
+    border-color: #334155;
+    background: #111827;
+    color: #f8fafc;
+  }
+
+  .embed-theme-system .choice-button:not(:disabled):hover,
+  .embed-theme-system .choice-muted {
+    background: #1e293b;
+  }
+
+  .embed-theme-system .feedback-answer {
+    color: #f8fafc;
+  }
+
+  .embed-theme-system .feedback-explanation,
+  .embed-theme-system .result-summary p {
+    color: #cbd5e1;
+  }
+
+  .embed-theme-system .static-banner {
+    border-color: #334155;
+    background: #111827;
+    color: #e2e8f0;
+  }
+
+  .embed-theme-system .banner-cta {
+    color: #cbd5e1;
+  }
+}
+
 .quiz-card {
   display: flex;
   min-height: 560px;
@@ -1044,6 +1146,47 @@ a {
 
 .utility-modal {
   width: min(100%, 920px);
+}
+
+.theme-mode-field {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.theme-mode-field legend {
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 850;
+  padding: 0;
+}
+
+.theme-mode-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 3px;
+}
+
+.theme-mode-control button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #475569;
+  font-weight: 850;
+}
+
+.theme-mode-control button.active {
+  background: #0f766e;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.14);
 }
 
 .iframe-preview-box {

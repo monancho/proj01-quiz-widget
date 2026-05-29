@@ -36,6 +36,12 @@ const statusOptions = [
   { value: 'private', label: '비공개' },
 ];
 
+const embedThemeOptions = [
+  { value: 'system', label: '시스템' },
+  { value: 'light', label: '화이트' },
+  { value: 'dark', label: '다크' },
+];
+
 const emptySetForm = {
   id: null,
   postSlug: '',
@@ -345,18 +351,21 @@ export default function AdminQuizManagerPage() {
   function openEmbedToolsModal(quizSet) {
     setUtilityModal({
       quizSet,
-      embedUrl: buildEmbedUrl(quizSet.postSlug),
-      iframeCode: buildIframeCode(quizSet.postSlug),
+      themeMode: 'system',
     });
   }
 
-  async function handleCopyIframeCode() {
-    if (!utilityModal?.iframeCode) {
+  function handleChangeEmbedTheme(themeMode) {
+    setUtilityModal((current) => (current ? { ...current, themeMode } : current));
+  }
+
+  async function handleCopyIframeCode(iframeCode) {
+    if (!iframeCode) {
       return;
     }
 
     try {
-      await navigator.clipboard.writeText(utilityModal.iframeCode);
+      await navigator.clipboard.writeText(iframeCode);
     } catch {
       // The code field is selected by the caller so manual copy remains available.
     }
@@ -501,6 +510,7 @@ export default function AdminQuizManagerPage() {
         <UtilityModal
           modal={utilityModal}
           onClose={() => setUtilityModal(null)}
+          onThemeChange={handleChangeEmbedTheme}
           onCopy={handleCopyIframeCode}
         />
       ) : null}
@@ -852,10 +862,14 @@ function WidgetQuestionPreview({ form }) {
   );
 }
 
-function UtilityModal({ modal, onClose, onCopy }) {
+function UtilityModal({ modal, onClose, onThemeChange, onCopy }) {
+  const themeMode = modal.themeMode || 'system';
+  const embedUrl = buildEmbedUrl(modal.quizSet.postSlug, themeMode);
+  const iframeCode = buildIframeCode(modal.quizSet.postSlug, themeMode);
+
   function handleCodeInteraction(event) {
     event.currentTarget.select();
-    onCopy();
+    onCopy(iframeCode);
   }
 
   return (
@@ -872,28 +886,43 @@ function UtilityModal({ modal, onClose, onCopy }) {
         </div>
         <label>
           <span>preview_url</span>
-          <input readOnly value={modal.embedUrl} />
+          <input readOnly value={embedUrl} />
         </label>
+        <fieldset className="theme-mode-field">
+          <legend>theme</legend>
+          <div className="theme-mode-control">
+            {embedThemeOptions.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                className={themeMode === option.value ? 'active' : ''}
+                onClick={() => onThemeChange(option.value)}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </fieldset>
         <label>
           <span>iframe_code</span>
           <textarea
             readOnly
             rows="4"
-            value={modal.iframeCode}
+            value={iframeCode}
             title="클릭하면 iframe 코드가 복사됩니다."
             onClick={handleCodeInteraction}
             onFocus={handleCodeInteraction}
           />
         </label>
         <div className="iframe-preview-box">
-          <iframe title={`${modal.quizSet.postSlug} preview`} src={modal.embedUrl} />
+          <iframe title={`${modal.quizSet.postSlug} preview`} src={embedUrl} />
         </div>
         <div className="modal-actions">
-          <a className="admin-button secondary" href={modal.embedUrl} target="_blank" rel="noreferrer">
+          <a className="admin-button secondary" href={embedUrl} target="_blank" rel="noreferrer">
             <ExternalLink size={17} />
             새 창
           </a>
-          <button type="button" className="admin-button primary" onClick={onCopy}>
+          <button type="button" className="admin-button primary" onClick={() => onCopy(iframeCode)}>
             <Copy size={17} />
             복사
           </button>
@@ -925,10 +954,11 @@ function CompletionBadge({ quizSet }) {
   );
 }
 
-function buildEmbedUrl(postSlug) {
-  return `${window.location.origin}/embed/${encodeURIComponent(postSlug)}`;
+function buildEmbedUrl(postSlug, themeMode = 'system') {
+  const theme = embedThemeOptions.some((option) => option.value === themeMode) ? themeMode : 'system';
+  return `${window.location.origin}/embed/${encodeURIComponent(postSlug)}?theme=${theme}`;
 }
 
-function buildIframeCode(postSlug) {
-  return `<iframe src="${buildEmbedUrl(postSlug)}" width="100%" height="720" loading="lazy" allowtransparency="true" style="border:0;max-width:100%;background:transparent;"></iframe>`;
+function buildIframeCode(postSlug, themeMode = 'system') {
+  return `<iframe src="${buildEmbedUrl(postSlug, themeMode)}" width="100%" height="720" loading="lazy" allowtransparency="true" style="border:0;max-width:100%;background:transparent;"></iframe>`;
 }

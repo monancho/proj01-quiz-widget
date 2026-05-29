@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Pre-deployment admin UX refinement |
-| Status | Admin UX polish pushed; direct draft PR #6 open |
+| Status | Unsupported compact design experiment reverted; iframe theme-only change verified for PR #6 |
 
 ## Completed
 
@@ -83,6 +83,10 @@
 - PR #4 merged into `develop`.
 - PR #5 merged into `feature/admin-mvp`.
 - Direct draft PR #6 opened into `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
+- Safety checkpoint tag pushed before design experiment: `checkpoint-before-design-theme-20260529`.
+- Reverted unsupported compact functional UI experiment via `caec970` and `d4e13c1`.
+- Added iframe utility modal theme selection only: `시스템`, `화이트`, `다크`.
+- Public iframe route now supports `theme=light|dark|system` while preserving transparent iframe backgrounds.
 
 ## Phase 0 TODO
 
@@ -166,6 +170,8 @@
 - `npm.cmd run build` after admin UX polish: passed.
 - Headless Chrome admin UX polish QA verified 4 status categories, automatic readonly preparing state, handle drag reorder, click-to-copy iframe code, no copy success banner, and transparent public embed background.
 - Admin UX polish commit: `1cfc53c admin: polish predeploy ux controls`.
+- `npm.cmd run build` after reverting unsupported compact design and applying theme-only behavior: passed.
+- Headless Chrome theme-only QA verified the original admin wireframe markers, no fake sidebar/notification UI, iframe modal theme options, `theme=dark` URL/code/clipboard behavior, light/dark/system embed rendering, no horizontal overflow, and transparent public embed backgrounds.
 
 ## Remote Sync Status
 
@@ -180,6 +186,7 @@
 - `feature/rendering-security` is pushed and tracks `origin/feature/rendering-security`.
 - PR #5 is merged into `origin/feature/admin-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
 - Direct draft PR #6 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
+- `feature/rendering-security` contains the verified revert/theme-only follow-up for PR #6.
 
 ## Next
 
