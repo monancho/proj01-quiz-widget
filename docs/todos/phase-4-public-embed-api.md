@@ -61,7 +61,7 @@ Implement Phase 4 from `docs/03-task-breakdown.md`: Public Embed API.
 - [x] Run `git diff --check`.
 - [x] Update `docs/00-project-status.md`.
 - [x] Update latest worklog.
-- [ ] Commit Phase 4 changes.
+- [x] Commit Phase 4 changes.
 
 ## Verification Results
 
@@ -69,6 +69,7 @@ Implement Phase 4 from `docs/03-task-breakdown.md`: Public Embed API.
 - `npm.cmd run smoke:phase2`: passed.
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase4`: passed.
+- Phase 4 implementation commit: `079b8a6 phase4: implement public embed api`.
 - Note: smoke tests create temporary SQLite runtime files, so they may need elevated execution in this sandbox.
 
 ## Handoff Notes

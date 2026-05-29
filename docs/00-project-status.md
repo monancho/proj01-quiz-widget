@@ -72,8 +72,8 @@
 - Phase 3 TODO commit: `e194a8e docs: prepare phase 3 quiz api todo`.
 - Phase 3 implementation commit: `ebef1cc phase3: implement admin quiz api`.
 - Phase 4 TODO commit: `b79532a docs: prepare phase 4 public embed api todo`.
-- Phase 4 implementation commit: pending.
-- API MVP human report commit: pending.
+- Phase 4 implementation commit: `079b8a6 phase4: implement public embed api`.
+- API MVP human report commit: included in `079b8a6 phase4: implement public embed api`.
 - `npm.cmd run smoke:phase4`: passed.
 - `npm.cmd run smoke:phase3`: passed.
 - `npm.cmd run smoke:phase2`: passed.
@@ -90,7 +90,7 @@
 - Phase 2 implementation is committed.
 - Push local `develop` and `feature/server-api-mvp` when ready.
 - Phase 3 implementation is committed.
-- Commit Phase 4 implementation.
-- Update human-facing API MVP checkpoint report.
+- Phase 4 implementation is committed.
+- API MVP human checkpoint report is updated.
 - Push local `develop` and `feature/server-api-mvp` when ready.
 - Prepare Phase 5 TODO before starting iframe frontend.
