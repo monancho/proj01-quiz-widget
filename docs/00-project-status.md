@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
 | Active scope | Phase 7 |
-| Status | Phase 7 TODO prepared; implementation not started |
+| Status | Phase 7 rendering/security implemented and locally verified |
 
 ## Completed
 
@@ -61,6 +61,10 @@
 - Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
 - `feature/rendering-security` branch created for Phase 7 planning.
 - Phase 7 TODO file added under `docs/todos/`.
+- Phase 7 shared Markdown/LaTeX renderer implemented.
+- Public iframe quiz question, choices, answer, and explanation now use safe rich text rendering.
+- Admin quiz table and quiz preview now use the same safe rich text rendering.
+- App routes lazy-load admin and embed pages to keep the initial bundle smaller.
 
 ## Phase 0 TODO
 
@@ -124,6 +128,11 @@
 - Admin QA created and deleted a throwaway Slug Group.
 - Phase 6 implementation commit: `cc82950 phase6: implement admin frontend mvp`.
 - Draft PR #4: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- Phase 7 TODO commit: `c497ea1 docs: prepare phase 7 rendering security todo`.
+- `npm.cmd install react-markdown remark-gfm remark-math rehype-katex katex`: completed with 0 vulnerabilities.
+- `npm.cmd run build` after Phase 7 implementation: passed.
+- Public iframe Phase 7 QA: Markdown and KaTeX rendered; quiz content had no script tags, no `onerror`, no `javascript:` URL, and no mobile horizontal overflow at 390px.
+- Admin Phase 7 QA: quiz table rendered Markdown and KaTeX through the shared renderer and had no unsafe script/link content.
 
 ## Remote Sync Status
 
@@ -138,6 +147,6 @@
 
 ## Next
 
-- Prepare Phase 7 TODO before Markdown/LaTeX rendering and sanitizing work.
-- Start Phase 7 implementation after confirming the dependency approach for Markdown, LaTeX, and sanitizing.
+- Commit Phase 7 rendering/security implementation.
+- Push `feature/rendering-security` after commit and open a stacked draft PR.
 - After PR #4 review/merge, fast-forward local `develop` from `origin/develop`.

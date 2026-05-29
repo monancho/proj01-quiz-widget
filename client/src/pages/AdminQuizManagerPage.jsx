@@ -12,6 +12,7 @@ import {
   X,
 } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
+import RichText from '../components/common/RichText.jsx';
 import {
   checkPostSlug,
   createQuiz,
@@ -540,8 +541,12 @@ function SetDetail({
             ) : quizzes.map((quiz) => (
               <tr key={quiz.id}>
                 <td>{quiz.sortOrder}</td>
-                <td>{quiz.question}</td>
-                <td>{quiz.choices[quiz.correctPosition - 1]}</td>
+                <td>
+                  <RichText source={quiz.question} inline />
+                </td>
+                <td>
+                  <RichText source={quiz.choices[quiz.correctPosition - 1]} inline />
+                </td>
                 <td>
                   <div className="row-actions">
                     <button type="button" className="icon-action" onClick={() => onEditQuiz(quiz)} title="문제 수정">
@@ -707,15 +712,18 @@ function QuizEditor({ quizForm, setQuizForm, onSubmit, onCancel, busy }) {
         </label>
         <div className="quiz-preview">
           <strong>미리보기</strong>
-          <p>{form.question || '문제 본문이 여기에 표시됩니다.'}</p>
+          <RichText source={form.question} fallback="문제 본문이 여기에 표시됩니다." />
           <ol>
             {form.choices.map((choice, index) => (
               <li key={index} className={index + 1 === Number(form.correctPosition) ? 'preview-answer' : ''}>
-                {choice || `보기 ${index + 1}`}
+                <RichText source={choice} fallback={`보기 ${index + 1}`} inline />
               </li>
             ))}
           </ol>
-          <p>정답: {answerPreview || '정답 보기를 입력하세요.'}</p>
+          <p>
+            정답: <RichText source={answerPreview} fallback="정답 보기를 입력하세요." inline />
+          </p>
+          <RichText source={form.explanation} fallback="해설이 여기에 표시됩니다." />
         </div>
         <div className="modal-actions">
           <button type="button" className="admin-button secondary" onClick={onCancel}>

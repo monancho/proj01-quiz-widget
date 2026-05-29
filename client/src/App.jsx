@@ -1,6 +1,7 @@
-import React from 'react';
-import EmbedQuizPage from './pages/EmbedQuizPage.jsx';
-import AdminQuizManagerPage from './pages/AdminQuizManagerPage.jsx';
+import React, { Suspense, lazy } from 'react';
+
+const EmbedQuizPage = lazy(() => import('./pages/EmbedQuizPage.jsx'));
+const AdminQuizManagerPage = lazy(() => import('./pages/AdminQuizManagerPage.jsx'));
 
 function getEmbedSlug(pathname) {
   const marker = '/embed/';
@@ -15,10 +16,18 @@ function getEmbedSlug(pathname) {
 
 export default function App() {
   if (window.location.pathname.startsWith('/admin')) {
-    return <AdminQuizManagerPage />;
+    return (
+      <Suspense fallback={<main className="state-message">Loading admin...</main>}>
+        <AdminQuizManagerPage />
+      </Suspense>
+    );
   }
 
   const postSlug = getEmbedSlug(window.location.pathname);
 
-  return <EmbedQuizPage postSlug={postSlug} />;
+  return (
+    <Suspense fallback={<main className="state-message">Loading quiz...</main>}>
+      <EmbedQuizPage postSlug={postSlug} />
+    </Suspense>
+  );
 }
