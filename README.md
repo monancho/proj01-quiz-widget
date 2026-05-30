@@ -53,6 +53,29 @@ Local iframe URL:
 http://localhost:5173/embed/{postSlug}
 ```
 
+## Deployment Prep
+
+Phase 8 deployment artifacts are prepared under:
+
+- `server/Dockerfile`
+- `infra/docker-compose.yml`
+- `infra/caddy/Caddyfile`
+- `infra/env/api.env.example`
+- `docs/deployment/cloudflare-pages.md`
+- `docs/deployment/oci-backend.md`
+- `docs/deployment/deployment-smoke-test.md`
+- `.github/workflows/backend-deploy.example.yml`
+
+Backend local Docker Compose entry point:
+
+```bash
+cp infra/env/api.env.example infra/env/api.env
+docker compose -f infra/docker-compose.yml up -d --build
+curl http://localhost/health
+```
+
+Cloudflare Pages should use `client` as the root directory, `npm run build` as the build command, and `dist` as the output directory.
+
 ## Environment
 
 Copy `server/.env.example` to `server/.env` for local overrides.
