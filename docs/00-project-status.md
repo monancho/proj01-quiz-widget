@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Design D1 embed footprint reduction |
-| Status | D0 audit completed and D1 footprint reduction implemented locally |
+| Active scope | Design D2 skin-adaptive surface tuning |
+| Status | D2 surface tuning implemented and verified locally |
 
 ## Completed
 
@@ -114,6 +114,12 @@
 - Implemented Design D1 embed footprint reduction.
 - Reduced generated iframe copy height from `720px` to `620px`.
 - Reduced public iframe shell padding, panel min-height, panel shadow, title band height, question block weight, choice row height, and action spacing while preserving touch usability.
+- Added `docs/todos/design-d2-skin-adaptive-surface.md` before D2 implementation.
+- Implemented Design D2 skin-adaptive surface tuning.
+- Reduced public iframe panel, title band, question block, choice row, action area, and optional banner surface weight.
+- Tuned light surfaces for white, off-white, and gray blog backgrounds.
+- Tuned dark surfaces for dark blog backgrounds.
+- Restored semantic correct/incorrect state surfaces after D2 opacity tuning.
 
 ## Phase 0 TODO
 
@@ -226,6 +232,11 @@
 - Headless Edge D1 QA improved desktop iframe-height-to-article-width ratios from `0.86~1.06` to `0.74~0.91`.
 - Headless Edge D1 QA improved narrow mobile ratio from `1.99` to `1.71`.
 - Headless Edge D1 QA verified light, dark, and system iframe routes at `390px`, public transparent body background, and Markdown/KaTeX rendering.
+- `npm.cmd run build` after Design D2 skin-adaptive surface tuning: passed.
+- Headless Edge D2 QA verified white, off-white, gray, dark, and mobile white blog background simulations with no horizontal overflow.
+- Headless Edge D2 QA verified public iframe body background remains transparent.
+- Headless Edge D2 QA verified light, dark, and system iframe routes at `390px`.
+- Headless Edge D2 QA verified correct/incorrect state colors remain visible after D2 surface opacity tuning.
 
 ## Remote Sync Status
 
@@ -244,8 +255,8 @@
 
 ## Next
 
-- Review D1 footprint reduction in PR #6.
-- Prepare or confirm `docs/todos/design-d2-skin-adaptive-surface.md` before any D2 surface tuning work.
+- Review D2 surface tuning in PR #6.
+- Prepare or confirm `docs/todos/design-d3-typography-rhythm.md` before any D3 typography work.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.

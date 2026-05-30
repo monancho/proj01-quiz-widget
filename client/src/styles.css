@@ -3538,3 +3538,188 @@ textarea:focus-visible {
     margin-inline: 10px;
   }
 }
+
+/* Design D2 skin-adaptive surface tuning */
+.embed-panel {
+  border-color: rgba(126, 135, 145, 0.24);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.quiz-card::before,
+.quiz-actions {
+  background: rgba(248, 249, 250, 0.72);
+}
+
+.quiz-card::before {
+  border-bottom-color: rgba(126, 135, 145, 0.18);
+}
+
+.quiz-question {
+  border-color: rgba(126, 135, 145, 0.18);
+  border-left-color: rgba(126, 135, 145, 0.52);
+  background: rgba(248, 249, 250, 0.68);
+}
+
+.quiz-count,
+.result-kicker,
+.choice-letter {
+  border-color: rgba(126, 135, 145, 0.24);
+  background: rgba(244, 245, 246, 0.72);
+}
+
+.choice-button {
+  border-color: rgba(126, 135, 145, 0.24);
+  background: rgba(255, 255, 255, 0.66);
+}
+
+.choice-button:not(:disabled):hover {
+  border-color: rgba(87, 96, 106, 0.48);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.choice-muted {
+  background: rgba(248, 249, 250, 0.55);
+}
+
+.choice-correct {
+  border-color: rgba(100, 180, 128, 0.58);
+  background: rgba(239, 249, 243, 0.86);
+}
+
+.choice-incorrect {
+  border-color: rgba(226, 111, 130, 0.58);
+  background: rgba(255, 243, 245, 0.88);
+}
+
+.feedback-box {
+  border-color: rgba(126, 135, 145, 0.2);
+}
+
+.quiz-actions {
+  border-top-color: rgba(126, 135, 145, 0.16);
+}
+
+.result-summary,
+.state-message {
+  background: transparent;
+}
+
+.static-banner {
+  border-color: rgba(126, 135, 145, 0.24);
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.static-banner-link:hover {
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.embed-theme-dark .embed-panel {
+  border-color: rgba(171, 181, 192, 0.24);
+  background: rgba(22, 24, 27, 0.92);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+}
+
+.embed-theme-dark .quiz-card::before,
+.embed-theme-dark .quiz-actions {
+  border-color: rgba(171, 181, 192, 0.14);
+  background: rgba(255, 255, 255, 0.026);
+}
+
+.embed-theme-dark .quiz-question {
+  border-color: rgba(171, 181, 192, 0.18);
+  border-left-color: rgba(171, 181, 192, 0.46);
+  background: rgba(255, 255, 255, 0.034);
+}
+
+.embed-theme-dark .choice-button {
+  border-color: rgba(171, 181, 192, 0.22);
+  background: rgba(255, 255, 255, 0.026);
+}
+
+.embed-theme-dark .choice-button:not(:disabled):hover {
+  border-color: rgba(223, 228, 233, 0.42);
+  background: rgba(255, 255, 255, 0.052);
+}
+
+.embed-theme-dark .quiz-count,
+.embed-theme-dark .result-kicker,
+.embed-theme-dark .choice-letter {
+  border-color: rgba(171, 181, 192, 0.22);
+  background: rgba(255, 255, 255, 0.052);
+}
+
+.embed-theme-dark .choice-muted {
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.embed-theme-dark .choice-correct {
+  border-color: rgba(120, 200, 150, 0.54);
+  background: rgba(45, 84, 58, 0.42);
+}
+
+.embed-theme-dark .choice-incorrect {
+  border-color: rgba(236, 130, 148, 0.54);
+  background: rgba(93, 45, 53, 0.42);
+}
+
+.embed-theme-dark .static-banner {
+  border-color: rgba(171, 181, 192, 0.2);
+  background: rgba(22, 24, 27, 0.56);
+}
+
+@media (prefers-color-scheme: dark) {
+  .embed-theme-system .embed-panel {
+    border-color: rgba(171, 181, 192, 0.24);
+    background: rgba(22, 24, 27, 0.92);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+  }
+
+  .embed-theme-system .quiz-card::before,
+  .embed-theme-system .quiz-actions {
+    border-color: rgba(171, 181, 192, 0.14);
+    background: rgba(255, 255, 255, 0.026);
+  }
+
+  .embed-theme-system .quiz-question {
+    border-color: rgba(171, 181, 192, 0.18);
+    border-left-color: rgba(171, 181, 192, 0.46);
+    background: rgba(255, 255, 255, 0.034);
+  }
+
+  .embed-theme-system .choice-button {
+    border-color: rgba(171, 181, 192, 0.22);
+    background: rgba(255, 255, 255, 0.026);
+  }
+
+  .embed-theme-system .choice-button:not(:disabled):hover {
+    border-color: rgba(223, 228, 233, 0.42);
+    background: rgba(255, 255, 255, 0.052);
+  }
+
+  .embed-theme-system .quiz-count,
+  .embed-theme-system .result-kicker,
+  .embed-theme-system .choice-letter {
+    border-color: rgba(171, 181, 192, 0.22);
+    background: rgba(255, 255, 255, 0.052);
+  }
+
+  .embed-theme-system .choice-muted {
+    background: rgba(255, 255, 255, 0.018);
+  }
+
+  .embed-theme-system .choice-correct {
+    border-color: rgba(120, 200, 150, 0.54);
+    background: rgba(45, 84, 58, 0.42);
+  }
+
+  .embed-theme-system .choice-incorrect {
+    border-color: rgba(236, 130, 148, 0.54);
+    background: rgba(93, 45, 53, 0.42);
+  }
+
+  .embed-theme-system .static-banner {
+    border-color: rgba(171, 181, 192, 0.2);
+    background: rgba(22, 24, 27, 0.56);
+  }
+}
