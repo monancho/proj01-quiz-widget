@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/deployment-domain-config` |
-| Active scope | Manual OCI deploy first |
-| Status | Manual Docker Compose deploy path prioritized; GitHub Actions automation deferred |
+| Active scope | Korean deployment guide and local image verification |
+| Status | Docker Desktop running; backend image build and local smoke test passed; GHCR push blocked by registry authentication |
 
 ## Completed
 
@@ -189,6 +189,11 @@
 - Deferred GitHub Actions automation by making backend image workflow manual-only.
 - Added first manual OCI deployment guide using `docker compose up -d --build`.
 - Clarified that the first deploy should build on the OCI host, while GHCR image pulls can be enabled later.
+- Added Korean deployment guide for Docker image push, OCI backend deployment, Cloudflare Pages frontend deployment, and Tistory iframe checks.
+- Confirmed Docker Desktop is running locally.
+- Built `ghcr.io/monancho/proj01-quiz-widget-api:develop` locally.
+- Smoke-tested the built backend image with a temporary container and verified `/health`.
+- Attempted GHCR push; push is blocked until Docker is logged into GHCR with package write permission.
 
 ## Phase 0 TODO
 

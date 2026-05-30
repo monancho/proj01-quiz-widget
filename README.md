@@ -66,6 +66,7 @@ Phase 8 deployment artifacts are prepared under:
 - `docs/deployment/deployment-smoke-test.md`
 - `docs/deployment/manual-oci-first-deploy.md`
 - `docs/deployment/backend-image-pipeline.md`
+- `docs/deployment/ko-deployment-guide.md`
 - `.github/workflows/backend-deploy.example.yml`
 - `.github/workflows/backend-image.yml`
 
