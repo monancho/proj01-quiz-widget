@@ -4,11 +4,11 @@
 
 | Item | Value |
 | --- | --- |
-| Date | 2026-05-29 |
+| Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Pre-deployment admin UX refinement |
-| Status | Admin dashboard layout refinement verified for PR #6 |
+| Active scope | KRDS frontend alignment |
+| Status | KRDS token-based frontend alignment implemented and verified locally |
 
 ## Completed
 
@@ -89,6 +89,11 @@
 - Public iframe route now supports `theme=light|dark|system` while preserving transparent iframe backgrounds.
 - Added a left admin navigation rail with only one current item: `대시보드`.
 - Changed the admin main area to stack status/filter/stats, Slug Groups, and Quizzes vertically.
+- Added KRDS frontend alignment TODO under `docs/todos/`.
+- Added `krds-uiux` to the client and loaded KRDS design tokens.
+- Mapped app UI variables to KRDS color, border, input, button, and state tokens.
+- Refreshed admin and iframe surfaces with KRDS token-based styling while preserving the existing wireframe and behavior.
+- Restored broken Korean UI labels in the admin and iframe screens.
 
 ## Phase 0 TODO
 
@@ -177,6 +182,12 @@
 - `npm.cmd run build` after admin dashboard layout refinement: passed.
 - Headless Chrome admin layout QA verified one `대시보드` nav item, vertical status/Slug Groups/Quizzes stacking, Slug Group selection, 3-row quiz table rendering, iframe utility modal behavior, public embed rendering, and no horizontal overflow.
 - Headless Chrome wide viewport QA verified the 224px left sidebar and main dashboard column render side by side without horizontal overflow.
+- `npm.cmd install krds-uiux@^1.0.5` in `client/`: completed with 0 vulnerabilities.
+- `npm.cmd run build` after KRDS frontend alignment: passed.
+- Headless Chrome KRDS QA verified admin desktop and mobile rendering without horizontal overflow.
+- Headless Chrome KRDS QA verified embed light and dark theme rendering without horizontal overflow.
+- Headless Chrome KRDS QA verified KRDS token CSS is loaded and app primary color resolves to `#256ef4`.
+- Static search found no remaining known mojibake markers in `client/src`.
 
 ## Remote Sync Status
 

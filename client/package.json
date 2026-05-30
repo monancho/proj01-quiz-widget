@@ -11,6 +11,7 @@
   "dependencies": {
     "@vitejs/plugin-react": "^5.1.1",
     "katex": "^0.17.0",
+    "krds-uiux": "^1.0.5",
     "lucide-react": "^0.555.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

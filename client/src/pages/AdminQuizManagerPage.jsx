@@ -39,7 +39,7 @@ const statusOptions = [
 
 const embedThemeOptions = [
   { value: 'system', label: '시스템' },
-  { value: 'light', label: '화이트' },
+  { value: 'light', label: '라이트' },
   { value: 'dark', label: '다크' },
 ];
 
@@ -387,7 +387,7 @@ export default function AdminQuizManagerPage() {
 
   return (
     <main className="admin-shell">
-      <aside className="admin-sidebar" aria-label="Admin navigation">
+      <aside className="admin-sidebar" aria-label="관리자 탐색">
         <div className="admin-sidebar-brand">
           <span>Quiz Admin</span>
         </div>
@@ -400,105 +400,104 @@ export default function AdminQuizManagerPage() {
       </aside>
 
       <div className="admin-main">
-      <header className="admin-topbar">
-        <div>
-          <p className="admin-kicker">Quiz Widget Admin</p>
-          <h1>Slug Group Manager</h1>
-        </div>
-        <div className="admin-topbar-actions">
-          <button type="button" className="admin-button secondary" onClick={loadQuizSets}>
-            <RefreshCw size={17} />
-            새로고침
-          </button>
-          <button type="button" className="admin-button primary" onClick={openCreateSetModal}>
-            <Plus size={17} />
-            Slug Group
-          </button>
-        </div>
-      </header>
-
-      <StatusStrip message={message} error={error} busy={busy || loading} />
-
-      <section className="admin-toolbar">
-        <form className="admin-filter-form" onSubmit={handleFilterSubmit}>
-          <label>
-            <span>검색</span>
-            <div className="admin-input-with-icon">
-              <Search size={16} />
-              <input
-                value={draftFilters.query}
-                onChange={(event) => setDraftFilters((current) => ({ ...current, query: event.target.value }))}
-                placeholder="post_slug 또는 제목"
-              />
-            </div>
-          </label>
-          <label>
-            <span>상태</span>
-            <select
-              value={draftFilters.status}
-              onChange={(event) => setDraftFilters((current) => ({ ...current, status: event.target.value }))}
-            >
-              <option value="">전체</option>
-              {statusOptions.map((option) => (
-                <option key={option.value} value={option.value}>{option.label}</option>
-              ))}
-            </select>
-          </label>
-          <button type="submit" className="admin-button secondary">
-            <Filter size={17} />
-            적용
-          </button>
-        </form>
-      </section>
-
-      <StatsBar summary={summary} />
-
-      <section className="admin-workspace">
-        <div className="admin-list-panel">
-          <div className="panel-heading">
-            <h2>Slug Groups</h2>
-            <span>{quizSets.length}개</span>
+        <header className="admin-topbar">
+          <div>
+            <p className="admin-kicker">Quiz Widget Admin</p>
+            <h1>Slug Group 관리</h1>
           </div>
-          {loading ? <LoadingRows /> : null}
-          {!loading && quizSets.length === 0 ? <p className="admin-empty">조건에 맞는 Slug Group이 없습니다.</p> : null}
-          {!loading && quizSets.map((quizSet) => (
-            <button
-              type="button"
-              key={quizSet.id}
-              className={`slug-row ${expandedSetId === quizSet.id ? 'active' : ''}`}
-              onClick={() => handleExpand(quizSet.id)}
-            >
-              <span>
-                <strong>{quizSet.postSlug}</strong>
-                <small>{quizSet.postTitle}</small>
-              </span>
-              <StatusBadge status={quizSet.status} />
-              <CompletionBadge quizSet={quizSet} />
+          <div className="admin-topbar-actions">
+            <button type="button" className="admin-button secondary" onClick={loadQuizSets}>
+              <RefreshCw size={17} />
+              새로고침
             </button>
-          ))}
-        </div>
+            <button type="button" className="admin-button primary" onClick={openCreateSetModal}>
+              <Plus size={17} />
+              Slug Group
+            </button>
+          </div>
+        </header>
 
-        <div className="admin-detail-panel">
-          {!selectedSet ? (
-            <p className="admin-empty">Slug Group을 선택하세요.</p>
-          ) : (
-            <SetDetail
-              quizSet={selectedSet}
-              quizzes={quizzesBySetId[selectedSet.id] || []}
-              draggedQuizId={draggedQuizId}
-              onDragStart={handleDragStartQuiz}
-              onDropQuiz={handleDropQuiz}
-              onEditSet={() => openEditSetModal(selectedSet)}
-              onDeleteSet={() => handleDeleteSet(selectedSet)}
-              onNewQuiz={() => openCreateQuizModal(selectedSet)}
-              onEditQuiz={(quiz) => openEditQuizModal(quiz, selectedSet)}
-              onDeleteQuiz={(quiz) => handleDeleteQuiz(quiz, selectedSet.id)}
-              onEmbedTools={() => openEmbedToolsModal(selectedSet)}
-            />
-          )}
-        </div>
-      </section>
+        <StatusStrip message={message} error={error} busy={busy || loading} />
 
+        <section className="admin-toolbar">
+          <form className="admin-filter-form" onSubmit={handleFilterSubmit}>
+            <label>
+              <span>검색</span>
+              <div className="admin-input-with-icon">
+                <Search size={16} />
+                <input
+                  value={draftFilters.query}
+                  onChange={(event) => setDraftFilters((current) => ({ ...current, query: event.target.value }))}
+                  placeholder="post_slug 또는 제목"
+                />
+              </div>
+            </label>
+            <label>
+              <span>상태</span>
+              <select
+                value={draftFilters.status}
+                onChange={(event) => setDraftFilters((current) => ({ ...current, status: event.target.value }))}
+              >
+                <option value="">전체</option>
+                {statusOptions.map((option) => (
+                  <option key={option.value} value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </label>
+            <button type="submit" className="admin-button secondary">
+              <Filter size={17} />
+              적용
+            </button>
+          </form>
+        </section>
+
+        <StatsBar summary={summary} />
+
+        <section className="admin-workspace">
+          <div className="admin-list-panel">
+            <div className="panel-heading">
+              <h2>Slug Groups</h2>
+              <span>{quizSets.length}개</span>
+            </div>
+            {loading ? <LoadingRows /> : null}
+            {!loading && quizSets.length === 0 ? <p className="admin-empty">조건에 맞는 Slug Group이 없습니다.</p> : null}
+            {!loading && quizSets.map((quizSet) => (
+              <button
+                type="button"
+                key={quizSet.id}
+                className={`slug-row ${expandedSetId === quizSet.id ? 'active' : ''}`}
+                onClick={() => handleExpand(quizSet.id)}
+              >
+                <span>
+                  <strong>{quizSet.postSlug}</strong>
+                  <small>{quizSet.postTitle}</small>
+                </span>
+                <StatusBadge status={quizSet.status} />
+                <CompletionBadge quizSet={quizSet} />
+              </button>
+            ))}
+          </div>
+
+          <div className="admin-detail-panel">
+            {!selectedSet ? (
+              <p className="admin-empty">Slug Group을 선택하세요.</p>
+            ) : (
+              <SetDetail
+                quizSet={selectedSet}
+                quizzes={quizzesBySetId[selectedSet.id] || []}
+                draggedQuizId={draggedQuizId}
+                onDragStart={handleDragStartQuiz}
+                onDropQuiz={handleDropQuiz}
+                onEditSet={() => openEditSetModal(selectedSet)}
+                onDeleteSet={() => handleDeleteSet(selectedSet)}
+                onNewQuiz={() => openCreateQuizModal(selectedSet)}
+                onEditQuiz={(quiz) => openEditQuizModal(quiz, selectedSet)}
+                onDeleteQuiz={(quiz) => handleDeleteQuiz(quiz, selectedSet.id)}
+                onEmbedTools={() => openEmbedToolsModal(selectedSet)}
+              />
+            )}
+          </div>
+        </section>
       </div>
 
       {setModal ? (

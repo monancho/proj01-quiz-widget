@@ -84,7 +84,7 @@ export default function EmbedQuizPage({ postSlug }) {
     <main className={`embed-shell embed-theme-${themeMode} antialiased`}>
       <div className="embed-panel">
         {status === 'loading' ? <StateMessage icon={<LoaderCircle className="spin" />} title="불러오는 중" /> : null}
-        {status === 'empty' ? <StateMessage title="공개된 문제가 없습니다" /> : null}
+        {status === 'empty' ? <StateMessage title="공개된 문제가 없습니다." /> : null}
         {status === 'error' ? (
           <StateMessage
             icon={<RefreshCw />}
