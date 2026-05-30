@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Design follow-up embed action spacing |
-| Status | Embed action spacing follow-up implemented and verified locally |
+| Active scope | Design follow-up dark mode and result density |
+| Status | Dark mode color and final result density follow-up implemented and verified locally |
 
 ## Completed
 
@@ -136,6 +136,10 @@
 - Implemented embed action spacing follow-up.
 - Reduced the pre-answer choice-to-action gap and centered the next/result action button in the public iframe flow.
 - Removed the toolbar-like action area surface in the public iframe while preserving quiz behavior, theme modes, iframe height, and transparent public iframe body background.
+- Added `docs/todos/design-followup-dark-result-density.md` before CSS work.
+- Implemented dark mode and final result density follow-up.
+- Tuned dark iframe panel, question, choice, semantic state, feedback, result, and banner colors to keep the dark UI quieter while preserving contrast.
+- Reduced final result panel height in the public iframe because the result state has fewer elements than the quiz-solving state.
 
 ## Phase 0 TODO
 
@@ -277,6 +281,10 @@
 - Headless Edge spacing QA verified mobile light route improved pre-answer choice-to-action gap from about `97px` to `0px`.
 - Headless Edge spacing QA verified incorrect, correct, and final-question feedback-to-action gaps were `0px`.
 - Headless Edge spacing QA verified next/result action button is centered, result screen still renders, light/dark/system routes have no horizontal overflow, public iframe body remains transparent, and temporary spacing QA data was deleted.
+- `npm.cmd run build` after dark mode/result density follow-up: passed.
+- Headless Edge dark/result QA verified dark and system dark answer click, incorrect state, correct state, and final result flows.
+- Headless Edge dark/result QA verified dark/system dark result panel height reduced from `456px` in the initial quiz state to `219px` in the final result state.
+- Headless Edge dark/result QA verified no mobile horizontal overflow, centered result retry action, transparent public iframe body background, and temporary `design-dark-result-*` QA data cleanup.
 
 ## Remote Sync Status
 
@@ -295,7 +303,7 @@
 
 ## Next
 
-- Review final D1-D5 blog-compatible design work and embed action spacing follow-up in PR #6.
+- Review final D1-D5 blog-compatible design work and follow-up iframe design refinements in PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.

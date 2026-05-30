@@ -4099,3 +4099,251 @@ textarea:focus-visible {
     width: min(100%, 176px);
   }
 }
+
+/* Design follow-up: dark mode and final result density */
+.embed-shell:has(.result-summary) {
+  min-height: auto;
+}
+
+.embed-panel:has(.result-summary) {
+  min-height: 0;
+}
+
+.embed-shell .result-summary {
+  min-height: auto;
+  justify-content: center;
+  gap: 12px;
+  padding: 34px 24px;
+}
+
+.embed-shell .result-summary h1 {
+  max-width: 26rem;
+  margin-inline: auto;
+  font-size: clamp(1.14rem, 1.05rem + 0.32vw, 1.36rem);
+  line-height: 1.38;
+}
+
+.embed-shell .result-summary p {
+  max-width: 25rem;
+  margin-inline: auto;
+  line-height: 1.58;
+}
+
+.embed-shell .result-summary .primary-action {
+  margin-top: 2px;
+}
+
+.embed-theme-dark .embed-panel {
+  border-color: rgba(190, 198, 207, 0.22);
+  background: rgba(19, 21, 24, 0.94);
+  color: rgba(248, 250, 252, 0.94);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+.embed-theme-dark .quiz-card::before {
+  border-bottom-color: rgba(190, 198, 207, 0.14);
+  background: rgba(255, 255, 255, 0.028);
+  color: rgba(248, 250, 252, 0.9);
+}
+
+.embed-theme-dark .quiz-question {
+  border-color: rgba(190, 198, 207, 0.18);
+  border-left-color: rgba(190, 198, 207, 0.46);
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(248, 250, 252, 0.94);
+}
+
+.embed-theme-dark .choice-button {
+  border-color: rgba(190, 198, 207, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(248, 250, 252, 0.92);
+}
+
+.embed-theme-dark .choice-button:not(:disabled):hover {
+  border-color: rgba(223, 228, 233, 0.36);
+  background: rgba(255, 255, 255, 0.052);
+}
+
+.embed-theme-dark .quiz-count,
+.embed-theme-dark .result-kicker,
+.embed-theme-dark .choice-letter {
+  border-color: rgba(190, 198, 207, 0.2);
+  background: rgba(255, 255, 255, 0.058);
+  color: rgba(223, 228, 233, 0.84);
+}
+
+.embed-theme-dark .choice-muted {
+  border-color: rgba(190, 198, 207, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(190, 198, 207, 0.66);
+}
+
+.embed-theme-dark .choice-button.choice-correct {
+  border-color: rgba(124, 202, 154, 0.42);
+  background: rgba(42, 76, 54, 0.32);
+}
+
+.embed-theme-dark .choice-button.choice-incorrect {
+  border-color: rgba(236, 137, 154, 0.42);
+  background: rgba(82, 40, 48, 0.32);
+}
+
+.embed-theme-dark .choice-correct .choice-letter {
+  border-color: rgba(124, 202, 154, 0.36);
+  background: rgba(55, 102, 70, 0.48);
+  color: rgba(224, 246, 232, 0.94);
+}
+
+.embed-theme-dark .choice-incorrect .choice-letter {
+  border-color: rgba(236, 137, 154, 0.36);
+  background: rgba(109, 48, 59, 0.5);
+  color: rgba(255, 228, 233, 0.94);
+}
+
+.embed-theme-dark .choice-correct .choice-result {
+  color: rgba(180, 235, 199, 0.96);
+}
+
+.embed-theme-dark .choice-incorrect .choice-result {
+  color: rgba(255, 190, 201, 0.96);
+}
+
+.embed-theme-dark .feedback-correct {
+  border-color: rgba(124, 202, 154, 0.28);
+  background: rgba(42, 76, 54, 0.23);
+}
+
+.embed-theme-dark .feedback-incorrect {
+  border-color: rgba(236, 137, 154, 0.28);
+  background: rgba(82, 40, 48, 0.24);
+}
+
+.embed-theme-dark .result-summary,
+.embed-theme-dark .state-message {
+  color: rgba(248, 250, 252, 0.94);
+}
+
+.embed-theme-dark .result-summary p,
+.embed-theme-dark .feedback-explanation {
+  color: rgba(223, 228, 233, 0.78);
+}
+
+.embed-theme-dark .static-banner {
+  border-color: rgba(190, 198, 207, 0.2);
+  background: rgba(19, 21, 24, 0.68);
+  color: rgba(223, 228, 233, 0.78);
+}
+
+@media (prefers-color-scheme: dark) {
+  .embed-theme-system .embed-panel {
+    border-color: rgba(190, 198, 207, 0.22);
+    background: rgba(19, 21, 24, 0.94);
+    color: rgba(248, 250, 252, 0.94);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  }
+
+  .embed-theme-system .quiz-card::before {
+    border-bottom-color: rgba(190, 198, 207, 0.14);
+    background: rgba(255, 255, 255, 0.028);
+    color: rgba(248, 250, 252, 0.9);
+  }
+
+  .embed-theme-system .quiz-question {
+    border-color: rgba(190, 198, 207, 0.18);
+    border-left-color: rgba(190, 198, 207, 0.46);
+    background: rgba(255, 255, 255, 0.035);
+    color: rgba(248, 250, 252, 0.94);
+  }
+
+  .embed-theme-system .choice-button {
+    border-color: rgba(190, 198, 207, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(248, 250, 252, 0.92);
+  }
+
+  .embed-theme-system .choice-button:not(:disabled):hover {
+    border-color: rgba(223, 228, 233, 0.36);
+    background: rgba(255, 255, 255, 0.052);
+  }
+
+  .embed-theme-system .quiz-count,
+  .embed-theme-system .result-kicker,
+  .embed-theme-system .choice-letter {
+    border-color: rgba(190, 198, 207, 0.2);
+    background: rgba(255, 255, 255, 0.058);
+    color: rgba(223, 228, 233, 0.84);
+  }
+
+  .embed-theme-system .choice-muted {
+    border-color: rgba(190, 198, 207, 0.12);
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(190, 198, 207, 0.66);
+  }
+
+  .embed-theme-system .choice-button.choice-correct {
+    border-color: rgba(124, 202, 154, 0.42);
+    background: rgba(42, 76, 54, 0.32);
+  }
+
+  .embed-theme-system .choice-button.choice-incorrect {
+    border-color: rgba(236, 137, 154, 0.42);
+    background: rgba(82, 40, 48, 0.32);
+  }
+
+  .embed-theme-system .choice-correct .choice-letter {
+    border-color: rgba(124, 202, 154, 0.36);
+    background: rgba(55, 102, 70, 0.48);
+    color: rgba(224, 246, 232, 0.94);
+  }
+
+  .embed-theme-system .choice-incorrect .choice-letter {
+    border-color: rgba(236, 137, 154, 0.36);
+    background: rgba(109, 48, 59, 0.5);
+    color: rgba(255, 228, 233, 0.94);
+  }
+
+  .embed-theme-system .choice-correct .choice-result {
+    color: rgba(180, 235, 199, 0.96);
+  }
+
+  .embed-theme-system .choice-incorrect .choice-result {
+    color: rgba(255, 190, 201, 0.96);
+  }
+
+  .embed-theme-system .feedback-correct {
+    border-color: rgba(124, 202, 154, 0.28);
+    background: rgba(42, 76, 54, 0.23);
+  }
+
+  .embed-theme-system .feedback-incorrect {
+    border-color: rgba(236, 137, 154, 0.28);
+    background: rgba(82, 40, 48, 0.24);
+  }
+
+  .embed-theme-system .result-summary,
+  .embed-theme-system .state-message {
+    color: rgba(248, 250, 252, 0.94);
+  }
+
+  .embed-theme-system .result-summary p,
+  .embed-theme-system .feedback-explanation {
+    color: rgba(223, 228, 233, 0.78);
+  }
+
+  .embed-theme-system .static-banner {
+    border-color: rgba(190, 198, 207, 0.2);
+    background: rgba(19, 21, 24, 0.68);
+    color: rgba(223, 228, 233, 0.78);
+  }
+}
+
+@media (max-width: 560px) {
+  .embed-shell .result-summary {
+    gap: 10px;
+    padding: 28px 18px;
+  }
+
+  .embed-shell .result-summary h1 {
+    font-size: 1.08rem;
+  }
+}
