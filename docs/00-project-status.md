@@ -266,6 +266,9 @@
 - Headless Edge D5 QA verified direct light, dark, and system iframe routes at `390px` had no internal horizontal overflow and public iframe body background remained transparent.
 - Headless Edge D5 QA verified Markdown, bold text, KaTeX, light/dark correct and incorrect states, and result views in direct iframe checks.
 - Temporary `design-d5-*` QA data was deleted after verification.
+- Headless Edge D5 embedded interaction QA verified answer click, incorrect state, correct state, and all-quiz final result inside a parent-page iframe for light desktop, dark desktop, and system mobile contexts.
+- Headless Edge D5 embedded interaction QA verified no parent horizontal overflow, no iframe internal horizontal overflow, and transparent iframe body background throughout the interaction flow.
+- Temporary `design-d5-embedded-*` QA data was deleted after verification.
 
 ## Remote Sync Status
 

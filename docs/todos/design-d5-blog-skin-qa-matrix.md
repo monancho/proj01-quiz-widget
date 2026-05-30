@@ -22,6 +22,7 @@ Verify the final D1-D4 public iframe design against representative blog contexts
 - Cover minimal white, off-white editorial, dense text, image-heavy magazine, dark article, and narrow mobile contexts.
 - Verify light, dark, and system iframe theme routes.
 - Verify parent article overflow, iframe footprint ratio, public iframe transparent body, and readable state rendering.
+- Verify the embedded iframe interaction flow: answer click, incorrect state, correct state, and final result after all quizzes are answered.
 - Record QA findings in project status and worklog.
 
 ## Out of Scope
@@ -39,6 +40,7 @@ Verify the final D1-D4 public iframe design against representative blog contexts
 - [x] Build client before final QA.
 - [x] Run blog skin matrix against six representative contexts.
 - [x] Run direct iframe route checks for light, dark, and system themes.
+- [x] Run embedded parent-page iframe interaction checks.
 - [x] Delete temporary QA data.
 - [x] Record results without changing application behavior unless a blocker is found.
 
@@ -53,6 +55,9 @@ Verify the final D1-D4 public iframe design against representative blog contexts
 - [x] Narrow mobile article context has no horizontal overflow.
 - [x] Public iframe body remains transparent.
 - [x] Light, dark, and system iframe routes have no internal horizontal overflow.
+- [x] Embedded iframe answer click shows incorrect state when an incorrect answer is selected.
+- [x] Embedded iframe answer click shows correct state when the correct answer is selected.
+- [x] Embedded iframe final result appears after all 3 quizzes are answered.
 - [x] iframe footprint ratios remain within expected D1 post-reduction range.
 - [x] Temporary QA data is deleted.
 - [x] Update `docs/00-project-status.md`.
@@ -74,7 +79,13 @@ Verify the final D1-D4 public iframe design against representative blog contexts
 - Direct iframe routes had no internal horizontal overflow.
 - Markdown, bold text, and KaTeX rendered in the direct iframe check.
 - Light and dark correct/incorrect states and result views rendered during direct route interaction checks.
+- Embedded parent-page iframe interaction checks passed for:
+  - Light desktop parent context.
+  - Dark desktop parent context.
+  - System mobile parent context.
+- Embedded iframe interaction checks verified answer click, incorrect state, correct state, all-quiz final result, no parent horizontal overflow, no iframe internal horizontal overflow, and transparent iframe body background.
 - Cleanup check found `0` leftover `design-d5-*` Slug Groups.
+- Cleanup check found `0` leftover `design-d5-embedded-*` Slug Groups.
 
 ## Rollback Notes
 
