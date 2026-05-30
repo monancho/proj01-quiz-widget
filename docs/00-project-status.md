@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/deployment-domain-config` |
-| Active scope | Deployment image pipeline |
-| Status | Backend image pipeline prepared; SQLite documented as Docker volume |
+| Active scope | Manual OCI deploy first |
+| Status | Manual Docker Compose deploy path prioritized; GitHub Actions automation deferred |
 
 ## Completed
 
@@ -186,6 +186,9 @@
 - Updated backend deploy draft to pull the prebuilt image on OCI.
 - Documented that SQLite is persisted in the Docker volume `quiz-data:/data`, not a separate image.
 - Added backend image pipeline deployment guide.
+- Deferred GitHub Actions automation by making backend image workflow manual-only.
+- Added first manual OCI deployment guide using `docker compose up -d --build`.
+- Clarified that the first deploy should build on the OCI host, while GHCR image pulls can be enabled later.
 
 ## Phase 0 TODO
 

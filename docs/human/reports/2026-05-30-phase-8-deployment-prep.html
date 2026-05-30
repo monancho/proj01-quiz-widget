@@ -158,6 +158,17 @@
     </section>
 
     <section>
+      <h2>Manual Deploy First</h2>
+      <p>The first deployment should be done manually on the OCI host before enabling GitHub Actions automation.</p>
+      <ul>
+        <li>Manual guide: <code>docs/deployment/manual-oci-first-deploy.md</code>.</li>
+        <li>Start command: <code>docker compose -f infra/docker-compose.yml up -d --build</code>.</li>
+        <li>The backend image workflow is manual-only for now.</li>
+        <li>SQLite remains in <code>quiz-data:/data</code>.</li>
+      </ul>
+    </section>
+
+    <section>
       <h2>Verification</h2>
       <ul>
         <li class="ok">Backend smoke phase2, phase3, and phase4 passed.</li>

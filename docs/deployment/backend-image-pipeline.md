@@ -4,6 +4,8 @@
 
 Build the Express API as a Docker image, push it to GitHub Container Registry, and deploy it on OCI with Docker Compose.
 
+This is a later automation path. For the first deployment, use `docs/deployment/manual-oci-first-deploy.md` and build directly on the OCI host.
+
 ## Image
 
 Default image:
@@ -32,10 +34,9 @@ Workflow:
 .github/workflows/backend-image.yml
 ```
 
-It builds and pushes the backend image when:
+It currently builds and pushes the backend image only when manually triggered with `workflow_dispatch`.
 
-- manually triggered with `workflow_dispatch`.
-- code is pushed to `develop` under `server/**`, `migrations/**`, `server/Dockerfile`, or the workflow itself.
+Automatic push triggers can be added later after the first manual deployment is stable.
 
 It pushes tags based on branch and commit SHA.
 
@@ -71,7 +72,7 @@ docker compose -f infra/docker-compose.yml up -d --build
 
 ## OCI Deploy With Prebuilt Image
 
-Use image pull mode on the server:
+Use image pull mode on the server after the GHCR image has been built manually or by future automation:
 
 ```bash
 cd /opt/proj01-quiz-widget

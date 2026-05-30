@@ -2,15 +2,6 @@ name: Backend Image
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - develop
-    paths:
-      - "server/**"
-      - "migrations/**"
-      - "server/Dockerfile"
-      - ".dockerignore"
-      - ".github/workflows/backend-image.yml"
 
 permissions:
   contents: read

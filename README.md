@@ -64,6 +64,7 @@ Phase 8 deployment artifacts are prepared under:
 - `docs/deployment/cloudflare-pages.md`
 - `docs/deployment/oci-backend.md`
 - `docs/deployment/deployment-smoke-test.md`
+- `docs/deployment/manual-oci-first-deploy.md`
 - `docs/deployment/backend-image-pipeline.md`
 - `.github/workflows/backend-deploy.example.yml`
 - `.github/workflows/backend-image.yml`
@@ -76,7 +77,14 @@ docker compose -f infra/docker-compose.yml up -d --build
 curl http://localhost/health
 ```
 
-Backend image pipeline:
+First backend deploy should be manual on the OCI host:
+
+```bash
+docker compose -f infra/docker-compose.yml up -d --build
+curl http://localhost/health
+```
+
+Backend image pipeline for later:
 
 ```text
 ghcr.io/monancho/proj01-quiz-widget-api:develop

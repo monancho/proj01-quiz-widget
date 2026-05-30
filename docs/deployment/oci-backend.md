@@ -4,6 +4,8 @@
 
 Run the Express API and SQLite database on an OCI Ubuntu host through Docker Compose.
 
+For the first deployment, prefer the manual server build flow in `docs/deployment/manual-oci-first-deploy.md`. GitHub Actions and GHCR image pulls can be enabled after the first deployment is stable.
+
 ## Server Prerequisites
 
 - Ubuntu host with SSH access.
@@ -63,7 +65,7 @@ curl -fsS http://127.0.0.1/health
 curl -fsS http://YOUR_OCI_PUBLIC_IP/health
 ```
 
-If the backend image has already been pushed to GHCR, prefer pulling the image instead of building on the server:
+If the backend image has already been pushed to GHCR later, you can pull the image instead of building on the server:
 
 ```bash
 docker compose -f infra/docker-compose.yml pull
@@ -84,7 +86,7 @@ docker compose -f infra/docker-compose.yml ps
 curl -fsS http://127.0.0.1/health
 ```
 
-Image-based update:
+Image-based update after GHCR image automation is enabled:
 
 ```bash
 docker compose -f infra/docker-compose.yml pull
