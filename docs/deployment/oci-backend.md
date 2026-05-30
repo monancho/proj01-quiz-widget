@@ -4,7 +4,7 @@
 
 Run the Express API and SQLite database on an OCI Ubuntu host through Docker Compose.
 
-For the first deployment, prefer the manual server build flow in `docs/deployment/manual-oci-first-deploy.md`. GitHub Actions and GHCR image pulls can be enabled after the first deployment is stable.
+For the current deployment, prefer pulling the prebuilt GHCR image and running Compose with `--no-build`. The repository is still pulled on the server so the latest Caddyfile, Compose file, and env examples are available.
 
 ## Server Prerequisites
 
@@ -59,19 +59,16 @@ TISTORY_HOME_URL=https://monancho.tistory.com/
 ## Start
 
 ```bash
-docker compose -f infra/docker-compose.yml up -d --build
-docker compose -f infra/docker-compose.yml ps
-curl -fsS http://127.0.0.1/health
-curl -fsS http://YOUR_OCI_PUBLIC_IP/health
-```
-
-If the backend image has already been pushed to GHCR later, you can pull the image instead of building on the server:
-
-```bash
-docker compose -f infra/docker-compose.yml pull
+docker compose -f infra/docker-compose.yml pull api
 docker compose -f infra/docker-compose.yml up -d --no-build
 docker compose -f infra/docker-compose.yml ps
-curl -fsS http://127.0.0.1/health
+curl -fsS https://api.monancho.com/health
+```
+
+If the OCI host cannot pull from GHCR, log in with a GitHub PAT that can read packages:
+
+```bash
+echo "YOUR_GITHUB_PAT" | docker login ghcr.io -u monancho --password-stdin
 ```
 
 ## Update
@@ -79,18 +76,18 @@ curl -fsS http://127.0.0.1/health
 ```bash
 cd /opt/proj01-quiz-widget
 git fetch origin
-git checkout develop
-git pull --ff-only origin develop
-docker compose -f infra/docker-compose.yml up -d --build
+git checkout feature/deployment-domain-config
+git pull --ff-only origin feature/deployment-domain-config
+docker compose -f infra/docker-compose.yml pull api
+docker compose -f infra/docker-compose.yml up -d --no-build
 docker compose -f infra/docker-compose.yml ps
-curl -fsS http://127.0.0.1/health
+curl -fsS https://api.monancho.com/health
 ```
 
-Image-based update after GHCR image automation is enabled:
+If you intentionally need to build on the server as a fallback:
 
 ```bash
-docker compose -f infra/docker-compose.yml pull
-docker compose -f infra/docker-compose.yml up -d --no-build
+docker compose -f infra/docker-compose.yml up -d --build
 docker compose -f infra/docker-compose.yml ps
 curl -fsS http://127.0.0.1/health
 ```

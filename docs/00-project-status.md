@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/deployment-domain-config` |
-| Active scope | API HTTPS domain setup |
-| Status | Caddy now targets `api.monancho.com`; DNS/server/frontend redeploy steps documented |
+| Active scope | Image-based OCI API deployment |
+| Status | Backend API image pushed to GHCR; OCI should pull the image and run Compose with `--no-build` |
 
 ## Completed
 
@@ -202,6 +202,8 @@
 - Updated Caddy to serve the backend API on `api.monancho.com` with automatic HTTPS.
 - Documented the Cloudflare DNS, OCI port, Caddy restart, HTTPS health check, and Cloudflare Pages env steps for `https://api.monancho.com`.
 - Kept production env examples aligned with the current no-banner iframe deployment decision.
+- Pushed the backend API image to GHCR as `ghcr.io/monancho/proj01-quiz-widget-api:develop`.
+- Switched the immediate OCI deployment guidance to image pull plus `docker compose up -d --no-build`.
 
 ## Phase 0 TODO
 

@@ -131,14 +131,35 @@ CORS_ALLOWED_ORIGINS=https://monancho.com
 TISTORY_HOME_URL=https://monancho.tistory.com/
 ```
 
-첫 수동 배포는 서버에서 직접 빌드합니다.
+현재 권장 방식은 OCI 서버에서 직접 이미지를 빌드하지 않고 GHCR 이미지를 pull해서 실행하는 것입니다.
+
+먼저 서버의 repo 파일을 최신화합니다. 이 단계는 Caddyfile, Compose 파일, env 예시를 받기 위해 필요합니다.
 
 ```bash
-docker compose -f infra/docker-compose.yml up -d --build
+cd /opt/proj01-quiz-widget
+git fetch origin
+git checkout feature/deployment-domain-config
+git pull --ff-only origin feature/deployment-domain-config
+```
+
+그 다음 API 이미지를 pull하고, 빌드 없이 컨테이너를 갱신합니다.
+
+```bash
+docker compose -f infra/docker-compose.yml pull api
+docker compose -f infra/docker-compose.yml up -d --no-build
 docker compose -f infra/docker-compose.yml ps
 docker compose -f infra/docker-compose.yml logs --tail=80 api
-curl -fsS http://127.0.0.1/health
+docker compose -f infra/docker-compose.yml logs --tail=80 proxy
+curl -fsS https://api.monancho.com/health
 ```
+
+만약 OCI 서버에서 GHCR pull이 권한 문제로 실패하면 GitHub PAT로 로그인합니다.
+
+```bash
+echo "YOUR_GITHUB_PAT" | docker login ghcr.io -u monancho --password-stdin
+```
+
+PAT에는 package read 권한이 필요합니다.
 
 서버 외부에서 확인할 때는 공개 IP를 직접 문서에 남기지 말고, 로컬 메모에 있는 실제 주소로 확인합니다.
 
