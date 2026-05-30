@@ -4,7 +4,8 @@ export function getEnv() {
     port: Number.parseInt(process.env.PORT || '3000', 10),
     databasePath: process.env.DATABASE_PATH || '../data/proj01-quiz.sqlite',
     corsAllowedOrigins: process.env.CORS_ALLOWED_ORIGINS || 'http://localhost:5173',
-    tistoryHomeUrl: process.env.TISTORY_HOME_URL || 'https://your-blog.tistory.com'
+    tistoryHomeUrl: process.env.TISTORY_HOME_URL || 'https://your-blog.tistory.com',
+    adminApiToken: process.env.ADMIN_API_TOKEN || ''
   };
 }
 

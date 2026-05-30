@@ -106,6 +106,7 @@ Copy `server/.env.example` to `server/.env` for local overrides.
 | `DATABASE_PATH` | `../data/proj01-quiz.sqlite` | SQLite database path when running from `server/` |
 | `CORS_ALLOWED_ORIGINS` | `http://localhost:5173` | Frontend origins allowed later by CORS |
 | `TISTORY_HOME_URL` | `https://your-blog.tistory.com` | Result CTA target |
+| `ADMIN_API_TOKEN` | unset | Admin API token. Optional for local dev, required in production |
 
 Client-side optional variables:
 
@@ -115,6 +116,9 @@ Client-side optional variables:
 | `VITE_BANNER_TEXT` | unset | Banner is currently disabled |
 | `VITE_BANNER_URL` | unset | Banner is currently disabled |
 | `VITE_BANNER_CTA` | unset | Banner is currently disabled |
+
+Do not put `ADMIN_API_TOKEN` in frontend build variables. Enter it in `/admin`
+at runtime and keep the real value only in private deployment secrets.
 
 ## Work Tracking
 

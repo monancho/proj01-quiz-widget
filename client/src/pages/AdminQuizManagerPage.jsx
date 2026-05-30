@@ -8,6 +8,8 @@ import {
   GripVertical,
   LayoutDashboard,
   LoaderCircle,
+  LockKeyhole,
+  LogOut,
   Plus,
   RefreshCw,
   Search,
@@ -20,6 +22,7 @@ import { CompletionBadge, LoadingRows, StatusBadge } from '../components/admin/A
 import RichText from '../components/common/RichText.jsx';
 import QuizCard from '../components/quiz/QuizCard.jsx';
 import { buildEmbedUrl, buildIframeCode } from '../utils/embedTools.js';
+import { clearAdminToken, getAdminToken, setAdminToken } from '../utils/adminSession.js';
 import { getMarkdownContinuation } from '../utils/markdownAuthoring.js';
 import {
   checkPostSlug,
@@ -52,6 +55,7 @@ const emptyQuizForm = {
 };
 
 export default function AdminQuizManagerPage() {
+  const [adminToken, setAdminTokenState] = useState(() => getAdminToken());
   const [filters, setFilters] = useState({ query: '', status: '' });
   const [draftFilters, setDraftFilters] = useState({ query: '', status: '' });
   const [summary, setSummary] = useState(null);
@@ -69,8 +73,38 @@ export default function AdminQuizManagerPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    if (!adminToken) {
+      return;
+    }
+
     loadQuizSets();
-  }, [filters]);
+  }, [filters, adminToken]);
+
+  function handleAdminTokenSubmit(token) {
+    const trimmedToken = token.trim();
+
+    if (!trimmedToken) {
+      return;
+    }
+
+    setAdminToken(trimmedToken);
+    setAdminTokenState(trimmedToken);
+    setError('');
+  }
+
+  function handleAdminLogout() {
+    clearAdminToken();
+    setAdminTokenState('');
+    setSummary(null);
+    setQuizSets([]);
+    setExpandedSetId(null);
+    setQuizzesBySetId({});
+    setSetModal(null);
+    setQuizModal(null);
+    setUtilityModal(null);
+    setError('');
+    setMessage('');
+  }
 
   async function loadQuizSets() {
     setLoading(true);
@@ -377,6 +411,10 @@ export default function AdminQuizManagerPage() {
     [expandedSetId, quizSets],
   );
 
+  if (!adminToken) {
+    return <AdminTokenGate onSubmit={handleAdminTokenSubmit} />;
+  }
+
   return (
     <main className="admin-shell">
       <aside className="admin-sidebar" aria-label="관리자 탐색">
@@ -401,6 +439,10 @@ export default function AdminQuizManagerPage() {
             <button type="button" className="admin-button secondary" onClick={loadQuizSets}>
               <RefreshCw size={17} />
               새로고침
+            </button>
+            <button type="button" className="admin-button secondary" onClick={handleAdminLogout}>
+              <LogOut size={17} />
+              Logout
             </button>
             <button type="button" className="admin-button primary" onClick={openCreateSetModal}>
               <Plus size={17} />
@@ -521,6 +563,53 @@ export default function AdminQuizManagerPage() {
           onCopy={handleCopyIframeCode}
         />
       ) : null}
+    </main>
+  );
+}
+
+function AdminTokenGate({ onSubmit }) {
+  const [token, setToken] = useState('');
+  const [error, setError] = useState('');
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!token.trim()) {
+      setError('관리자 토큰을 입력하세요.');
+      return;
+    }
+
+    setError('');
+    onSubmit(token);
+  }
+
+  return (
+    <main className="admin-auth-shell">
+      <form className="admin-auth-card" onSubmit={handleSubmit}>
+        <div className="admin-auth-icon" aria-hidden="true">
+          <LockKeyhole size={24} />
+        </div>
+        <p className="admin-kicker">Quiz Widget Admin</p>
+        <h1>관리자 인증</h1>
+        <p className="admin-auth-description">
+          배포된 관리자 API를 사용하려면 서버에 설정된 관리자 토큰이 필요합니다.
+        </p>
+        <label>
+          <span>Admin token</span>
+          <input
+            type="password"
+            value={token}
+            onChange={(event) => setToken(event.target.value)}
+            autoComplete="current-password"
+            autoFocus
+          />
+        </label>
+        {error ? <p className="form-error">{error}</p> : null}
+        <button type="submit" className="admin-button primary">
+          <LockKeyhole size={17} />
+          Enter admin
+        </button>
+      </form>
     </main>
   );
 }

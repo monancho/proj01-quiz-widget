@@ -44,6 +44,7 @@ PORT=3000
 DATABASE_PATH=/data/proj01-quiz.sqlite
 CORS_ALLOWED_ORIGINS=https://your-project.pages.dev
 TISTORY_HOME_URL=https://your-blog.tistory.com
+ADMIN_API_TOKEN=replace-with-long-random-admin-token
 ```
 
 For the current deployment values:
@@ -54,7 +55,12 @@ PORT=3000
 DATABASE_PATH=/data/proj01-quiz.sqlite
 CORS_ALLOWED_ORIGINS=https://monancho.com
 TISTORY_HOME_URL=https://monancho.tistory.com/
+ADMIN_API_TOKEN=replace-with-long-random-admin-token
 ```
+
+`ADMIN_API_TOKEN` is required for production admin API access. Generate a long
+random value and keep the real token only in the OCI server's local
+`infra/env/api.env` file or another private secret store. Do not commit it.
 
 ## Start
 

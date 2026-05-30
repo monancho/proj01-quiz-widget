@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-30 |
 | Base branch | `develop` |
-| Current branch | `feature/deployment-domain-config` |
-| Active scope | Image-based OCI API deployment |
-| Status | Backend API image pushed to GHCR; OCI should pull the image and run Compose with `--no-build` |
+| Current branch | `feature/security-hardening` |
+| Active scope | Admin API and admin UI security hardening |
+| Status | S0-S1 admin token auth implemented and verified locally |
 
 ## Completed
 
@@ -204,6 +204,11 @@
 - Kept production env examples aligned with the current no-banner iframe deployment decision.
 - Pushed the backend API image to GHCR as `ghcr.io/monancho/proj01-quiz-widget-api:develop`.
 - Switched the immediate OCI deployment guidance to image pull plus `docker compose up -d --no-build`.
+- Added `docs/09-security-hardening-plan.md` with S0-S4 security parsers.
+- Added S0-S1 admin auth TODO under `docs/todos/`.
+- Added `ADMIN_API_TOKEN` backend protection for `/api/admin/*`.
+- Added `/admin` runtime token gate using browser session storage.
+- Updated deployment docs and env examples so the real admin token stays out of GitHub and Cloudflare Pages build variables.
 
 ## Phase 0 TODO
 
@@ -377,8 +382,8 @@
 
 ## Next
 
-- Review final D1-D5 blog-compatible design work and follow-up iframe design refinements in PR #6.
-- Review and merge PR #6 into `develop`.
-- After PR #6 merge, fast-forward local `develop` from `origin/develop`.
-- Continue AI smell remediation with CSS split planning, status/worklog compaction, or mojibake cleanup after PR #6 stabilizes.
-- Prepare Phase 8 TODO before Docker/deployment work.
+- Commit and push `feature/security-hardening`.
+- Before deploying the updated backend image, set `ADMIN_API_TOKEN` in the OCI server env file.
+- Rebuild/push the backend API image and redeploy OCI with image pull.
+- Redeploy Cloudflare Pages so `/admin` uses the token gate and admin API calls include `Authorization`.
+- Optionally add Cloudflare Access for `https://monancho.com/admin*` as an extra edge-level gate.

@@ -3,6 +3,7 @@ import { getEnv } from './config/env.js';
 import { openDatabase } from './db/connection.js';
 import { createAdminQuizzesRouter } from './routes/adminQuizzes.routes.js';
 import { createAdminQuizSetsRouter } from './routes/adminQuizSets.routes.js';
+import { createAdminAuthMiddleware } from './middleware/adminAuth.js';
 import { createPublicEmbedRouter } from './routes/publicEmbed.routes.js';
 import { createCorsMiddleware } from './utils/cors.js';
 
@@ -22,6 +23,7 @@ export function createApp({ db = openDatabase(), env = getEnv() } = {}) {
   });
 
   app.use('/api/embed', createPublicEmbedRouter(db));
+  app.use('/api/admin', createAdminAuthMiddleware(env));
   app.use('/api/admin/quiz-sets', createAdminQuizSetsRouter(db));
   app.use('/api/admin/quizzes', createAdminQuizzesRouter(db));
 

@@ -129,7 +129,12 @@ PORT=3000
 DATABASE_PATH=/data/proj01-quiz.sqlite
 CORS_ALLOWED_ORIGINS=https://monancho.com
 TISTORY_HOME_URL=https://monancho.tistory.com/
+ADMIN_API_TOKEN=replace-with-long-random-admin-token
 ```
+
+`ADMIN_API_TOKEN`은 운영 관리자 API 접근에 필요합니다. 실제 값은 OCI 서버의
+`infra/env/api.env` 같은 서버 전용 파일에만 저장하고 GitHub에는 올리지 않습니다.
+Cloudflare Pages 빌드 환경 변수에는 이 토큰을 넣지 않습니다.
 
 현재 권장 방식은 OCI 서버에서 직접 이미지를 빌드하지 않고 GHCR 이미지를 pull해서 실행하는 것입니다.
 
