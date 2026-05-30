@@ -3410,3 +3410,131 @@ textarea:focus-visible {
     margin-inline: 12px;
   }
 }
+
+/* Design D1 embed footprint reduction */
+.embed-shell {
+  min-height: min(600px, 100vh);
+  gap: 8px;
+  padding: 10px;
+}
+
+.embed-panel {
+  min-height: 448px;
+  border-color: rgba(126, 135, 145, 0.3);
+  background: rgba(255, 255, 255, 0.975);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.045);
+}
+
+.quiz-card {
+  min-height: 448px;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.quiz-card::before {
+  min-height: 38px;
+  font-size: 0.88rem;
+  font-weight: 780;
+  padding-inline: 14px;
+}
+
+.quiz-header {
+  gap: 9px;
+  padding: 12px 14px 0;
+}
+
+.quiz-question {
+  font-size: clamp(1rem, 0.96rem + 0.22vw, 1.18rem);
+  font-weight: 780;
+  line-height: 1.43;
+  padding: 11px 12px;
+}
+
+.choice-grid {
+  gap: 7px;
+  padding-inline: 14px;
+}
+
+.choice-button {
+  grid-template-columns: 34px minmax(0, 1fr) 22px;
+  min-height: 48px;
+  padding: 8px 10px;
+}
+
+.choice-letter {
+  width: 25px;
+  height: 25px;
+}
+
+.feedback-box {
+  margin-inline: 14px;
+  padding: 10px 12px;
+}
+
+.quiz-actions {
+  padding: 10px 14px 0;
+}
+
+.result-summary,
+.state-message {
+  min-height: 448px;
+  padding: 32px 24px;
+}
+
+.static-banner {
+  min-height: 36px;
+  font-size: 0.82rem;
+}
+
+.iframe-preview-box iframe {
+  height: min(620px, 58vh);
+}
+
+.embed-theme-dark .embed-panel {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+  .embed-theme-system .embed-panel {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  }
+}
+
+@media (max-width: 560px) {
+  .embed-shell {
+    min-height: min(560px, 100vh);
+    padding: 6px;
+  }
+
+  .embed-panel {
+    min-height: min(456px, calc(100vh - 12px));
+  }
+
+  .quiz-card,
+  .result-summary,
+  .state-message {
+    min-height: min(456px, calc(100vh - 12px));
+  }
+
+  .quiz-card::before {
+    min-height: 36px;
+    padding-inline: 10px;
+  }
+
+  .quiz-header {
+    padding: 10px 10px 0;
+  }
+
+  .choice-grid,
+  .quiz-actions {
+    padding-inline: 10px;
+  }
+
+  .choice-button {
+    min-height: 48px;
+  }
+
+  .feedback-box {
+    margin-inline: 10px;
+  }
+}

@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Blog-compatible design sub-phase planning |
-| Status | Design sub-phase strategy and first TODO files prepared |
+| Active scope | Design D1 embed footprint reduction |
+| Status | D0 audit completed and D1 footprint reduction implemented locally |
 
 ## Completed
 
@@ -109,6 +109,11 @@
 - Added design sub-phase TODO rule to `AGENTS.md` and `docs/todos/README.md`.
 - Prepared `docs/todos/design-d0-blog-compatibility-audit.md` before the next design audit.
 - Prepared `docs/todos/design-d1-embed-footprint.md` as the next likely implementation TODO after D0.
+- Completed Design D0 blog compatibility audit across minimal white, off-white editorial, dense text, image magazine, dark article, and narrow mobile contexts.
+- Identified iframe height as the main blog compatibility issue: mobile iframe-height-to-article-width ratio was `1.99` before D1.
+- Implemented Design D1 embed footprint reduction.
+- Reduced generated iframe copy height from `720px` to `620px`.
+- Reduced public iframe shell padding, panel min-height, panel shadow, title band height, question block weight, choice row height, and action spacing while preserving touch usability.
 
 ## Phase 0 TODO
 
@@ -215,6 +220,12 @@
 - Headless Edge KRDS service QA verified iframe light, dark, and system routes at `390px` without horizontal overflow.
 - Headless Edge KRDS service QA verified public iframe body background remains transparent and temporary `krds-service-*` QA data was deleted.
 - Design sub-phase planning completed with no application code changes.
+- Headless Edge D0 audit verified all simulated blog contexts had no horizontal overflow and public iframe body stayed transparent.
+- `npm.cmd run build` after Design D1 embed footprint reduction: passed.
+- Headless Edge D1 QA verified all simulated blog contexts had no horizontal overflow with copied iframe height `620px`.
+- Headless Edge D1 QA improved desktop iframe-height-to-article-width ratios from `0.86~1.06` to `0.74~0.91`.
+- Headless Edge D1 QA improved narrow mobile ratio from `1.99` to `1.71`.
+- Headless Edge D1 QA verified light, dark, and system iframe routes at `390px`, public transparent body background, and Markdown/KaTeX rendering.
 
 ## Remote Sync Status
 
@@ -233,8 +244,8 @@
 
 ## Next
 
-- Complete Design D0 blog compatibility audit.
-- After D0, update `docs/todos/design-d1-embed-footprint.md` with the audit findings before CSS work starts.
+- Review D1 footprint reduction in PR #6.
+- Prepare or confirm `docs/todos/design-d2-skin-adaptive-surface.md` before any D2 surface tuning work.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.

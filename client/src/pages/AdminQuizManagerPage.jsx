@@ -975,5 +975,5 @@ function buildEmbedUrl(postSlug, themeMode = 'system') {
 }
 
 function buildIframeCode(postSlug, themeMode = 'system') {
-  return `<iframe src="${buildEmbedUrl(postSlug, themeMode)}" width="100%" height="720" loading="lazy" allowtransparency="true" style="border:0;max-width:100%;background:transparent;"></iframe>`;
+  return `<iframe src="${buildEmbedUrl(postSlug, themeMode)}" width="100%" height="620" loading="lazy" allowtransparency="true" style="border:0;max-width:100%;background:transparent;"></iframe>`;
 }

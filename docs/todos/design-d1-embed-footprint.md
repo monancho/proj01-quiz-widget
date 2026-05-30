@@ -27,27 +27,48 @@ Reduce the public iframe widget's visual and vertical footprint so it blends int
 
 ## Implementation Checklist
 
-- [ ] Review D0 audit findings before editing CSS.
-- [ ] Tune `.embed-shell` padding and spacing.
-- [ ] Tune `.embed-panel` min-height, border, shadow, and surface strength.
-- [ ] Tune `.quiz-card` min-height and internal spacing.
-- [ ] Tune title band height and visual weight.
-- [ ] Tune question block padding and emphasis.
-- [ ] Tune choice row height while keeping touch targets usable.
-- [ ] Tune action area spacing.
-- [ ] Keep public iframe body background transparent.
+- [x] Review D0 audit findings before editing CSS.
+- [x] Tune `.embed-shell` padding and spacing.
+- [x] Tune `.embed-panel` min-height, border, shadow, and surface strength.
+- [x] Tune `.quiz-card` min-height and internal spacing.
+- [x] Tune title band height and visual weight.
+- [x] Tune question block padding and emphasis.
+- [x] Tune choice row height while keeping touch targets usable.
+- [x] Tune action area spacing.
+- [x] Keep public iframe body background transparent.
+
+## D0 Findings To Address
+
+- The copied iframe height is currently `720px`.
+- Desktop simulated article ratios ranged from `0.86` to `1.06`.
+- Narrow mobile ratio was `1.99`, which is too dominant.
+- Current mobile panel min-height is `520px`, title band is `42px`, and choice rows are `52px`.
+- D1 should reduce visual footprint without making touch targets uncomfortable.
 
 ## Verification Checklist
 
-- [ ] Run `npm.cmd run build` in `client/`.
-- [ ] Verify iframe light route at desktop and mobile width.
-- [ ] Verify iframe dark route at desktop and mobile width.
-- [ ] Verify iframe system route at mobile width.
-- [ ] Verify no horizontal overflow.
-- [ ] Verify long question and long choice text still fit.
-- [ ] Verify Markdown and KaTeX still render.
-- [ ] Update `docs/00-project-status.md`.
-- [ ] Update latest worklog.
+- [x] Run `npm.cmd run build` in `client/`.
+- [x] Verify iframe light route at desktop and mobile width.
+- [x] Verify iframe dark route at desktop and mobile width.
+- [x] Verify iframe system route at mobile width.
+- [x] Verify no horizontal overflow.
+- [x] Verify long question and long choice text still fit.
+- [x] Verify Markdown and KaTeX still render.
+- [x] Update `docs/00-project-status.md`.
+- [x] Update latest worklog.
+
+## Verification Results
+
+- `npm.cmd run build` in `client/`: passed.
+- Copied iframe default height changed from `720px` to `620px`.
+- Blog context QA with `620px` iframe height found no horizontal overflow.
+- Desktop simulated article ratios improved from `0.86~1.06` to `0.74~0.91`.
+- Narrow mobile ratio improved from `1.99` to `1.71`.
+- Direct iframe checks verified light, dark, and system themes at `390px` without overflow.
+- Public iframe body background remained transparent.
+- Mobile internal values after D1: shell padding `6px`, panel min-height `456px`, title band `36px`, choice row min-height `48px`.
+- Markdown and KaTeX QA verified `.katex` and `strong` output still render without horizontal overflow.
+- Temporary `design-d1-*` QA data was deleted after verification.
 
 ## Rollback Notes
 

@@ -30,30 +30,53 @@ Evaluate the current iframe widget design against representative blog contexts b
 
 ## Blog Context Matrix
 
-- [ ] Minimal white article layout.
-- [ ] Off-white editorial article layout.
-- [ ] Dense text-heavy article layout.
-- [ ] Image-heavy magazine article layout.
-- [ ] Dark article layout.
-- [ ] Narrow mobile article layout.
+- [x] Minimal white article layout.
+- [x] Off-white editorial article layout.
+- [x] Dense text-heavy article layout.
+- [x] Image-heavy magazine article layout.
+- [x] Dark article layout.
+- [x] Narrow mobile article layout.
 
 ## Audit Checklist
 
-- [ ] Check whether widget height interrupts reading flow.
-- [ ] Check whether panel shadow/border feels too external.
-- [ ] Check whether title band feels too formal or too heavy.
-- [ ] Check whether question block competes with article headings.
-- [ ] Check whether primary button feels too strong.
-- [ ] Check whether semantic state colors are clear but not harsh.
-- [ ] Check whether optional banner blends with the article.
-- [ ] Check whether light/dark/system modes are enough for current needs.
+- [x] Check whether widget height interrupts reading flow.
+- [x] Check whether panel shadow/border feels too external.
+- [x] Check whether title band feels too formal or too heavy.
+- [x] Check whether question block competes with article headings.
+- [x] Check whether primary button feels too strong.
+- [x] Check whether semantic state colors are clear but not harsh.
+- [x] Check whether optional banner blends with the article.
+- [x] Check whether light/dark/system modes are enough for current needs.
 
 ## Verification Checklist
 
-- [ ] Run or reuse current build verification if no code changes are made.
-- [ ] If browser QA is needed, check iframe at desktop and mobile widths.
-- [ ] Confirm public iframe body background remains transparent.
-- [ ] Record D1 recommendations in the worklog.
+- [x] Run or reuse current build verification if no code changes are made.
+- [x] If browser QA is needed, check iframe at desktop and mobile widths.
+- [x] Confirm public iframe body background remains transparent.
+- [x] Record D1 recommendations in the worklog.
+
+## Audit Results
+
+- No horizontal overflow was found in the simulated blog contexts.
+- Public iframe body background stayed transparent in direct light, dark, and system checks.
+- The current iframe copy height of `720px` is the largest blog-compatibility issue.
+- Desktop article contexts produced iframe-height-to-article-width ratios from `0.86` to `1.06`.
+- Narrow mobile produced an iframe-height-to-article-width ratio of `1.99`, which is too dominant for a blog post body.
+- Current internal mobile values: shell padding `8px`, panel min-height `520px`, title band `42px`, choice row min-height `52px`.
+- The panel border and shadow are acceptable in neutral blogs but still make the widget feel like an inserted external card in editorial and dense text layouts.
+- The title band is usable but should be slightly quieter during D1.
+- The question block is clear but can be less heavy by reducing padding, min-height pressure, and visual surface contrast.
+- The primary action is not too strong before answering because it is disabled, but D1 should preserve a neutral action style.
+
+## D1 Recommendations
+
+- Reduce generated iframe code height from `720px` to a smaller safe default.
+- Lower public embed shell and panel min-height.
+- Reduce panel shadow strength.
+- Tighten title band, question block, choice rows, and action area spacing.
+- Keep choice rows large enough for touch use.
+- Preserve light, dark, and system modes.
+- Preserve transparent public iframe body backgrounds.
 
 ## Rollback Notes
 
