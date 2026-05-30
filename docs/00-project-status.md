@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Design D3 typography and reading rhythm |
-| Status | D3 typography tuning implemented and verified locally |
+| Active scope | Design D4 action and state neutrality |
+| Status | D4 action/state neutrality implemented and verified locally |
 
 ## Completed
 
@@ -124,6 +124,10 @@
 - Implemented Design D3 typography and reading rhythm tuning.
 - Tuned public iframe question, choice, rich text, feedback, result, and banner typography.
 - Preserved D1 footprint, D2 skin-adaptive surfaces, theme modes, quiz behavior, and transparent public iframe body backgrounds.
+- Added `docs/todos/design-d4-action-state-neutrality.md` before D4 implementation.
+- Implemented Design D4 action and state neutrality tuning.
+- Tuned public iframe primary/secondary actions, disabled action state, choice hover/focus states, correct/incorrect choice states, feedback state surfaces, and result retry action.
+- Preserved D1 footprint, D2 skin-adaptive surfaces, D3 typography, theme modes, quiz behavior, and transparent public iframe body backgrounds.
 
 ## Phase 0 TODO
 
@@ -247,6 +251,11 @@
 - Headless Edge D3 QA verified public iframe body background remains transparent.
 - Headless Edge D3 QA verified choice touch targets remain at least `48px`.
 - Temporary `design-d3-*` QA data was deleted after verification.
+- `npm.cmd run build` after Design D4 action/state neutrality tuning: passed.
+- Headless Edge D4 QA verified keyboard focus visibility on choice rows and result retry action.
+- Headless Edge D4 QA verified disabled primary action, light/dark correct and incorrect states, feedback state surfaces, result retry action, light/dark/system iframe routes, no mobile horizontal overflow, and transparent public iframe body background.
+- Transition-aware D4 follow-up QA verified final light correct/incorrect state colors after CSS transitions completed.
+- Temporary `design-d4-*` QA data was deleted after verification.
 
 ## Remote Sync Status
 
@@ -265,8 +274,8 @@
 
 ## Next
 
-- Review D3 typography tuning in PR #6.
-- Prepare or confirm `docs/todos/design-d4-action-state-neutrality.md` before any D4 action/state neutrality work.
+- Review D4 action/state neutrality tuning in PR #6.
+- Prepare or confirm `docs/todos/design-d5-blog-skin-qa-matrix.md` before any D5 blog skin QA matrix work.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.
