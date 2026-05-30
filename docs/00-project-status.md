@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Design D2 skin-adaptive surface tuning |
-| Status | D2 surface tuning implemented and verified locally |
+| Active scope | Design D3 typography and reading rhythm |
+| Status | D3 typography tuning implemented and verified locally |
 
 ## Completed
 
@@ -120,6 +120,10 @@
 - Tuned light surfaces for white, off-white, and gray blog backgrounds.
 - Tuned dark surfaces for dark blog backgrounds.
 - Restored semantic correct/incorrect state surfaces after D2 opacity tuning.
+- Added `docs/todos/design-d3-typography-rhythm.md` before D3 implementation.
+- Implemented Design D3 typography and reading rhythm tuning.
+- Tuned public iframe question, choice, rich text, feedback, result, and banner typography.
+- Preserved D1 footprint, D2 skin-adaptive surfaces, theme modes, quiz behavior, and transparent public iframe body backgrounds.
 
 ## Phase 0 TODO
 
@@ -237,6 +241,12 @@
 - Headless Edge D2 QA verified public iframe body background remains transparent.
 - Headless Edge D2 QA verified light, dark, and system iframe routes at `390px`.
 - Headless Edge D2 QA verified correct/incorrect state colors remain visible after D2 surface opacity tuning.
+- `npm.cmd run build` after Design D3 typography tuning: passed.
+- Headless Edge D3 QA verified long Korean questions, long Korean choices, Markdown lists, inline code, KaTeX, feedback explanations, and result summary rhythm at `390px`.
+- Headless Edge D3 QA verified light, dark, and system iframe routes with no horizontal overflow.
+- Headless Edge D3 QA verified public iframe body background remains transparent.
+- Headless Edge D3 QA verified choice touch targets remain at least `48px`.
+- Temporary `design-d3-*` QA data was deleted after verification.
 
 ## Remote Sync Status
 
@@ -255,8 +265,8 @@
 
 ## Next
 
-- Review D2 surface tuning in PR #6.
-- Prepare or confirm `docs/todos/design-d3-typography-rhythm.md` before any D3 typography work.
+- Review D3 typography tuning in PR #6.
+- Prepare or confirm `docs/todos/design-d4-action-state-neutrality.md` before any D4 action/state neutrality work.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.
