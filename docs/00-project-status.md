@@ -4,11 +4,11 @@
 
 | Item | Value |
 | --- | --- |
-| Date | 2026-05-29 |
+| Date | 2026-05-30 |
 | Base branch | `develop` |
-| Current branch | `feature/admin-mvp` |
-| Active scope | Phase 6 |
-| Status | Phase 6 admin frontend pushed; draft PR #4 open |
+| Current branch | `feature/rendering-security` |
+| Active scope | UI/UX parser completion |
+| Status | Remaining UI/UX parser follow-ups implemented and verified |
 
 ## Completed
 
@@ -59,6 +59,113 @@
 - Phase 6 human checkpoint report added under `docs/human/reports/`.
 - `feature/admin-mvp` pushed to origin.
 - Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- `feature/rendering-security` branch created for Phase 7 planning.
+- Phase 7 TODO file added under `docs/todos/`.
+- Phase 7 shared Markdown/LaTeX renderer implemented.
+- Public iframe quiz question, choices, answer, and explanation now use safe rich text rendering.
+- Admin quiz table and quiz preview now use the same safe rich text rendering.
+- App routes lazy-load admin and embed pages to keep the initial bundle smaller.
+- `feature/rendering-security` pushed to origin.
+- Stacked draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- Pre-deployment admin UX TODO file added under `docs/todos/`.
+- Added `draft` Slug Group status for incomplete groups.
+- Quiz create/edit now opens in a modal.
+- iframe preview and iframe code copy now open in modals.
+- iframe preview and iframe code copy are now combined in one utility modal.
+- Quiz create/edit modal now shows the current question as a finished widget-style preview with selectable feedback.
+- Admin status summary/filter now uses 4 visible categories: total, preparing, public, private.
+- Incomplete Slug Groups now show automatic readonly `준비중` status in the admin modal.
+- Quiz reorder now uses a dedicated drag handle.
+- iframe code textarea now copies the code on click/focus without showing a routine success banner.
+- Public iframe embed background is transparent while admin preview remains visually framed.
+- Quiz order is now creation-order based and can be changed by drag-and-drop.
+- Added admin quiz reorder API.
+- PR #4 merged into `develop`.
+- PR #5 merged into `feature/admin-mvp`.
+- Direct draft PR #6 opened into `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
+- Safety checkpoint tag pushed before design experiment: `checkpoint-before-design-theme-20260529`.
+- Reverted unsupported compact functional UI experiment via `caec970` and `d4e13c1`.
+- Added iframe utility modal theme selection only: `시스템`, `화이트`, `다크`.
+- Public iframe route now supports `theme=light|dark|system` while preserving transparent iframe backgrounds.
+- Added a left admin navigation rail with only one current item: `대시보드`.
+- Changed the admin main area to stack status/filter/stats, Slug Groups, and Quizzes vertically.
+- Added KRDS frontend alignment TODO under `docs/todos/`.
+- Added `krds-uiux` to the client and loaded KRDS design tokens.
+- Mapped app UI variables to KRDS color, border, input, button, and state tokens.
+- Refreshed admin and iframe surfaces with KRDS token-based styling while preserving the existing wireframe and behavior.
+- Restored broken Korean UI labels in the admin and iframe screens.
+- Added KRDS UI redesign pass TODO under `docs/todos/`.
+- Changed the admin shell to a more KRDS-like white navigation rail, structured masthead, flat section panels, dense summary strip, and table-oriented content layout.
+- Changed the iframe quiz widget to a more KRDS-like section card with a title band, square panel, accented question block, structured choice list, and official state colors.
+- Added KRDS neutral density tuning TODO under `docs/todos/`.
+- Reduced strong blue accent usage so the widget can blend into different blog skins.
+- Tuned admin background, font sizing, section separation, and information density with neutral KRDS gray/black emphasis.
+- Tuned iframe widget typography, section borders, choice row density, and panel background while preserving transparent outer backgrounds.
+- Added KRDS service design polish TODO under `docs/todos/`.
+- Reviewed KRDS and USWDS design-system guidance for token-based, consistent, accessible, neutral service styling.
+- Added service-level CSS tokens and polished admin shell, sidebar, masthead, filters, stats, Slug Group list, quiz table, modals, utility preview, iframe quiz panel, choice rows, feedback, results, and banner.
+- Preserved existing React behavior, routes, APIs, admin wireframe, iframe theme modes, and transparent public iframe backgrounds.
+- Added `docs/06-blog-embed-design-strategy.md` to split blog-compatible design work into D0~D5 sub-phases.
+- Added design sub-phase TODO rule to `AGENTS.md` and `docs/todos/README.md`.
+- Prepared `docs/todos/design-d0-blog-compatibility-audit.md` before the next design audit.
+- Prepared `docs/todos/design-d1-embed-footprint.md` as the next likely implementation TODO after D0.
+- Completed Design D0 blog compatibility audit across minimal white, off-white editorial, dense text, image magazine, dark article, and narrow mobile contexts.
+- Identified iframe height as the main blog compatibility issue: mobile iframe-height-to-article-width ratio was `1.99` before D1.
+- Implemented Design D1 embed footprint reduction.
+- Reduced generated iframe copy height from `720px` to `620px`.
+- Reduced public iframe shell padding, panel min-height, panel shadow, title band height, question block weight, choice row height, and action spacing while preserving touch usability.
+- Added `docs/todos/design-d2-skin-adaptive-surface.md` before D2 implementation.
+- Implemented Design D2 skin-adaptive surface tuning.
+- Reduced public iframe panel, title band, question block, choice row, action area, and optional banner surface weight.
+- Tuned light surfaces for white, off-white, and gray blog backgrounds.
+- Tuned dark surfaces for dark blog backgrounds.
+- Restored semantic correct/incorrect state surfaces after D2 opacity tuning.
+- Added `docs/todos/design-d3-typography-rhythm.md` before D3 implementation.
+- Implemented Design D3 typography and reading rhythm tuning.
+- Tuned public iframe question, choice, rich text, feedback, result, and banner typography.
+- Preserved D1 footprint, D2 skin-adaptive surfaces, theme modes, quiz behavior, and transparent public iframe body backgrounds.
+- Added `docs/todos/design-d4-action-state-neutrality.md` before D4 implementation.
+- Implemented Design D4 action and state neutrality tuning.
+- Tuned public iframe primary/secondary actions, disabled action state, choice hover/focus states, correct/incorrect choice states, feedback state surfaces, and result retry action.
+- Preserved D1 footprint, D2 skin-adaptive surfaces, D3 typography, theme modes, quiz behavior, and transparent public iframe body backgrounds.
+- Added `docs/todos/design-d5-blog-skin-qa-matrix.md` before D5 verification.
+- Completed Design D5 blog skin QA matrix.
+- Verified the final D1-D4 public iframe design against minimal white, off-white editorial, dense text, image-heavy magazine, dark article, and narrow mobile blog contexts.
+- No D5 application code changes were required.
+- Added `docs/todos/design-followup-embed-action-spacing.md` before CSS work.
+- Implemented embed action spacing follow-up.
+- Reduced the pre-answer choice-to-action gap and centered the next/result action button in the public iframe flow.
+- Removed the toolbar-like action area surface in the public iframe while preserving quiz behavior, theme modes, iframe height, and transparent public iframe body background.
+- Added `docs/todos/design-followup-dark-result-density.md` before CSS work.
+- Implemented dark mode and final result density follow-up.
+- Tuned dark iframe panel, question, choice, semantic state, feedback, result, and banner colors to keep the dark UI quieter while preserving contrast.
+- Reduced final result panel height in the public iframe because the result state has fewer elements than the quiz-solving state.
+- Added `docs/todos/admin-markdown-authoring-ux.md` before implementation.
+- Added Markdown continuation shortcuts to admin question and explanation textareas.
+- Admin textarea Enter now continues unordered lists, numbered lists, and blockquotes.
+- Empty Markdown continuation lines now exit the list or blockquote cleanly.
+- Verified rich Markdown/LaTeX scenarios across admin preview and public iframe rendering.
+- Added `docs/08-ai-smell-review-plan.md`.
+- Added AI smell review TODO files for R0 research, R1 analysis, R2 remediation planning, R3 execution, and R4 verification.
+- Completed the first AI smell analysis pass using the user-provided article and supplemental research.
+- Identified the main project risks as overlayered CSS, oversized admin page, long rolling status/worklog docs, mojibake content, and unisolated helper logic.
+- Extracted the Markdown authoring continuation parser from `AdminQuizManagerPage.jsx` to `client/src/utils/markdownAuthoring.js`.
+- Confirmed `client/src` Korean UI strings do not contain real mojibake; earlier garbled display was PowerShell output encoding.
+- Added `docs/todos/ai-smell-r3b-admin-embed-helper-extraction.md`.
+- Extracted admin status/theme option constants to `client/src/constants/adminOptions.js`.
+- Extracted iframe URL/code builders to `client/src/utils/embedTools.js`.
+- Added `docs/todos/ai-smell-r3c-admin-indicator-extraction.md`.
+- Extracted admin `LoadingRows`, `StatusBadge`, and `CompletionBadge` to `client/src/components/admin/AdminIndicators.jsx`.
+- Added `docs/todos/uiux-component-review.md` before the review pass.
+- Completed a component-by-component UI/UX review for admin, modals, public iframe, state, responsive, and theme behavior.
+- Added human-facing report `docs/human/reports/2026-05-30-uiux-component-review.html`.
+- Updated the human docs index with the UI/UX component review report.
+- Verified current client build after the UI/UX review.
+- Added `docs/todos/uiux-parser-completion.md` before final UI/UX follow-up implementation.
+- Added `client/src/styles/uiux-parser-completion.css` as a scoped final override layer.
+- Reduced quiz modal and iframe utility modal density without adding product features.
+- Improved mobile admin density while keeping primary actions available.
+- Verified admin desktop/mobile and public iframe light/dark interaction states after parser completion.
 
 ## Phase 0 TODO
 
@@ -122,6 +229,98 @@
 - Admin QA created and deleted a throwaway Slug Group.
 - Phase 6 implementation commit: `cc82950 phase6: implement admin frontend mvp`.
 - Draft PR #4: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- Phase 7 TODO commit: `c497ea1 docs: prepare phase 7 rendering security todo`.
+- `npm.cmd install react-markdown remark-gfm remark-math rehype-katex katex`: completed with 0 vulnerabilities.
+- `npm.cmd run build` after Phase 7 implementation: passed.
+- Public iframe Phase 7 QA: Markdown and KaTeX rendered; quiz content had no script tags, no `onerror`, no `javascript:` URL, and no mobile horizontal overflow at 390px.
+- Admin Phase 7 QA: quiz table rendered Markdown and KaTeX through the shared renderer and had no unsafe script/link content.
+- Phase 7 implementation commit: `e83b86e phase7: add safe markdown math rendering`.
+- Stacked draft PR #5: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- `npm.cmd run smoke:phase2`: passed after admin UX refinement.
+- `npm.cmd run smoke:phase3`: passed after admin UX refinement, including reorder API coverage.
+- `npm.cmd run smoke:phase4`: passed after admin UX refinement.
+- `npm.cmd run build` after admin UX refinement: passed.
+- Headless Chrome admin UX QA verified modal flows, iframe preview/code modals, drag reorder, and draft-only incomplete status behavior.
+- Admin UX refinement commit: `2c384f6 admin: refine predeploy quiz management ux`.
+- Direct draft PR #6: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
+- `npm.cmd run build` after unified iframe/widget preview follow-up: passed.
+- Headless Chrome admin follow-up QA verified the combined iframe modal, iframe code textarea, live iframe preview, widget-style quiz preview, selectable feedback, and no horizontal overflow.
+- Admin UX follow-up commit: `59c9695 admin: unify embed and widget previews`.
+- `npm.cmd run build` after admin UX polish: passed.
+- Headless Chrome admin UX polish QA verified 4 status categories, automatic readonly preparing state, handle drag reorder, click-to-copy iframe code, no copy success banner, and transparent public embed background.
+- Admin UX polish commit: `1cfc53c admin: polish predeploy ux controls`.
+- `npm.cmd run build` after reverting unsupported compact design and applying theme-only behavior: passed.
+- Headless Chrome theme-only QA verified the original admin wireframe markers, no fake sidebar/notification UI, iframe modal theme options, `theme=dark` URL/code/clipboard behavior, light/dark/system embed rendering, no horizontal overflow, and transparent public embed backgrounds.
+- `npm.cmd run build` after admin dashboard layout refinement: passed.
+- Headless Chrome admin layout QA verified one `대시보드` nav item, vertical status/Slug Groups/Quizzes stacking, Slug Group selection, 3-row quiz table rendering, iframe utility modal behavior, public embed rendering, and no horizontal overflow.
+- Headless Chrome wide viewport QA verified the 224px left sidebar and main dashboard column render side by side without horizontal overflow.
+- `npm.cmd install krds-uiux@^1.0.5` in `client/`: completed with 0 vulnerabilities.
+- `npm.cmd run build` after KRDS frontend alignment: passed.
+- Headless Chrome KRDS QA verified admin desktop and mobile rendering without horizontal overflow.
+- Headless Chrome KRDS QA verified embed light and dark theme rendering without horizontal overflow.
+- Headless Chrome KRDS QA verified KRDS token CSS is loaded and app primary color resolves to `#256ef4`.
+- Static search found no remaining known mojibake markers in `client/src`.
+- `npm.cmd run build` after KRDS visual redesign pass: passed.
+- Headless Chrome KRDS redesign QA verified admin desktop and mobile rendering without horizontal overflow.
+- Headless Chrome KRDS redesign QA verified embed light and dark routes preserve transparent backgrounds and render without horizontal overflow.
+- `npm.cmd run build` after KRDS neutral density tuning: passed.
+- Headless Chrome KRDS neutral QA verified admin desktop and mobile rendering without horizontal overflow.
+- Headless Chrome KRDS neutral QA verified embed light and dark routes preserve transparent body backgrounds and render without horizontal overflow.
+- Headless Chrome KRDS neutral QA verified app primary color resolves to neutral `#131416`.
+- `npm.cmd run build` after KRDS service design polish: passed.
+- Headless Edge KRDS service QA verified admin desktop `1366px` and mobile `390px` rendering without horizontal overflow.
+- Headless Edge KRDS service QA verified iframe light, dark, and system routes at `390px` without horizontal overflow.
+- Headless Edge KRDS service QA verified public iframe body background remains transparent and temporary `krds-service-*` QA data was deleted.
+- Design sub-phase planning completed with no application code changes.
+- Headless Edge D0 audit verified all simulated blog contexts had no horizontal overflow and public iframe body stayed transparent.
+- `npm.cmd run build` after Design D1 embed footprint reduction: passed.
+- Headless Edge D1 QA verified all simulated blog contexts had no horizontal overflow with copied iframe height `620px`.
+- Headless Edge D1 QA improved desktop iframe-height-to-article-width ratios from `0.86~1.06` to `0.74~0.91`.
+- Headless Edge D1 QA improved narrow mobile ratio from `1.99` to `1.71`.
+- Headless Edge D1 QA verified light, dark, and system iframe routes at `390px`, public transparent body background, and Markdown/KaTeX rendering.
+- `npm.cmd run build` after Design D2 skin-adaptive surface tuning: passed.
+- Headless Edge D2 QA verified white, off-white, gray, dark, and mobile white blog background simulations with no horizontal overflow.
+- Headless Edge D2 QA verified public iframe body background remains transparent.
+- Headless Edge D2 QA verified light, dark, and system iframe routes at `390px`.
+- Headless Edge D2 QA verified correct/incorrect state colors remain visible after D2 surface opacity tuning.
+- `npm.cmd run build` after Design D3 typography tuning: passed.
+- Headless Edge D3 QA verified long Korean questions, long Korean choices, Markdown lists, inline code, KaTeX, feedback explanations, and result summary rhythm at `390px`.
+- Headless Edge D3 QA verified light, dark, and system iframe routes with no horizontal overflow.
+- Headless Edge D3 QA verified public iframe body background remains transparent.
+- Headless Edge D3 QA verified choice touch targets remain at least `48px`.
+- Temporary `design-d3-*` QA data was deleted after verification.
+- `npm.cmd run build` after Design D4 action/state neutrality tuning: passed.
+- Headless Edge D4 QA verified keyboard focus visibility on choice rows and result retry action.
+- Headless Edge D4 QA verified disabled primary action, light/dark correct and incorrect states, feedback state surfaces, result retry action, light/dark/system iframe routes, no mobile horizontal overflow, and transparent public iframe body background.
+- Transition-aware D4 follow-up QA verified final light correct/incorrect state colors after CSS transitions completed.
+- Temporary `design-d4-*` QA data was deleted after verification.
+- `npm.cmd run build` before Design D5 blog skin QA matrix: passed.
+- Headless Edge D5 QA verified six simulated parent blog contexts had no horizontal overflow and iframe width fit the article column.
+- D5 parent iframe height-to-article-width ratios were `0.82`, `0.91`, `0.97`, `0.82`, `0.91`, and `1.71` for minimal white, off-white editorial, dense text, image-heavy magazine, dark article, and narrow mobile contexts.
+- Headless Edge D5 QA verified direct light, dark, and system iframe routes at `390px` had no internal horizontal overflow and public iframe body background remained transparent.
+- Headless Edge D5 QA verified Markdown, bold text, KaTeX, light/dark correct and incorrect states, and result views in direct iframe checks.
+- Temporary `design-d5-*` QA data was deleted after verification.
+- Headless Edge D5 embedded interaction QA verified answer click, incorrect state, correct state, and all-quiz final result inside a parent-page iframe for light desktop, dark desktop, and system mobile contexts.
+- Headless Edge D5 embedded interaction QA verified no parent horizontal overflow, no iframe internal horizontal overflow, and transparent iframe body background throughout the interaction flow.
+- Temporary `design-d5-embedded-*` QA data was deleted after verification.
+- `npm.cmd run build` after embed action spacing follow-up: passed.
+- Headless Edge spacing QA verified mobile light route improved pre-answer choice-to-action gap from about `97px` to `0px`.
+- Headless Edge spacing QA verified incorrect, correct, and final-question feedback-to-action gaps were `0px`.
+- Headless Edge spacing QA verified next/result action button is centered, result screen still renders, light/dark/system routes have no horizontal overflow, public iframe body remains transparent, and temporary spacing QA data was deleted.
+- `npm.cmd run build` after dark mode/result density follow-up: passed.
+- Headless Edge dark/result QA verified dark and system dark answer click, incorrect state, correct state, and final result flows.
+- Headless Edge dark/result QA verified dark/system dark result panel height reduced from `456px` in the initial quiz state to `219px` in the final result state.
+- Headless Edge dark/result QA verified no mobile horizontal overflow, centered result retry action, transparent public iframe body background, and temporary `design-dark-result-*` QA data cleanup.
+- `npm.cmd run build` after admin Markdown authoring UX: passed.
+- Headless Edge admin authoring QA verified unordered list continuation, numbered list continuation, blockquote continuation, and empty continuation exit behavior.
+- Headless Edge admin preview QA verified Markdown strong text, list items, and KaTeX rendering.
+- Headless Edge public iframe QA verified rich Markdown/LaTeX rendering across question, choices, and explanation at mobile `390px`, with no horizontal overflow and transparent iframe body background.
+- Temporary `markdown-ux-*` QA data was deleted after verification.
+- Markdown authoring helper-level checks passed for unordered list continuation, unordered exit, ordered `1.` continuation, ordered `1)` continuation, blockquote continuation, and plain text no-op.
+- `npm.cmd run build` after AI smell helper extraction: passed.
+- Admin embed helper-level checks passed for encoded slug URLs, theme fallback, iframe height `620`, `allowtransparency`, and transparent style preservation.
+- `npm.cmd run build` after admin embed helper extraction: passed.
+- `npm.cmd run build` after admin indicator extraction: passed.
 
 ## Remote Sync Status
 
@@ -132,9 +331,16 @@
 - PR #2 is merged into `origin/feature/server-api-mvp`.
 - PR #3 is merged into `origin/develop`.
 - `feature/admin-mvp` is pushed and tracks `origin/feature/admin-mvp`.
-- Draft PR #4 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- PR #4 is merged into `origin/develop`: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- `feature/rendering-security` is pushed and tracks `origin/feature/rendering-security`.
+- PR #5 is merged into `origin/feature/admin-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- Direct draft PR #6 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
+- `feature/rendering-security` contains the verified revert/theme-only follow-up for PR #6.
 
 ## Next
 
-- Prepare Phase 7 TODO before Markdown/LaTeX rendering and sanitizing work.
-- After PR #4 review/merge, fast-forward local `develop` from `origin/develop`.
+- Review final D1-D5 blog-compatible design work and follow-up iframe design refinements in PR #6.
+- Review and merge PR #6 into `develop`.
+- After PR #6 merge, fast-forward local `develop` from `origin/develop`.
+- Continue AI smell remediation with CSS split planning, status/worklog compaction, or mojibake cleanup after PR #6 stabilizes.
+- Prepare Phase 8 TODO before Docker/deployment work.

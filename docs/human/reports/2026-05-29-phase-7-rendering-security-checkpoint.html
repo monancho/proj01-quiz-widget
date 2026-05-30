@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase 7 Rendering/Security Checkpoint</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f6f7fb;
+      color: #1f2937;
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 42px 0 56px;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid #d8dee9;
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 32px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p,
+    li {
+      color: #667085;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .pill {
+      display: inline-flex;
+      margin: 4px 6px 0 0;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Phase 7 Rendering/Security Checkpoint</h1>
+    <p>Markdown/LaTeX rendering and basic content-safety handling were added for both the public iframe and admin surfaces.</p>
+    <div>
+      <span class="pill">Date: 2026-05-29</span>
+      <span class="pill">Branch: feature/rendering-security</span>
+      <span class="pill">Status: Locally verified</span>
+    </div>
+
+    <section>
+      <h2>What Changed</h2>
+      <ul>
+        <li>Added a shared <code>RichText</code> renderer for Markdown, GFM, inline math, and block math.</li>
+        <li>Applied the renderer to public quiz questions, choices, correct answers, and explanations.</li>
+        <li>Applied the same renderer to admin quiz table text and the admin quiz preview.</li>
+        <li>Blocked raw HTML rendering and unsafe link protocols such as <code>javascript:</code>.</li>
+        <li>Lazy-loaded admin/embed route pages to keep route chunks separated.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verification</h2>
+      <ul>
+        <li><code>npm.cmd run build</code> passed in <code>client/</code>.</li>
+        <li>Public iframe rendered Markdown bold text and KaTeX math.</li>
+        <li>Admin quiz table rendered Markdown and KaTeX through the same renderer.</li>
+        <li>Unsafe test content did not leave script tags, event-handler attributes, or <code>javascript:</code> links in quiz/admin content.</li>
+        <li>Mobile iframe QA at 390px width reported no horizontal overflow.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Review Notes</h2>
+      <p>The current approach is intentionally simple: stored quiz strings remain plain text, and rendering happens only in the frontend. A rich text editor can be considered later if writing Markdown directly becomes inconvenient.</p>
+    </section>
+  </main>
+</body>
+</html>

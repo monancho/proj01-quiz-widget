@@ -58,7 +58,7 @@ try {
     body: {
       postSlug: 'Intro-To-Marketing',
       postTitle: ' Marketing Basics ',
-      status: 'private'
+      status: 'draft'
     }
   });
   assert(response.status === 201, 'create should return 201');
@@ -70,7 +70,7 @@ try {
   assert(response.body.summary.totalSets === 1, 'summary should count created set');
   assert(response.body.items.length === 1, 'list should return created set');
 
-  response = await request('/api/admin/quiz-sets?query=marketing&status=private');
+  response = await request('/api/admin/quiz-sets?query=marketing&status=draft');
   assert(response.status === 200, 'filtered list should return 200');
   assert(response.body.items.length === 1, 'filtered list should include matching set');
 
@@ -91,7 +91,7 @@ try {
     body: {
       postSlug: 'intro-to-marketing',
       postTitle: 'Duplicate',
-      status: 'private'
+      status: 'draft'
     }
   });
   assert(response.status === 409, 'duplicate slug should return 409');
@@ -101,7 +101,7 @@ try {
     body: {
       postSlug: 'bad_slug',
       postTitle: 'Bad Slug',
-      status: 'private'
+      status: 'draft'
     }
   });
   assert(response.status === 400, 'invalid slug should return 400');
@@ -119,6 +119,16 @@ try {
   response = await request(`/api/admin/quiz-sets/${createdId}`, {
     method: 'PATCH',
     body: {
+      postSlug: 'intro-to-marketing',
+      postTitle: 'Marketing Basics Updated',
+      status: 'private'
+    }
+  });
+  assert(response.status === 400, 'incomplete set should not use private status');
+
+  response = await request(`/api/admin/quiz-sets/${createdId}`, {
+    method: 'PATCH',
+    body: {
       postTitle: 'Marketing Basics Updated'
     }
   });
@@ -129,7 +139,7 @@ try {
     method: 'PATCH',
     body: {
       postSlug: 'marketing-basics',
-      status: 'private'
+      status: 'draft'
     }
   });
   assert(response.status === 200, 'update should return 200');

@@ -1,0 +1,198 @@
+/* UI/UX parser completion: modal density, mobile density, and scoped final overrides. */
+
+.modal-backdrop {
+  align-items: start;
+  overflow-y: auto;
+  padding: clamp(10px, 2vw, 20px);
+}
+
+.admin-modal {
+  max-height: min(84vh, 760px);
+}
+
+.quiz-modal,
+.utility-modal {
+  width: min(100%, 820px);
+}
+
+.quiz-modal {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.86fr);
+  align-items: start;
+}
+
+.quiz-modal .modal-heading,
+.quiz-modal .form-error,
+.quiz-modal .modal-actions {
+  grid-column: 1 / -1;
+}
+
+.quiz-modal > label:nth-of-type(1),
+.quiz-modal > label:nth-of-type(2),
+.quiz-modal > label:nth-of-type(3),
+.quiz-modal > .choice-edit-grid {
+  grid-column: 1;
+}
+
+.quiz-modal > .quiz-preview {
+  grid-column: 2;
+  grid-row: 2 / span 5;
+  margin-right: 16px;
+}
+
+.quiz-modal textarea {
+  min-height: 92px;
+}
+
+.quiz-modal .choice-edit-grid {
+  gap: 8px;
+}
+
+.admin-widget-preview {
+  max-height: min(420px, 50vh);
+}
+
+.admin-widget-preview .quiz-card {
+  gap: 8px;
+  padding: 14px;
+}
+
+.admin-widget-preview .choice-button {
+  min-height: 44px;
+}
+
+.admin-widget-preview .feedback-box {
+  padding: 10px;
+}
+
+.utility-modal textarea[readonly] {
+  min-height: 72px;
+}
+
+.iframe-preview-box iframe {
+  height: min(420px, 48vh);
+}
+
+.drag-handle,
+.row-actions .icon-action {
+  min-width: 38px;
+  min-height: 38px;
+}
+
+@media (max-width: 920px) {
+  .quiz-modal {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-modal > label:nth-of-type(1),
+  .quiz-modal > label:nth-of-type(2),
+  .quiz-modal > label:nth-of-type(3),
+  .quiz-modal > .choice-edit-grid,
+  .quiz-modal > .quiz-preview {
+    grid-column: 1;
+  }
+
+  .quiz-modal > .quiz-preview {
+    grid-row: auto;
+    margin-right: 16px;
+  }
+
+  .admin-widget-preview {
+    max-height: min(360px, 44vh);
+  }
+}
+
+@media (max-width: 560px) {
+  .admin-shell {
+    gap: 8px;
+  }
+
+  .admin-main {
+    gap: 8px;
+  }
+
+  .admin-topbar,
+  .admin-toolbar,
+  .admin-stats,
+  .admin-workspace {
+    border-radius: 6px;
+  }
+
+  .admin-topbar-actions,
+  .detail-actions,
+  .row-actions {
+    gap: 6px;
+  }
+
+  .admin-topbar-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .admin-topbar-actions .admin-button {
+    justify-content: center;
+  }
+
+  .admin-list-panel,
+  .admin-detail-panel {
+    min-height: auto;
+  }
+
+  .admin-empty,
+  .loading-block {
+    min-height: 96px;
+  }
+
+  .detail-heading,
+  .quiz-table-header {
+    align-items: stretch;
+  }
+
+  .detail-actions,
+  .quiz-table-header .admin-button {
+    width: 100%;
+  }
+
+  .detail-actions .icon-action {
+    flex: 1;
+  }
+
+  .quiz-table th:nth-child(4),
+  .quiz-table td:nth-child(4) {
+    display: none;
+  }
+
+  .quiz-table th,
+  .quiz-table td {
+    padding: 7px 6px;
+  }
+
+  .modal-backdrop {
+    padding: 8px;
+  }
+
+  .admin-modal {
+    width: 100%;
+    max-height: calc(100vh - 16px);
+  }
+
+  .admin-modal > label,
+  .admin-modal > fieldset,
+  .admin-modal > .quiz-preview,
+  .admin-modal > .form-warning,
+  .admin-modal > .form-error,
+  .admin-modal > .form-ok,
+  .admin-modal > .readonly-status,
+  .iframe-preview-box {
+    margin-inline: 12px;
+  }
+
+  .choice-edit-grid {
+    gap: 8px;
+  }
+
+  .admin-widget-preview,
+  .iframe-preview-box iframe {
+    max-height: 330px;
+  }
+}

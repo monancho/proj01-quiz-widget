@@ -1,4 +1,5 @@
 import React from 'react';
+import RichText from '../common/RichText.jsx';
 import ChoiceButton from './ChoiceButton.jsx';
 import FeedbackBox from './FeedbackBox.jsx';
 
@@ -17,7 +18,9 @@ export default function QuizCard({
         <span className="quiz-count">
           {quizNumber} / {totalCount}
         </span>
-        <h1>{quiz.question}</h1>
+        <div className="quiz-question" role="heading" aria-level="1">
+          <RichText source={quiz.question} />
+        </div>
       </header>
 
       <div className="choice-grid">
