@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/security-hardening` |
 | Active scope | Admin API and admin UI security hardening |
-| Status | S0-S1 admin token auth implemented and verified locally |
+| Status | S0-S1 admin token auth implemented, verified, committed, and pushed |
 
 ## Completed
 
@@ -209,6 +209,7 @@
 - Added `ADMIN_API_TOKEN` backend protection for `/api/admin/*`.
 - Added `/admin` runtime token gate using browser session storage.
 - Updated deployment docs and env examples so the real admin token stays out of GitHub and Cloudflare Pages build variables.
+- Pushed `feature/security-hardening` to `origin/feature/security-hardening`.
 
 ## Phase 0 TODO
 
