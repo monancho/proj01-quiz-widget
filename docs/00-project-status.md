@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | AI smell admin helper extraction |
-| Status | Admin embed helper/constants extracted and verified |
+| Active scope | AI smell admin indicator extraction |
+| Status | Admin indicator components extracted and verified |
 
 ## Completed
 
@@ -154,6 +154,8 @@
 - Added `docs/todos/ai-smell-r3b-admin-embed-helper-extraction.md`.
 - Extracted admin status/theme option constants to `client/src/constants/adminOptions.js`.
 - Extracted iframe URL/code builders to `client/src/utils/embedTools.js`.
+- Added `docs/todos/ai-smell-r3c-admin-indicator-extraction.md`.
+- Extracted admin `LoadingRows`, `StatusBadge`, and `CompletionBadge` to `client/src/components/admin/AdminIndicators.jsx`.
 
 ## Phase 0 TODO
 
@@ -308,6 +310,7 @@
 - `npm.cmd run build` after AI smell helper extraction: passed.
 - Admin embed helper-level checks passed for encoded slug URLs, theme fallback, iframe height `620`, `allowtransparency`, and transparent style preservation.
 - `npm.cmd run build` after admin embed helper extraction: passed.
+- `npm.cmd run build` after admin indicator extraction: passed.
 
 ## Remote Sync Status
 

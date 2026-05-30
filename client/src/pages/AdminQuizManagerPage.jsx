@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { embedThemeOptions, statusOptions } from '../constants/adminOptions.js';
+import { CompletionBadge, LoadingRows, StatusBadge } from '../components/admin/AdminIndicators.jsx';
 import RichText from '../components/common/RichText.jsx';
 import QuizCard from '../components/quiz/QuizCard.jsx';
 import { buildEmbedUrl, buildIframeCode } from '../utils/embedTools.js';
@@ -973,27 +974,5 @@ function UtilityModal({ modal, onClose, onThemeChange, onCopy }) {
         </div>
       </section>
     </div>
-  );
-}
-
-function LoadingRows() {
-  return (
-    <div className="loading-block">
-      <LoaderCircle className="spin" size={20} />
-      <span>불러오는 중</span>
-    </div>
-  );
-}
-
-function StatusBadge({ status }) {
-  const option = statusOptions.find((item) => item.value === status);
-  return <span className={`status-badge ${status}`}>{option?.label || status}</span>;
-}
-
-function CompletionBadge({ quizSet }) {
-  return (
-    <span className={`completion-badge ${quizSet.isComplete ? 'complete' : ''}`}>
-      {quizSet.quizCount}/{quizSet.requiredQuizCount}
-    </span>
   );
 }
