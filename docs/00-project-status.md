@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | KRDS UI redesign pass |
-| Status | KRDS-like visual redesign implemented and verified locally |
+| Active scope | KRDS neutral density tuning |
+| Status | Neutral KRDS visual tuning implemented and verified locally |
 
 ## Completed
 
@@ -97,6 +97,10 @@
 - Added KRDS UI redesign pass TODO under `docs/todos/`.
 - Changed the admin shell to a more KRDS-like white navigation rail, structured masthead, flat section panels, dense summary strip, and table-oriented content layout.
 - Changed the iframe quiz widget to a more KRDS-like section card with a title band, square panel, accented question block, structured choice list, and official state colors.
+- Added KRDS neutral density tuning TODO under `docs/todos/`.
+- Reduced strong blue accent usage so the widget can blend into different blog skins.
+- Tuned admin background, font sizing, section separation, and information density with neutral KRDS gray/black emphasis.
+- Tuned iframe widget typography, section borders, choice row density, and panel background while preserving transparent outer backgrounds.
 
 ## Phase 0 TODO
 
@@ -194,6 +198,10 @@
 - `npm.cmd run build` after KRDS visual redesign pass: passed.
 - Headless Chrome KRDS redesign QA verified admin desktop and mobile rendering without horizontal overflow.
 - Headless Chrome KRDS redesign QA verified embed light and dark routes preserve transparent backgrounds and render without horizontal overflow.
+- `npm.cmd run build` after KRDS neutral density tuning: passed.
+- Headless Chrome KRDS neutral QA verified admin desktop and mobile rendering without horizontal overflow.
+- Headless Chrome KRDS neutral QA verified embed light and dark routes preserve transparent body backgrounds and render without horizontal overflow.
+- Headless Chrome KRDS neutral QA verified app primary color resolves to neutral `#131416`.
 
 ## Remote Sync Status
 
