@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/deployment-domain-config` |
-| Active scope | Production API base URL guard |
-| Status | Local proxy fallback clarified; production API clients now require configured `VITE_API_BASE_URL` |
+| Active scope | API HTTPS domain setup |
+| Status | Caddy now targets `api.monancho.com`; DNS/server/frontend redeploy steps documented |
 
 ## Completed
 
@@ -199,6 +199,9 @@
 - Added a shared frontend API base URL resolver.
 - Kept local Vite proxy behavior for development but blocked silent same-origin API fallback in production.
 - Improved admin and iframe API clients so non-JSON HTML responses report an API configuration error instead of a raw JSON parse error.
+- Updated Caddy to serve the backend API on `api.monancho.com` with automatic HTTPS.
+- Documented the Cloudflare DNS, OCI port, Caddy restart, HTTPS health check, and Cloudflare Pages env steps for `https://api.monancho.com`.
+- Kept production env examples aligned with the current no-banner iframe deployment decision.
 
 ## Phase 0 TODO
 

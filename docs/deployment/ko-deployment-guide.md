@@ -204,6 +204,17 @@ Cloudflare Pages 환경 변수:
 
 브라우저 Network에서 요청이 `https://monancho.com/api/...`로 보이면 환경 변수가 해당 배포에 적용되지 않은 것입니다. API 도메인이 준비된 뒤에는 `https://api.monancho.com/api/...`로 요청되어야 정상입니다.
 
+운영 프론트엔드에서는 원본 HTTP 서버 IP를 API 주소로 쓰지 않습니다. `https://monancho.com`에서 `http://...` API를 호출하면 브라우저 mixed content 정책으로 막힐 수 있으므로 `VITE_API_BASE_URL=https://api.monancho.com`을 사용합니다.
+
+`api.monancho.com` 준비 순서:
+
+1. Cloudflare DNS에서 `A api -> OCI 공개 IP`를 추가합니다.
+2. 처음에는 Proxy status를 `DNS only`로 둡니다.
+3. OCI 보안 규칙에서 `80`, `443` TCP 인바운드를 열어둡니다.
+4. OCI 서버에서 `docker compose -f infra/docker-compose.yml up -d`를 실행합니다.
+5. `curl -fsS https://api.monancho.com/health`가 성공하는지 확인합니다.
+6. Cloudflare Pages 환경 변수 `VITE_API_BASE_URL=https://api.monancho.com`을 저장하고 프론트엔드를 다시 배포합니다.
+
 배포 후 확인:
 
 ```text

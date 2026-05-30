@@ -105,30 +105,37 @@ Back up the volume before risky deploys:
 docker run --rm -v proj01-quiz-widget_quiz-data:/data -v "$PWD":/backup alpine tar czf /backup/quiz-data-backup.tgz /data
 ```
 
-## Proxy
+## Proxy and HTTPS API Domain
 
-The default Caddyfile listens on `:80` and proxies to the API service.
+The production Caddyfile serves the API through:
 
-For direct HTTPS on a real API domain, update `infra/caddy/Caddyfile` from:
-
-```caddy
-:80
+```text
+https://api.monancho.com
 ```
 
-to:
+Before restarting Caddy on the OCI host, create a Cloudflare DNS record:
 
-```caddy
-api.example.com
+```text
+Type: A
+Name: api
+Target: YOUR_OCI_PUBLIC_IP
+Proxy status: DNS only
 ```
 
-Recommended production API domain:
+Keep OCI ingress ports `80` and `443` open. Caddy uses port `80` for certificate validation and port `443` for HTTPS traffic.
 
-```caddy
-api.monancho.com
-```
-
-Then restart:
+After DNS is in place, restart the stack:
 
 ```bash
 docker compose -f infra/docker-compose.yml up -d
+docker compose -f infra/docker-compose.yml logs --tail=80 proxy
+curl -fsS https://api.monancho.com/health
 ```
+
+When this succeeds, set Cloudflare Pages `VITE_API_BASE_URL` to:
+
+```text
+https://api.monancho.com
+```
+
+Then redeploy the frontend.
