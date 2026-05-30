@@ -60,6 +60,11 @@ Use the right category:
 - Before starting implementation for a new phase, check whether a phase TODO file exists under `docs/todos/`.
 - If the phase TODO file does not exist, create it before editing application code.
 - A phase TODO file must include source docs, scope, out-of-scope items, implementation checklist, verification checklist, and handoff notes.
+- For design-only improvement work, use `docs/06-blog-embed-design-strategy.md` as the design sub-phase map.
+- Before starting each design sub-phase, create or confirm a matching `docs/todos/design-dN-short-name.md` TODO file.
+- Do not edit CSS or frontend components for a design sub-phase until its TODO file exists.
+- Design sub-phase TODO files must include source docs, design goal, scope, out-of-scope items, implementation checklist, verification checklist, rollback notes, and handoff notes.
+- Keep public iframe design work focused on blog compatibility: transparent outer background, neutral visual weight, no unsupported features, and no workflow changes.
 - Update `docs/00-project-status.md` when phase status changes.
 - Update the latest `docs/worklog/YYYY-MM-DD.md` during meaningful progress.
 - Keep human-facing HTML documents categorized under `docs/human/`; do not put all human-readable content into one file.

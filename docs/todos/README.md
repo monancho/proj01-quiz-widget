@@ -20,6 +20,23 @@ Examples:
 - `phase-3-quiz-api.md`
 - `phase-4-public-embed-api.md`
 
+For design-only sub-phases, use this format:
+
+```text
+design-dN-short-name.md
+```
+
+Examples:
+
+- `design-d0-blog-compatibility-audit.md`
+- `design-d1-embed-footprint.md`
+
+Design sub-phases are mapped in:
+
+```text
+docs/06-blog-embed-design-strategy.md
+```
+
 ## Required Sections
 
 Each phase TODO document should include:
@@ -30,4 +47,9 @@ Each phase TODO document should include:
 - implementation checklist
 - verification checklist
 - handoff notes
+
+Design sub-phase TODO documents should also include:
+
+- design goal
+- rollback notes
 

@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | KRDS service design polish |
-| Status | Service-level KRDS visual polish implemented and verified locally |
+| Active scope | Blog-compatible design sub-phase planning |
+| Status | Design sub-phase strategy and first TODO files prepared |
 
 ## Completed
 
@@ -105,6 +105,10 @@
 - Reviewed KRDS and USWDS design-system guidance for token-based, consistent, accessible, neutral service styling.
 - Added service-level CSS tokens and polished admin shell, sidebar, masthead, filters, stats, Slug Group list, quiz table, modals, utility preview, iframe quiz panel, choice rows, feedback, results, and banner.
 - Preserved existing React behavior, routes, APIs, admin wireframe, iframe theme modes, and transparent public iframe backgrounds.
+- Added `docs/06-blog-embed-design-strategy.md` to split blog-compatible design work into D0~D5 sub-phases.
+- Added design sub-phase TODO rule to `AGENTS.md` and `docs/todos/README.md`.
+- Prepared `docs/todos/design-d0-blog-compatibility-audit.md` before the next design audit.
+- Prepared `docs/todos/design-d1-embed-footprint.md` as the next likely implementation TODO after D0.
 
 ## Phase 0 TODO
 
@@ -210,6 +214,7 @@
 - Headless Edge KRDS service QA verified admin desktop `1366px` and mobile `390px` rendering without horizontal overflow.
 - Headless Edge KRDS service QA verified iframe light, dark, and system routes at `390px` without horizontal overflow.
 - Headless Edge KRDS service QA verified public iframe body background remains transparent and temporary `krds-service-*` QA data was deleted.
+- Design sub-phase planning completed with no application code changes.
 
 ## Remote Sync Status
 
@@ -228,6 +233,8 @@
 
 ## Next
 
+- Complete Design D0 blog compatibility audit.
+- After D0, update `docs/todos/design-d1-embed-footprint.md` with the audit findings before CSS work starts.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.
