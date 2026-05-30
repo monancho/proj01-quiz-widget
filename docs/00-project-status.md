@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-30 |
 | Base branch | `develop` |
-| Current branch | `feature/rendering-security` |
-| Active scope | UI/UX parser completion |
-| Status | Remaining UI/UX parser follow-ups implemented and verified |
+| Current branch | `feature/docker-deploy` |
+| Active scope | Phase 8 deployment prep |
+| Status | Deployment artifacts and docs prepared and verified |
 
 ## Completed
 
@@ -166,6 +166,14 @@
 - Reduced quiz modal and iframe utility modal density without adding product features.
 - Improved mobile admin density while keeping primary actions available.
 - Verified admin desktop/mobile and public iframe light/dark interaction states after parser completion.
+- PR #6 was merged into `develop` and local `develop` was fast-forwarded to `origin/develop`.
+- Created `feature/docker-deploy` from updated `develop`.
+- Added Phase 8 deployment prep TODO under `docs/todos/`.
+- Added backend Dockerfile, Docker Compose stack, Caddy reverse proxy config, and production env examples.
+- Added Cloudflare Pages, OCI backend, deployment smoke test, and GitHub Actions draft deployment docs.
+- Updated root README with deployment entry points.
+- Added Phase 8 human checkpoint report and linked it from the human docs index.
+- Verified backend smoke tests, client build, and Docker Compose config for deployment prep.
 
 ## Phase 0 TODO
 
