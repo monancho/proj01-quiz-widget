@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Design follow-up dark mode and result density |
-| Status | Dark mode color and final result density follow-up implemented and verified locally |
+| Active scope | Admin Markdown authoring UX |
+| Status | Markdown/LaTeX authoring shortcuts and rich rendering scenarios implemented and verified locally |
 
 ## Completed
 
@@ -140,6 +140,11 @@
 - Implemented dark mode and final result density follow-up.
 - Tuned dark iframe panel, question, choice, semantic state, feedback, result, and banner colors to keep the dark UI quieter while preserving contrast.
 - Reduced final result panel height in the public iframe because the result state has fewer elements than the quiz-solving state.
+- Added `docs/todos/admin-markdown-authoring-ux.md` before implementation.
+- Added Markdown continuation shortcuts to admin question and explanation textareas.
+- Admin textarea Enter now continues unordered lists, numbered lists, and blockquotes.
+- Empty Markdown continuation lines now exit the list or blockquote cleanly.
+- Verified rich Markdown/LaTeX scenarios across admin preview and public iframe rendering.
 
 ## Phase 0 TODO
 
@@ -285,6 +290,11 @@
 - Headless Edge dark/result QA verified dark and system dark answer click, incorrect state, correct state, and final result flows.
 - Headless Edge dark/result QA verified dark/system dark result panel height reduced from `456px` in the initial quiz state to `219px` in the final result state.
 - Headless Edge dark/result QA verified no mobile horizontal overflow, centered result retry action, transparent public iframe body background, and temporary `design-dark-result-*` QA data cleanup.
+- `npm.cmd run build` after admin Markdown authoring UX: passed.
+- Headless Edge admin authoring QA verified unordered list continuation, numbered list continuation, blockquote continuation, and empty continuation exit behavior.
+- Headless Edge admin preview QA verified Markdown strong text, list items, and KaTeX rendering.
+- Headless Edge public iframe QA verified rich Markdown/LaTeX rendering across question, choices, and explanation at mobile `390px`, with no horizontal overflow and transparent iframe body background.
+- Temporary `markdown-ux-*` QA data was deleted after verification.
 
 ## Remote Sync Status
 

@@ -767,6 +767,80 @@ function SetModal({ modal, setModal, onSubmit, onCancel, onCheckSlug, busy }) {
   );
 }
 
+function getMarkdownContinuation(value, selectionStart, selectionEnd) {
+  if (selectionStart !== selectionEnd) {
+    return null;
+  }
+
+  const lineStart = value.lastIndexOf('\n', selectionStart - 1) + 1;
+  const beforeCursor = value.slice(lineStart, selectionStart);
+  const afterCursor = value.slice(selectionStart);
+  const unorderedMatch = beforeCursor.match(/^(\s*)([-*+])\s(.*)$/);
+
+  if (unorderedMatch) {
+    const [, indent, marker, content] = unorderedMatch;
+
+    if (!content.trim()) {
+      return {
+        value: `${value.slice(0, lineStart)}${afterCursor}`,
+        cursor: lineStart,
+      };
+    }
+
+    const insert = `\n${indent}${marker} `;
+    const cursor = selectionStart + insert.length;
+
+    return {
+      value: `${value.slice(0, selectionStart)}${insert}${afterCursor}`,
+      cursor,
+    };
+  }
+
+  const orderedMatch = beforeCursor.match(/^(\s*)(\d+)([.)])\s(.*)$/);
+
+  if (orderedMatch) {
+    const [, indent, number, delimiter, content] = orderedMatch;
+
+    if (!content.trim()) {
+      return {
+        value: `${value.slice(0, lineStart)}${afterCursor}`,
+        cursor: lineStart,
+      };
+    }
+
+    const insert = `\n${indent}${Number(number) + 1}${delimiter} `;
+    const cursor = selectionStart + insert.length;
+
+    return {
+      value: `${value.slice(0, selectionStart)}${insert}${afterCursor}`,
+      cursor,
+    };
+  }
+
+  const quoteMatch = beforeCursor.match(/^(\s*>\s?)(.*)$/);
+
+  if (quoteMatch) {
+    const [, prefix, content] = quoteMatch;
+
+    if (!content.trim()) {
+      return {
+        value: `${value.slice(0, lineStart)}${afterCursor}`,
+        cursor: lineStart,
+      };
+    }
+
+    const insert = `\n${prefix}`;
+    const cursor = selectionStart + insert.length;
+
+    return {
+      value: `${value.slice(0, selectionStart)}${insert}${afterCursor}`,
+      cursor,
+    };
+  }
+
+  return null;
+}
+
 function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
   const form = quizModal.form;
 
@@ -786,6 +860,32 @@ function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
     updateForm({ choices: nextChoices });
   }
 
+  function handleMarkdownTextareaKeyDown(event, field) {
+    if (
+      event.key !== 'Enter' ||
+      event.shiftKey ||
+      event.ctrlKey ||
+      event.altKey ||
+      event.metaKey ||
+      event.nativeEvent?.isComposing
+    ) {
+      return;
+    }
+
+    const textarea = event.currentTarget;
+    const next = getMarkdownContinuation(textarea.value, textarea.selectionStart, textarea.selectionEnd);
+
+    if (!next) {
+      return;
+    }
+
+    event.preventDefault();
+    updateForm({ [field]: next.value });
+    requestAnimationFrame(() => {
+      textarea.setSelectionRange(next.cursor, next.cursor);
+    });
+  }
+
   return (
     <div className="modal-backdrop">
       <form className="admin-modal quiz-modal" onSubmit={onSubmit}>
@@ -801,7 +901,13 @@ function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
         {quizModal.error ? <p className="form-error">{quizModal.error}</p> : null}
         <label>
           <span>question</span>
-          <textarea required rows="3" value={form.question} onChange={(event) => updateForm({ question: event.target.value })} />
+          <textarea
+            required
+            rows="3"
+            value={form.question}
+            onChange={(event) => updateForm({ question: event.target.value })}
+            onKeyDown={(event) => handleMarkdownTextareaKeyDown(event, 'question')}
+          />
         </label>
         <div className="choice-edit-grid">
           {form.choices.map((choice, index) => (
@@ -822,7 +928,13 @@ function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
         </label>
         <label>
           <span>explanation</span>
-          <textarea required rows="4" value={form.explanation} onChange={(event) => updateForm({ explanation: event.target.value })} />
+          <textarea
+            required
+            rows="4"
+            value={form.explanation}
+            onChange={(event) => updateForm({ explanation: event.target.value })}
+            onKeyDown={(event) => handleMarkdownTextareaKeyDown(event, 'explanation')}
+          />
         </label>
         <WidgetQuestionPreview form={form} />
         <div className="modal-actions">
