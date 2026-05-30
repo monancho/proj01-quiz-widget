@@ -17,6 +17,7 @@ import {
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import RichText from '../components/common/RichText.jsx';
 import QuizCard from '../components/quiz/QuizCard.jsx';
+import { getMarkdownContinuation } from '../utils/markdownAuthoring.js';
 import {
   checkPostSlug,
   createQuiz,
@@ -765,80 +766,6 @@ function SetModal({ modal, setModal, onSubmit, onCancel, onCheckSlug, busy }) {
       </form>
     </div>
   );
-}
-
-function getMarkdownContinuation(value, selectionStart, selectionEnd) {
-  if (selectionStart !== selectionEnd) {
-    return null;
-  }
-
-  const lineStart = value.lastIndexOf('\n', selectionStart - 1) + 1;
-  const beforeCursor = value.slice(lineStart, selectionStart);
-  const afterCursor = value.slice(selectionStart);
-  const unorderedMatch = beforeCursor.match(/^(\s*)([-*+])\s(.*)$/);
-
-  if (unorderedMatch) {
-    const [, indent, marker, content] = unorderedMatch;
-
-    if (!content.trim()) {
-      return {
-        value: `${value.slice(0, lineStart)}${afterCursor}`,
-        cursor: lineStart,
-      };
-    }
-
-    const insert = `\n${indent}${marker} `;
-    const cursor = selectionStart + insert.length;
-
-    return {
-      value: `${value.slice(0, selectionStart)}${insert}${afterCursor}`,
-      cursor,
-    };
-  }
-
-  const orderedMatch = beforeCursor.match(/^(\s*)(\d+)([.)])\s(.*)$/);
-
-  if (orderedMatch) {
-    const [, indent, number, delimiter, content] = orderedMatch;
-
-    if (!content.trim()) {
-      return {
-        value: `${value.slice(0, lineStart)}${afterCursor}`,
-        cursor: lineStart,
-      };
-    }
-
-    const insert = `\n${indent}${Number(number) + 1}${delimiter} `;
-    const cursor = selectionStart + insert.length;
-
-    return {
-      value: `${value.slice(0, selectionStart)}${insert}${afterCursor}`,
-      cursor,
-    };
-  }
-
-  const quoteMatch = beforeCursor.match(/^(\s*>\s?)(.*)$/);
-
-  if (quoteMatch) {
-    const [, prefix, content] = quoteMatch;
-
-    if (!content.trim()) {
-      return {
-        value: `${value.slice(0, lineStart)}${afterCursor}`,
-        cursor: lineStart,
-      };
-    }
-
-    const insert = `\n${prefix}`;
-    const cursor = selectionStart + insert.length;
-
-    return {
-      value: `${value.slice(0, selectionStart)}${insert}${afterCursor}`,
-      cursor,
-    };
-  }
-
-  return null;
 }
 
 function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {

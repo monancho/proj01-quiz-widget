@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Admin Markdown authoring UX |
-| Status | Markdown/LaTeX authoring shortcuts and rich rendering scenarios implemented and verified locally |
+| Active scope | AI smell review and first remediation |
+| Status | AI smell review passes documented; Markdown authoring parser extracted and verified |
 
 ## Completed
 
@@ -145,6 +145,11 @@
 - Admin textarea Enter now continues unordered lists, numbered lists, and blockquotes.
 - Empty Markdown continuation lines now exit the list or blockquote cleanly.
 - Verified rich Markdown/LaTeX scenarios across admin preview and public iframe rendering.
+- Added `docs/08-ai-smell-review-plan.md`.
+- Added AI smell review TODO files for R0 research, R1 analysis, R2 remediation planning, R3 execution, and R4 verification.
+- Completed the first AI smell analysis pass using the user-provided article and supplemental research.
+- Identified the main project risks as overlayered CSS, oversized admin page, long rolling status/worklog docs, mojibake content, and unisolated helper logic.
+- Extracted the Markdown authoring continuation parser from `AdminQuizManagerPage.jsx` to `client/src/utils/markdownAuthoring.js`.
 
 ## Phase 0 TODO
 
@@ -295,6 +300,8 @@
 - Headless Edge admin preview QA verified Markdown strong text, list items, and KaTeX rendering.
 - Headless Edge public iframe QA verified rich Markdown/LaTeX rendering across question, choices, and explanation at mobile `390px`, with no horizontal overflow and transparent iframe body background.
 - Temporary `markdown-ux-*` QA data was deleted after verification.
+- Markdown authoring helper-level checks passed for unordered list continuation, unordered exit, ordered `1.` continuation, ordered `1)` continuation, blockquote continuation, and plain text no-op.
+- `npm.cmd run build` after AI smell helper extraction: passed.
 
 ## Remote Sync Status
 
@@ -316,4 +323,5 @@
 - Review final D1-D5 blog-compatible design work and follow-up iframe design refinements in PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
+- Continue AI smell remediation with CSS split planning, status/worklog compaction, or mojibake cleanup after PR #6 stabilizes.
 - Prepare Phase 8 TODO before Docker/deployment work.
