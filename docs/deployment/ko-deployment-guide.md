@@ -197,9 +197,8 @@ Cloudflare Pages 환경 변수:
 | 변수 | 값 |
 | --- | --- |
 | `VITE_API_BASE_URL` | `https://api.monancho.com` |
-| `VITE_BANNER_URL` | `https://monancho.tistory.com/` |
-| `VITE_BANNER_TEXT` | 필요 시 설정 |
-| `VITE_BANNER_CTA` | 필요 시 설정 |
+
+현재 iframe 배너는 사용하지 않습니다. Cloudflare Pages에는 `VITE_BANNER_TEXT`, `VITE_BANNER_URL`, `VITE_BANNER_CTA`를 설정하지 않습니다.
 
 배포 후 확인:
 

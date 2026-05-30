@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/deployment-domain-config` |
-| Active scope | Korean deployment guide and local image verification |
-| Status | Docker Desktop running; backend image build and local smoke test passed; GHCR push blocked by registry authentication |
+| Active scope | Disable iframe banner for first deployment |
+| Status | Public iframe banner removed from runtime; client build passed |
 
 ## Completed
 
@@ -194,6 +194,8 @@
 - Built `ghcr.io/monancho/proj01-quiz-widget-api:develop` locally.
 - Smoke-tested the built backend image with a temporary container and verified `/health`.
 - Attempted GHCR push; push is blocked until Docker is logged into GHCR with package write permission.
+- Disabled the public iframe static banner for the current deployment.
+- Updated client env examples and deployment docs so `VITE_BANNER_*` values are not configured by default.
 
 ## Phase 0 TODO
 

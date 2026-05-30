@@ -112,9 +112,9 @@ Client-side optional variables:
 | Variable | Default | Description |
 | --- | --- | --- |
 | `VITE_API_BASE_URL` | same origin | API base URL for the iframe frontend |
-| `VITE_BANNER_TEXT` | `관련 글 더 보기` | Static banner text |
-| `VITE_BANNER_URL` | empty | Static banner link URL |
-| `VITE_BANNER_CTA` | `열기` | Static banner CTA label |
+| `VITE_BANNER_TEXT` | unset | Banner is currently disabled |
+| `VITE_BANNER_URL` | unset | Banner is currently disabled |
+| `VITE_BANNER_CTA` | unset | Banner is currently disabled |
 
 ## Work Tracking
 

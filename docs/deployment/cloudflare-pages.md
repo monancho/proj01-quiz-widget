@@ -23,9 +23,11 @@ Set these in Cloudflare Pages:
 | Variable | Example | Required |
 | --- | --- | --- |
 | `VITE_API_BASE_URL` | `https://api.monancho.com` | Yes |
-| `VITE_BANNER_TEXT` | `관련 글 더 보기` | No |
-| `VITE_BANNER_URL` | `https://monancho.tistory.com/` | No |
-| `VITE_BANNER_CTA` | `열기` | No |
+| `VITE_BANNER_TEXT` | unset | No |
+| `VITE_BANNER_URL` | unset | No |
+| `VITE_BANNER_CTA` | unset | No |
+
+The iframe banner is currently disabled. Do not set `VITE_BANNER_*` variables for the current deployment.
 
 ## Current Domains
 
