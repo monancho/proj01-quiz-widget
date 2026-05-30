@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Design D5 blog skin QA matrix |
-| Status | D5 blog skin QA matrix completed and verified locally |
+| Active scope | Design follow-up embed action spacing |
+| Status | Embed action spacing follow-up implemented and verified locally |
 
 ## Completed
 
@@ -132,6 +132,10 @@
 - Completed Design D5 blog skin QA matrix.
 - Verified the final D1-D4 public iframe design against minimal white, off-white editorial, dense text, image-heavy magazine, dark article, and narrow mobile blog contexts.
 - No D5 application code changes were required.
+- Added `docs/todos/design-followup-embed-action-spacing.md` before CSS work.
+- Implemented embed action spacing follow-up.
+- Reduced the pre-answer choice-to-action gap and centered the next/result action button in the public iframe flow.
+- Removed the toolbar-like action area surface in the public iframe while preserving quiz behavior, theme modes, iframe height, and transparent public iframe body background.
 
 ## Phase 0 TODO
 
@@ -269,6 +273,10 @@
 - Headless Edge D5 embedded interaction QA verified answer click, incorrect state, correct state, and all-quiz final result inside a parent-page iframe for light desktop, dark desktop, and system mobile contexts.
 - Headless Edge D5 embedded interaction QA verified no parent horizontal overflow, no iframe internal horizontal overflow, and transparent iframe body background throughout the interaction flow.
 - Temporary `design-d5-embedded-*` QA data was deleted after verification.
+- `npm.cmd run build` after embed action spacing follow-up: passed.
+- Headless Edge spacing QA verified mobile light route improved pre-answer choice-to-action gap from about `97px` to `0px`.
+- Headless Edge spacing QA verified incorrect, correct, and final-question feedback-to-action gaps were `0px`.
+- Headless Edge spacing QA verified next/result action button is centered, result screen still renders, light/dark/system routes have no horizontal overflow, public iframe body remains transparent, and temporary spacing QA data was deleted.
 
 ## Remote Sync Status
 
@@ -287,7 +295,7 @@
 
 ## Next
 
-- Review final D1-D5 blog-compatible design work in PR #6.
+- Review final D1-D5 blog-compatible design work and embed action spacing follow-up in PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.

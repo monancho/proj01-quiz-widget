@@ -4059,3 +4059,43 @@ textarea:focus-visible {
     background: rgba(93, 45, 53, 0.28);
   }
 }
+
+/* Design follow-up: embed action spacing */
+.embed-shell .quiz-card {
+  min-height: auto;
+  padding-bottom: 0;
+}
+
+.embed-shell .quiz-actions {
+  justify-content: center;
+  margin-top: 0;
+  border-top: 0;
+  background: transparent;
+  padding: 8px 14px 14px;
+}
+
+.embed-shell .quiz-actions .primary-action {
+  width: min(100%, 180px);
+}
+
+.embed-theme-dark .quiz-actions {
+  border-top: 0;
+  background: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  .embed-theme-system .quiz-actions {
+    border-top: 0;
+    background: transparent;
+  }
+}
+
+@media (max-width: 560px) {
+  .embed-shell .quiz-actions {
+    padding: 8px 10px 12px;
+  }
+
+  .embed-shell .quiz-actions .primary-action {
+    width: min(100%, 176px);
+  }
+}
