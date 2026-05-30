@@ -5,8 +5,8 @@
 Run from any machine that can reach the API domain:
 
 ```bash
-curl -fsS https://api.example.com/health
-curl -fsS https://api.example.com/api/embed/{postSlug}/quizzes
+curl -fsS http://168.110.121.222/health
+curl -fsS http://168.110.121.222/api/embed/{postSlug}/quizzes
 ```
 
 Expected:
@@ -20,10 +20,10 @@ Expected:
 Open:
 
 ```text
-https://your-project.pages.dev/admin
-https://your-project.pages.dev/embed/{postSlug}?theme=system
-https://your-project.pages.dev/embed/{postSlug}?theme=light
-https://your-project.pages.dev/embed/{postSlug}?theme=dark
+https://monancho.com/admin
+https://monancho.com/embed/{postSlug}?theme=system
+https://monancho.com/embed/{postSlug}?theme=light
+https://monancho.com/embed/{postSlug}?theme=dark
 ```
 
 Check:
@@ -33,6 +33,16 @@ Check:
 - iframe route loads 3 quizzes for a published complete Slug Group.
 - Initial, correct, incorrect, next, and final result states work.
 - Public iframe body background remains transparent.
+
+## Mixed Content Check
+
+If `https://monancho.com` fails to load data from `http://168.110.121.222`, check the browser console for mixed-content errors.
+
+Fix by moving the API behind HTTPS, for example:
+
+```text
+https://api.monancho.com
+```
 
 ## Tistory iframe
 

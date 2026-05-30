@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-05-30 |
 | Base branch | `develop` |
-| Current branch | `feature/docker-deploy` |
-| Active scope | Phase 8 deployment prep |
-| Status | Deployment artifacts and docs prepared and verified |
+| Current branch | `feature/deployment-domain-config` |
+| Active scope | Deployment domain config |
+| Status | Real deployment domains reflected in docs/env examples |
 
 ## Completed
 
@@ -174,6 +174,12 @@
 - Updated root README with deployment entry points.
 - Added Phase 8 human checkpoint report and linked it from the human docs index.
 - Verified backend smoke tests, client build, and Docker Compose config for deployment prep.
+- PR #7 was merged into `develop` and local `develop` was fast-forwarded to `origin/develop`.
+- Created `feature/deployment-domain-config` from updated `develop`.
+- Reflected current deployment values: frontend `https://monancho.com`, OCI API `http://168.110.121.222`, and Tistory `https://monancho.tistory.com/`.
+- Documented mixed-content risk because HTTPS frontend calls to an HTTP API can be blocked by browsers.
+- Verified Docker Compose config after domain updates.
+- Local `/health` check to `http://168.110.121.222/health` timed out, so the API endpoint is not yet confirmed reachable.
 
 ## Phase 0 TODO
 

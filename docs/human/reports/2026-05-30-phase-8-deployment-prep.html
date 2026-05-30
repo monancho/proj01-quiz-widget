@@ -160,12 +160,18 @@
     <section>
       <h2>Human Decisions Needed</h2>
       <ul>
-        <li>Choose the Cloudflare Pages frontend domain.</li>
-        <li>Choose the OCI backend API domain.</li>
-        <li>Add the Cloudflare Pages domain to backend <code>CORS_ALLOWED_ORIGINS</code>.</li>
+        <li>Frontend domain selected: <code>https://monancho.com</code>.</li>
+        <li>Current OCI API endpoint provided: <code>http://168.110.121.222</code>.</li>
+        <li>Tistory blog selected: <code>https://monancho.tistory.com/</code>.</li>
+        <li>Backend <code>CORS_ALLOWED_ORIGINS</code> should include <code>https://monancho.com</code>.</li>
         <li>Decide whether Caddy should terminate HTTPS directly or sit behind another TLS layer.</li>
         <li>Create production <code>infra/env/api.env</code> on the OCI host.</li>
       </ul>
+    </section>
+
+    <section>
+      <h2>Current Risk</h2>
+      <p class="warn">The frontend domain is HTTPS, but the provided API endpoint is HTTP. Browsers can block this as mixed content. Use <code>http://168.110.121.222</code> for backend smoke testing, then move production API calls to an HTTPS endpoint such as <code>https://api.monancho.com</code>.</p>
     </section>
   </main>
 </body>

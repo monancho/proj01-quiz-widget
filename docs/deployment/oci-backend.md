@@ -13,6 +13,16 @@ Run the Express API and SQLite database on an OCI Ubuntu host through Docker Com
 - A DNS record pointing the API domain to the OCI public IP.
 - Optional swap configured for small instances.
 
+## Current Endpoint Values
+
+| Item | Value |
+| --- | --- |
+| OCI public API endpoint | `http://168.110.121.222` |
+| Frontend origin | `https://monancho.com` |
+| Tistory blog | `https://monancho.tistory.com/` |
+
+The current IP endpoint is HTTP-only. It is suitable for server smoke testing, but the production frontend should call an HTTPS API endpoint to avoid browser mixed-content blocking.
+
 ## First-Time Setup
 
 ```bash
@@ -34,12 +44,23 @@ CORS_ALLOWED_ORIGINS=https://your-project.pages.dev
 TISTORY_HOME_URL=https://your-blog.tistory.com
 ```
 
+For the current deployment values:
+
+```bash
+NODE_ENV=production
+PORT=3000
+DATABASE_PATH=/data/proj01-quiz.sqlite
+CORS_ALLOWED_ORIGINS=https://monancho.com
+TISTORY_HOME_URL=https://monancho.tistory.com/
+```
+
 ## Start
 
 ```bash
 docker compose -f infra/docker-compose.yml up -d --build
 docker compose -f infra/docker-compose.yml ps
 curl -fsS http://127.0.0.1/health
+curl -fsS http://168.110.121.222/health
 ```
 
 ## Update
@@ -78,6 +99,12 @@ to:
 
 ```caddy
 api.example.com
+```
+
+Recommended production API domain:
+
+```caddy
+api.monancho.com
 ```
 
 Then restart:

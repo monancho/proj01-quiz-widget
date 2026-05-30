@@ -22,10 +22,34 @@ Set these in Cloudflare Pages:
 
 | Variable | Example | Required |
 | --- | --- | --- |
-| `VITE_API_BASE_URL` | `https://api.example.com` | Yes |
+| `VITE_API_BASE_URL` | `http://168.110.121.222` | Yes |
 | `VITE_BANNER_TEXT` | `관련 글 더 보기` | No |
-| `VITE_BANNER_URL` | `https://your-blog.tistory.com` | No |
+| `VITE_BANNER_URL` | `https://monancho.tistory.com/` | No |
 | `VITE_BANNER_CTA` | `열기` | No |
+
+## Current Domains
+
+| Item | Value |
+| --- | --- |
+| Frontend domain | `https://monancho.com` |
+| Current OCI API endpoint | `http://168.110.121.222` |
+| Tistory blog | `https://monancho.tistory.com/` |
+
+## HTTPS API Warning
+
+Cloudflare Pages custom domains normally serve the frontend over HTTPS.
+
+If `https://monancho.com` calls `http://168.110.121.222`, the browser can block the request as mixed content. Use the IP endpoint for backend smoke testing, but production should use an HTTPS API endpoint, for example:
+
+```text
+https://api.monancho.com
+```
+
+When that API domain is ready, update:
+
+- Cloudflare Pages `VITE_API_BASE_URL`.
+- Backend `CORS_ALLOWED_ORIGINS`.
+- `docs/deployment/deployment-smoke-test.md`.
 
 ## Deploy Steps
 
@@ -40,5 +64,5 @@ Set these in Cloudflare Pages:
 ## Notes
 
 - The iframe route must be publicly reachable from Tistory.
-- The backend `CORS_ALLOWED_ORIGINS` must include the final Cloudflare Pages domain.
+- The backend `CORS_ALLOWED_ORIGINS` must include `https://monancho.com`.
 - If a custom domain is attached later, add that domain to backend CORS too.
