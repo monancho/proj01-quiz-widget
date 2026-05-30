@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | AI smell review and first remediation |
-| Status | AI smell review passes documented; Markdown authoring parser extracted and verified |
+| Active scope | AI smell admin helper extraction |
+| Status | Admin embed helper/constants extracted and verified |
 
 ## Completed
 
@@ -150,6 +150,10 @@
 - Completed the first AI smell analysis pass using the user-provided article and supplemental research.
 - Identified the main project risks as overlayered CSS, oversized admin page, long rolling status/worklog docs, mojibake content, and unisolated helper logic.
 - Extracted the Markdown authoring continuation parser from `AdminQuizManagerPage.jsx` to `client/src/utils/markdownAuthoring.js`.
+- Confirmed `client/src` Korean UI strings do not contain real mojibake; earlier garbled display was PowerShell output encoding.
+- Added `docs/todos/ai-smell-r3b-admin-embed-helper-extraction.md`.
+- Extracted admin status/theme option constants to `client/src/constants/adminOptions.js`.
+- Extracted iframe URL/code builders to `client/src/utils/embedTools.js`.
 
 ## Phase 0 TODO
 
@@ -302,6 +306,8 @@
 - Temporary `markdown-ux-*` QA data was deleted after verification.
 - Markdown authoring helper-level checks passed for unordered list continuation, unordered exit, ordered `1.` continuation, ordered `1)` continuation, blockquote continuation, and plain text no-op.
 - `npm.cmd run build` after AI smell helper extraction: passed.
+- Admin embed helper-level checks passed for encoded slug URLs, theme fallback, iframe height `620`, `allowtransparency`, and transparent style preservation.
+- `npm.cmd run build` after admin embed helper extraction: passed.
 
 ## Remote Sync Status
 

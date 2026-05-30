@@ -15,8 +15,10 @@ import {
   X,
 } from 'lucide-react';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { embedThemeOptions, statusOptions } from '../constants/adminOptions.js';
 import RichText from '../components/common/RichText.jsx';
 import QuizCard from '../components/quiz/QuizCard.jsx';
+import { buildEmbedUrl, buildIframeCode } from '../utils/embedTools.js';
 import { getMarkdownContinuation } from '../utils/markdownAuthoring.js';
 import {
   checkPostSlug,
@@ -31,18 +33,6 @@ import {
   updateQuiz,
   updateQuizSet,
 } from '../api/adminApi.js';
-
-const statusOptions = [
-  { value: 'draft', label: '준비중' },
-  { value: 'published', label: '공개' },
-  { value: 'private', label: '비공개' },
-];
-
-const embedThemeOptions = [
-  { value: 'system', label: '시스템' },
-  { value: 'light', label: '라이트' },
-  { value: 'dark', label: '다크' },
-];
 
 const emptySetForm = {
   id: null,
@@ -1006,13 +996,4 @@ function CompletionBadge({ quizSet }) {
       {quizSet.quizCount}/{quizSet.requiredQuizCount}
     </span>
   );
-}
-
-function buildEmbedUrl(postSlug, themeMode = 'system') {
-  const theme = embedThemeOptions.some((option) => option.value === themeMode) ? themeMode : 'system';
-  return `${window.location.origin}/embed/${encodeURIComponent(postSlug)}?theme=${theme}`;
-}
-
-function buildIframeCode(postSlug, themeMode = 'system') {
-  return `<iframe src="${buildEmbedUrl(postSlug, themeMode)}" width="100%" height="620" loading="lazy" allowtransparency="true" style="border:0;max-width:100%;background:transparent;"></iframe>`;
 }
