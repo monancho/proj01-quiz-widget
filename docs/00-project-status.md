@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/deployment-domain-config` |
-| Active scope | Deployment domain config |
-| Status | Real deployment domains reflected in docs/env examples |
+| Active scope | Deployment image pipeline |
+| Status | Backend image pipeline prepared; SQLite documented as Docker volume |
 
 ## Completed
 
@@ -181,6 +181,11 @@
 - Documented mixed-content risk because HTTPS frontend calls to an HTTP API can be blocked by browsers.
 - Verified Docker Compose config after domain updates.
 - Local `/health` check to the provided HTTP API endpoint timed out, so the API endpoint is not yet confirmed reachable.
+- Added backend image build/push workflow for GHCR: `.github/workflows/backend-image.yml`.
+- Updated Docker Compose with stable API image name `ghcr.io/monancho/proj01-quiz-widget-api:develop`.
+- Updated backend deploy draft to pull the prebuilt image on OCI.
+- Documented that SQLite is persisted in the Docker volume `quiz-data:/data`, not a separate image.
+- Added backend image pipeline deployment guide.
 
 ## Phase 0 TODO
 

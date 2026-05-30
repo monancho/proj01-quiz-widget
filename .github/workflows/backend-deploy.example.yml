@@ -23,6 +23,7 @@ jobs:
             git checkout develop
             git pull --ff-only origin develop
             test -f infra/env/api.env || cp infra/env/api.env.example infra/env/api.env
-            docker compose -f infra/docker-compose.yml up -d --build
+            docker compose -f infra/docker-compose.yml pull
+            docker compose -f infra/docker-compose.yml up -d --no-build
             docker compose -f infra/docker-compose.yml ps
             curl -fsS http://127.0.0.1/health

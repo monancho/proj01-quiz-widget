@@ -148,6 +148,16 @@
     </section>
 
     <section>
+      <h2>Image Pipeline Update</h2>
+      <ul>
+        <li>Backend API image target: <code>ghcr.io/monancho/proj01-quiz-widget-api:develop</code>.</li>
+        <li>GitHub Actions workflow added: <code>.github/workflows/backend-image.yml</code>.</li>
+        <li>OCI deploy draft now pulls the prebuilt image before running Compose.</li>
+        <li>SQLite remains a persistent Docker volume at <code>quiz-data:/data</code>, not a separate container image.</li>
+      </ul>
+    </section>
+
+    <section>
       <h2>Verification</h2>
       <ul>
         <li class="ok">Backend smoke phase2, phase3, and phase4 passed.</li>

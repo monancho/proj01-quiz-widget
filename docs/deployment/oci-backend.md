@@ -63,6 +63,15 @@ curl -fsS http://127.0.0.1/health
 curl -fsS http://YOUR_OCI_PUBLIC_IP/health
 ```
 
+If the backend image has already been pushed to GHCR, prefer pulling the image instead of building on the server:
+
+```bash
+docker compose -f infra/docker-compose.yml pull
+docker compose -f infra/docker-compose.yml up -d --no-build
+docker compose -f infra/docker-compose.yml ps
+curl -fsS http://127.0.0.1/health
+```
+
 ## Update
 
 ```bash
@@ -71,6 +80,15 @@ git fetch origin
 git checkout develop
 git pull --ff-only origin develop
 docker compose -f infra/docker-compose.yml up -d --build
+docker compose -f infra/docker-compose.yml ps
+curl -fsS http://127.0.0.1/health
+```
+
+Image-based update:
+
+```bash
+docker compose -f infra/docker-compose.yml pull
+docker compose -f infra/docker-compose.yml up -d --no-build
 docker compose -f infra/docker-compose.yml ps
 curl -fsS http://127.0.0.1/health
 ```

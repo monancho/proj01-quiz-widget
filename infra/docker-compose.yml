@@ -1,5 +1,6 @@
 services:
   api:
+    image: ${API_IMAGE:-ghcr.io/monancho/proj01-quiz-widget-api:develop}
     build:
       context: ..
       dockerfile: server/Dockerfile

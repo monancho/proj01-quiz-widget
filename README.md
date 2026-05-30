@@ -64,7 +64,9 @@ Phase 8 deployment artifacts are prepared under:
 - `docs/deployment/cloudflare-pages.md`
 - `docs/deployment/oci-backend.md`
 - `docs/deployment/deployment-smoke-test.md`
+- `docs/deployment/backend-image-pipeline.md`
 - `.github/workflows/backend-deploy.example.yml`
+- `.github/workflows/backend-image.yml`
 
 Backend local Docker Compose entry point:
 
@@ -73,6 +75,14 @@ cp infra/env/api.env.example infra/env/api.env
 docker compose -f infra/docker-compose.yml up -d --build
 curl http://localhost/health
 ```
+
+Backend image pipeline:
+
+```text
+ghcr.io/monancho/proj01-quiz-widget-api:develop
+```
+
+SQLite is stored as a Docker volume, not as a separate database container.
 
 Cloudflare Pages should use `client` as the root directory, `npm run build` as the build command, and `dist` as the output directory.
 
