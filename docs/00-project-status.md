@@ -176,10 +176,11 @@
 - Verified backend smoke tests, client build, and Docker Compose config for deployment prep.
 - PR #7 was merged into `develop` and local `develop` was fast-forwarded to `origin/develop`.
 - Created `feature/deployment-domain-config` from updated `develop`.
-- Reflected current deployment values: frontend `https://monancho.com`, OCI API `http://168.110.121.222`, and Tistory `https://monancho.tistory.com/`.
+- Reflected current deployment values: frontend `https://monancho.com` and Tistory `https://monancho.tistory.com/`.
+- Removed raw server IP from committed docs/env examples and documented that it should stay in local/server-only env.
 - Documented mixed-content risk because HTTPS frontend calls to an HTTP API can be blocked by browsers.
 - Verified Docker Compose config after domain updates.
-- Local `/health` check to `http://168.110.121.222/health` timed out, so the API endpoint is not yet confirmed reachable.
+- Local `/health` check to the provided HTTP API endpoint timed out, so the API endpoint is not yet confirmed reachable.
 
 ## Phase 0 TODO
 

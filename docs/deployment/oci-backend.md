@@ -17,11 +17,11 @@ Run the Express API and SQLite database on an OCI Ubuntu host through Docker Com
 
 | Item | Value |
 | --- | --- |
-| OCI public API endpoint | `http://168.110.121.222` |
+| OCI public API endpoint | Keep in local/server env only |
 | Frontend origin | `https://monancho.com` |
 | Tistory blog | `https://monancho.tistory.com/` |
 
-The current IP endpoint is HTTP-only. It is suitable for server smoke testing, but the production frontend should call an HTTPS API endpoint to avoid browser mixed-content blocking.
+Do not commit raw server IPs. Keep the IP in local notes, DNS, OCI console, or the production server's private `infra/env/api.env`. The production frontend should call an HTTPS API endpoint to avoid browser mixed-content blocking.
 
 ## First-Time Setup
 
@@ -60,7 +60,7 @@ TISTORY_HOME_URL=https://monancho.tistory.com/
 docker compose -f infra/docker-compose.yml up -d --build
 docker compose -f infra/docker-compose.yml ps
 curl -fsS http://127.0.0.1/health
-curl -fsS http://168.110.121.222/health
+curl -fsS http://YOUR_OCI_PUBLIC_IP/health
 ```
 
 ## Update

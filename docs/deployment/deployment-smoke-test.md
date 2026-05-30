@@ -5,8 +5,8 @@
 Run from any machine that can reach the API domain:
 
 ```bash
-curl -fsS http://168.110.121.222/health
-curl -fsS http://168.110.121.222/api/embed/{postSlug}/quizzes
+curl -fsS https://api.monancho.com/health
+curl -fsS https://api.monancho.com/api/embed/{postSlug}/quizzes
 ```
 
 Expected:
@@ -36,7 +36,7 @@ Check:
 
 ## Mixed Content Check
 
-If `https://monancho.com` fails to load data from `http://168.110.121.222`, check the browser console for mixed-content errors.
+If `https://monancho.com` fails to load data from the API, check the browser console for mixed-content or CORS errors.
 
 Fix by moving the API behind HTTPS, for example:
 

@@ -161,7 +161,7 @@
       <h2>Human Decisions Needed</h2>
       <ul>
         <li>Frontend domain selected: <code>https://monancho.com</code>.</li>
-        <li>Current OCI API endpoint provided: <code>http://168.110.121.222</code>.</li>
+        <li>Current OCI API endpoint was provided, but raw server IPs should stay out of committed docs/env examples.</li>
         <li>Tistory blog selected: <code>https://monancho.tistory.com/</code>.</li>
         <li>Backend <code>CORS_ALLOWED_ORIGINS</code> should include <code>https://monancho.com</code>.</li>
         <li>Decide whether Caddy should terminate HTTPS directly or sit behind another TLS layer.</li>
@@ -171,7 +171,7 @@
 
     <section>
       <h2>Current Risk</h2>
-      <p class="warn">The frontend domain is HTTPS, but the provided API endpoint is HTTP. Browsers can block this as mixed content. Use <code>http://168.110.121.222</code> for backend smoke testing, then move production API calls to an HTTPS endpoint such as <code>https://api.monancho.com</code>.</p>
+      <p class="warn">The frontend domain is HTTPS. Browsers can block calls to a raw HTTP server IP as mixed content. Keep raw server IPs in private deployment notes or uncommitted env files, then move production API calls to an HTTPS endpoint such as <code>https://api.monancho.com</code>.</p>
     </section>
   </main>
 </body>

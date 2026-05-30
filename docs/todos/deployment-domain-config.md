@@ -12,7 +12,7 @@
 
 | Item | Value |
 | --- | --- |
-| OCI API endpoint | `http://168.110.121.222/` |
+| OCI API endpoint | Provided by user; do not commit raw server IP |
 | Cloudflare Pages frontend | `monancho.com` |
 | Tistory blog | `https://monancho.tistory.com/` |
 
@@ -22,7 +22,7 @@ Reflect the real deployment endpoints in deployment docs and environment example
 
 ## Important Risk
 
-`https://monancho.com` calling `http://168.110.121.222` can be blocked by browser mixed-content policy. The HTTP IP endpoint can be used for backend smoke testing, but production frontend calls should move to an HTTPS API endpoint such as `https://api.monancho.com`.
+`https://monancho.com` calling a raw `http://` server IP can be blocked by browser mixed-content policy. Do not commit raw server IPs; keep them in local/server-only env or infrastructure settings. Production frontend calls should move to an HTTPS API endpoint such as `https://api.monancho.com`.
 
 ## Scope
 
@@ -53,5 +53,11 @@ Reflect the real deployment endpoints in deployment docs and environment example
 ## Verification Results
 
 - `docker compose -f infra/docker-compose.yml config`: passed.
-- `http://168.110.121.222/health` check timed out from the local environment, so the API endpoint is not currently verified as reachable.
+- The provided HTTP API endpoint `/health` check timed out from the local environment, so the API endpoint is not currently verified as reachable.
 - No application runtime code was changed.
+
+## Privacy Follow-up
+
+- [x] Remove raw server IP from committed docs and env examples.
+- [x] Keep public frontend and Tistory domains in committed docs.
+- [x] Document HTTPS API endpoint recommendation.

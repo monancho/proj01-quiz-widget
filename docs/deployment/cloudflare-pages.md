@@ -22,7 +22,7 @@ Set these in Cloudflare Pages:
 
 | Variable | Example | Required |
 | --- | --- | --- |
-| `VITE_API_BASE_URL` | `http://168.110.121.222` | Yes |
+| `VITE_API_BASE_URL` | `https://api.monancho.com` | Yes |
 | `VITE_BANNER_TEXT` | `관련 글 더 보기` | No |
 | `VITE_BANNER_URL` | `https://monancho.tistory.com/` | No |
 | `VITE_BANNER_CTA` | `열기` | No |
@@ -32,14 +32,14 @@ Set these in Cloudflare Pages:
 | Item | Value |
 | --- | --- |
 | Frontend domain | `https://monancho.com` |
-| Current OCI API endpoint | `http://168.110.121.222` |
+| API endpoint | `https://api.monancho.com` |
 | Tistory blog | `https://monancho.tistory.com/` |
 
 ## HTTPS API Warning
 
 Cloudflare Pages custom domains normally serve the frontend over HTTPS.
 
-If `https://monancho.com` calls `http://168.110.121.222`, the browser can block the request as mixed content. Use the IP endpoint for backend smoke testing, but production should use an HTTPS API endpoint, for example:
+If `https://monancho.com` calls a raw `http://` server IP, the browser can block the request as mixed content. Keep raw server IPs out of committed docs/env examples and use an HTTPS API endpoint, for example:
 
 ```text
 https://api.monancho.com
