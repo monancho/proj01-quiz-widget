@@ -1,7 +1,7 @@
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || '';
+import { buildApiUrl } from './apiConfig.js';
 
 async function request(path, options = {}) {
-  const response = await fetch(`${apiBaseUrl}${path}`, {
+  const response = await fetch(buildApiUrl(path), {
     headers: {
       'Content-Type': 'application/json',
       ...(options.headers || {}),
@@ -10,7 +10,12 @@ async function request(path, options = {}) {
   });
 
   const text = await response.text();
-  const payload = text ? JSON.parse(text) : null;
+  const isJson = response.headers.get('content-type')?.includes('application/json');
+  const payload = text && isJson ? JSON.parse(text) : null;
+
+  if (text && !isJson) {
+    throw new Error(`API returned a non-JSON response (${response.status}). Check VITE_API_BASE_URL.`);
+  }
 
   if (!response.ok) {
     const message = payload?.error?.message || `Request failed with ${response.status}`;

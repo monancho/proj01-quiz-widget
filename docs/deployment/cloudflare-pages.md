@@ -29,6 +29,10 @@ Set these in Cloudflare Pages:
 
 The iframe banner is currently disabled. Do not set `VITE_BANNER_*` variables for the current deployment.
 
+`VITE_API_BASE_URL` is required for production builds. Local development can work without it because `client/vite.config.js` proxies `/api` to the local backend, but Cloudflare does not have that local proxy.
+
+If browser Network requests go to `https://monancho.com/api/...`, the environment variable was not applied to that deployment. A correctly configured build should request `https://api.monancho.com/api/...` after the API domain is ready.
+
 ## Current Domains
 
 | Item | Value |

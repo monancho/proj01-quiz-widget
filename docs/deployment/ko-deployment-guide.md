@@ -200,6 +200,10 @@ Cloudflare Pages 환경 변수:
 
 현재 iframe 배너는 사용하지 않습니다. Cloudflare Pages에는 `VITE_BANNER_TEXT`, `VITE_BANNER_URL`, `VITE_BANNER_CTA`를 설정하지 않습니다.
 
+`VITE_API_BASE_URL`은 운영 빌드에서 필수입니다. 로컬 개발에서는 `client/vite.config.js`의 proxy가 `/api`를 로컬 백엔드로 넘겨주기 때문에 값이 없어도 동작할 수 있지만, Cloudflare 배포 환경에는 이 proxy가 없습니다.
+
+브라우저 Network에서 요청이 `https://monancho.com/api/...`로 보이면 환경 변수가 해당 배포에 적용되지 않은 것입니다. API 도메인이 준비된 뒤에는 `https://api.monancho.com/api/...`로 요청되어야 정상입니다.
+
 배포 후 확인:
 
 ```text

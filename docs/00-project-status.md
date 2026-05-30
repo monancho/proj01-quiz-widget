@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/deployment-domain-config` |
-| Active scope | Disable iframe banner for first deployment |
-| Status | Public iframe banner removed from runtime; client build passed |
+| Active scope | Production API base URL guard |
+| Status | Local proxy fallback clarified; production API clients now require configured `VITE_API_BASE_URL` |
 
 ## Completed
 
@@ -196,6 +196,9 @@
 - Attempted GHCR push; push is blocked until Docker is logged into GHCR with package write permission.
 - Disabled the public iframe static banner for the current deployment.
 - Updated client env examples and deployment docs so `VITE_BANNER_*` values are not configured by default.
+- Added a shared frontend API base URL resolver.
+- Kept local Vite proxy behavior for development but blocked silent same-origin API fallback in production.
+- Improved admin and iframe API clients so non-JSON HTML responses report an API configuration error instead of a raw JSON parse error.
 
 ## Phase 0 TODO
 
