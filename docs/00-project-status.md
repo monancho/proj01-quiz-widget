@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | Design D4 action and state neutrality |
-| Status | D4 action/state neutrality implemented and verified locally |
+| Active scope | Design D5 blog skin QA matrix |
+| Status | D5 blog skin QA matrix completed and verified locally |
 
 ## Completed
 
@@ -128,6 +128,10 @@
 - Implemented Design D4 action and state neutrality tuning.
 - Tuned public iframe primary/secondary actions, disabled action state, choice hover/focus states, correct/incorrect choice states, feedback state surfaces, and result retry action.
 - Preserved D1 footprint, D2 skin-adaptive surfaces, D3 typography, theme modes, quiz behavior, and transparent public iframe body backgrounds.
+- Added `docs/todos/design-d5-blog-skin-qa-matrix.md` before D5 verification.
+- Completed Design D5 blog skin QA matrix.
+- Verified the final D1-D4 public iframe design against minimal white, off-white editorial, dense text, image-heavy magazine, dark article, and narrow mobile blog contexts.
+- No D5 application code changes were required.
 
 ## Phase 0 TODO
 
@@ -256,6 +260,12 @@
 - Headless Edge D4 QA verified disabled primary action, light/dark correct and incorrect states, feedback state surfaces, result retry action, light/dark/system iframe routes, no mobile horizontal overflow, and transparent public iframe body background.
 - Transition-aware D4 follow-up QA verified final light correct/incorrect state colors after CSS transitions completed.
 - Temporary `design-d4-*` QA data was deleted after verification.
+- `npm.cmd run build` before Design D5 blog skin QA matrix: passed.
+- Headless Edge D5 QA verified six simulated parent blog contexts had no horizontal overflow and iframe width fit the article column.
+- D5 parent iframe height-to-article-width ratios were `0.82`, `0.91`, `0.97`, `0.82`, `0.91`, and `1.71` for minimal white, off-white editorial, dense text, image-heavy magazine, dark article, and narrow mobile contexts.
+- Headless Edge D5 QA verified direct light, dark, and system iframe routes at `390px` had no internal horizontal overflow and public iframe body background remained transparent.
+- Headless Edge D5 QA verified Markdown, bold text, KaTeX, light/dark correct and incorrect states, and result views in direct iframe checks.
+- Temporary `design-d5-*` QA data was deleted after verification.
 
 ## Remote Sync Status
 
@@ -274,8 +284,7 @@
 
 ## Next
 
-- Review D4 action/state neutrality tuning in PR #6.
-- Prepare or confirm `docs/todos/design-d5-blog-skin-qa-matrix.md` before any D5 blog skin QA matrix work.
+- Review final D1-D5 blog-compatible design work in PR #6.
 - Review and merge PR #6 into `develop`.
 - After PR #6 merge, fast-forward local `develop` from `origin/develop`.
 - Prepare Phase 8 TODO before Docker/deployment work.
