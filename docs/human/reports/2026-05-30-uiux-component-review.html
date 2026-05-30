@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UI/UX Component Review</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #667085;
+      --line: #d8dee9;
+      --accent: #374151;
+      --soft: #f1f3f5;
+      --ok: #047857;
+      --warn: #b45309;
+      --risk: #b42318;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 42px 24px 56px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: 34px; line-height: 1.2; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 22px; letter-spacing: 0; }
+    h3 { margin-bottom: 8px; font-size: 16px; letter-spacing: 0; }
+    p { color: var(--muted); }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .summary {
+      border-color: #c8ced8;
+      background: var(--soft);
+    }
+
+    .meta,
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .meta {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .pill,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .pill {
+      padding: 8px 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card {
+      padding: 16px;
+    }
+
+    .ok { color: var(--ok); font-weight: 700; }
+    .warn { color: var(--warn); font-weight: 700; }
+    .risk { color: var(--risk); font-weight: 700; }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    li + li { margin-top: 6px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f2f4f7;
+      color: #374151;
+    }
+
+    @media (max-width: 900px) {
+      .meta,
+      .grid { grid-template-columns: 1fr; }
+      main { padding: 30px 16px 42px; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="summary">
+      <h1>UI/UX Component Review</h1>
+      <p>관리자 화면과 공개 iframe 위젯을 컴포넌트 단위로 분리해 검토한 보고서입니다. 이번 작업은 기능 추가나 코드 변경 없이 현재 상태를 평가하고 후속 개선 우선순위를 정하는 데 목적이 있습니다.</p>
+      <div class="meta">
+        <span class="pill">Date: 2026-05-30</span>
+        <span class="pill">Branch: feature/rendering-security</span>
+        <span class="pill">Scope: UI/UX review only</span>
+        <span class="pill">Build: passed</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Overall Result</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Stable Areas</h3>
+          <p class="ok">주요 흐름은 동작하고 레이아웃 붕괴는 발견되지 않았습니다.</p>
+          <ul>
+            <li>관리자 데스크톱과 모바일 모두 가로 오버플로우 없음.</li>
+            <li>공개 iframe은 투명 배경 유지.</li>
+            <li>답 선택, 오답/정답 피드백, 다음 문제, 최종 결과 흐름 정상.</li>
+            <li>라이트/다크 테마 기본 색 대비는 안정적입니다.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Main Risks</h3>
+          <p class="warn">서비스 수준으로 다듬으려면 모달, 모바일 밀도, CSS 구조를 먼저 봐야 합니다.</p>
+          <ul>
+            <li>퀴즈 수정 모달과 iframe 유틸리티 모달이 데스크톱에서도 거의 전체 높이를 사용합니다.</li>
+            <li>관리자 모바일은 기능은 보이지만 세로 스크롤 부담이 큽니다.</li>
+            <li><code>styles.css</code>의 중복 레이어가 많아 시각 변경의 예측 가능성이 낮습니다.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Recommended Direction</h3>
+          <p>새 기능보다 정보 구조와 밀도 조정 중심으로 후속 작업을 나누는 편이 좋습니다.</p>
+          <ul>
+            <li>모달 레이아웃 경량화.</li>
+            <li>관리자 모바일 전용 정보 우선순위 조정.</li>
+            <li>iframe 상태별 QA 체크리스트를 정식화.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Component Findings</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Status</th>
+            <th>Finding</th>
+            <th>Next Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Admin shell / navigation</td>
+            <td class="ok">Good</td>
+            <td>왼쪽 내비게이션과 상단 작업 영역이 명확합니다. 모바일에서는 내비게이션이 상단 블록으로 전환되어 가로 깨짐은 없습니다.</td>
+            <td>기능이 늘어나기 전까지 현재 구조 유지.</td>
+          </tr>
+          <tr>
+            <td>Toolbar / filters / stats</td>
+            <td class="ok">Good</td>
+            <td>검색, 상태 필터, 통계가 한 흐름에 놓여 있어 관리 작업의 첫 진입점으로 적절합니다.</td>
+            <td>추후 카테고리 필터가 생기면 밀도 재검토.</td>
+          </tr>
+          <tr>
+            <td>Slug Group list</td>
+            <td class="ok">Good</td>
+            <td>선택된 Slug Group과 상태/완성도 배지가 구분됩니다. 행 클릭 선택도 이해하기 쉽습니다.</td>
+            <td>긴 제목/slug가 많아질 때 줄바꿈과 행 높이 QA 추가.</td>
+          </tr>
+          <tr>
+            <td>Quiz table / reorder</td>
+            <td class="warn">Needs follow-up</td>
+            <td>테이블형 구조는 적합하지만 드래그 핸들이 작은 편입니다. 모바일에서는 테이블 정보량이 많아 스캔 피로가 있습니다.</td>
+            <td>드래그 핸들 터치 영역과 모바일 행 표시 방식을 별도 TODO로 검토.</td>
+          </tr>
+          <tr>
+            <td>Slug Group modal</td>
+            <td class="ok">Good</td>
+            <td>필드 수가 적고 작성 전 상태 설명도 명확합니다. 데스크톱 기준 높이 약 417px로 부담이 낮습니다.</td>
+            <td>현재 유지.</td>
+          </tr>
+          <tr>
+            <td>Quiz modal</td>
+            <td class="warn">Needs follow-up</td>
+            <td>작성 필드, 선택지, 정답, 해설, 완성본 미리보기가 한 모달에 있어 유용하지만 높이가 약 864px이고 내부 스크롤이 발생합니다.</td>
+            <td>입력 영역과 미리보기 영역을 접힘/고정/2단 배치 중 하나로 경량화 검토.</td>
+          </tr>
+          <tr>
+            <td>iframe utility modal</td>
+            <td class="warn">Needs follow-up</td>
+            <td>테마 선택, 코드, 미리보기를 한 번에 제공하는 방향은 좋지만 모달이 약 864px 높이이며 미리보기 박스가 큰 비중을 차지합니다.</td>
+            <td>미리보기 높이와 코드 영역 우선순위 조정.</td>
+          </tr>
+          <tr>
+            <td>Public iframe shell</td>
+            <td class="ok">Good</td>
+            <td>모바일 390px에서 가로 오버플로우가 없고 body 배경은 투명입니다. 다양한 블로그 배경에 얹기 좋은 구조입니다.</td>
+            <td>복사되는 iframe 높이와 실제 상태별 높이 QA를 계속 유지.</td>
+          </tr>
+          <tr>
+            <td>QuizCard / choices</td>
+            <td class="ok">Good</td>
+            <td>선택 전 버튼 비활성, 답 선택 후 정답/오답 표시, 피드백 연결이 정상입니다.</td>
+            <td>긴 Markdown/LaTeX 선택지와 이미지 없는 긴 텍스트 케이스 QA 추가.</td>
+          </tr>
+          <tr>
+            <td>Feedback / result</td>
+            <td class="ok">Good</td>
+            <td>오답 시 정답 노출, 정답 피드백, 최종 결과와 다시 풀기 흐름이 정상입니다. 결과 상태 높이는 줄어든 상태가 적절합니다.</td>
+            <td>정답률/점수 문구가 더 읽기 쉬운지 카피 리뷰 가능.</td>
+          </tr>
+          <tr>
+            <td>Static banner</td>
+            <td class="warn">Needs content QA</td>
+            <td>배너 자체는 낮은 시각 밀도로 안정적입니다. 다만 환경변수 기본 문구는 실제 배포 전 사람이 읽는 문구로 확정해야 합니다.</td>
+            <td>배포 전 기본 배너 문구와 링크 정책 확인.</td>
+          </tr>
+          <tr>
+            <td>RichText</td>
+            <td class="ok">Good</td>
+            <td>HTML은 건너뛰고 안전한 URL만 허용합니다. Markdown/LaTeX 표시를 공통 컴포넌트로 처리하는 점도 좋습니다.</td>
+            <td>긴 수식의 가로 스크롤/줄바꿈 QA 유지.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Browser QA Evidence</h2>
+      <ul>
+        <li>Admin desktop 1366px: <code>scrollWidth 1351</code>, overflow 없음, Slug Group 4개, 선택된 공개 그룹의 퀴즈 3개 표시.</li>
+        <li>Admin mobile 390px: <code>scrollWidth 390</code>, overflow 없음, 사이드바는 상단 블록으로 전환.</li>
+        <li>Slug Group modal: 약 <code>520 x 417</code>, 필드 2개, 경고 문구 정상.</li>
+        <li>Quiz modal: 약 <code>860 x 864</code>, 내부 스크롤 발생, 위젯 미리보기와 선택지 4개 표시.</li>
+        <li>iframe utility modal: 약 <code>860 x 864</code>, 시스템/라이트/다크 선택, 코드 textarea, 미리보기 iframe 확인.</li>
+        <li>Public iframe light mobile: <code>scrollWidth 390</code>, body background <code>transparent</code>, 선택 전 다음 버튼 비활성.</li>
+        <li>Public iframe interaction: 오답, 정답, 다음 문제, 최종 결과, 다시 풀기 버튼 상태 확인.</li>
+        <li>Public iframe dark mobile: overflow 없음, 투명 body 유지, 어두운 패널/선택지/텍스트 색 정상.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Prioritized Follow-up</h2>
+      <ol>
+        <li><strong>Modal density pass:</strong> 퀴즈 모달과 iframe 유틸리티 모달을 먼저 다듬습니다.</li>
+        <li><strong>Admin mobile pass:</strong> Slug Group과 Quiz table의 모바일 정보 우선순위를 조정합니다.</li>
+        <li><strong>CSS structure pass:</strong> 디자인 변경 안정성을 위해 누적된 selector layer를 컴포넌트 단위로 정리합니다.</li>
+        <li><strong>State QA pass:</strong> iframe의 클릭 전, 정답, 오답, 마지막 결과, light/dark/system, Markdown/LaTeX 케이스를 정식 QA 항목으로 유지합니다.</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

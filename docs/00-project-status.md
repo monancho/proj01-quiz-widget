@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | AI smell admin indicator extraction |
-| Status | Admin indicator components extracted and verified |
+| Active scope | UI/UX component review |
+| Status | Component-by-component UI/UX review completed |
 
 ## Completed
 
@@ -156,6 +156,11 @@
 - Extracted iframe URL/code builders to `client/src/utils/embedTools.js`.
 - Added `docs/todos/ai-smell-r3c-admin-indicator-extraction.md`.
 - Extracted admin `LoadingRows`, `StatusBadge`, and `CompletionBadge` to `client/src/components/admin/AdminIndicators.jsx`.
+- Added `docs/todos/uiux-component-review.md` before the review pass.
+- Completed a component-by-component UI/UX review for admin, modals, public iframe, state, responsive, and theme behavior.
+- Added human-facing report `docs/human/reports/2026-05-30-uiux-component-review.html`.
+- Updated the human docs index with the UI/UX component review report.
+- Verified current client build after the UI/UX review.
 
 ## Phase 0 TODO
 
