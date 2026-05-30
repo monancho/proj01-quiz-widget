@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | UI/UX component review |
-| Status | Component-by-component UI/UX review completed |
+| Active scope | UI/UX parser completion |
+| Status | Remaining UI/UX parser follow-ups implemented and verified |
 
 ## Completed
 
@@ -161,6 +161,11 @@
 - Added human-facing report `docs/human/reports/2026-05-30-uiux-component-review.html`.
 - Updated the human docs index with the UI/UX component review report.
 - Verified current client build after the UI/UX review.
+- Added `docs/todos/uiux-parser-completion.md` before final UI/UX follow-up implementation.
+- Added `client/src/styles/uiux-parser-completion.css` as a scoped final override layer.
+- Reduced quiz modal and iframe utility modal density without adding product features.
+- Improved mobile admin density while keeping primary actions available.
+- Verified admin desktop/mobile and public iframe light/dark interaction states after parser completion.
 
 ## Phase 0 TODO
 
