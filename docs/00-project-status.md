@@ -7,8 +7,8 @@
 | Date | 2026-05-30 |
 | Base branch | `develop` |
 | Current branch | `feature/rendering-security` |
-| Active scope | KRDS neutral density tuning |
-| Status | Neutral KRDS visual tuning implemented and verified locally |
+| Active scope | KRDS service design polish |
+| Status | Service-level KRDS visual polish implemented and verified locally |
 
 ## Completed
 
@@ -101,6 +101,10 @@
 - Reduced strong blue accent usage so the widget can blend into different blog skins.
 - Tuned admin background, font sizing, section separation, and information density with neutral KRDS gray/black emphasis.
 - Tuned iframe widget typography, section borders, choice row density, and panel background while preserving transparent outer backgrounds.
+- Added KRDS service design polish TODO under `docs/todos/`.
+- Reviewed KRDS and USWDS design-system guidance for token-based, consistent, accessible, neutral service styling.
+- Added service-level CSS tokens and polished admin shell, sidebar, masthead, filters, stats, Slug Group list, quiz table, modals, utility preview, iframe quiz panel, choice rows, feedback, results, and banner.
+- Preserved existing React behavior, routes, APIs, admin wireframe, iframe theme modes, and transparent public iframe backgrounds.
 
 ## Phase 0 TODO
 
@@ -202,6 +206,10 @@
 - Headless Chrome KRDS neutral QA verified admin desktop and mobile rendering without horizontal overflow.
 - Headless Chrome KRDS neutral QA verified embed light and dark routes preserve transparent body backgrounds and render without horizontal overflow.
 - Headless Chrome KRDS neutral QA verified app primary color resolves to neutral `#131416`.
+- `npm.cmd run build` after KRDS service design polish: passed.
+- Headless Edge KRDS service QA verified admin desktop `1366px` and mobile `390px` rendering without horizontal overflow.
+- Headless Edge KRDS service QA verified iframe light, dark, and system routes at `390px` without horizontal overflow.
+- Headless Edge KRDS service QA verified public iframe body background remains transparent and temporary `krds-service-*` QA data was deleted.
 
 ## Remote Sync Status
 
