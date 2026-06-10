@@ -4,11 +4,11 @@
 
 | Item | Value |
 | --- | --- |
-| Date | 2026-05-30 |
+| Date | 2026-06-10 |
 | Base branch | `develop` |
 | Current branch | `feature/security-hardening` |
-| Active scope | Admin API and admin UI security hardening |
-| Status | S0-S1 admin token auth implemented, verified, committed, and pushed |
+| Active scope | AI Server backend quiz generation integration |
+| Status | AI Server client, admin generation routes, mock smoke tests, and Compose service config implemented locally; not pushed |
 
 ## Completed
 
@@ -210,6 +210,15 @@
 - Added `/admin` runtime token gate using browser session storage.
 - Updated deployment docs and env examples so the real admin token stays out of GitHub and Cloudflare Pages build variables.
 - Pushed `feature/security-hardening` to `origin/feature/security-hardening`.
+- Added AI Server backend integration TODO under `docs/todos/`.
+- Added backend-only AI Server env loading for `AI_SERVER_BASE_URL`, `AI_SERVER_API_KEY`, and `AI_SERVER_TIMEOUT_SECONDS`.
+- Added AI Server client with `X-Internal-Api-Key`, JSON wrapper parsing, timeout, network error, non-2xx, request id, and multipart image moderation scaffolding.
+- Added admin-authenticated AI Server `/health` and `/ready` proxy endpoints.
+- Added admin-authenticated text, web, and YouTube AI quiz generation endpoints under Slug Group quiz routes.
+- AI generated quizzes are stored only for empty Slug Groups and map `answer_index: 0` to existing `correctPosition: 1`.
+- Added mock AI generation smoke coverage for health/ready, invalid key, timeout/network mapping, invalid difficulty, short text, invalid output shape, and successful 3-question DB persistence.
+- Added `ai-server` service image `ghcr.io/monancho/ocl-ai-server:0.1.0` to Docker Compose for later OCI image-pull usage.
+- Added AI Server env examples and gitignore protection for real `infra/env/*.env` files.
 
 ## Phase 0 TODO
 
@@ -237,6 +246,18 @@
 
 ## Last Verification
 
+- `npm.cmd run smoke:ai-generation` in `server/`: passed.
+- `npm.cmd run smoke:phase2` in `server/`: passed.
+- `npm.cmd run smoke:phase3` in `server/`: passed.
+- `npm.cmd run smoke:phase4` in `server/`: passed.
+- `npm.cmd run smoke:security` in `server/`: passed.
+- `docker compose -f infra/docker-compose.yml config`: passed with `ai-server` and `api` services.
+- Live local AI Server `/health` at `http://localhost:8000`: returned `ok`.
+- Live local AI Server `/ready` at `http://localhost:8000`: returned `ready`.
+- Live AI Server text quiz generation with backend contract input: returned 3 questions, 4 options, `answer_index = 0`, and `usage.input_chars = 145`.
+- Live Quiz backend E2E with temporary DB/port and local AI Server: health/ready proxy passed, text generation saved 3 quizzes, `correctPosition = 1`, request id was present, and non-empty Slug Group guard returned `AI_GENERATION_REQUIRES_EMPTY_SET`.
+- Live AI Server invalid key check: returned `401 INVALID_API_KEY`.
+- Live AI Server short text check: returned `400 SOURCE_TEXT_TOO_SHORT`.
 - `npm.cmd install`: completed, 0 vulnerabilities.
 - `npm.cmd run db:migrate`: applied `0001_init_quiz_sets_and_quizzes.sql`.
 - `/health` smoke test: returned `200`.

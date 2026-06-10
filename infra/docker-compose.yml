@@ -1,4 +1,13 @@
 services:
+  ai-server:
+    image: ghcr.io/monancho/ocl-ai-server:0.1.0
+    restart: unless-stopped
+    env_file:
+      - path: ./env/ai-server.env
+        required: false
+    expose:
+      - "8000"
+
   api:
     image: ${API_IMAGE:-ghcr.io/monancho/proj01-quiz-widget-api:develop}
     build:
@@ -13,6 +22,8 @@ services:
       - quiz-data:/data
     expose:
       - "3000"
+    depends_on:
+      - ai-server
     healthcheck:
       test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
       interval: 30s

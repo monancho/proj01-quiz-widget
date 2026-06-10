@@ -1,15 +1,23 @@
 import { Router } from 'express';
 import { createQuizRepository } from '../repositories/quizRepository.js';
 import { createQuizSetRepository } from '../repositories/quizSetRepository.js';
+import { createAiServerClientFromEnv } from '../services/aiServerClient.js';
+import { createAiQuizGenerationService } from '../services/aiQuizGenerationService.js';
 import { createQuizService } from '../services/quizService.js';
 import { createQuizSetService } from '../services/quizSetService.js';
 
-export function createAdminQuizSetsRouter(db) {
+export function createAdminQuizSetsRouter(db, env) {
   const router = Router();
+  const quizRepository = createQuizRepository(db);
   const quizSetRepository = createQuizSetRepository(db);
   const service = createQuizSetService(quizSetRepository);
   const quizService = createQuizService({
-    quizRepository: createQuizRepository(db),
+    quizRepository,
+    quizSetRepository
+  });
+  const aiQuizGenerationService = createAiQuizGenerationService({
+    aiServerClient: createAiServerClientFromEnv(env),
+    quizRepository,
     quizSetRepository
   });
 
@@ -48,6 +56,30 @@ export function createAdminQuizSetsRouter(db) {
   router.post('/:setId/quizzes', (req, res, next) => {
     try {
       res.status(201).json(quizService.create(req.params.setId, req.body));
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post('/:setId/quizzes/ai-generate/text', async (req, res, next) => {
+    try {
+      res.status(201).json(await aiQuizGenerationService.generateText(req.params.setId, req.body));
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post('/:setId/quizzes/ai-generate/web', async (req, res, next) => {
+    try {
+      res.status(201).json(await aiQuizGenerationService.generateWeb(req.params.setId, req.body));
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post('/:setId/quizzes/ai-generate/youtube', async (req, res, next) => {
+    try {
+      res.status(201).json(await aiQuizGenerationService.generateYoutube(req.params.setId, req.body));
     } catch (error) {
       next(error);
     }

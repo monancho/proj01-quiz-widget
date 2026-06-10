@@ -11,6 +11,8 @@ coverage/
 .env
 .env.*
 !.env.example
+infra/env/*.env
+!infra/env/*.env.example
 
 # Local databases and runtime data
 *.sqlite

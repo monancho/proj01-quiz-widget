@@ -10,7 +10,8 @@
     "smoke:phase2": "node src/scripts/smoke-phase2.js",
     "smoke:phase3": "node src/scripts/smoke-phase3.js",
     "smoke:phase4": "node src/scripts/smoke-phase4.js",
-    "smoke:security": "node src/scripts/smoke-security-admin-auth.js"
+    "smoke:security": "node src/scripts/smoke-security-admin-auth.js",
+    "smoke:ai-generation": "node src/scripts/smoke-ai-generation.js"
   },
   "dependencies": {
     "dotenv": "^17.2.3",

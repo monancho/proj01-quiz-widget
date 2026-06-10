@@ -2,6 +2,7 @@ import express from 'express';
 import { getEnv } from './config/env.js';
 import { openDatabase } from './db/connection.js';
 import { createAdminQuizzesRouter } from './routes/adminQuizzes.routes.js';
+import { createAdminAiServerRouter } from './routes/adminAiServer.routes.js';
 import { createAdminQuizSetsRouter } from './routes/adminQuizSets.routes.js';
 import { createAdminAuthMiddleware } from './middleware/adminAuth.js';
 import { createPublicEmbedRouter } from './routes/publicEmbed.routes.js';
@@ -24,7 +25,8 @@ export function createApp({ db = openDatabase(), env = getEnv() } = {}) {
 
   app.use('/api/embed', createPublicEmbedRouter(db));
   app.use('/api/admin', createAdminAuthMiddleware(env));
-  app.use('/api/admin/quiz-sets', createAdminQuizSetsRouter(db));
+  app.use('/api/admin/ai-server', createAdminAiServerRouter(env));
+  app.use('/api/admin/quiz-sets', createAdminQuizSetsRouter(db, env));
   app.use('/api/admin/quizzes', createAdminQuizzesRouter(db));
 
   app.use((req, res) => {
@@ -38,11 +40,17 @@ export function createApp({ db = openDatabase(), env = getEnv() } = {}) {
 
   app.use((err, _req, res, _next) => {
     if (err.statusCode && err.code) {
+      const errorBody = {
+        code: err.code,
+        message: err.message
+      };
+
+      if (err.details?.requestId) {
+        errorBody.requestId = err.details.requestId;
+      }
+
       res.status(err.statusCode).json({
-        error: {
-          code: err.code,
-          message: err.message
-        }
+        error: errorBody
       });
       return;
     }
