@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/security-hardening` |
 | Active scope | AI Server quiz generation backend and Admin UI integration |
-| Status | AI Server backend integration and Admin UI entry/modal implemented locally; not pushed |
+| Status | AI Server backend integration and Admin UI entry/modal pushed to GitHub; backend image pushed to GHCR |
 
 ## Completed
 
@@ -225,6 +225,8 @@
 - Removed the Admin frontend token input gate and browser session token storage.
 - Stopped Admin frontend API calls from attaching browser-stored admin tokens.
 - Improved the Admin AI generation waiting state with source-specific loading copy and an accessible loading panel.
+- Pushed `feature/security-hardening` through `656525a` to GitHub.
+- Built and pushed backend image tags `develop` and `sha-656525a` to GHCR with digest `sha256:b4f543ca169c3ab5886c1e98a4d459a966975055e25007fd75de39c111883358`.
 
 ## Phase 0 TODO
 
@@ -422,8 +424,7 @@
 
 ## Next
 
-- Commit and push `feature/security-hardening`.
-- Before deploying the updated backend image, set `ADMIN_API_TOKEN` in the OCI server env file.
-- Rebuild/push the backend API image and redeploy OCI with image pull.
-- Redeploy Cloudflare Pages so `/admin` uses the token gate and admin API calls include `Authorization`.
+- Redeploy OCI with image pull so it uses `ghcr.io/monancho/proj01-quiz-widget-api:develop` digest `sha256:b4f543ca169c3ab5886c1e98a4d459a966975055e25007fd75de39c111883358`.
+- Before redeploying, confirm real server-only env values are present in the OCI server env files.
+- Redeploy Cloudflare Pages so the updated `/admin` UI includes AI generation controls and no frontend admin token gate.
 - Optionally add Cloudflare Access for `https://monancho.com/admin*` as an extra edge-level gate.
