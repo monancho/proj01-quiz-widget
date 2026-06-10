@@ -222,6 +222,8 @@
 - Added Admin UI API helpers for text, web URL, and YouTube AI quiz generation.
 - Added an Admin `AI 생성` entry point that is enabled only for empty Slug Groups.
 - Added an Admin AI generation modal with source type, difficulty, source input, loading, friendly error messages, and source warning display.
+- Removed the Admin frontend token input gate and browser session token storage.
+- Stopped Admin frontend API calls from attaching browser-stored admin tokens.
 
 ## Phase 0 TODO
 
@@ -253,6 +255,13 @@
 - `npm.cmd run smoke:ai-generation` in `server/`: passed after Admin AI generation UI implementation.
 - Static frontend search found no `AI_SERVER_API_KEY`, Doodle integration string, or `console.log` in `client/src`.
 - Browser UI verification after Admin AI UI work was attempted, but the in-app browser runtime failed to start in this Windows sandbox session.
+- `npm.cmd run build` in `client/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:ai-generation` in `server/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:phase2` in `server/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:phase3` in `server/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:phase4` in `server/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:security` in `server/`: passed after Admin frontend token gate removal.
+- Static frontend search found no admin token session, token gate, or Authorization header usage in `client/src`.
 - `npm.cmd run smoke:ai-generation` in `server/`: passed.
 - `npm.cmd run smoke:phase2` in `server/`: passed.
 - `npm.cmd run smoke:phase3` in `server/`: passed.

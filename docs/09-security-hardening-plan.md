@@ -20,16 +20,17 @@ Expected output:
 - `ADMIN_API_TOKEN` environment variable.
 - Public `/health` and `/api/embed/*` remain unauthenticated.
 
-### S1. Admin Frontend Session Gate
+### S1. Admin Frontend Access Boundary
 
-Add a lightweight admin token gate to `/admin`.
+Do not place admin secrets in the frontend. The `/admin` UI should call only the
+Quiz backend and should not ask users to paste backend secrets into the browser.
 
 Expected output:
 
-- Admin token input screen.
-- Token stored only in browser session storage.
-- Admin API requests include the token.
-- Logout clears the token.
+- No admin token input screen in the frontend.
+- No admin token in browser session storage.
+- No admin token in frontend API request headers.
+- Optional edge protection, such as Cloudflare Access, can guard `/admin*`.
 
 ### S2. Deployment Secret Handling
 
@@ -40,6 +41,7 @@ Expected output:
 - Env examples use placeholders only.
 - OCI server gets the real `ADMIN_API_TOKEN` in its local env file.
 - Cloudflare Pages does not need the admin token as a build variable.
+- Frontend code and browser storage do not carry the admin token.
 
 ### S3. Optional Cloudflare Access Layer
 
@@ -49,7 +51,8 @@ Expected output:
 
 - Cloudflare Access protects `https://monancho.com/admin*`.
 - Public `https://monancho.com/embed/*` stays open.
-- API-level token remains the source of truth for admin API protection.
+- Backend-side API protection remains server-controlled and must not require
+  pasting secrets into the frontend.
 
 ### S4. Verification
 
@@ -60,10 +63,10 @@ Expected output:
 - Unauthenticated `/api/admin/*` returns `401`.
 - Authenticated `/api/admin/*` works.
 - `/api/embed/*` still works without a token.
-- `/admin` can load, accept a token, and call the API.
+- `/admin` can load without a token input screen and call the configured API.
 
 ## Current First Pass
 
-Implement S0 and S1 first. S2 documentation should be updated in the same pass
-because deployment needs the new env variable before the updated image is used.
+S1 was revised after frontend testing: the Admin frontend must not collect or
+store backend secrets. S2 documentation should keep secrets server-side only.
 S3 is a separate Cloudflare console task and should not block app-level security.

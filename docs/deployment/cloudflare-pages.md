@@ -29,9 +29,8 @@ Set these in Cloudflare Pages:
 
 The iframe banner is currently disabled. Do not set `VITE_BANNER_*` variables for the current deployment.
 
-Do not set `ADMIN_API_TOKEN` in Cloudflare Pages. The admin token is entered by
-the administrator in `/admin` at runtime and must stay out of frontend build
-variables.
+Do not set `ADMIN_API_TOKEN` in Cloudflare Pages. Admin secrets must stay out of
+frontend build variables, browser storage, and UI input flows.
 
 `VITE_API_BASE_URL` is required for production builds. Local development can work without it because `client/vite.config.js` proxies `/api` to the local backend, but Cloudflare does not have that local proxy.
 
