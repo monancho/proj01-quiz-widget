@@ -6,9 +6,9 @@
 | --- | --- |
 | Date | 2026-06-10 |
 | Base branch | `develop` |
-| Current branch | `feature/security-hardening` |
+| Current branch | `main` |
 | Active scope | AI Server quiz generation backend and Admin UI integration |
-| Status | AI Server/Admin UI work reconciled with deployment-domain updates; preparing main merge |
+| Status | Reconciled AI Server/Admin UI and deployment-domain work merged into `main` |
 
 ## Completed
 
@@ -229,6 +229,7 @@
 - Built and pushed backend image tags `develop` and `sha-656525a` to GHCR with digest `sha256:b4f543ca169c3ab5886c1e98a4d459a966975055e25007fd75de39c111883358`.
 - Merged `origin/feature/deployment-domain-config` into `feature/security-hardening` so the security/AI work includes Cloudflare Workers frontend deployment configuration.
 - Added `.wrangler/` to `.gitignore` for generated Cloudflare local state.
+- Merged the reconciled `feature/security-hardening` branch into `main` at the user's request.
 
 ## Phase 0 TODO
 
