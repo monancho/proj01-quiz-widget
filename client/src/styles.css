@@ -854,6 +854,13 @@ textarea:focus-visible {
   margin-bottom: 12px;
 }
 
+.quiz-table-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .panel-heading span,
 .detail-heading p,
 .quiz-form .panel-heading p {
@@ -1136,6 +1143,10 @@ textarea:focus-visible {
   color: #92400e;
 }
 
+.ai-generation-notice {
+  margin-bottom: 12px;
+}
+
 .form-error {
   background: #fff1f2;
   color: #be123c;
@@ -1260,6 +1271,31 @@ textarea:focus-visible {
   padding: 0;
 }
 
+.ai-generate-modal {
+  width: min(100%, 640px);
+}
+
+.ai-generate-modal .modal-heading p,
+.ai-generate-note {
+  margin: 4px 0 0;
+  color: #64748b;
+}
+
+.ai-generate-note {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.ai-mode-field {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
 .theme-mode-field legend {
   color: #475569;
   font-size: 0.78rem;
@@ -1267,7 +1303,24 @@ textarea:focus-visible {
   padding: 0;
 }
 
+.ai-mode-field legend {
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 850;
+  padding: 0;
+}
+
 .theme-mode-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 3px;
+}
+
+.ai-mode-control {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   overflow: hidden;
@@ -1286,10 +1339,30 @@ textarea:focus-visible {
   font-weight: 850;
 }
 
+.ai-mode-control button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #475569;
+  font-weight: 850;
+}
+
 .theme-mode-control button.active {
   background: #0f766e;
   color: #ffffff;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.14);
+}
+
+.ai-mode-control button.active {
+  background: #0f766e;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.14);
+}
+
+.ai-mode-control button:disabled {
+  cursor: not-allowed;
+  opacity: 0.64;
 }
 
 .iframe-preview-box {
@@ -1374,6 +1447,14 @@ textarea:focus-visible {
   .panel-heading {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .quiz-table-actions {
+    width: 100%;
+  }
+
+  .quiz-table-actions .admin-button {
+    flex: 1 1 140px;
   }
 
   .detail-actions {

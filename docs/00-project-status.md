@@ -7,8 +7,8 @@
 | Date | 2026-06-10 |
 | Base branch | `develop` |
 | Current branch | `feature/security-hardening` |
-| Active scope | AI Server backend quiz generation integration |
-| Status | AI Server client, admin generation routes, mock smoke tests, and Compose service config implemented locally; not pushed |
+| Active scope | AI Server quiz generation backend and Admin UI integration |
+| Status | AI Server backend integration and Admin UI entry/modal implemented locally; not pushed |
 
 ## Completed
 
@@ -219,6 +219,9 @@
 - Added mock AI generation smoke coverage for health/ready, invalid key, timeout/network mapping, invalid difficulty, short text, invalid output shape, and successful 3-question DB persistence.
 - Added `ai-server` service image `ghcr.io/monancho/ocl-ai-server:0.1.0` to Docker Compose for later OCI image-pull usage.
 - Added AI Server env examples and gitignore protection for real `infra/env/*.env` files.
+- Added Admin UI API helpers for text, web URL, and YouTube AI quiz generation.
+- Added an Admin `AI 생성` entry point that is enabled only for empty Slug Groups.
+- Added an Admin AI generation modal with source type, difficulty, source input, loading, friendly error messages, and source warning display.
 
 ## Phase 0 TODO
 
@@ -246,6 +249,10 @@
 
 ## Last Verification
 
+- `npm.cmd run build` in `client/`: passed after Admin AI generation UI implementation.
+- `npm.cmd run smoke:ai-generation` in `server/`: passed after Admin AI generation UI implementation.
+- Static frontend search found no `AI_SERVER_API_KEY`, Doodle integration string, or `console.log` in `client/src`.
+- Browser UI verification after Admin AI UI work was attempted, but the in-app browser runtime failed to start in this Windows sandbox session.
 - `npm.cmd run smoke:ai-generation` in `server/`: passed.
 - `npm.cmd run smoke:phase2` in `server/`: passed.
 - `npm.cmd run smoke:phase3` in `server/`: passed.

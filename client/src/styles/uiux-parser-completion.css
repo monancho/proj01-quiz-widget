@@ -206,6 +206,7 @@
   }
 
   .detail-actions,
+  .quiz-table-actions,
   .quiz-table-header .admin-button {
     width: 100%;
   }
@@ -239,6 +240,7 @@
   .admin-modal > .form-warning,
   .admin-modal > .form-error,
   .admin-modal > .form-ok,
+  .admin-modal > .ai-generate-note,
   .admin-modal > .readonly-status,
   .iframe-preview-box {
     margin-inline: 12px;

@@ -13,6 +13,7 @@ import {
   Plus,
   RefreshCw,
   Search,
+  Sparkles,
   Trash2,
   X,
 } from 'lucide-react';
@@ -30,6 +31,9 @@ import {
   createQuizSet,
   deleteQuiz,
   deleteQuizSet,
+  generateTextQuizzes,
+  generateWebQuizzes,
+  generateYoutubeQuizzes,
   getQuiz,
   listQuizSets,
   listQuizzes,
@@ -54,6 +58,50 @@ const emptyQuizForm = {
   explanation: '',
 };
 
+const aiSourceOptions = [
+  { value: 'text', label: '텍스트' },
+  { value: 'web', label: '웹 URL' },
+  { value: 'youtube', label: 'YouTube' },
+];
+
+const aiDifficultyOptions = [
+  { value: 'beginner', label: 'beginner' },
+  { value: 'intermediate', label: 'intermediate' },
+  { value: 'advanced', label: 'advanced' },
+];
+
+const aiErrorMessages = {
+  SOURCE_TEXT_TOO_SHORT: '내용이 너무 짧습니다. 문제를 만들 수 있도록 더 긴 내용을 입력하세요.',
+  SOURCE_TEXT_TOO_LONG: '입력 내용이 너무 깁니다. 핵심 부분만 남기고 줄여서 다시 시도하세요.',
+  WEB_URL_INVALID: '올바른 웹 URL을 입력하세요.',
+  WEB_URL_BLOCKED: '허용되지 않는 URL입니다. 다른 페이지를 사용하세요.',
+  WEB_CONTENT_EXTRACT_FAILED: '페이지 내용을 가져오지 못했습니다. 직접 입력하거나 다른 페이지를 사용하세요.',
+  YOUTUBE_URL_INVALID: '올바른 YouTube URL을 입력하세요.',
+  YOUTUBE_TRANSCRIPT_NOT_FOUND: '자막이 있는 YouTube 영상을 사용하세요.',
+  AI_RATE_LIMIT_EXCEEDED: '요청이 잠시 많습니다. 조금 후 다시 시도하세요.',
+  AI_DAILY_USAGE_LIMIT_EXCEEDED: '오늘 AI 생성 사용량이 제한되었습니다. 나중에 다시 시도하세요.',
+  QUIZ_GENERATION_FAILED: '퀴즈 생성에 실패했습니다. 다시 시도하세요.',
+  OUTPUT_SCHEMA_INVALID: 'AI 응답 구조가 올바르지 않습니다. 다시 시도하세요.',
+  AI_GENERATION_REQUIRES_EMPTY_SET: 'AI 생성은 문제가 없는 빈 Slug Group에서만 사용할 수 있습니다.',
+};
+
+const aiWarningMessages = {
+  CONTENT_TRUNCATED: '일부 콘텐츠가 길어 잘린 상태로 사용되었습니다.',
+  YOUTUBE_AUTO_TRANSCRIPT_USED: '자동 생성 자막을 사용했습니다.',
+};
+
+function getAiErrorMessage(error) {
+  return aiErrorMessages[error?.code] || 'AI 퀴즈 생성에 실패했습니다. 잠시 후 다시 시도하세요.';
+}
+
+function getAiWarningMessage(warning) {
+  if (!warning) {
+    return '';
+  }
+
+  return aiWarningMessages[warning] || warning;
+}
+
 export default function AdminQuizManagerPage() {
   const [adminToken, setAdminTokenState] = useState(() => getAdminToken());
   const [filters, setFilters] = useState({ query: '', status: '' });
@@ -64,6 +112,8 @@ export default function AdminQuizManagerPage() {
   const [quizzesBySetId, setQuizzesBySetId] = useState({});
   const [setModal, setSetModal] = useState(null);
   const [quizModal, setQuizModal] = useState(null);
+  const [aiModal, setAiModal] = useState(null);
+  const [aiNotice, setAiNotice] = useState(null);
   const [utilityModal, setUtilityModal] = useState(null);
   const [draggedQuizId, setDraggedQuizId] = useState(null);
   const draggedQuizIdRef = useRef(null);
@@ -253,6 +303,57 @@ export default function AdminQuizManagerPage() {
     });
   }
 
+  function openAiGenerateModal(quizSet, quizzes) {
+    if (!quizSet || quizzes.length > 0) {
+      return;
+    }
+
+    setAiModal({
+      setId: quizSet.id,
+      postSlug: quizSet.postSlug,
+      sourceType: 'text',
+      difficulty: 'beginner',
+      content: '',
+      url: '',
+      error: '',
+    });
+  }
+
+  async function handleGenerateAiQuizzes(event) {
+    event.preventDefault();
+
+    if (!aiModal || busy) {
+      return;
+    }
+
+    setBusy(true);
+    setMessage('');
+    setError('');
+    setAiModal((current) => ({ ...current, error: '' }));
+
+    try {
+      const difficulty = aiModal.difficulty;
+      const result = aiModal.sourceType === 'text'
+        ? await generateTextQuizzes(aiModal.setId, { content: aiModal.content, difficulty })
+        : aiModal.sourceType === 'web'
+          ? await generateWebQuizzes(aiModal.setId, { url: aiModal.url, difficulty })
+          : await generateYoutubeQuizzes(aiModal.setId, { url: aiModal.url, difficulty });
+
+      const warning = result.warning || result.source?.warning;
+      const warningMessage = getAiWarningMessage(warning);
+
+      setAiNotice(warningMessage ? { setId: aiModal.setId, message: warningMessage } : null);
+      setAiModal(null);
+      setMessage('AI가 3문항을 생성했습니다.');
+      await loadQuizzes(aiModal.setId);
+      await loadQuizSets();
+    } catch (apiError) {
+      setAiModal((current) => (current ? { ...current, error: getAiErrorMessage(apiError) } : current));
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function openEditQuizModal(quiz, quizSet) {
     setBusy(true);
     setError('');
@@ -410,6 +511,7 @@ export default function AdminQuizManagerPage() {
     () => quizSets.find((quizSet) => quizSet.id === expandedSetId),
     [expandedSetId, quizSets],
   );
+  const selectedQuizzes = selectedSet ? quizzesBySetId[selectedSet.id] || [] : [];
 
   if (!adminToken) {
     return <AdminTokenGate onSubmit={handleAdminTokenSubmit} />;
@@ -518,13 +620,15 @@ export default function AdminQuizManagerPage() {
             ) : (
               <SetDetail
                 quizSet={selectedSet}
-                quizzes={quizzesBySetId[selectedSet.id] || []}
+                quizzes={selectedQuizzes}
+                aiNotice={aiNotice?.setId === selectedSet.id ? aiNotice.message : ''}
                 draggedQuizId={draggedQuizId}
                 onDragStart={handleDragStartQuiz}
                 onDropQuiz={handleDropQuiz}
                 onEditSet={() => openEditSetModal(selectedSet)}
                 onDeleteSet={() => handleDeleteSet(selectedSet)}
                 onNewQuiz={() => openCreateQuizModal(selectedSet)}
+                onAiGenerate={() => openAiGenerateModal(selectedSet, selectedQuizzes)}
                 onEditQuiz={(quiz) => openEditQuizModal(quiz, selectedSet)}
                 onDeleteQuiz={(quiz) => handleDeleteQuiz(quiz, selectedSet.id)}
                 onEmbedTools={() => openEmbedToolsModal(selectedSet)}
@@ -551,6 +655,16 @@ export default function AdminQuizManagerPage() {
           setQuizModal={setQuizModal}
           onSubmit={handleSaveQuiz}
           onCancel={() => setQuizModal(null)}
+          busy={busy}
+        />
+      ) : null}
+
+      {aiModal ? (
+        <AiGenerateModal
+          modal={aiModal}
+          setModal={setAiModal}
+          onSubmit={handleGenerateAiQuizzes}
+          onCancel={() => setAiModal(null)}
           busy={busy}
         />
       ) : null}
@@ -650,16 +764,20 @@ function StatsBar({ summary }) {
 function SetDetail({
   quizSet,
   quizzes,
+  aiNotice,
   draggedQuizId,
   onDragStart,
   onDropQuiz,
   onEditSet,
   onDeleteSet,
   onNewQuiz,
+  onAiGenerate,
   onEditQuiz,
   onDeleteQuiz,
   onEmbedTools,
 }) {
+  const aiDisabled = quizzes.length > 0;
+
   return (
     <>
       <div className="detail-heading">
@@ -684,12 +802,26 @@ function SetDetail({
         </div>
       </div>
 
+      {aiNotice ? <p className="form-warning ai-generation-notice">{aiNotice}</p> : null}
+
       <div className="quiz-table-header">
         <h3>Quizzes</h3>
-        <button type="button" className="admin-button primary" disabled={quizzes.length >= 3} onClick={onNewQuiz}>
-          <Plus size={17} />
-          문제 추가
-        </button>
+        <div className="quiz-table-actions">
+          <button
+            type="button"
+            className="admin-button secondary"
+            disabled={aiDisabled}
+            onClick={onAiGenerate}
+            title={aiDisabled ? 'AI 생성은 문제가 없는 빈 Slug Group에서만 사용할 수 있습니다.' : 'AI로 3문항 생성'}
+          >
+            <Sparkles size={17} />
+            AI 생성
+          </button>
+          <button type="button" className="admin-button primary" disabled={quizzes.length >= 3} onClick={onNewQuiz}>
+            <Plus size={17} />
+            문제 추가
+          </button>
+        </div>
       </div>
 
       <div className="table-wrap">
@@ -951,6 +1083,104 @@ function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
           <button type="submit" className="admin-button primary" disabled={busy}>
             <Check size={17} />
             저장
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+function AiGenerateModal({ modal, setModal, onSubmit, onCancel, busy }) {
+  const isTextMode = modal.sourceType === 'text';
+
+  function updateModal(patch) {
+    setModal((current) => ({
+      ...current,
+      ...patch,
+      error: patch.error === undefined ? current.error : patch.error,
+    }));
+  }
+
+  return (
+    <div className="modal-backdrop">
+      <form className="admin-modal ai-generate-modal" onSubmit={onSubmit}>
+        <div className="modal-heading">
+          <div>
+            <h2>AI 퀴즈 생성</h2>
+            <p>post_slug: <code>{modal.postSlug}</code></p>
+          </div>
+          <button type="button" className="icon-action" onClick={onCancel} title="닫기" disabled={busy}>
+            <X size={18} />
+          </button>
+        </div>
+
+        <p className="ai-generate-note">빈 Slug Group에만 3문항을 자동 생성합니다.</p>
+
+        {modal.error ? <p className="form-error">{modal.error}</p> : null}
+
+        <fieldset className="ai-mode-field">
+          <legend>생성 방식</legend>
+          <div className="ai-mode-control">
+            {aiSourceOptions.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                className={modal.sourceType === option.value ? 'active' : ''}
+                onClick={() => updateModal({ sourceType: option.value, error: '' })}
+                disabled={busy}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        <label>
+          <span>difficulty</span>
+          <select
+            value={modal.difficulty}
+            onChange={(event) => updateModal({ difficulty: event.target.value })}
+            disabled={busy}
+          >
+            {aiDifficultyOptions.map((option) => (
+              <option key={option.value} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+        </label>
+
+        {isTextMode ? (
+          <label>
+            <span>source_text</span>
+            <textarea
+              required
+              rows="9"
+              value={modal.content}
+              onChange={(event) => updateModal({ content: event.target.value, error: '' })}
+              placeholder="퀴즈로 만들 원문을 붙여넣으세요."
+              disabled={busy}
+            />
+          </label>
+        ) : (
+          <label>
+            <span>{modal.sourceType === 'web' ? 'web_url' : 'youtube_url'}</span>
+            <input
+              required
+              type="url"
+              value={modal.url}
+              onChange={(event) => updateModal({ url: event.target.value, error: '' })}
+              placeholder={modal.sourceType === 'web' ? 'https://example.com/article' : 'https://www.youtube.com/watch?v=...'}
+              disabled={busy}
+            />
+          </label>
+        )}
+
+        <div className="modal-actions">
+          <button type="button" className="admin-button secondary" onClick={onCancel} disabled={busy}>
+            취소
+          </button>
+          <button type="submit" className="admin-button primary" disabled={busy}>
+            {busy ? <LoaderCircle className="spin" size={17} /> : <Sparkles size={17} />}
+            생성
           </button>
         </div>
       </form>

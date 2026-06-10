@@ -110,3 +110,24 @@ export function reorderQuizzes(setId, orderedQuizIds) {
     body: JSON.stringify({ orderedQuizIds }),
   });
 }
+
+export function generateTextQuizzes(setId, payload) {
+  return request(`/api/admin/quiz-sets/${setId}/quizzes/ai-generate/text`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export function generateWebQuizzes(setId, payload) {
+  return request(`/api/admin/quiz-sets/${setId}/quizzes/ai-generate/web`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export function generateYoutubeQuizzes(setId, payload) {
+  return request(`/api/admin/quiz-sets/${setId}/quizzes/ai-generate/youtube`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
