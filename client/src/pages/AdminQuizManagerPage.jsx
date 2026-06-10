@@ -22,6 +22,7 @@ import { CompletionBadge, LoadingRows, StatusBadge } from '../components/admin/A
 import RichText from '../components/common/RichText.jsx';
 import QuizCard from '../components/quiz/QuizCard.jsx';
 import { buildEmbedUrl, buildIframeCode } from '../utils/embedTools.js';
+import { clearAdminToken, getAdminToken, setAdminToken } from '../utils/adminSession.js';
 import { getMarkdownContinuation } from '../utils/markdownAuthoring.js';
 import {
   checkPostSlug,
@@ -122,6 +123,7 @@ function getAiLoadingCopy(sourceType) {
 }
 
 export default function AdminQuizManagerPage() {
+  const [adminToken, setAdminTokenState] = useState(() => getAdminToken());
   const [filters, setFilters] = useState({ query: '', status: '' });
   const [draftFilters, setDraftFilters] = useState({ query: '', status: '' });
   const [summary, setSummary] = useState(null);
@@ -141,10 +143,30 @@ export default function AdminQuizManagerPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    loadQuizSets();
-  }, [filters]);
+    if (!adminToken) {
+      setLoading(false);
+      return;
+    }
 
-  function handleResetAdminView() {
+    loadQuizSets();
+  }, [filters, adminToken]);
+
+  function handleAdminAuthSubmit(token) {
+    const nextToken = token.trim();
+
+    if (!nextToken) {
+      return;
+    }
+
+    setAdminToken(nextToken);
+    setAdminTokenState(nextToken);
+    setMessage('');
+    setError('');
+  }
+
+  function handleLogoutAdmin() {
+    clearAdminToken();
+    setAdminTokenState('');
     setSummary(null);
     setQuizSets([]);
     setExpandedSetId(null);
@@ -513,6 +535,10 @@ export default function AdminQuizManagerPage() {
   );
   const selectedQuizzes = selectedSet ? quizzesBySetId[selectedSet.id] || [] : [];
 
+  if (!adminToken) {
+    return <AdminAuthGate onSubmit={handleAdminAuthSubmit} />;
+  }
+
   return (
     <main className="admin-shell">
       <aside className="admin-sidebar" aria-label="관리자 탐색">
@@ -538,9 +564,9 @@ export default function AdminQuizManagerPage() {
               <RefreshCw size={17} />
               새로고침
             </button>
-            <button type="button" className="admin-button secondary" onClick={handleResetAdminView}>
+            <button type="button" className="admin-button secondary" onClick={handleLogoutAdmin}>
               <LogOut size={17} />
-              초기화
+              로그아웃
             </button>
             <button type="button" className="admin-button primary" onClick={openCreateSetModal}>
               <Plus size={17} />
@@ -673,6 +699,51 @@ export default function AdminQuizManagerPage() {
           onCopy={handleCopyIframeCode}
         />
       ) : null}
+    </main>
+  );
+}
+
+function AdminAuthGate({ onSubmit }) {
+  const [token, setToken] = useState('');
+  const [error, setError] = useState('');
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!token.trim()) {
+      setError('관리자 토큰을 입력하세요.');
+      return;
+    }
+
+    setError('');
+    onSubmit(token);
+  }
+
+  return (
+    <main className="admin-auth-shell">
+      <form className="admin-auth-card" onSubmit={handleSubmit}>
+        <div>
+          <p className="admin-kicker">Quiz Widget Admin</p>
+          <h1>관리자 인증</h1>
+          <p>운영 관리자 API 접근을 위해 서버에 설정된 관리자 토큰을 입력하세요.</p>
+        </div>
+        {error ? <p className="form-error">{error}</p> : null}
+        <label>
+          <span>관리자 토큰</span>
+          <input
+            autoFocus
+            type="password"
+            value={token}
+            onChange={(event) => setToken(event.target.value)}
+            placeholder="서버 관리자 토큰"
+            autoComplete="off"
+          />
+        </label>
+        <button type="submit" className="admin-button primary">
+          <Check size={17} />
+          들어가기
+        </button>
+      </form>
     </main>
   );
 }

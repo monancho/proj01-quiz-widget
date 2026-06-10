@@ -230,6 +230,7 @@
 - Merged `origin/feature/deployment-domain-config` into `feature/security-hardening` so the security/AI work includes Cloudflare Workers frontend deployment configuration.
 - Added `.wrangler/` to `.gitignore` for generated Cloudflare local state.
 - Merged the reconciled `feature/security-hardening` branch into `main` at the user's request.
+- Restored Admin runtime token entry and `Authorization: Bearer ...` Admin API requests so production `ADMIN_API_TOKEN` can protect `/api/admin/*` without putting the token in frontend build variables.
 
 ## Phase 0 TODO
 
@@ -288,6 +289,9 @@
 - `npm.cmd run smoke:phase3` in `server/`: passed after branch reconciliation.
 - `npm.cmd run smoke:phase4` in `server/`: passed after branch reconciliation.
 - `npm.cmd run smoke:security` in `server/`: passed after branch reconciliation.
+- `npm.cmd run build` in `client/`: passed after Admin runtime token auth restore.
+- `npm.cmd run smoke:security` in `server/`: passed after Admin runtime token auth restore.
+- Static frontend search found no `ADMIN_API_TOKEN`, `AI_SERVER_API_KEY`, or `console.log` in `client/src` after Admin runtime token auth restore.
 - `npm.cmd install`: completed, 0 vulnerabilities.
 - `npm.cmd run db:migrate`: applied `0001_init_quiz_sets_and_quizzes.sql`.
 - `/health` smoke test: returned `200`.

@@ -1,9 +1,13 @@
 import { buildApiUrl } from './apiConfig.js';
+import { getAdminToken } from '../utils/adminSession.js';
 
 async function request(path, options = {}) {
+  const adminToken = getAdminToken();
+
   const response = await fetch(buildApiUrl(path), {
     headers: {
       'Content-Type': 'application/json',
+      ...(adminToken ? { Authorization: `Bearer ${adminToken}` } : {}),
       ...(options.headers || {}),
     },
     ...options,
