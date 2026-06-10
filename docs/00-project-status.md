@@ -224,6 +224,7 @@
 - Added an Admin AI generation modal with source type, difficulty, source input, loading, friendly error messages, and source warning display.
 - Removed the Admin frontend token input gate and browser session token storage.
 - Stopped Admin frontend API calls from attaching browser-stored admin tokens.
+- Improved the Admin AI generation waiting state with source-specific loading copy and an accessible loading panel.
 
 ## Phase 0 TODO
 
@@ -262,6 +263,7 @@
 - `npm.cmd run smoke:phase4` in `server/`: passed after Admin frontend token gate removal.
 - `npm.cmd run smoke:security` in `server/`: passed after Admin frontend token gate removal.
 - Static frontend search found no admin token session, token gate, or Authorization header usage in `client/src`.
+- `npm.cmd run build` in `client/`: passed after Admin AI generation loading UX improvement.
 - `npm.cmd run smoke:ai-generation` in `server/`: passed.
 - `npm.cmd run smoke:phase2` in `server/`: passed.
 - `npm.cmd run smoke:phase3` in `server/`: passed.

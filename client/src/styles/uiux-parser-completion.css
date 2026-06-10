@@ -241,6 +241,7 @@
   .admin-modal > .form-error,
   .admin-modal > .form-ok,
   .admin-modal > .ai-generate-note,
+  .admin-modal > .ai-loading-panel,
   .admin-modal > .readonly-status,
   .iframe-preview-box {
     margin-inline: 12px;

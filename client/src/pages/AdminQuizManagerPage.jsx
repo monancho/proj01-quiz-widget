@@ -100,6 +100,27 @@ function getAiWarningMessage(warning) {
   return aiWarningMessages[warning] || warning;
 }
 
+function getAiLoadingCopy(sourceType) {
+  if (sourceType === 'web') {
+    return {
+      title: '웹 페이지를 읽고 3문항을 만들고 있습니다.',
+      description: '본문 추출과 문제 저장까지 한 번에 처리합니다. 페이지 길이에 따라 수십 초 걸릴 수 있습니다.',
+    };
+  }
+
+  if (sourceType === 'youtube') {
+    return {
+      title: 'YouTube 자막을 확인하고 3문항을 만들고 있습니다.',
+      description: '자막 확인, 문제 생성, 저장을 순서대로 처리합니다. 이 창을 닫지 말고 잠시 기다려주세요.',
+    };
+  }
+
+  return {
+    title: '입력한 텍스트로 3문항을 만들고 있습니다.',
+    description: '문제와 보기, 해설을 생성한 뒤 바로 Slug Group에 저장합니다.',
+  };
+}
+
 export default function AdminQuizManagerPage() {
   const [filters, setFilters] = useState({ query: '', status: '' });
   const [draftFilters, setDraftFilters] = useState({ query: '', status: '' });
@@ -1020,6 +1041,7 @@ function QuizModal({ quizModal, setQuizModal, onSubmit, onCancel, busy }) {
 
 function AiGenerateModal({ modal, setModal, onSubmit, onCancel, busy }) {
   const isTextMode = modal.sourceType === 'text';
+  const loadingCopy = getAiLoadingCopy(modal.sourceType);
 
   function updateModal(patch) {
     setModal((current) => ({
@@ -1045,6 +1067,17 @@ function AiGenerateModal({ modal, setModal, onSubmit, onCancel, busy }) {
         <p className="ai-generate-note">빈 Slug Group에만 3문항을 자동 생성합니다.</p>
 
         {modal.error ? <p className="form-error">{modal.error}</p> : null}
+
+        {busy ? (
+          <div className="ai-loading-panel" role="status" aria-live="polite">
+            <LoaderCircle className="spin" size={22} />
+            <div>
+              <strong>{loadingCopy.title}</strong>
+              <p>{loadingCopy.description}</p>
+              <span>중복 제출은 자동으로 막아두었습니다.</span>
+            </div>
+          </div>
+        ) : null}
 
         <fieldset className="ai-mode-field">
           <legend>생성 방식</legend>
@@ -1108,7 +1141,7 @@ function AiGenerateModal({ modal, setModal, onSubmit, onCancel, busy }) {
           </button>
           <button type="submit" className="admin-button primary" disabled={busy}>
             {busy ? <LoaderCircle className="spin" size={17} /> : <Sparkles size={17} />}
-            생성
+            {busy ? '생성 중' : '생성'}
           </button>
         </div>
       </form>

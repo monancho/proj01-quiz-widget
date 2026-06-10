@@ -1287,6 +1287,37 @@ textarea:focus-visible {
   font-weight: 750;
 }
 
+.ai-loading-panel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  background: #f0f9ff;
+  color: #0c4a6e;
+  padding: 12px;
+}
+
+.ai-loading-panel strong,
+.ai-loading-panel p {
+  margin: 0;
+}
+
+.ai-loading-panel p {
+  margin-top: 4px;
+  color: #075985;
+  line-height: 1.5;
+}
+
+.ai-loading-panel span {
+  display: inline-block;
+  margin-top: 7px;
+  color: #475569;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
 .ai-mode-field {
   display: grid;
   gap: 7px;
