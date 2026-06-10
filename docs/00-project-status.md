@@ -8,7 +8,7 @@
 | Base branch | `develop` |
 | Current branch | `feature/security-hardening` |
 | Active scope | AI Server quiz generation backend and Admin UI integration |
-| Status | AI Server backend integration and Admin UI entry/modal pushed to GitHub; backend image pushed to GHCR |
+| Status | AI Server/Admin UI work reconciled with deployment-domain updates; preparing main merge |
 
 ## Completed
 
@@ -227,6 +227,8 @@
 - Improved the Admin AI generation waiting state with source-specific loading copy and an accessible loading panel.
 - Pushed `feature/security-hardening` through `656525a` to GitHub.
 - Built and pushed backend image tags `develop` and `sha-656525a` to GHCR with digest `sha256:b4f543ca169c3ab5886c1e98a4d459a966975055e25007fd75de39c111883358`.
+- Merged `origin/feature/deployment-domain-config` into `feature/security-hardening` so the security/AI work includes Cloudflare Workers frontend deployment configuration.
+- Added `.wrangler/` to `.gitignore` for generated Cloudflare local state.
 
 ## Phase 0 TODO
 
@@ -278,6 +280,13 @@
 - Live Quiz backend E2E with temporary DB/port and local AI Server: health/ready proxy passed, text generation saved 3 quizzes, `correctPosition = 1`, request id was present, and non-empty Slug Group guard returned `AI_GENERATION_REQUIRES_EMPTY_SET`.
 - Live AI Server invalid key check: returned `401 INVALID_API_KEY`.
 - Live AI Server short text check: returned `400 SOURCE_TEXT_TOO_SHORT`.
+- `npm.cmd install` in `client/`: passed after branch reconciliation.
+- `npm.cmd run build` in `client/`: passed after branch reconciliation.
+- `npm.cmd run smoke:ai-generation` in `server/`: passed after branch reconciliation.
+- `npm.cmd run smoke:phase2` in `server/`: passed after branch reconciliation.
+- `npm.cmd run smoke:phase3` in `server/`: passed after branch reconciliation.
+- `npm.cmd run smoke:phase4` in `server/`: passed after branch reconciliation.
+- `npm.cmd run smoke:security` in `server/`: passed after branch reconciliation.
 - `npm.cmd install`: completed, 0 vulnerabilities.
 - `npm.cmd run db:migrate`: applied `0001_init_quiz_sets_and_quizzes.sql`.
 - `/health` smoke test: returned `200`.
