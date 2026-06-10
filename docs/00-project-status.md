@@ -1,0 +1,439 @@
+# Project Status
+
+## Current
+
+| Item | Value |
+| --- | --- |
+| Date | 2026-06-10 |
+| Base branch | `develop` |
+| Current branch | `feature/security-hardening` |
+| Active scope | AI Server quiz generation backend and Admin UI integration |
+| Status | AI Server/Admin UI work reconciled with deployment-domain updates; preparing main merge |
+
+## Completed
+
+- Git repository initialized.
+- GitHub remote connected: `https://github.com/monancho/proj01-quiz-widget.git`.
+- `develop` branch pushed to `origin/develop`.
+- Planning documents committed under `docs/`.
+- Phase 0 + Phase 1 implementation committed.
+- Agent operating guide added in `AGENTS.md`.
+- Human-facing docs categorized under `docs/human/index.html`, `guides/`, `reports/`, and `decisions/`.
+- Phase 0 + Phase 1 branch fast-forwarded into local `develop`.
+- `feature/server-api-mvp` branch created for Phase 2+ backend API work.
+- Phase TODO convention added to `AGENTS.md`.
+- Phase 2 TODO file added under `docs/todos/`.
+- Phase 2 Slug Group API implemented.
+- Push and PR strategy added to `AGENTS.md`.
+- Human-facing docs update timing added to `AGENTS.md`.
+- Phase 3 TODO file added under `docs/todos/`.
+- Phase 3 Quiz API implemented.
+- Phase 4 TODO file added under `docs/todos/`.
+- Phase 4 Public Embed API implemented.
+- API MVP human checkpoint report added under `docs/human/reports/`.
+- Human docs index expanded into a development documentation portal.
+- Local `develop` pushed to `origin/develop`.
+- `feature/server-api-mvp` pushed to origin.
+- Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
+- PR handoff status pushed to `feature/server-api-mvp`: `f6560ca docs: record github pr handoff`.
+- `feature/client-embed-mvp` branch created locally.
+- Phase 5 TODO file added under `docs/todos/`.
+- Phase 5 React/Vite/Tailwind client scaffold implemented.
+- Public iframe route `/embed/:postSlug` implemented.
+- Immediate client-side quiz grading, feedback, result summary, retry, and static banner implemented.
+- Frontend README commands documented.
+- `feature/client-embed-mvp` pushed to origin.
+- Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
+- Phase 5 desktop and mobile iframe QA completed with headless Chrome CDP fallback.
+- Phase 5 human checkpoint report added under `docs/human/reports/`.
+- PR #1 merged into `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/1`.
+- PR #2 merged into `feature/server-api-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/2`.
+- Direct Phase 5 draft PR opened against `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/3`.
+- PR #3 merged into `develop`.
+- Local `develop` fast-forwarded to `origin/develop`.
+- `feature/admin-mvp` branch created from updated `develop`.
+- Phase 6 TODO file added under `docs/todos/`.
+- Phase 6 admin API client added.
+- Admin route `/admin` implemented.
+- Admin Slug Group list, filters, stats, create/edit/delete, quiz table, quiz create/edit/delete, preview, and iframe copy fallback implemented.
+- Phase 6 human checkpoint report added under `docs/human/reports/`.
+- `feature/admin-mvp` pushed to origin.
+- Draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- `feature/rendering-security` branch created for Phase 7 planning.
+- Phase 7 TODO file added under `docs/todos/`.
+- Phase 7 shared Markdown/LaTeX renderer implemented.
+- Public iframe quiz question, choices, answer, and explanation now use safe rich text rendering.
+- Admin quiz table and quiz preview now use the same safe rich text rendering.
+- App routes lazy-load admin and embed pages to keep the initial bundle smaller.
+- `feature/rendering-security` pushed to origin.
+- Stacked draft PR opened: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- Pre-deployment admin UX TODO file added under `docs/todos/`.
+- Added `draft` Slug Group status for incomplete groups.
+- Quiz create/edit now opens in a modal.
+- iframe preview and iframe code copy now open in modals.
+- iframe preview and iframe code copy are now combined in one utility modal.
+- Quiz create/edit modal now shows the current question as a finished widget-style preview with selectable feedback.
+- Admin status summary/filter now uses 4 visible categories: total, preparing, public, private.
+- Incomplete Slug Groups now show automatic readonly `준비중` status in the admin modal.
+- Quiz reorder now uses a dedicated drag handle.
+- iframe code textarea now copies the code on click/focus without showing a routine success banner.
+- Public iframe embed background is transparent while admin preview remains visually framed.
+- Quiz order is now creation-order based and can be changed by drag-and-drop.
+- Added admin quiz reorder API.
+- PR #4 merged into `develop`.
+- PR #5 merged into `feature/admin-mvp`.
+- Direct draft PR #6 opened into `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
+- Safety checkpoint tag pushed before design experiment: `checkpoint-before-design-theme-20260529`.
+- Reverted unsupported compact functional UI experiment via `caec970` and `d4e13c1`.
+- Added iframe utility modal theme selection only: `시스템`, `화이트`, `다크`.
+- Public iframe route now supports `theme=light|dark|system` while preserving transparent iframe backgrounds.
+- Added a left admin navigation rail with only one current item: `대시보드`.
+- Changed the admin main area to stack status/filter/stats, Slug Groups, and Quizzes vertically.
+- Added KRDS frontend alignment TODO under `docs/todos/`.
+- Added `krds-uiux` to the client and loaded KRDS design tokens.
+- Mapped app UI variables to KRDS color, border, input, button, and state tokens.
+- Refreshed admin and iframe surfaces with KRDS token-based styling while preserving the existing wireframe and behavior.
+- Restored broken Korean UI labels in the admin and iframe screens.
+- Added KRDS UI redesign pass TODO under `docs/todos/`.
+- Changed the admin shell to a more KRDS-like white navigation rail, structured masthead, flat section panels, dense summary strip, and table-oriented content layout.
+- Changed the iframe quiz widget to a more KRDS-like section card with a title band, square panel, accented question block, structured choice list, and official state colors.
+- Added KRDS neutral density tuning TODO under `docs/todos/`.
+- Reduced strong blue accent usage so the widget can blend into different blog skins.
+- Tuned admin background, font sizing, section separation, and information density with neutral KRDS gray/black emphasis.
+- Tuned iframe widget typography, section borders, choice row density, and panel background while preserving transparent outer backgrounds.
+- Added KRDS service design polish TODO under `docs/todos/`.
+- Reviewed KRDS and USWDS design-system guidance for token-based, consistent, accessible, neutral service styling.
+- Added service-level CSS tokens and polished admin shell, sidebar, masthead, filters, stats, Slug Group list, quiz table, modals, utility preview, iframe quiz panel, choice rows, feedback, results, and banner.
+- Preserved existing React behavior, routes, APIs, admin wireframe, iframe theme modes, and transparent public iframe backgrounds.
+- Added `docs/06-blog-embed-design-strategy.md` to split blog-compatible design work into D0~D5 sub-phases.
+- Added design sub-phase TODO rule to `AGENTS.md` and `docs/todos/README.md`.
+- Prepared `docs/todos/design-d0-blog-compatibility-audit.md` before the next design audit.
+- Prepared `docs/todos/design-d1-embed-footprint.md` as the next likely implementation TODO after D0.
+- Completed Design D0 blog compatibility audit across minimal white, off-white editorial, dense text, image magazine, dark article, and narrow mobile contexts.
+- Identified iframe height as the main blog compatibility issue: mobile iframe-height-to-article-width ratio was `1.99` before D1.
+- Implemented Design D1 embed footprint reduction.
+- Reduced generated iframe copy height from `720px` to `620px`.
+- Reduced public iframe shell padding, panel min-height, panel shadow, title band height, question block weight, choice row height, and action spacing while preserving touch usability.
+- Added `docs/todos/design-d2-skin-adaptive-surface.md` before D2 implementation.
+- Implemented Design D2 skin-adaptive surface tuning.
+- Reduced public iframe panel, title band, question block, choice row, action area, and optional banner surface weight.
+- Tuned light surfaces for white, off-white, and gray blog backgrounds.
+- Tuned dark surfaces for dark blog backgrounds.
+- Restored semantic correct/incorrect state surfaces after D2 opacity tuning.
+- Added `docs/todos/design-d3-typography-rhythm.md` before D3 implementation.
+- Implemented Design D3 typography and reading rhythm tuning.
+- Tuned public iframe question, choice, rich text, feedback, result, and banner typography.
+- Preserved D1 footprint, D2 skin-adaptive surfaces, theme modes, quiz behavior, and transparent public iframe body backgrounds.
+- Added `docs/todos/design-d4-action-state-neutrality.md` before D4 implementation.
+- Implemented Design D4 action and state neutrality tuning.
+- Tuned public iframe primary/secondary actions, disabled action state, choice hover/focus states, correct/incorrect choice states, feedback state surfaces, and result retry action.
+- Preserved D1 footprint, D2 skin-adaptive surfaces, D3 typography, theme modes, quiz behavior, and transparent public iframe body backgrounds.
+- Added `docs/todos/design-d5-blog-skin-qa-matrix.md` before D5 verification.
+- Completed Design D5 blog skin QA matrix.
+- Verified the final D1-D4 public iframe design against minimal white, off-white editorial, dense text, image-heavy magazine, dark article, and narrow mobile blog contexts.
+- No D5 application code changes were required.
+- Added `docs/todos/design-followup-embed-action-spacing.md` before CSS work.
+- Implemented embed action spacing follow-up.
+- Reduced the pre-answer choice-to-action gap and centered the next/result action button in the public iframe flow.
+- Removed the toolbar-like action area surface in the public iframe while preserving quiz behavior, theme modes, iframe height, and transparent public iframe body background.
+- Added `docs/todos/design-followup-dark-result-density.md` before CSS work.
+- Implemented dark mode and final result density follow-up.
+- Tuned dark iframe panel, question, choice, semantic state, feedback, result, and banner colors to keep the dark UI quieter while preserving contrast.
+- Reduced final result panel height in the public iframe because the result state has fewer elements than the quiz-solving state.
+- Added `docs/todos/admin-markdown-authoring-ux.md` before implementation.
+- Added Markdown continuation shortcuts to admin question and explanation textareas.
+- Admin textarea Enter now continues unordered lists, numbered lists, and blockquotes.
+- Empty Markdown continuation lines now exit the list or blockquote cleanly.
+- Verified rich Markdown/LaTeX scenarios across admin preview and public iframe rendering.
+- Added `docs/08-ai-smell-review-plan.md`.
+- Added AI smell review TODO files for R0 research, R1 analysis, R2 remediation planning, R3 execution, and R4 verification.
+- Completed the first AI smell analysis pass using the user-provided article and supplemental research.
+- Identified the main project risks as overlayered CSS, oversized admin page, long rolling status/worklog docs, mojibake content, and unisolated helper logic.
+- Extracted the Markdown authoring continuation parser from `AdminQuizManagerPage.jsx` to `client/src/utils/markdownAuthoring.js`.
+- Confirmed `client/src` Korean UI strings do not contain real mojibake; earlier garbled display was PowerShell output encoding.
+- Added `docs/todos/ai-smell-r3b-admin-embed-helper-extraction.md`.
+- Extracted admin status/theme option constants to `client/src/constants/adminOptions.js`.
+- Extracted iframe URL/code builders to `client/src/utils/embedTools.js`.
+- Added `docs/todos/ai-smell-r3c-admin-indicator-extraction.md`.
+- Extracted admin `LoadingRows`, `StatusBadge`, and `CompletionBadge` to `client/src/components/admin/AdminIndicators.jsx`.
+- Added `docs/todos/uiux-component-review.md` before the review pass.
+- Completed a component-by-component UI/UX review for admin, modals, public iframe, state, responsive, and theme behavior.
+- Added human-facing report `docs/human/reports/2026-05-30-uiux-component-review.html`.
+- Updated the human docs index with the UI/UX component review report.
+- Verified current client build after the UI/UX review.
+- Added `docs/todos/uiux-parser-completion.md` before final UI/UX follow-up implementation.
+- Added `client/src/styles/uiux-parser-completion.css` as a scoped final override layer.
+- Reduced quiz modal and iframe utility modal density without adding product features.
+- Improved mobile admin density while keeping primary actions available.
+- Verified admin desktop/mobile and public iframe light/dark interaction states after parser completion.
+- PR #6 was merged into `develop` and local `develop` was fast-forwarded to `origin/develop`.
+- Created `feature/docker-deploy` from updated `develop`.
+- Added Phase 8 deployment prep TODO under `docs/todos/`.
+- Added backend Dockerfile, Docker Compose stack, Caddy reverse proxy config, and production env examples.
+- Added Cloudflare Pages, OCI backend, deployment smoke test, and GitHub Actions draft deployment docs.
+- Updated root README with deployment entry points.
+- Added Phase 8 human checkpoint report and linked it from the human docs index.
+- Verified backend smoke tests, client build, and Docker Compose config for deployment prep.
+- PR #7 was merged into `develop` and local `develop` was fast-forwarded to `origin/develop`.
+- Created `feature/deployment-domain-config` from updated `develop`.
+- Reflected current deployment values: frontend `https://monancho.com` and Tistory `https://monancho.tistory.com/`.
+- Removed raw server IP from committed docs/env examples and documented that it should stay in local/server-only env.
+- Documented mixed-content risk because HTTPS frontend calls to an HTTP API can be blocked by browsers.
+- Verified Docker Compose config after domain updates.
+- Local `/health` check to the provided HTTP API endpoint timed out, so the API endpoint is not yet confirmed reachable.
+- Added backend image build/push workflow for GHCR: `.github/workflows/backend-image.yml`.
+- Updated Docker Compose with stable API image name `ghcr.io/monancho/proj01-quiz-widget-api:develop`.
+- Updated backend deploy draft to pull the prebuilt image on OCI.
+- Documented that SQLite is persisted in the Docker volume `quiz-data:/data`, not a separate image.
+- Added backend image pipeline deployment guide.
+- Deferred GitHub Actions automation by making backend image workflow manual-only.
+- Added first manual OCI deployment guide using `docker compose up -d --build`.
+- Clarified that the first deploy should build on the OCI host, while GHCR image pulls can be enabled later.
+- Added Korean deployment guide for Docker image push, OCI backend deployment, Cloudflare Pages frontend deployment, and Tistory iframe checks.
+- Confirmed Docker Desktop is running locally.
+- Built `ghcr.io/monancho/proj01-quiz-widget-api:develop` locally.
+- Smoke-tested the built backend image with a temporary container and verified `/health`.
+- Attempted GHCR push; push is blocked until Docker is logged into GHCR with package write permission.
+- Disabled the public iframe static banner for the current deployment.
+- Updated client env examples and deployment docs so `VITE_BANNER_*` values are not configured by default.
+- Added a shared frontend API base URL resolver.
+- Kept local Vite proxy behavior for development but blocked silent same-origin API fallback in production.
+- Improved admin and iframe API clients so non-JSON HTML responses report an API configuration error instead of a raw JSON parse error.
+- Updated Caddy to serve the backend API on `api.monancho.com` with automatic HTTPS.
+- Documented the Cloudflare DNS, OCI port, Caddy restart, HTTPS health check, and Cloudflare Pages env steps for `https://api.monancho.com`.
+- Kept production env examples aligned with the current no-banner iframe deployment decision.
+- Pushed the backend API image to GHCR as `ghcr.io/monancho/proj01-quiz-widget-api:develop`.
+- Switched the immediate OCI deployment guidance to image pull plus `docker compose up -d --no-build`.
+- Added `docs/09-security-hardening-plan.md` with S0-S4 security parsers.
+- Added S0-S1 admin auth TODO under `docs/todos/`.
+- Added `ADMIN_API_TOKEN` backend protection for `/api/admin/*`.
+- Added `/admin` runtime token gate using browser session storage.
+- Updated deployment docs and env examples so the real admin token stays out of GitHub and Cloudflare Pages build variables.
+- Pushed `feature/security-hardening` to `origin/feature/security-hardening`.
+- Added AI Server backend integration TODO under `docs/todos/`.
+- Added backend-only AI Server env loading for `AI_SERVER_BASE_URL`, `AI_SERVER_API_KEY`, and `AI_SERVER_TIMEOUT_SECONDS`.
+- Added AI Server client with `X-Internal-Api-Key`, JSON wrapper parsing, timeout, network error, non-2xx, request id, and multipart image moderation scaffolding.
+- Added admin-authenticated AI Server `/health` and `/ready` proxy endpoints.
+- Added admin-authenticated text, web, and YouTube AI quiz generation endpoints under Slug Group quiz routes.
+- AI generated quizzes are stored only for empty Slug Groups and map `answer_index: 0` to existing `correctPosition: 1`.
+- Added mock AI generation smoke coverage for health/ready, invalid key, timeout/network mapping, invalid difficulty, short text, invalid output shape, and successful 3-question DB persistence.
+- Added `ai-server` service image `ghcr.io/monancho/ocl-ai-server:0.1.0` to Docker Compose for later OCI image-pull usage.
+- Added AI Server env examples and gitignore protection for real `infra/env/*.env` files.
+- Added Admin UI API helpers for text, web URL, and YouTube AI quiz generation.
+- Added an Admin `AI 생성` entry point that is enabled only for empty Slug Groups.
+- Added an Admin AI generation modal with source type, difficulty, source input, loading, friendly error messages, and source warning display.
+- Removed the Admin frontend token input gate and browser session token storage.
+- Stopped Admin frontend API calls from attaching browser-stored admin tokens.
+- Improved the Admin AI generation waiting state with source-specific loading copy and an accessible loading panel.
+- Pushed `feature/security-hardening` through `656525a` to GitHub.
+- Built and pushed backend image tags `develop` and `sha-656525a` to GHCR with digest `sha256:b4f543ca169c3ab5886c1e98a4d459a966975055e25007fd75de39c111883358`.
+- Merged `origin/feature/deployment-domain-config` into `feature/security-hardening` so the security/AI work includes Cloudflare Workers frontend deployment configuration.
+- Added `.wrangler/` to `.gitignore` for generated Cloudflare local state.
+
+## Phase 0 TODO
+
+- [x] T0-01: Create project structure: `client`, `server`, `migrations`, `infra`.
+- [x] T0-02: Draft root `README.md` with run commands and environment overview.
+- [x] T0-03: Review and update `.gitignore` for Node, env files, SQLite files, and build outputs.
+
+## Phase 1 TODO
+
+- [x] T1-01: Create Express server base.
+- [x] T1-02: Implement `GET /health`.
+- [x] T1-03: Add environment variable loading and `.env.example`.
+- [x] T1-04: Add SQLite connection helper.
+- [x] T1-05: Add initial migration SQL for `quiz_sets` and `quizzes`.
+- [x] T1-06: Add migration execution script exposed as `npm run db:migrate`.
+
+## Verification TODO
+
+- [x] Install backend dependencies.
+- [x] Run migration script.
+- [x] Start API server.
+- [x] Verify `GET /health` returns `200`.
+- [x] Run final `git status`.
+- [x] Commit Phase 0 + Phase 1 implementation.
+
+## Last Verification
+
+- `npm.cmd run build` in `client/`: passed after Admin AI generation UI implementation.
+- `npm.cmd run smoke:ai-generation` in `server/`: passed after Admin AI generation UI implementation.
+- Static frontend search found no `AI_SERVER_API_KEY`, Doodle integration string, or `console.log` in `client/src`.
+- Browser UI verification after Admin AI UI work was attempted, but the in-app browser runtime failed to start in this Windows sandbox session.
+- `npm.cmd run build` in `client/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:ai-generation` in `server/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:phase2` in `server/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:phase3` in `server/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:phase4` in `server/`: passed after Admin frontend token gate removal.
+- `npm.cmd run smoke:security` in `server/`: passed after Admin frontend token gate removal.
+- Static frontend search found no admin token session, token gate, or Authorization header usage in `client/src`.
+- `npm.cmd run build` in `client/`: passed after Admin AI generation loading UX improvement.
+- `npm.cmd run smoke:ai-generation` in `server/`: passed.
+- `npm.cmd run smoke:phase2` in `server/`: passed.
+- `npm.cmd run smoke:phase3` in `server/`: passed.
+- `npm.cmd run smoke:phase4` in `server/`: passed.
+- `npm.cmd run smoke:security` in `server/`: passed.
+- `docker compose -f infra/docker-compose.yml config`: passed with `ai-server` and `api` services.
+- Live local AI Server `/health` at `http://localhost:8000`: returned `ok`.
+- Live local AI Server `/ready` at `http://localhost:8000`: returned `ready`.
+- Live AI Server text quiz generation with backend contract input: returned 3 questions, 4 options, `answer_index = 0`, and `usage.input_chars = 145`.
+- Live Quiz backend E2E with temporary DB/port and local AI Server: health/ready proxy passed, text generation saved 3 quizzes, `correctPosition = 1`, request id was present, and non-empty Slug Group guard returned `AI_GENERATION_REQUIRES_EMPTY_SET`.
+- Live AI Server invalid key check: returned `401 INVALID_API_KEY`.
+- Live AI Server short text check: returned `400 SOURCE_TEXT_TOO_SHORT`.
+- `npm.cmd install` in `client/`: passed after branch reconciliation.
+- `npm.cmd run build` in `client/`: passed after branch reconciliation.
+- `npm.cmd run smoke:ai-generation` in `server/`: passed after branch reconciliation.
+- `npm.cmd run smoke:phase2` in `server/`: passed after branch reconciliation.
+- `npm.cmd run smoke:phase3` in `server/`: passed after branch reconciliation.
+- `npm.cmd run smoke:phase4` in `server/`: passed after branch reconciliation.
+- `npm.cmd run smoke:security` in `server/`: passed after branch reconciliation.
+- `npm.cmd install`: completed, 0 vulnerabilities.
+- `npm.cmd run db:migrate`: applied `0001_init_quiz_sets_and_quizzes.sql`.
+- `/health` smoke test: returned `200`.
+- Implementation commit: `6a62601 phase0-1: scaffold backend foundation`.
+- Agent guide commit: `45a44d2 docs: add agent operating guide`.
+- Human docs restructure commit: `f5fb96f docs: separate human-facing reports`.
+- Human docs category commit: `9d0ddda docs: categorize human documentation`.
+- Phase TODO rule commit: `c5e79da docs: require phase todo before implementation`.
+- Phase 2 implementation commit: `a78aa57 phase2: implement slug group api`.
+- Push strategy commit: `9fa4daa docs: add push and pr strategy`.
+- Human docs timing commit: `d6e17b2 docs: define human docs update timing`.
+- Phase 3 TODO commit: `e194a8e docs: prepare phase 3 quiz api todo`.
+- Phase 3 implementation commit: `ebef1cc phase3: implement admin quiz api`.
+- Phase 4 TODO commit: `b79532a docs: prepare phase 4 public embed api todo`.
+- Phase 4 implementation commit: `079b8a6 phase4: implement public embed api`.
+- API MVP human report commit: included in `079b8a6 phase4: implement public embed api`.
+- Human docs portal commit: `5c843af docs: expand human docs portal`.
+- `npm.cmd run smoke:phase4`: passed.
+- `npm.cmd run smoke:phase3`: passed.
+- `npm.cmd run smoke:phase2`: passed.
+- Note: Node 24 reports `node:sqlite` as experimental.
+- Phase 5 TODO commit: `be405e3 docs: prepare phase 5 embed todo`.
+- `npm.cmd install` in `client/`: completed, 0 vulnerabilities.
+- `npm.cmd run build` in `client/`: passed.
+- Verification API server on port `3100`: `/health` returned `200`.
+- Verification Vite page: `/embed/phase-5-check-175528` returned `200`.
+- Browser automation could not complete because the in-app browser node runtime failed to start in this sandbox.
+- Headless Chrome CDP mobile QA: `innerWidth = 390`, `scrollWidth = 390`, `overflow = false`.
+- Headless Chrome CDP interaction QA: incorrect feedback, answer display, next flow, result summary, and retry reset verified.
+- Phase 6 TODO commit: `b0b72d9 docs: prepare phase 6 admin todo`.
+- `npm.cmd run build` after Phase 6 implementation: passed.
+- Admin QA created Slug Group `phase-6-admin-759869`, added 3 quizzes, published it, verified iframe preview URL, and verified iframe copy fallback.
+- Admin QA updated quiz 1, deleted and recreated quiz 3, and verified final `3/3` state.
+- Admin QA created and deleted a throwaway Slug Group.
+- Phase 6 implementation commit: `cc82950 phase6: implement admin frontend mvp`.
+- Draft PR #4: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- Phase 7 TODO commit: `c497ea1 docs: prepare phase 7 rendering security todo`.
+- `npm.cmd install react-markdown remark-gfm remark-math rehype-katex katex`: completed with 0 vulnerabilities.
+- `npm.cmd run build` after Phase 7 implementation: passed.
+- Public iframe Phase 7 QA: Markdown and KaTeX rendered; quiz content had no script tags, no `onerror`, no `javascript:` URL, and no mobile horizontal overflow at 390px.
+- Admin Phase 7 QA: quiz table rendered Markdown and KaTeX through the shared renderer and had no unsafe script/link content.
+- Phase 7 implementation commit: `e83b86e phase7: add safe markdown math rendering`.
+- Stacked draft PR #5: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- `npm.cmd run smoke:phase2`: passed after admin UX refinement.
+- `npm.cmd run smoke:phase3`: passed after admin UX refinement, including reorder API coverage.
+- `npm.cmd run smoke:phase4`: passed after admin UX refinement.
+- `npm.cmd run build` after admin UX refinement: passed.
+- Headless Chrome admin UX QA verified modal flows, iframe preview/code modals, drag reorder, and draft-only incomplete status behavior.
+- Admin UX refinement commit: `2c384f6 admin: refine predeploy quiz management ux`.
+- Direct draft PR #6: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
+- `npm.cmd run build` after unified iframe/widget preview follow-up: passed.
+- Headless Chrome admin follow-up QA verified the combined iframe modal, iframe code textarea, live iframe preview, widget-style quiz preview, selectable feedback, and no horizontal overflow.
+- Admin UX follow-up commit: `59c9695 admin: unify embed and widget previews`.
+- `npm.cmd run build` after admin UX polish: passed.
+- Headless Chrome admin UX polish QA verified 4 status categories, automatic readonly preparing state, handle drag reorder, click-to-copy iframe code, no copy success banner, and transparent public embed background.
+- Admin UX polish commit: `1cfc53c admin: polish predeploy ux controls`.
+- `npm.cmd run build` after reverting unsupported compact design and applying theme-only behavior: passed.
+- Headless Chrome theme-only QA verified the original admin wireframe markers, no fake sidebar/notification UI, iframe modal theme options, `theme=dark` URL/code/clipboard behavior, light/dark/system embed rendering, no horizontal overflow, and transparent public embed backgrounds.
+- `npm.cmd run build` after admin dashboard layout refinement: passed.
+- Headless Chrome admin layout QA verified one `대시보드` nav item, vertical status/Slug Groups/Quizzes stacking, Slug Group selection, 3-row quiz table rendering, iframe utility modal behavior, public embed rendering, and no horizontal overflow.
+- Headless Chrome wide viewport QA verified the 224px left sidebar and main dashboard column render side by side without horizontal overflow.
+- `npm.cmd install krds-uiux@^1.0.5` in `client/`: completed with 0 vulnerabilities.
+- `npm.cmd run build` after KRDS frontend alignment: passed.
+- Headless Chrome KRDS QA verified admin desktop and mobile rendering without horizontal overflow.
+- Headless Chrome KRDS QA verified embed light and dark theme rendering without horizontal overflow.
+- Headless Chrome KRDS QA verified KRDS token CSS is loaded and app primary color resolves to `#256ef4`.
+- Static search found no remaining known mojibake markers in `client/src`.
+- `npm.cmd run build` after KRDS visual redesign pass: passed.
+- Headless Chrome KRDS redesign QA verified admin desktop and mobile rendering without horizontal overflow.
+- Headless Chrome KRDS redesign QA verified embed light and dark routes preserve transparent backgrounds and render without horizontal overflow.
+- `npm.cmd run build` after KRDS neutral density tuning: passed.
+- Headless Chrome KRDS neutral QA verified admin desktop and mobile rendering without horizontal overflow.
+- Headless Chrome KRDS neutral QA verified embed light and dark routes preserve transparent body backgrounds and render without horizontal overflow.
+- Headless Chrome KRDS neutral QA verified app primary color resolves to neutral `#131416`.
+- `npm.cmd run build` after KRDS service design polish: passed.
+- Headless Edge KRDS service QA verified admin desktop `1366px` and mobile `390px` rendering without horizontal overflow.
+- Headless Edge KRDS service QA verified iframe light, dark, and system routes at `390px` without horizontal overflow.
+- Headless Edge KRDS service QA verified public iframe body background remains transparent and temporary `krds-service-*` QA data was deleted.
+- Design sub-phase planning completed with no application code changes.
+- Headless Edge D0 audit verified all simulated blog contexts had no horizontal overflow and public iframe body stayed transparent.
+- `npm.cmd run build` after Design D1 embed footprint reduction: passed.
+- Headless Edge D1 QA verified all simulated blog contexts had no horizontal overflow with copied iframe height `620px`.
+- Headless Edge D1 QA improved desktop iframe-height-to-article-width ratios from `0.86~1.06` to `0.74~0.91`.
+- Headless Edge D1 QA improved narrow mobile ratio from `1.99` to `1.71`.
+- Headless Edge D1 QA verified light, dark, and system iframe routes at `390px`, public transparent body background, and Markdown/KaTeX rendering.
+- `npm.cmd run build` after Design D2 skin-adaptive surface tuning: passed.
+- Headless Edge D2 QA verified white, off-white, gray, dark, and mobile white blog background simulations with no horizontal overflow.
+- Headless Edge D2 QA verified public iframe body background remains transparent.
+- Headless Edge D2 QA verified light, dark, and system iframe routes at `390px`.
+- Headless Edge D2 QA verified correct/incorrect state colors remain visible after D2 surface opacity tuning.
+- `npm.cmd run build` after Design D3 typography tuning: passed.
+- Headless Edge D3 QA verified long Korean questions, long Korean choices, Markdown lists, inline code, KaTeX, feedback explanations, and result summary rhythm at `390px`.
+- Headless Edge D3 QA verified light, dark, and system iframe routes with no horizontal overflow.
+- Headless Edge D3 QA verified public iframe body background remains transparent.
+- Headless Edge D3 QA verified choice touch targets remain at least `48px`.
+- Temporary `design-d3-*` QA data was deleted after verification.
+- `npm.cmd run build` after Design D4 action/state neutrality tuning: passed.
+- Headless Edge D4 QA verified keyboard focus visibility on choice rows and result retry action.
+- Headless Edge D4 QA verified disabled primary action, light/dark correct and incorrect states, feedback state surfaces, result retry action, light/dark/system iframe routes, no mobile horizontal overflow, and transparent public iframe body background.
+- Transition-aware D4 follow-up QA verified final light correct/incorrect state colors after CSS transitions completed.
+- Temporary `design-d4-*` QA data was deleted after verification.
+- `npm.cmd run build` before Design D5 blog skin QA matrix: passed.
+- Headless Edge D5 QA verified six simulated parent blog contexts had no horizontal overflow and iframe width fit the article column.
+- D5 parent iframe height-to-article-width ratios were `0.82`, `0.91`, `0.97`, `0.82`, `0.91`, and `1.71` for minimal white, off-white editorial, dense text, image-heavy magazine, dark article, and narrow mobile contexts.
+- Headless Edge D5 QA verified direct light, dark, and system iframe routes at `390px` had no internal horizontal overflow and public iframe body background remained transparent.
+- Headless Edge D5 QA verified Markdown, bold text, KaTeX, light/dark correct and incorrect states, and result views in direct iframe checks.
+- Temporary `design-d5-*` QA data was deleted after verification.
+- Headless Edge D5 embedded interaction QA verified answer click, incorrect state, correct state, and all-quiz final result inside a parent-page iframe for light desktop, dark desktop, and system mobile contexts.
+- Headless Edge D5 embedded interaction QA verified no parent horizontal overflow, no iframe internal horizontal overflow, and transparent iframe body background throughout the interaction flow.
+- Temporary `design-d5-embedded-*` QA data was deleted after verification.
+- `npm.cmd run build` after embed action spacing follow-up: passed.
+- Headless Edge spacing QA verified mobile light route improved pre-answer choice-to-action gap from about `97px` to `0px`.
+- Headless Edge spacing QA verified incorrect, correct, and final-question feedback-to-action gaps were `0px`.
+- Headless Edge spacing QA verified next/result action button is centered, result screen still renders, light/dark/system routes have no horizontal overflow, public iframe body remains transparent, and temporary spacing QA data was deleted.
+- `npm.cmd run build` after dark mode/result density follow-up: passed.
+- Headless Edge dark/result QA verified dark and system dark answer click, incorrect state, correct state, and final result flows.
+- Headless Edge dark/result QA verified dark/system dark result panel height reduced from `456px` in the initial quiz state to `219px` in the final result state.
+- Headless Edge dark/result QA verified no mobile horizontal overflow, centered result retry action, transparent public iframe body background, and temporary `design-dark-result-*` QA data cleanup.
+- `npm.cmd run build` after admin Markdown authoring UX: passed.
+- Headless Edge admin authoring QA verified unordered list continuation, numbered list continuation, blockquote continuation, and empty continuation exit behavior.
+- Headless Edge admin preview QA verified Markdown strong text, list items, and KaTeX rendering.
+- Headless Edge public iframe QA verified rich Markdown/LaTeX rendering across question, choices, and explanation at mobile `390px`, with no horizontal overflow and transparent iframe body background.
+- Temporary `markdown-ux-*` QA data was deleted after verification.
+- Markdown authoring helper-level checks passed for unordered list continuation, unordered exit, ordered `1.` continuation, ordered `1)` continuation, blockquote continuation, and plain text no-op.
+- `npm.cmd run build` after AI smell helper extraction: passed.
+- Admin embed helper-level checks passed for encoded slug URLs, theme fallback, iframe height `620`, `allowtransparency`, and transparent style preservation.
+- `npm.cmd run build` after admin embed helper extraction: passed.
+- `npm.cmd run build` after admin indicator extraction: passed.
+
+## Remote Sync Status
+
+- `develop` is pushed to `origin/develop`.
+- `feature/server-api-mvp` is pushed and tracks `origin/feature/server-api-mvp`.
+- PR #1 is merged into `origin/develop`.
+- `feature/client-embed-mvp` is pushed and tracks `origin/feature/client-embed-mvp`.
+- PR #2 is merged into `origin/feature/server-api-mvp`.
+- PR #3 is merged into `origin/develop`.
+- `feature/admin-mvp` is pushed and tracks `origin/feature/admin-mvp`.
+- PR #4 is merged into `origin/develop`: `https://github.com/monancho/proj01-quiz-widget/pull/4`.
+- `feature/rendering-security` is pushed and tracks `origin/feature/rendering-security`.
+- PR #5 is merged into `origin/feature/admin-mvp`: `https://github.com/monancho/proj01-quiz-widget/pull/5`.
+- Direct draft PR #6 targets `develop`: `https://github.com/monancho/proj01-quiz-widget/pull/6`.
+- `feature/rendering-security` contains the verified revert/theme-only follow-up for PR #6.
+
+## Next
+
+- Redeploy OCI with image pull so it uses `ghcr.io/monancho/proj01-quiz-widget-api:develop` digest `sha256:b4f543ca169c3ab5886c1e98a4d459a966975055e25007fd75de39c111883358`.
+- Before redeploying, confirm real server-only env values are present in the OCI server env files.
+- Redeploy Cloudflare Pages so the updated `/admin` UI includes AI generation controls and no frontend admin token gate.
+- Optionally add Cloudflare Access for `https://monancho.com/admin*` as an extra edge-level gate.

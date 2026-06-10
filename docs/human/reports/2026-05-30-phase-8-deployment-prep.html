@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase 8 Deployment Prep Checkpoint</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #667085;
+      --line: #d8dee9;
+      --soft: #f1f3f5;
+      --ok: #047857;
+      --warn: #b45309;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 42px 24px 56px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: 34px; line-height: 1.2; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 22px; letter-spacing: 0; }
+    h3 { margin-bottom: 8px; font-size: 16px; letter-spacing: 0; }
+    p { color: var(--muted); }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .summary {
+      background: var(--soft);
+    }
+
+    .meta,
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .meta {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pill,
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .pill {
+      padding: 8px 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .card {
+      padding: 16px;
+    }
+
+    .ok { color: var(--ok); font-weight: 700; }
+    .warn { color: var(--warn); font-weight: 700; }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    li + li { margin-top: 6px; }
+
+    @media (max-width: 760px) {
+      main { padding: 30px 16px 42px; }
+      h1 { font-size: 28px; }
+      .meta,
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="summary">
+      <h1>Phase 8 Deployment Prep Checkpoint</h1>
+      <p>PR #6 merge 이후 MVP 배포 준비 파일과 운영 문서를 추가한 체크포인트입니다. 실제 Cloudflare/OCI 배포는 아직 수행하지 않았고, 배포 가능한 구조와 체크리스트를 준비했습니다.</p>
+      <div class="meta">
+        <span class="pill">Date: 2026-05-30</span>
+        <span class="pill">Branch: feature/docker-deploy</span>
+        <span class="pill">Status: prepared</span>
+        <span class="pill">Live deploy: not yet</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Added Artifacts</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Backend</h3>
+          <ul>
+            <li><code>server/Dockerfile</code></li>
+            <li><code>infra/docker-compose.yml</code></li>
+            <li><code>infra/caddy/Caddyfile</code></li>
+            <li><code>infra/env/api.env.example</code></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Frontend and Docs</h3>
+          <ul>
+            <li><code>client/.env.example</code></li>
+            <li><code>docs/deployment/cloudflare-pages.md</code></li>
+            <li><code>docs/deployment/oci-backend.md</code></li>
+            <li><code>docs/deployment/deployment-smoke-test.md</code></li>
+            <li><code>.github/workflows/backend-deploy.example.yml</code></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Image Pipeline Update</h2>
+      <ul>
+        <li>Backend API image target: <code>ghcr.io/monancho/proj01-quiz-widget-api:develop</code>.</li>
+        <li>GitHub Actions workflow added: <code>.github/workflows/backend-image.yml</code>.</li>
+        <li>OCI deploy draft now pulls the prebuilt image before running Compose.</li>
+        <li>SQLite remains a persistent Docker volume at <code>quiz-data:/data</code>, not a separate container image.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Manual Deploy First</h2>
+      <p>The first deployment should be done manually on the OCI host before enabling GitHub Actions automation.</p>
+      <ul>
+        <li>Manual guide: <code>docs/deployment/manual-oci-first-deploy.md</code>.</li>
+        <li>Start command: <code>docker compose -f infra/docker-compose.yml up -d --build</code>.</li>
+        <li>The backend image workflow is manual-only for now.</li>
+        <li>SQLite remains in <code>quiz-data:/data</code>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Verification</h2>
+      <ul>
+        <li class="ok">Backend smoke phase2, phase3, and phase4 passed.</li>
+        <li class="ok">Client production build passed.</li>
+        <li class="ok">Docker Compose config validation passed.</li>
+        <li class="warn">Full Docker image build was not run because the local Docker daemon was not running.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Human Decisions Needed</h2>
+      <ul>
+        <li>Frontend domain selected: <code>https://monancho.com</code>.</li>
+        <li>Current OCI API endpoint was provided, but raw server IPs should stay out of committed docs/env examples.</li>
+        <li>Tistory blog selected: <code>https://monancho.tistory.com/</code>.</li>
+        <li>Backend <code>CORS_ALLOWED_ORIGINS</code> should include <code>https://monancho.com</code>.</li>
+        <li>Decide whether Caddy should terminate HTTPS directly or sit behind another TLS layer.</li>
+        <li>Create production <code>infra/env/api.env</code> on the OCI host.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Current Risk</h2>
+      <p class="warn">The frontend domain is HTTPS. Browsers can block calls to a raw HTTP server IP as mixed content. Keep raw server IPs in private deployment notes or uncommitted env files, then move production API calls to an HTTPS endpoint such as <code>https://api.monancho.com</code>.</p>
+    </section>
+  </main>
+</body>
+</html>

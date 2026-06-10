@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase 5 Iframe Frontend Checkpoint</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #d8dee9;
+      --accent: #0f766e;
+      --accent-soft: #e9fbf7;
+      --ok: #047857;
+      --warn: #b45309;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 42px 24px 56px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .summary {
+      border-color: #99d8cb;
+      background: var(--accent-soft);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f4fa;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    .ok {
+      color: var(--ok);
+      font-weight: 700;
+    }
+
+    .warn {
+      color: var(--warn);
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 30px 16px 42px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Phase 5 Iframe Frontend Checkpoint</h1>
+      <p>Public iframe quiz UI milestone summary for the Tistory quiz widget.</p>
+      <div class="meta">
+        <span class="pill">Date: 2026-05-29</span>
+        <span class="pill">Branch: feature/client-embed-mvp</span>
+        <span class="pill">PR: #3 draft</span>
+        <span class="pill">Status: verified</span>
+      </div>
+    </header>
+
+    <section class="summary">
+      <h2>Conclusion</h2>
+      <p class="ok">Phase 5 iframe frontend is implemented, built, pushed, and verified with headless Chrome CDP fallback.</p>
+      <p>PR #1 has landed in <code>develop</code>. PR #3 is the direct Phase 5 draft PR into <code>develop</code>.</p>
+    </section>
+
+    <section>
+      <h2>Completed Scope</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Client foundation</td>
+            <td>React, Vite, and Tailwind are configured under <code>client/</code>.</td>
+          </tr>
+          <tr>
+            <td>Public route</td>
+            <td><code>/embed/:postSlug</code> renders the iframe quiz page.</td>
+          </tr>
+          <tr>
+            <td>Quiz flow</td>
+            <td>Loading, empty, error, active quiz, immediate feedback, next question, result, and retry states are implemented.</td>
+          </tr>
+          <tr>
+            <td>Banner</td>
+            <td>Static banner area is rendered below the quiz surface and can be configured by client environment variables.</td>
+          </tr>
+          <tr>
+            <td>Responsive iframe layout</td>
+            <td>Desktop and mobile widths were checked; mobile viewport reported no horizontal overflow.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Verification</h2>
+      <ul>
+        <li><code>npm.cmd install</code> in <code>client/</code>: completed with 0 vulnerabilities.</li>
+        <li><code>npm.cmd run build</code> in <code>client/</code>: passed.</li>
+        <li>API verification server <code>/health</code>: returned <code>200</code>.</li>
+        <li>Vite iframe route <code>/embed/phase-5-check-175528</code>: returned <code>200</code>.</li>
+        <li>Headless Chrome CDP mobile viewport: <code>innerWidth = 390</code>, <code>scrollWidth = 390</code>, <code>overflow = false</code>.</li>
+        <li>Interaction QA verified incorrect feedback, correct answer display, next flow, result summary, and retry reset.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <ul>
+        <li>The in-app Browser plugin could not start in this sandbox, so headless Chrome CDP was used as the fallback browser QA path.</li>
+        <li>PR #2 was merged into <code>feature/server-api-mvp</code>; PR #3 now targets <code>develop</code>.</li>
+        <li>The frontend intentionally performs client-side grading for MVP because the public API exposes answer data.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Next Action</h2>
+      <p>Review PR #3 for Phase 5 integration into <code>develop</code>. After that, prepare Phase 6 TODO before admin frontend implementation.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase 0~1 Checkpoint</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #d8dee9;
+      --accent: #047857;
+      --accent-soft: #e8f7f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 42px 24px 56px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .summary {
+      border-color: #9ad7b7;
+      background: var(--accent-soft);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f4fa;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    .ok {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 30px 16px 42px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Phase 0~1 Checkpoint</h1>
+      <p>프로젝트 기준선과 백엔드 기초 구현 완료 시점의 사람용 중간 보고서입니다.</p>
+      <div class="meta">
+        <span class="pill">Date: 2026-05-29</span>
+        <span class="pill">Branch: feature/project-scaffold</span>
+        <span class="pill">Status: completed</span>
+      </div>
+    </header>
+
+    <section class="summary">
+      <h2>결론</h2>
+      <p class="ok">Phase 0과 Phase 1은 구현, 검증, 커밋까지 완료되었습니다.</p>
+      <p>다음 개발 단계는 Phase 2, Slug Group API 구현입니다.</p>
+    </section>
+
+    <section>
+      <h2>완료된 범위</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>완료 내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Phase 0</td>
+            <td>기본 폴더 구조, README, gitignore 기준선</td>
+          </tr>
+          <tr>
+            <td>Phase 1</td>
+            <td>Express 서버, <code>GET /health</code>, 환경변수, SQLite 연결, migration runner</td>
+          </tr>
+          <tr>
+            <td>운영 문서</td>
+            <td><code>AGENTS.md</code>, project status, worklog, human docs 구조</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>검증 결과</h2>
+      <ul>
+        <li><code>npm.cmd install</code>: 성공, 취약점 0개</li>
+        <li><code>npm.cmd run db:migrate</code>: migration 1개 적용</li>
+        <li><code>GET /health</code>: 200 응답 확인</li>
+        <li><code>git status</code>: clean 상태 확인</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>주요 커밋</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Commit</th>
+            <th>내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>6a62601</code></td>
+            <td>Phase 0~1 백엔드 기초 구현</td>
+          </tr>
+          <tr>
+            <td><code>45a44d2</code></td>
+            <td>AI용 운영 가이드 추가</td>
+          </tr>
+          <tr>
+            <td><code>f5fb96f</code></td>
+            <td>사람용 HTML 보고서 구조 분리</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>주의사항</h2>
+      <ul>
+        <li>Windows PowerShell에서 <code>npm</code>이 막히면 <code>npm.cmd</code>를 사용합니다.</li>
+        <li>Node 24의 <code>node:sqlite</code>는 동작하지만 experimental warning을 출력합니다.</li>
+        <li>사람용 HTML 보고서는 매번 갱신하지 않고, 체크포인트 때만 갱신합니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>다음 액션</h2>
+      <p><code>feature/server-api-mvp</code> 브랜치에서 Phase 2 Slug Group API를 시작합니다.</p>
+    </section>
+  </main>
+</body>
+</html>
+

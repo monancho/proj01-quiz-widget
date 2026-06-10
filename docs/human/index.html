@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>proj01 Human Docs</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --ink: #1f2937;
+      --muted: #667085;
+      --line: #d8dee9;
+      --accent: #2563eb;
+      --accent-soft: #eef4ff;
+      --ok: #047857;
+      --wait: #92400e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 42px 0 56px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: 36px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .hero {
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .meta,
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid #b8c9ff;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfe;
+    }
+
+    .card.featured {
+      border-color: #adc3ff;
+      background: var(--accent-soft);
+    }
+
+    ul,
+    ol {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      overflow-wrap: anywhere;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f0f4fa;
+    }
+
+    .ok {
+      color: var(--ok);
+      font-weight: 700;
+    }
+
+    .wait {
+      color: var(--wait);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .grid.two {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      main {
+        width: min(100% - 24px, 1180px);
+        padding: 30px 0 42px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>proj01 Human Docs</h1>
+      <p>사람이 프로젝트 진행 상황, 운영 규칙, 체크포인트 보고서, 결정 기록을 빠르게 확인하기 위한 개발 문서 포털입니다.</p>
+      <div class="meta">
+        <span class="pill">Project: proj01-quiz-widget</span>
+        <span class="pill">Updated: 2026-05-30</span>
+        <span class="pill">Branch: feature/docker-deploy</span>
+        <span class="pill">Deployment Prep: prepared</span>
+      </div>
+      <div class="actions">
+        <a class="button" href="./reports/2026-05-30-uiux-component-review.html">UI/UX Review</a>
+        <a class="button" href="./reports/2026-05-30-phase-8-deployment-prep.html">Phase 8 Report</a>
+        <a class="button" href="./reports/2026-05-29-phase-6-admin-checkpoint.html">Phase 6 Report</a>
+        <a class="button" href="./reports/2026-05-29-phase-7-rendering-security-checkpoint.html">Phase 7 Report</a>
+        <a class="button" href="./reports/2026-05-29-phase-5-iframe-checkpoint.html">Phase 5 Report</a>
+        <a class="button" href="./reports/2026-05-29-api-mvp-checkpoint.html">API MVP Report</a>
+        <a class="button" href="./guides/agent-operation-guide.html">Agent Guide</a>
+        <a class="button" href="./decisions/index.html">Decision Notes</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Current Snapshot</h2>
+      <div class="grid">
+        <article class="card featured">
+          <h3>Completed</h3>
+          <p class="ok">Phase 2~7 MVP implementation and pre-deployment admin UX verification are complete.</p>
+          <ul>
+            <li>Admin Slug Group CRUD</li>
+            <li>Admin Quiz CRUD</li>
+            <li>Admin modal, iframe code, and drag reorder UX</li>
+            <li>Markdown/LaTeX rendering and content safety</li>
+            <li>Public iframe quiz flow</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Next Work</h3>
+          <p>Review and merge the stacked PRs, then continue deployment planning after the branch stack is integrated.</p>
+          <ul>
+            <li>Merge PR #4</li>
+            <li>Retarget and merge PR #5</li>
+            <li>Prepare deployment TODO after branch integration</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Review Focus</h3>
+          <p>Human review should focus on whether the admin workflow is understandable enough before Markdown/LaTeX and deployment work starts.</p>
+          <ul>
+            <li>Slug Group create/edit/delete</li>
+            <li>Quiz create/edit/delete</li>
+            <li>iframe preview and copy flow</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Document Catalog</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Guides</h3>
+          <p>Durable operating guidance that should not change every session.</p>
+          <ul>
+            <li><a href="./guides/agent-operation-guide.html">Agent Operation Guide</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Reports</h3>
+          <p>Milestone and checkpoint reports for human review.</p>
+          <ul>
+            <li><a href="./reports/2026-05-29-phase-0-1-checkpoint.html">Phase 0~1 Foundation Checkpoint</a></li>
+            <li><a href="./reports/2026-05-29-api-mvp-checkpoint.html">Phase 2~4 API MVP Checkpoint</a></li>
+            <li><a href="./reports/2026-05-29-phase-5-iframe-checkpoint.html">Phase 5 Iframe Frontend Checkpoint</a></li>
+            <li><a href="./reports/2026-05-29-phase-6-admin-checkpoint.html">Phase 6 Admin Frontend Checkpoint</a></li>
+            <li><a href="./reports/2026-05-29-phase-7-rendering-security-checkpoint.html">Phase 7 Rendering/Security Checkpoint</a></li>
+            <li><a href="./reports/2026-05-30-uiux-component-review.html">UI/UX Component Review</a></li>
+            <li><a href="./reports/2026-05-30-phase-8-deployment-prep.html">Phase 8 Deployment Prep Checkpoint</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Decisions</h3>
+          <p>Decision notes, options, recommendations, and tradeoffs.</p>
+          <ul>
+            <li><a href="./decisions/index.html">Decision Notes Index</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Development Progress</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Status</th>
+            <th>Human Document</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Phase 0~1 Foundation</td>
+            <td class="ok">Complete</td>
+            <td><a href="./reports/2026-05-29-phase-0-1-checkpoint.html">Phase 0~1 Checkpoint</a></td>
+          </tr>
+          <tr>
+            <td>Phase 2~4 API MVP</td>
+            <td class="ok">Complete</td>
+            <td><a href="./reports/2026-05-29-api-mvp-checkpoint.html">API MVP Checkpoint</a></td>
+          </tr>
+          <tr>
+            <td>Phase 5 Iframe Frontend</td>
+            <td class="ok">Verified</td>
+            <td><a href="./reports/2026-05-29-phase-5-iframe-checkpoint.html">Phase 5 Iframe Frontend Checkpoint</a></td>
+          </tr>
+          <tr>
+            <td>Phase 6 Admin Frontend</td>
+            <td class="ok">Verified</td>
+            <td><a href="./reports/2026-05-29-phase-6-admin-checkpoint.html">Phase 6 Admin Frontend Checkpoint</a></td>
+          </tr>
+          <tr>
+            <td>Phase 7 Rendering/Security</td>
+            <td class="ok">Verified</td>
+            <td><a href="./reports/2026-05-29-phase-7-rendering-security-checkpoint.html">Phase 7 Rendering/Security Checkpoint</a></td>
+          </tr>
+          <tr>
+            <td>UI/UX Component Review</td>
+            <td class="ok">Complete</td>
+            <td><a href="./reports/2026-05-30-uiux-component-review.html">UI/UX Component Review</a></td>
+          </tr>
+          <tr>
+            <td>Phase 8 Deployment</td>
+            <td class="ok">Prepared</td>
+            <td><a href="./reports/2026-05-30-phase-8-deployment-prep.html">Phase 8 Deployment Prep Checkpoint</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Live Status Documents</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3>Project Status</h3>
+          <p>Use this for the latest branch, phase, verification, and handoff status.</p>
+          <ul>
+            <li><code>docs/00-project-status.md</code></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Worklog</h3>
+          <p>Use this to understand what actually changed during the latest work sessions.</p>
+          <ul>
+            <li><code>docs/worklog/2026-05-29.md</code></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
